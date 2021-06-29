@@ -39,6 +39,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('store/save', [ProductWarehouseController::class,'saveOrden'])->name('store.save');
     Route::get('list-user', [ProductWarehouseController::class,'listUser'])->name('store.list-user');
     Route::get('show/{id}', [ProductWarehouseController::class,'showUser'])->name('store.show');
+    Route::get('buyProduct/{id}', [ProductWarehouseController::class,'buyProduct'])->name('store.buyProduct');
   });
 
   // Ruta para agregar saldo

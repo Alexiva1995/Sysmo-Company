@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Hexters\CoinPayment\CoinPayment;
+use Hexters\CoinPayment\Helpers\CoinPaymentHelper;
+
 
 class ProductWarehouseController extends Controller
 {
@@ -211,27 +213,87 @@ class ProductWarehouseController extends Controller
       ->with('store', $store);
     }
 
+    public function buyProduct($id){
+
+        try{
+            $product = ProductWarehouse::find($id);
+            $user = Auth::user()->id;
+            $data = Order::latest('id')->first();
+
+            $transaction['order_id'] =  $data->id+1; // invoice number
+            $transaction['amountTotal'] = (FLOAT) 210;
+            $transaction['note'] = "Compra de Producto";
+            $transaction['buyer_name'] = Auth::user()->firstname;
+            $transaction['buyer_email'] = Auth::user()->email;
+            $transaction['redirect_url'] = url('/'); // When Transaction was comleted
+            $transaction['cancel_url'] = url('/'); // When user click cancel link
+
+            $transaction['items'][] = [
+                'itemDescription' => $product->name,
+                'itemPrice' => (FLOAT) $product->price, // USD
+                'itemQty' => (INT) 1,
+                'itemSubtotalAmount' => (FLOAT) $product->price*1 // USD
+              ];
 
 
+            return redirect(CoinPayment::generatelink($transaction));
+        } catch (\Throwable $th) {
+            Log::error('LinkCoinpayment -> '.$th);
+        }  
 
+        // $product = ProductWarehouse::find($id);
 
+        // $order = new order();
 
+        // $transaction['order_id'] =  $order->id; // invoice number
+        // $transaction['amountTotal'] = (FLOAT) 37.5;
+        // $transaction['note'] = 'Transaction note';
+        // $transaction['buyer_name'] = 'Jhone Due';
+        // $transaction['buyer_email'] = 'buyer@mail.com';
+        // $transaction['redirect_url'] = url('/'); // When Transaction was comleted
+        // $transaction['cancel_url'] = url('/'); // When user click cancel link
+      
+      
+        /*
+        *   @required true
+        *   @example first item
+        */
+        // $transaction['items'][] = [
+        //   'itemDescription' => 'Product one',
+        //   'itemPrice' => (FLOAT) 7.5, // USD
+        //   'itemQty' => (INT) 1,
+        //   'itemSubtotalAmount' => (FLOAT) 7.5 // USD
+        // ];
+      
+        /*
+        *   @example second item
+        */
+        // $transaction['items'][] = [
+        //   'itemDescription' => 'Product two',
+        //   'itemPrice' => (FLOAT) 10, // USD
+        //   'itemQty' => (INT) 1,
+        //   'itemSubtotalAmount' => (FLOAT) 10 // USD
+        // ];
+      
+        // /*
+        // *   @example third item
+        // */
+        // $transaction['items'][] = [
+        //   'itemDescription' => 'Product Three',
+        //   'itemPrice' => (FLOAT) 10, // USD
+        //   'itemQty' => (INT) 2,
+        //   'itemSubtotalAmount' => (FLOAT) 20 // USD
+        // ];
+      
+        // $transaction['payload'] = [
+        //   'foo' => [
+        //       'bar' => 'baz'
+        //   ]
+        // ];
+      
+        // return view('coinpayment::transaction.make.show');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
     public function linkCoinPayMent(object $producto, int $idcompra, int $abono)
     {
