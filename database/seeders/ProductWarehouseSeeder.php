@@ -15,7 +15,7 @@ class ProductWarehouseSeeder extends Seeder
      */
     public function run()
     {
-        ProductWarehouseSeeder::create([
+        ProductWarehouse::create([
             'name' => 'Cashbot RS',
             'description' => 'Descripcion de Cashbot RS',
             'price' => '210',
@@ -23,7 +23,7 @@ class ProductWarehouseSeeder extends Seeder
             'status' => '1'
         ]);
 
-        ProductWarehouseSeeder::create([
+        ProductWarehouse::create([
             'name' => 'Cashbot Pro',
             'description' => 'Descripcion de Cashbot PRO',
             'price' => '300',
