@@ -219,8 +219,9 @@ class ProductWarehouseController extends Controller
             $product = ProductWarehouse::find($id);
             $user = Auth::user()->id;
             $data = Order::latest('id')->first();
+            $hayData = $data? $data->id+1 : 1;
 
-            $transaction['order_id'] =  $data->id+1; // invoice number
+            $transaction['order_id'] =  $hayData; // invoice number
             $transaction['amountTotal'] = (FLOAT) 210;
             $transaction['note'] = "Compra de Producto";
             $transaction['buyer_name'] = Auth::user()->firstname;
@@ -234,6 +235,12 @@ class ProductWarehouseController extends Controller
                 'itemQty' => (INT) 1,
                 'itemSubtotalAmount' => (FLOAT) $product->price*1 // USD
               ];
+
+            $transaction['payload'] = [
+                'foo' => [
+               'bar' => 'baz'
+            ]
+         ];
 
 
             return redirect(CoinPayment::generatelink($transaction));
@@ -299,21 +306,7 @@ class ProductWarehouseController extends Controller
             Log::error('LinkCoinpayment -> '.$th);
         }        
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
     /**
      * Permite Guardar la informacion de la entrada en wp
      *
