@@ -35,9 +35,9 @@
                             <thead class="">
                                 <tr class="text-center text-dark bg-purple-alt2">
                                     <th>ID</th>
-                                    <th>Concepto</th>
-                                    <th>Monto</th>
                                     <th>Fecha</th>
+                                    <th>Descripción</th>
+                                    <th>Monto</th>
                                     <th>Estado</th>
                                 </tr>
                             </thead>
@@ -45,9 +45,9 @@
                                 @foreach ($wallets as $wallet)
                                 <tr class="text-center">
                                     <td>{{$wallet->id}}</td>
+                                    <td>{{date('d-m-Y', strtotime($wallet->created_at))}}</td>
                                     <td>{{$wallet->description}}</td>
                                     <td>{{$wallet->balance}}</td>
-                                    <td>{{date('d-m-Y', strtotime($wallet->created_at))}}</td>
                                     <td>
                                         @if ($wallet->status == 1)
                                             Pagado

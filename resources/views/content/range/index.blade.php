@@ -36,8 +36,9 @@
                         <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped" data-order='[[ 1, "asc" ]]' data-page-length='10'>
                             <thead class="">
                                 <tr class="text-center text-dark bg-purple-alt2">
-                                    <th>ID</th>
-                                    <th>Concepto</th>
+                                    <th>#</th>
+                                    <th>Skrill</th>
+                                    <th>Referencia</th>
                                     <th>Monto</th>
                                     <th>Fecha</th>
                                     <th>Estado</th>
