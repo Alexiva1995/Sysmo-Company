@@ -14,6 +14,7 @@ use App\Http\Controllers\ImpersonateController;
 use App\Http\Controllers\LiquidactionController;
 use App\Http\Controllers\MiscellaneousController;
 use App\Http\Controllers\ProductWarehouseController;
+use App\Http\Controllers\BotController;
 
 // Main Page Route
 Route::get('/', [DashboardController::class,'dashboardAnalytics'])->name('dashboard-analytics')->middleware('verified');
@@ -66,6 +67,12 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('index', [WalletController::class,'index'])->name('wallet.index');
   });
 
+  //bot user
+  Route::prefix('bot')->group(function ()
+  {
+    Route::get('index', [BotController::class,'index'])->name('bot.index');
+  });
+
   // referred user
   Route::group(['prefix' => 'referred'], function () {
 
@@ -101,6 +108,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [DashboardController::class,'dashboardAnalytics'])->name('dashboard-analytics')->middleware('auth', 'checkrole:1');
     Route::get('ecommerce', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('auth', 'checkrole:1');
   });
+
+
  
     // store admin
     Route::prefix('store')->group(function(){

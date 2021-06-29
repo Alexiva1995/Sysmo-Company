@@ -4,7 +4,9 @@
 
 @section('page-style')
 {{-- Page Css files --}}
-<link rel="stylesheet" type="text/css" href="{{asset('css/additional/data-tables/dataTables.min.css')}}">
+{{-- <link rel="stylesheet" type="text/css" href="{{asset('css/additional/data-tables/dataTables.min.css')}}"> --}}
+
+
 @endsection
 
 @section('content')
@@ -16,7 +18,7 @@
                 <div class="breadcrumb-wrapper">
                     <ol class="breadcrumb">
                         <h1 class="content-header-title float-left mr-2">Sysmo Company</h1>
-                        <li class="breadcrumb-item"><a href="#">Billetera</a></li>
+                        <li class="breadcrumb-item"><a href="#">Bot</a></li>
                     </ol>
                 </div>
             </div>
@@ -24,7 +26,10 @@
     </div>
 </div>
 
-<div id="record">
+
+<div id="chart"></div>
+
+{{-- <div id="record">
     <div class="col-12">
         <div class="card">
             <div class="card-content">
@@ -66,24 +71,39 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 @endsection
 {{-- permite llamar a las opciones de las tablas --}}
 @section('page-script')
 
-<script src="{{ asset('js/additional/data-tables/dataTables.min.js') }}"></script>
+{{-- <script src="{{ asset('js/additional/data-tables/dataTables.min.js') }}"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+
 
 <script>
     $(document).ready(function () {
-        $('#mytable').DataTable({
-            //dom: 'flBrtip',
-            responsive: true,
-            searching: false,
-            ordering: true,
-            paging: true,
-            select: true,
-        });
+        var options = {
+  chart: {
+    type: 'line',
+    height: 350,
+    zoom: {
+                enabled: false
+              }
+  },
+  series: [{
+    name: 'Porcentaje',
+    data: [30,40,35,50,49,91,125]
+  }],
+  xaxis: {
+    categories: ['Lun','Mar','Mie','Jue','Vie','Sab','Dom']
+  }
+}
+
+var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+chart.render();
     });
 
 </script>
