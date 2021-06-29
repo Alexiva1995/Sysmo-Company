@@ -214,39 +214,59 @@ class ProductWarehouseController extends Controller
     }
 
     public function buyProduct($id){
+        $inv = 20000;
+        $transacion = [
+            'amountTotal' => 1000,
+            'note' => 'Inversion de '.number_format($inv, 2, ',', '.').' USD',
+            'order_id' => 1,//$this->saveOrden($inversion),
+            'tipo' => 'inversion',
+            'tipo_transacion' => 3,
+            'buyer_name' => Auth::user()->firstname,
+            'buyer_email' => Auth::user()->email,
+            'redirect_url' => route('store')
+        ];
+        $transacion['items'][] = [
+            'itemDescription' => 'Inversion de '.number_format($inv, 2, ',', '.').' USD',
+            'itemPrice' => 1000, // USD
+            'itemQty' => (INT) 1,
+            'itemSubtotalAmount' => 1000 // USD
+        ];
+        $ruta = \CoinPayment::generatelink($transacion);
+        return redirect($ruta);
 
-        try{
-            $product = ProductWarehouse::find($id);
-            $user = Auth::user()->id;
-            $data = Order::latest('id')->first();
-            $hayData = $data? $data->id+1 : 1;
+        // try{
+        //     $product = ProductWarehouse::find($id);
+        //     $user = Auth::user()->id;
+        //     $data = Order::latest('id')->first();
+        //     $hayData = $data? $data->id+1 : 1;
 
-            $transaction['order_id'] =  $hayData; // invoice number
-            $transaction['amountTotal'] = (FLOAT) 210;
-            $transaction['note'] = "Compra de Producto";
-            $transaction['buyer_name'] = Auth::user()->firstname;
-            $transaction['buyer_email'] = Auth::user()->email;
-            $transaction['redirect_url'] = url('/'); // When Transaction was comleted
-            $transaction['cancel_url'] = url('/'); // When user click cancel link
+        //     $transaction['order_id'] =  $hayData; // invoice number
+        //     $transaction['amountTotal'] = (FLOAT) 210;
+        //     $transaction['note'] = "Compra de Producto";
+        //     $transaction['buyer_name'] = Auth::user()->firstname;
+        //     $transaction['buyer_email'] = Auth::user()->email;
+        //     $transaction['redirect_url'] = url('/'); // When Transaction was comleted
+        //     $transaction['cancel_url'] = url('/'); // When user click cancel link
 
-            $transaction['items'][] = [
-                'itemDescription' => $product->name,
-                'itemPrice' => (FLOAT) $product->price, // USD
-                'itemQty' => (INT) 1,
-                'itemSubtotalAmount' => (FLOAT) $product->price*1 // USD
-              ];
+        //     $transaction['items'][] = [
+        //         'itemDescription' => $product->name,
+        //         'itemPrice' => (FLOAT) $product->price, // USD
+        //         'itemQty' => (INT) 1,
+        //         'itemSubtotalAmount' => (FLOAT) $product->price*1 // USD
+        //       ];
 
-            $transaction['payload'] = [
-                'foo' => [
-               'bar' => 'baz'
-            ]
-         ];
+        //     $transaction['payload'] = [
+        //         'foo' => [
+        //        'bar' => 'baz'
+        //     ]
+        //  ];
 
 
-            return redirect(CoinPayment::generatelink($transaction));
-        } catch (\Throwable $th) {
-            Log::error('LinkCoinpayment -> '.$th);
-        }  
+        //     return redirect(CoinPayment::generatelink($transaction));
+        // } catch (\Throwable $th) {
+        //     Log::error('LinkCoinpayment -> '.$th);
+        // }  
+
     }
 
     public function linkCoinPayMent(object $producto, int $idcompra, int $abono)
