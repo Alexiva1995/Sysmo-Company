@@ -14,6 +14,7 @@ use App\Http\Controllers\ImpersonateController;
 use App\Http\Controllers\LiquidactionController;
 use App\Http\Controllers\MiscellaneousController;
 use App\Http\Controllers\ProductWarehouseController;
+use App\Http\Controllers\BotController;
 
 // Main Page Route
 Route::get('/', [DashboardController::class,'dashboardAnalytics'])->name('dashboard-analytics')->middleware('verified');
@@ -39,6 +40,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('store/save', [ProductWarehouseController::class,'saveOrden'])->name('store.save');
     Route::get('list-user', [ProductWarehouseController::class,'listUser'])->name('store.list-user');
     Route::get('show/{id}', [ProductWarehouseController::class,'showUser'])->name('store.show');
+    Route::get('buyProduct/{id}', [ProductWarehouseController::class,'buyProduct'])->name('store.buyProduct');
   });
 
   // Ruta para agregar saldo
@@ -63,6 +65,12 @@ Route::group(['prefix' => 'user'], function () {
   Route::prefix('wallet')->group(function ()
   {
     Route::get('index', [WalletController::class,'index'])->name('wallet.index');
+  });
+
+  //bot user
+  Route::prefix('bot')->group(function ()
+  {
+    Route::get('index', [BotController::class,'index'])->name('bot.index');
   });
 
   // referred user
@@ -100,6 +108,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [DashboardController::class,'dashboardAnalytics'])->name('dashboard-analytics')->middleware('auth', 'checkrole:1');
     Route::get('ecommerce', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('auth', 'checkrole:1');
   });
+
+
  
     // store admin
     Route::prefix('store')->group(function(){

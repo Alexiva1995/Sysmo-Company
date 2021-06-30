@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'list-tickets-user')
+@section('title', 'Lista de Productos')
 
 @section('page-style')
 {{-- Page Css files --}}
@@ -30,27 +30,23 @@
         <div class="card">
             <div class="card-content">
                 <div class="card-body card-dashboard">
-                    <a href="{{ route('store.create')}}" class="btn btn-primary float-right mb-0 waves-effect waves-light"><i
-                        data-feather="plus-circle"></i>&nbsp; Crear Producto</a>
+                    <!-- <a href="{{ route('store.create')}}" class="btn btn-primary float-right mb-0 waves-effect waves-light"><i
+                        data-feather="plus-circle"></i>&nbsp; Crear Producto</a> -->
                     <div class="table-responsive">
                         <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped"
                             data-order='[[ 1, "asc" ]]' data-page-length='10'>
                             <thead class="bg-purple-alt2">
-
                                 <tr class="text-center text-dark">
                                     <th>ID</th>
                                     <th>Imagen</th>
                                     <th>Nombre</th>
-                                    <th>Descripcion</th>
+                                    <th>Precio</th>
                                     <th>Estado</th>
                                     <th>Fecha de Creacion</th>
                                     <th>Accion</th>
                                 </tr>
-
                             </thead>
-
                             <tbody>
-
                                 @foreach ($store as $item)
                                 <tr class="text-center">
                                     <td>{{ $item->id}}</td>
@@ -60,7 +56,7 @@
                                     <td>No Tiene Imagen</td>
                                     @endif
                                     <td>{{ $item->name}}</td>
-                                    <td>{{ $item->description}}</td>
+                                    <td>{{ $item->price}}</td>
 
                                     @if ($item->status == '0')
                                     <td> <a class=" badge badge-info text-white">Inactivo</a></td>
@@ -89,7 +85,7 @@
                                                     action="{{ route('store.destroy', $item->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <h1 class="text-center card-title">Seguro que quieres Eliminar este Ticket ?</h1>
+                                                    <h1 class="text-center card-title">Seguro que quieres Eliminar este Producto?</h1>
                                             </div>
                                             <div class="modal-footer justify-conten-center">
                                                 <button type="button" class="btn btn-secondary"
