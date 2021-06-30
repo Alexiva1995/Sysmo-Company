@@ -5,8 +5,8 @@
 @include('content.referred.tree.component.tree-css')
 
 @section('content')
-
-<div class="col-12 text-center">
+<div class="row">
+<div class="col-9 text-center">
     <div class="padre">
         <ul>
             <li class="baseli">
@@ -74,6 +74,21 @@
         <a class="btn btn-info" href="{{route('tree_type', strtolower($type))}}">Regresar a mi arbol</a>
     </div>
     @endif
+</div>
+<div class="col-3">
+    <div class="card">
+        <img src="{{$base->logoarbol}}" width="150px" height="150px" class="mx-auto">
+        <div class="card-body">
+          <h5 class="card-title">Nombre</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Paquete</li>
+            <li class="list-group-item">Estado</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+            <a href="" class="btn btn-success btn-block disabled">Ver Árbol</a>
+        </div>
+      </div>
 </div>
 @endsection
 

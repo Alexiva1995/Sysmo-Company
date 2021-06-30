@@ -81,11 +81,9 @@ class ReferredController extends Controller
     public function moretree($type, $id)
     {
 
-
             $trees = $this->getDataEstructura($id, strtolower($type));
             $type = ucfirst($type);
             $base = User::find($id);
-        dd($id);
 
             if (empty($base)) {
                 return redirect()->back()->with('msj2', 'El ID '. $id.', no se encuentra registrado');
@@ -130,7 +128,7 @@ class ReferredController extends Controller
             if (!empty($users)) {
                 foreach ($users as $user) {
                     $user->children = $this->getData($user->id, $nivel, $typeTree);
-                    $this->getChildren($user->children, ($nivel+1), $typeTree);
+                    // $this->getChildren($user->children, ($nivel+1), $typeTree);
                 }
                 return $users;
             }else{
