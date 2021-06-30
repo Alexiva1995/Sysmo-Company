@@ -75,7 +75,7 @@
     </div>
     @endif
 </div>
-<div class="col-3">
+<div class="col-3 mt-5">
     <div class="card">
         <img src="{{$base->logoarbol}}" width="150px" height="150px" class="mx-auto">
         <div class="card-body">
