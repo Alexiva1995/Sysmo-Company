@@ -11,7 +11,7 @@
         @if ($item->status == 1)
         
         <div class="col-3">
-            <form action="{{ route('store.save') }}" method="POST">
+            <form action="{{ route('store.save') }}" method="POST" target="_blank">
                 {{ csrf_field() }}
                 <input type="number" value="{{ $item->id }}" class=" d-none" name="id">
                 <div class="card">
