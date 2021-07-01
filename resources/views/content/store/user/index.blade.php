@@ -28,7 +28,7 @@
                             <input type="text" value="{{ $item->name }}" class=" d-none" name="name">
                             <p class="card-text">{{ $item->description }}</p>
                         </div>
-                        <button type="submit" class="col-12 btn btn-lg btn-success waves-effect waves-light"><i data-feather='shopping-bag' class="mr-1"></i> Comprar</button>    
+                        <button type="submit" class="col-12 btn btn-lg btn-success waves-effect waves-light"><a href="{{route('store.buyProduct', $item->id)}}"><i data-feather='shopping-bag' class="mr-1"></i> Comprar</a></button>    
                         {{-- @if (Auth::user()->balance >= $item->price)
                         <button type="submit" class="col-12 btn btn-lg btn-success waves-effect waves-light"><i data-feather='shopping-bag' class="mr-1"></i> Comprar</button>    
                         @else

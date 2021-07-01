@@ -43,7 +43,6 @@
                                     <th>Precio</th>
                                     <th>Estado</th>
                                     <th>Fecha de Creacion</th>
-                                    <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,36 +65,7 @@
 
                                     <td>{{ date('d-m-Y', strtotime($item->created_at))}}</td>
 
-                                    <td>
-                                        <a href="{{ route('store.edit',$item->id) }}" class="btn
-                                        btn-secondary text-bold-600">Editar</a> 
-
-                                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#Modal">Eliminar</button>
-                                    </td>
                                 </tr>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="Modal" tabindex="-1" role="dialog"
-                                    aria-labelledby="ModalTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-body">
-                                                <form class="float-right ml-1"
-                                                    action="{{ route('store.destroy', $item->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <h1 class="text-center card-title">Seguro que quieres Eliminar este Producto?</h1>
-                                            </div>
-                                            <div class="modal-footer justify-conten-center">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Cerrar</button>
-                                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                                            </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
                                 
                                 @endforeach
                         </table>
