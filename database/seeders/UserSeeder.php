@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 use App\Models\User;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -71,5 +72,33 @@ class UserSeeder extends Seeder
             'balance'=> '20000',
             'referred_id' => '3'
         ]);
+        User::create([
+            'firstname'=> 'Eulin',
+            'lastname'=> 'Palma',
+            'username'=> 'eulinp',
+            'email'=> 'eulinpr@gmail.com',
+            'password'=> '12345678',
+            'role'=> '0',
+            'range_id'=> '0',
+            'status'=> '1',
+            'balance'=> '30000',
+            'referred_id' => '3'
+        ]);
+
+        //Usuarios de prueba para los Bonos
+        for($i = 0; $i<100; $i++){
+            User::create([
+                'firstname'=> Str::random(5),
+                'lastname'=> Str::random(5),
+                'username'=> Str::random(5),
+                'email'=> Str::random(5).'@gmail.com',
+                'password'=> '12345678',
+                'role'=> '0',
+                'range_id'=> '0',
+                'status'=> '1',
+                'balance'=> '30000',
+                'referred_id' => random_int(1,6)
+            ]);
+        }
     }
 }
