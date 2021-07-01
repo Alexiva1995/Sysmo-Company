@@ -43,6 +43,7 @@
                                     <th>Fecha </th>
                                     <th>Monto</th>
                                     <th>Billetera</th>  
+                                    <th>Hash</th>  
                                     <th>Acción</th>                                  
                                 </tr>
                             </thead>
@@ -53,6 +54,7 @@
                                     <td>{{$liqui->email}}</td>
                                     <td>{{date('Y-m-d', strtotime($liqui->created_at))}}</td>
                                     <td>{{$liqui->total}}</td>
+                                    <td>{{$liqui->hash}}</td>
                                     <td>{{$liqui->wallet_used}}</td>
                                     <td>
                                         @if ($liqui->status == 1)
