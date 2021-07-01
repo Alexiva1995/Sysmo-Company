@@ -26,8 +26,9 @@
     </div>
 </div>
 
-
-<div id="chart"></div>
+<div class="card">
+    <div id="chart"></div>
+</div>
 
 {{-- <div id="record">
     <div class="col-12">
