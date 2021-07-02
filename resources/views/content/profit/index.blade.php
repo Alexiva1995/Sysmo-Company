@@ -36,16 +36,20 @@
                             <thead class="">
                                 <tr class="text-center text-dark bg-purple-alt2">
                                     <th>ID</th>
-                                    <th>Monto</th>                                
                                     <th>Tipo de Transaccion</th>
+                                    <th>Monto</th>                                
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach ($profit as $item)
                                 <tr class="text-center">
                                     <td>{{$item->id}}</td>
-                                    <td> {{$item->monto}} </td>
-                                    <td>{{$item->type_transaction}}</td>
+                                    @if ($item->status == '0')
+                                    <td> <a class=" badge badge-info text-white">Comision</a></td>
+                                    @else
+                                    <td> <a class=" badge badge-success text-white">Retiro</a></td>
+                                    @endif
+                                    <td> {{$item->balance}} </td>
                                 </tr>
                             @endforeach
                             </tbody>

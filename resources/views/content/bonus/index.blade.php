@@ -43,6 +43,7 @@
 
                             </thead>
                             <tbody>
+
                                 <tr class="text-center">
                                     <td></td>
                                     <td></td>
@@ -83,6 +84,5 @@
             select: true,
         });
     });
-
 </script>
 @endsection

@@ -30,7 +30,7 @@ class ProfitController extends Controller
 // dd($product_warehouse);
 
         // $profit = DB::table('wallets')->where('user_id', $user_id);
-        $profit = Wallet::all()->where('user_id', $user_id);
+        $profit = Wallet::all();
 
         // Wallet::with($user_id)->where('user_id', $user_id);
         
