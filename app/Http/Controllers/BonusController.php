@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Bonus;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class BonusController extends Controller
@@ -17,7 +18,8 @@ class BonusController extends Controller
      */
     public function index()
     {
-        $this->moneyBonus();
+        // $this->moneyBonus();
+        $this->speedBonus();
         // return view('content.bonus.index');
     }
 
@@ -117,6 +119,22 @@ class BonusController extends Controller
          Nota:(para aplicar a este bono debe tener esos 2 referidos en los
           Siguientes 15 días)
          ******************************************************************/
+
+         $referidos = 20; //Número de referidos que debe tener para que se cumpla la condición
+         $dias = 30; //Días antes de que la condición deje de cumplirse
+
+        $user = User::find(Auth::user()->id);
+         $create = $user->created_at;
+         
+         if($create->diffInDays(Carbon::now()) >= $dias){
+            if(count($user->children) >= $referidos){
+                dd("Cumple los requisitos para el bono");
+            }else{
+                dd("No tiene suficientes referidos");
+            }
+         }else{
+            dd("Ya pasaron más de 30 días");
+         }
     
     }
 
