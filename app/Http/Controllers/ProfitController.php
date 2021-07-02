@@ -8,6 +8,9 @@ use App\Models\Wallet;
 use App\Models\Liquidaction;
 use App\Models\ProductWarehouse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 class ProfitController extends Controller
 {
     /**
@@ -22,25 +25,33 @@ class ProfitController extends Controller
         $liquidaction = Liquidaction::all();
         $product_warehouse = ProductWarehouse::all();
 
+        $user_id = Auth::user()->id;
+
 // dd($product_warehouse);
 
-        $profit = Wallet::with('user_id')
-        ->with('users')
-        ->leftJoin('bank_accounts', 'transactions.bank_account_id', '=', 'bank_accounts.id')
-        ->leftJoin('users', 'transactions.user_id', '=', 'users.id')
-        ->leftJoin('user_payments', 'user_payments.operation_code', '=', 'transactions.operation_code')
-        ->leftJoin('orders', 'orders.code_operation', '=', 'transactions.operation_code')
-        ->leftJoin('order_category', 'order_category.order_id', '=', 'orders.id')
-        ->leftJoin('categories', 'categories.id', '=', 'order_category.category_id')
-        ->select(
-            'transactions.id as id_transactions', 
-            'bank_account_id', 
-            'orders.bs_monitor as orders_bs_monitor',
-            'orders.created_at as orders_created',
-            'orders.updated_at as orders_updated',
-        )->orderby('transactions.id','DESC');
+        // $profit = DB::table('wallets')->where('user_id', $user_id);
+        $profit = Wallet::all()->where('user_id', $user_id);
 
-        return view('content.profit.index');
+        // Wallet::with($user_id)->where('user_id', $user_id);
+        
+
+        // ->with('users')
+        // ->leftJoin('bank_accounts', 'transactions.bank_account_id', '=', 'bank_accounts.id')
+        // ->leftJoin('users', 'transactions.user_id', '=', 'users.id')
+        // ->leftJoin('user_payments', 'user_payments.operation_code', '=', 'transactions.operation_code')
+        // ->leftJoin('orders', 'orders.code_operation', '=', 'transactions.operation_code')
+        // ->leftJoin('order_category', 'order_category.order_id', '=', 'orders.id')
+        // ->leftJoin('categories', 'categories.id', '=', 'order_category.category_id')
+        // ->select(
+        //     'transactions.id as id_transactions', 
+        //     'bank_account_id', 
+        //     'orders.bs_monitor as orders_bs_monitor',
+        //     'orders.created_at as orders_created',
+        //     'orders.updated_at as orders_updated',
+        // )->orderby('transactions.id','DESC');
+
+        return view('content.profit.index')
+                    ->with('profit', $profit);
 
     }
 

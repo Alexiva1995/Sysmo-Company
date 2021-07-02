@@ -43,11 +43,27 @@
                             </thead>
                             <tbody>
 
+                            <tr class="text-center">
+                                    <td>1</td>
+                                    <td>Bono de $50</td>
+                                    <td>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25</div>
+                                    </div>
+                                    </td>
+                                    <td>Recibido</td>                                   
+                                </tr>
                                 <tr class="text-center">
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>                                   
+                                    <td>1</td>
+                                    <td>Moto</td>
+                                    <td>Barra</td>
+                                    <td>No ganado</td>                                   
+                                </tr>
+                                <tr class="text-center">
+                                    <td>1</td>
+                                    <td>Carro</td>
+                                    <td>Barra</td>
+                                    <td>No ganado</td>                                   
                                 </tr>
 
                             </tbody>

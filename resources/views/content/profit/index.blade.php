@@ -36,16 +36,18 @@
                             <thead class="">
                                 <tr class="text-center text-dark bg-purple-alt2">
                                     <th>ID</th>
-                                    <th>Tipo de Transaccion</th>
                                     <th>Monto</th>                                
+                                    <th>Tipo de Transaccion</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach ($profit as $item)
                                 <tr class="text-center">
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{$item->id}}</td>
+                                    <td> {{$item->monto}} </td>
+                                    <td>{{$item->type_transaction}}</td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
