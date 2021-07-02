@@ -222,5 +222,6 @@ return [
   "Liquidaciones realizadas" => "Liquidaciones realizadas",
 
   "Bot" => "Bot",
+  "Bonos" => "Bonos",
 
 ];

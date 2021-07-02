@@ -15,6 +15,7 @@ use App\Http\Controllers\LiquidactionController;
 use App\Http\Controllers\MiscellaneousController;
 use App\Http\Controllers\ProductWarehouseController;
 use App\Http\Controllers\BotController;
+use App\Http\Controllers\BonusController;
 
 // Main Page Route
 Route::get('/', [DashboardController::class,'dashboardAnalytics'])->name('dashboard-analytics')->middleware('verified');
@@ -71,6 +72,12 @@ Route::group(['prefix' => 'user'], function () {
   Route::prefix('bot')->group(function ()
   {
     Route::get('index', [BotController::class,'index'])->name('bot.index');
+  });
+
+  // Bonus user
+  Route::prefix('bonus')->group(function ()
+  {
+    Route::get('index', [BonusController::class,'index'])->name('bonus.index');
   });
 
   // referred user

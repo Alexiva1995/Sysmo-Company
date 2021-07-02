@@ -69,8 +69,15 @@
           "slug": "Red"
         }
       ]
-    }
+    },
 
+    
+    {
+      "name": "Bonos",
+      "icon": "award",
+      "url": "user/bonus/index",
+      "slug": "Bonus"      
+    }
 
   ]
 }

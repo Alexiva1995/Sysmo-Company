@@ -14,7 +14,7 @@ class BonusController extends Controller
      */
     public function index()
     {
-        //
+        return view('content.bonus.index');
     }
 
     /**
