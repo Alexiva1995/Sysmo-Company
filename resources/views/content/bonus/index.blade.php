@@ -35,6 +35,7 @@
 
                                 <tr class="text-center text-black bg-purple-alt2">
                                     <th>ID</th>
+                                    <th>Nombre del bono</th>
                                     <th>Descripción del premio</th> 
                                     <th>Progreso</th>
                                     <th>Estado</th>
@@ -42,28 +43,18 @@
 
                             </thead>
                             <tbody>
-
-                            <tr class="text-center">
-                                    <td>1</td>
-                                    <td>Bono de $50</td>
+                                <tr class="text-center">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25</div>
-                                    </div>
+                                        <div class="progress" style="height: 20px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar"
+                                                style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%
+                                            </div>
+                                        </div>
                                     </td>
-                                    <td>Recibido</td>                                   
-                                </tr>
-                                <tr class="text-center">
-                                    <td>1</td>
-                                    <td>Moto</td>
-                                    <td>Barra</td>
-                                    <td>No ganado</td>                                   
-                                </tr>
-                                <tr class="text-center">
-                                    <td>1</td>
-                                    <td>Carro</td>
-                                    <td>Barra</td>
-                                    <td>No ganado</td>                                   
+                                    <td></td>                                   
                                 </tr>
 
                             </tbody>

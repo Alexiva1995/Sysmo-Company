@@ -113,4 +113,15 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Liquidaction', 'user_id');
     }
 
+
+    /**
+     * Permite obtener todas las ordenes que tengo
+     *
+     * @return void
+     */
+    public function getOrder()
+    {
+        return $this->hasMany('App\Models\Order', 'user_id');
+    }
+
 }
