@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Bonus;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BonusController extends Controller
 {
@@ -14,7 +17,8 @@ class BonusController extends Controller
      */
     public function index()
     {
-        return view('content.bonus.index');
+        $this->moneyBonus();
+        // return view('content.bonus.index');
     }
 
     /**
@@ -82,4 +86,27 @@ class BonusController extends Controller
     {
         //
     }
+
+
+    public function moneyBonus()
+    {}
+
+    public function speedBonus()
+    {}
+
+    public function startBonus()
+    {}
+
+    public function directBonus()
+    {}
+
+    public function travelBonus()
+    {}
+
+    public function motorbikeBonus()
+    {}
+
+    public function carLifeStyleBonus()
+    {}
+
 }
