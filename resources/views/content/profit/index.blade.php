@@ -36,19 +36,12 @@
                             <thead class="">
                                 <tr class="text-center text-dark bg-purple-alt2">
                                     <th>ID</th>
-                                    <th>Compras del Sistema</th>
-                                    <th>Retiros del Sistema</th>
-                                    <th>ID</th>
-                                    <th>ID</th>
-                                    <th>ID</th>
-
+                                    <th>Tipo de Transaccion</th>
+                                    <th>Monto</th>                                
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="text-center">
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>

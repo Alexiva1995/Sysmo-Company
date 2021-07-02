@@ -24,7 +24,7 @@ class ProfitController extends Controller
 
 // dd($product_warehouse);
 
-        $profit = Wallet::with('id_user')
+        $profit = Wallet::with('user_id')
         ->with('users')
         ->leftJoin('bank_accounts', 'transactions.bank_account_id', '=', 'bank_accounts.id')
         ->leftJoin('users', 'transactions.user_id', '=', 'users.id')
