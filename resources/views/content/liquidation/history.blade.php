@@ -29,14 +29,30 @@
 @endsection
 
 @section('content')
+<div class="content-header row">
+    <div class="content-header-left col-md-9 col-12 mb-2">
+        <div class="row breadcrumbs-top">
+            <div class="col-12">
+                <div class="breadcrumb-wrapper">
+                    <ol class="breadcrumb">
+                        <h1 class="content-header-title float-left mr-2">Sysmo Company</h1>
+                        <li class="breadcrumb-item"><a href="#">Liquidaciones</a></li>
+                        <li class="breadcrumb-item"><a href="#">Liquidaciones Realizadas</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="settlement">
     <div class="col-12">
         <div class="card">
             <div class="card-content">
                 <div class="card-body card-dashboard">
                     <div class="table-responsive">
-                        <table class="table nowrap scroll-horizontal-vertical myTable table-striped">
-                            <thead class="">
+                        <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped"
+                            data-order='[[ 1, "asc" ]]' data-page-length='10'>
+                            <thead class="bg-purple-alt2">
                                 <tr class="text-center text-black bg-purple-alt2">
                                     <th>ID</th>
                                     <th>Correo</th>

@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'referred-list')
+@section('title', 'Referidos Directos')
 
 @section('page-style')
 {{-- Page Css files --}}

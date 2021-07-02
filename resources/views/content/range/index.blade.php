@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'profit')
+@section('title', 'Pagos')
 
 @section('page-style')
 {{-- Page Css files --}}
@@ -16,6 +16,7 @@
                 <div class="breadcrumb-wrapper">
                     <ol class="breadcrumb">
                         <h1 class="content-header-title float-left mr-2">Sysmo Company</h1>
+                        <li class="breadcrumb-item"><a href="#">Financiero</a></li>
                         <li class="breadcrumb-item"><a href="#">Flujo de Ganancia</a></li>
                     </ol>
                 </div>
