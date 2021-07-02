@@ -35,6 +35,7 @@
 
                                 <tr class="text-center text-black bg-purple-alt2">
                                     <th>ID</th>
+                                    <th>Nombre del bono</th>
                                     <th>Descripción del premio</th> 
                                     <th>Progreso</th>
                                     <th>Estado</th>
@@ -47,6 +48,13 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
+                                    <td>
+                                        <div class="progress" style="height: 20px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar"
+                                                style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td></td>                                   
                                 </tr>
 
