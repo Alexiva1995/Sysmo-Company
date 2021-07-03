@@ -30,24 +30,25 @@
             <div class="card-content">
                 <div class="card-body card-dashboard">
                     <div class="table-responsive">
-                        <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped" data-order='[[ 1, "asc" ]]' data-page-length='10'>
+                        <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped" data-order='[[ 2, "asc" ]]' data-page-length='10'>
                             <thead class="">
-
                                 <tr class="text-center text-black bg-purple-alt2">
                                     <th>ID</th>
                                     <th>Nombre del bono</th>
-                                    <th>Descripción del premio</th> 
                                     <th>Progreso</th>
+                                    <th>Recurrente</th>
+                                    <th>Descripción del premio</th> 
+                                    <th>Notas</th>
                                     <th>Estado</th>
                                 </tr>
 
                             </thead>
                             <tbody>
 
+                                @foreach ($bonuses as $bonus)
                                 <tr class="text-center">
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{$bonus->id}}</td>
+                                    <td>{{$bonus->name}}</td>
                                     <td>
                                         <div class="progress" style="height: 20px;">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar"
@@ -55,9 +56,16 @@
                                             </div>
                                         </div>
                                     </td>
+                                    <td>@if ($bonus->recurrent == 1)
+                                        Si
+                                        @else
+                                        No
+                                    @endif</td>
+                                    <td>{{$bonus->description}}</td>
+                                    <td>{{$bonus->note}}</td>
                                     <td></td>                                   
                                 </tr>
-
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

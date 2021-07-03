@@ -18,9 +18,15 @@ class BonusController extends Controller
      */
     public function index()
     {
+        $bonuses = Bonus::get();
+        // dd($bonuses);
         // $this->moneyBonus();
-        $this->speedBonus();
-        // return view('content.bonus.index');
+        // $this->speedBonus();
+        // $this->startBonus();
+        // $this->travelBonus();
+        // $this->motorbikeBonus();
+        // $this->carLifeStyleBonus();
+        return view('content.bonus.index')->with('bonuses', $bonuses);
     }
 
     /**
@@ -96,12 +102,12 @@ class BonusController extends Controller
          Cada 10 referidos directos que compren paquete se pagara 100usd
          ******************************************************************/
     
-        $referidos = 10; //Referidos que se necesitan para cumplir la condición del bono
+        $referidos = 2; //Referidos que se necesitan para cumplir la condición del bono
         $users = User::find(Auth::user()->id)->children;
         if(count($users) > 0){
             foreach($users as $user){
                 if(count($user->getOrder) >= $referidos ){
-                     dd("Se cumple la condición y se genera el pago y se aumenta el iterador en +10");
+                     dd("Se cumple la condición, se genera el pago y se aumenta el iterador en +10");
                 }else{
                     dd("NO Se cumple la condición");
                 }
@@ -120,21 +126,22 @@ class BonusController extends Controller
           Siguientes 15 días)
          ******************************************************************/
 
-         $referidos = 20; //Número de referidos que debe tener para que se cumpla la condición
-         $dias = 30; //Días antes de que la condición deje de cumplirse
+        $referidos = 10; //Número de referidos que debe tener para que se cumpla la condición
+        $dias = 30; //Días antes de que la condición deje de cumplirse
 
         $user = User::find(Auth::user()->id);
-         $create = $user->created_at;
+        $create = $user->created_at;
          
-         if($create->diffInDays(Carbon::now()) >= $dias){
+        if($create->diffInDays(Carbon::now()) >= $dias){
             if(count($user->children) >= $referidos){
+                //Registrar la fecha en que se cumple la condición para comenzar el conteo de los próximos 2 referidos
                 dd("Cumple los requisitos para el bono");
             }else{
                 dd("No tiene suficientes referidos");
             }
-         }else{
+        }else{
             dd("Ya pasaron más de 30 días");
-         }
+        }
     
     }
 
@@ -146,6 +153,22 @@ class BonusController extends Controller
          Nota: (para aplicar a esta comisión extra el referido #4 debe
          traerlo durante los primeros 30 dias)
          ******************************************************************/
+        $referidos = 3; //Número de referidos que debe tener para que se cumpla la condición
+        $dias = 15; //Días antes de que la condición deje de cumplirse
+
+        $user = User::find(Auth::user()->id);
+        $create = $user->created_at;
+         
+        if($create->diffInDays(Carbon::now()) >= $dias){
+            if(count($user->children) >= $referidos){
+                //Registrar la fecha en que se cumple la condición para comenzar el conteo de los próximos 2 referidos
+                dd("Cumple los requisitos para el bono");
+            }else{
+                dd("No tiene suficientes referidos");
+            }
+        }else{
+            dd("Ya pasaron más de 30 días");
+        }
     }
 
     public function directBonus()
@@ -169,6 +192,9 @@ class BonusController extends Controller
 
           el viaje tendrá 60 días para ser redimido. Aplica términos y condiciones.
          ******************************************************************/
+
+        $referidos = 50; //Número de referidos que debe tener para que se cumpla la condición
+
     }
 
     public function motorbikeBonus()
@@ -179,6 +205,18 @@ class BonusController extends Controller
          Nota: la moto será entregada en los siguientes 60 días después de
           cumplir con el requisito. Aplica términos y condiciones.
          ******************************************************************/
+
+        $referidos = 100; //Número de referidos que debe tener para que se cumpla la condición
+        $users = User::find(Auth::user()->id)->children;
+        if(count($users) > 0){
+            foreach($users as $user){
+                if(count($user->getOrder) >= $referidos ){
+                     dd("Se cumple la condición, se genera el pago y se desactiva el bono");
+                }else{
+                    dd("NO Se cumple la condición");
+                }
+            }
+        }
     }
 
     public function carLifeStyleBonus()
@@ -189,6 +227,18 @@ class BonusController extends Controller
          Nota: el carro será entregado en los siguientes 60 días después de 
          cumplir con el requisito. Aplica términos y condiciones.
          ******************************************************************/
+
+        $referidos = 500; //Número de referidos que debe tener para que se cumpla la condición
+        $users = User::find(Auth::user()->id)->children;
+        if(count($users) > 0){
+            foreach($users as $user){
+                if(count($user->getOrder) >= $referidos ){
+                     dd("Se cumple la condición, se genera el pago y se desactiva el bono");
+                }else{
+                    dd("NO Se cumple la condición");
+                }
+            }
+        }
     }
 
 }
