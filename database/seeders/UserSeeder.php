@@ -86,7 +86,7 @@ class UserSeeder extends Seeder
         ]);
 
         //Usuarios de prueba para los Bonos
-        for($i = 0; $i<100; $i++){
+        for($i = 0; $i<20; $i++){
             User::create([
                 'firstname'=> Str::random(5),
                 'lastname'=> Str::random(5),
