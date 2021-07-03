@@ -37,6 +37,8 @@
                                     <th>Nombre del bono</th>
                                     <th>Progreso</th>
                                     <th>Recurrente</th>
+                                    <th>Referidos necesarios</th>
+                                    <th>Días de validez</th>
                                     <th>Descripción del premio</th> 
                                     <th>Notas</th>
                                     <th>Estado</th>
@@ -60,6 +62,16 @@
                                         Si
                                         @else
                                         No
+                                    @endif</td>
+                                    <td>@if ($bonus->referrals == 0)
+                                        No Aplica
+                                        @else
+                                        {{$bonus->referrals}}
+                                    @endif</td>
+                                    <td>@if ($bonus->days == 0)
+                                        No Aplica
+                                        @else
+                                        {{$bonus->days}}
                                     @endif</td>
                                     <td>{{$bonus->description}}</td>
                                     <td>{{$bonus->note}}</td>

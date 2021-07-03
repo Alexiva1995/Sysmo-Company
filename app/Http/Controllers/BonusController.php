@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Bonus;
+use App\Models\BonusPivot;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -101,12 +102,12 @@ class BonusController extends Controller
         /******************************************************************
          Cada 10 referidos directos que compren paquete se pagara 100usd
          ******************************************************************/
-    
-        $referidos = 2; //Referidos que se necesitan para cumplir la condición del bono
+        $id = 1;
+        $bonus = Bonus::where('id', $id)->firstOrFail();
         $users = User::find(Auth::user()->id)->children;
         if(count($users) > 0){
             foreach($users as $user){
-                if(count($user->getOrder) >= $referidos ){
+                if(count($user->getOrder) >= $bonus->referrals ){
                      dd("Se cumple la condición, se genera el pago y se aumenta el iterador en +10");
                 }else{
                     dd("NO Se cumple la condición");
@@ -125,15 +126,13 @@ class BonusController extends Controller
          Nota:(para aplicar a este bono debe tener esos 2 referidos en los
           Siguientes 15 días)
          ******************************************************************/
-
-        $referidos = 10; //Número de referidos que debe tener para que se cumpla la condición
-        $dias = 30; //Días antes de que la condición deje de cumplirse
+        $id = 2;
+        $bonus = Bonus::where('id', $id)->firstOrFail();
 
         $user = User::find(Auth::user()->id);
         $create = $user->created_at;
-         
-        if($create->diffInDays(Carbon::now()) >= $dias){
-            if(count($user->children) >= $referidos){
+        if($create->diffInDays(Carbon::now()) <= $bonus->days){
+            if(count($user->children) >= $bonus->referrals){
                 //Registrar la fecha en que se cumple la condición para comenzar el conteo de los próximos 2 referidos
                 dd("Cumple los requisitos para el bono");
             }else{
@@ -153,15 +152,15 @@ class BonusController extends Controller
          Nota: (para aplicar a esta comisión extra el referido #4 debe
          traerlo durante los primeros 30 dias)
          ******************************************************************/
-        $referidos = 3; //Número de referidos que debe tener para que se cumpla la condición
-        $dias = 15; //Días antes de que la condición deje de cumplirse
+        $id = 3;
+        $bonus = Bonus::where('id', $id)->firstOrFail();
 
         $user = User::find(Auth::user()->id);
         $create = $user->created_at;
          
-        if($create->diffInDays(Carbon::now()) >= $dias){
-            if(count($user->children) >= $referidos){
-                //Registrar la fecha en que se cumple la condición para comenzar el conteo de los próximos 2 referidos
+        if($create->diffInDays(Carbon::now()) <= $bonus->days){
+            if(count($user->children) >= $bonus->referrals){
+                //Registrar la fecha en que se cumple la condición para comenzar el conteo del #4 referido
                 dd("Cumple los requisitos para el bono");
             }else{
                 dd("No tiene suficientes referidos");
@@ -177,6 +176,8 @@ class BonusController extends Controller
          El bono directo sera  cada paquere rs pagara 50 usd y cada pro pagara 70
          Los planes tendran vigenci durante 12 meses
          ******************************************************************/
+        $id = 4;
+        $bonus = Bonus::where('id', $id)->firstOrFail();
     }
 
     public function travelBonus()
@@ -193,7 +194,22 @@ class BonusController extends Controller
           el viaje tendrá 60 días para ser redimido. Aplica términos y condiciones.
          ******************************************************************/
 
-        $referidos = 50; //Número de referidos que debe tener para que se cumpla la condición
+        $id = 5;
+        $bonus = Bonus::where('id', $id)->firstOrFail();
+
+        $user = User::find(Auth::user()->id);
+        $create = $user->created_at;
+         
+        if($create->diffInDays(Carbon::now()) <= $bonus->days){
+            if(count($user->children) >= $bonus->referrals){
+                //Registrar la fecha en que se cumple la condición para comenzar el conteo de la segunda persona en el viaje
+                dd("Cumple los requisitos para el bono");
+            }else{
+                dd("No tiene suficientes referidos");
+            }
+        }else{
+            dd("Ya pasaron más de 30 días");
+        }
 
     }
 
@@ -206,12 +222,13 @@ class BonusController extends Controller
           cumplir con el requisito. Aplica términos y condiciones.
          ******************************************************************/
 
-        $referidos = 100; //Número de referidos que debe tener para que se cumpla la condición
+        $id = 6;
+        $bonus = Bonus::where('id', $id)->firstOrFail();
         $users = User::find(Auth::user()->id)->children;
         if(count($users) > 0){
             foreach($users as $user){
-                if(count($user->getOrder) >= $referidos ){
-                     dd("Se cumple la condición, se genera el pago y se desactiva el bono");
+                if(count($user->getOrder) >= $bonus->referrals ){
+                     dd("Se cumple la condición, se gana la moto");
                 }else{
                     dd("NO Se cumple la condición");
                 }
@@ -228,12 +245,13 @@ class BonusController extends Controller
          cumplir con el requisito. Aplica términos y condiciones.
          ******************************************************************/
 
-        $referidos = 500; //Número de referidos que debe tener para que se cumpla la condición
+        $id = 7;
+        $bonus = Bonus::where('id', $id)->firstOrFail();
         $users = User::find(Auth::user()->id)->children;
         if(count($users) > 0){
             foreach($users as $user){
-                if(count($user->getOrder) >= $referidos ){
-                     dd("Se cumple la condición, se genera el pago y se desactiva el bono");
+                if(count($user->getOrder) >= $bonus->referrals ){
+                     dd("Se cumple la condición, se gana el carro");
                 }else{
                     dd("NO Se cumple la condición");
                 }

@@ -124,4 +124,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Order', 'user_id');
     }
 
+    public function getBonus()
+    {
+        return $this->hasMany('App\Models\BonusPivot', 'user_id');
+    }
+
 }
