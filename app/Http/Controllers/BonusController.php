@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Bonus;
+use App\Models\BonusPivot;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -18,9 +19,15 @@ class BonusController extends Controller
      */
     public function index()
     {
+        $bonuses = Bonus::get();
+        // dd($bonuses);
         // $this->moneyBonus();
-        $this->speedBonus();
-        // return view('content.bonus.index');
+        // $this->speedBonus();
+        // $this->startBonus();
+        // $this->travelBonus();
+        // $this->motorbikeBonus();
+        // $this->carLifeStyleBonus();
+        return view('content.bonus.index')->with('bonuses', $bonuses);
     }
 
     /**
@@ -95,13 +102,13 @@ class BonusController extends Controller
         /******************************************************************
          Cada 10 referidos directos que compren paquete se pagara 100usd
          ******************************************************************/
-    
-        $referidos = 10; //Referidos que se necesitan para cumplir la condición del bono
+        $id = 1;
+        $bonus = Bonus::where('id', $id)->firstOrFail();
         $users = User::find(Auth::user()->id)->children;
         if(count($users) > 0){
             foreach($users as $user){
-                if(count($user->getOrder) >= $referidos ){
-                     dd("Se cumple la condición y se genera el pago y se aumenta el iterador en +10");
+                if(count($user->getOrder) >= $bonus->referrals ){
+                     dd("Se cumple la condición, se genera el pago y se aumenta el iterador en +10");
                 }else{
                     dd("NO Se cumple la condición");
                 }
@@ -119,22 +126,21 @@ class BonusController extends Controller
          Nota:(para aplicar a este bono debe tener esos 2 referidos en los
           Siguientes 15 días)
          ******************************************************************/
-
-         $referidos = 20; //Número de referidos que debe tener para que se cumpla la condición
-         $dias = 30; //Días antes de que la condición deje de cumplirse
+        $id = 2;
+        $bonus = Bonus::where('id', $id)->firstOrFail();
 
         $user = User::find(Auth::user()->id);
-         $create = $user->created_at;
-         
-         if($create->diffInDays(Carbon::now()) >= $dias){
-            if(count($user->children) >= $referidos){
+        $create = $user->created_at;
+        if($create->diffInDays(Carbon::now()) <= $bonus->days){
+            if(count($user->children) >= $bonus->referrals){
+                //Registrar la fecha en que se cumple la condición para comenzar el conteo de los próximos 2 referidos
                 dd("Cumple los requisitos para el bono");
             }else{
                 dd("No tiene suficientes referidos");
             }
-         }else{
+        }else{
             dd("Ya pasaron más de 30 días");
-         }
+        }
     
     }
 
@@ -146,6 +152,22 @@ class BonusController extends Controller
          Nota: (para aplicar a esta comisión extra el referido #4 debe
          traerlo durante los primeros 30 dias)
          ******************************************************************/
+        $id = 3;
+        $bonus = Bonus::where('id', $id)->firstOrFail();
+
+        $user = User::find(Auth::user()->id);
+        $create = $user->created_at;
+         
+        if($create->diffInDays(Carbon::now()) <= $bonus->days){
+            if(count($user->children) >= $bonus->referrals){
+                //Registrar la fecha en que se cumple la condición para comenzar el conteo del #4 referido
+                dd("Cumple los requisitos para el bono");
+            }else{
+                dd("No tiene suficientes referidos");
+            }
+        }else{
+            dd("Ya pasaron más de 30 días");
+        }
     }
 
     public function directBonus()
@@ -154,6 +176,8 @@ class BonusController extends Controller
          El bono directo sera  cada paquere rs pagara 50 usd y cada pro pagara 70
          Los planes tendran vigenci durante 12 meses
          ******************************************************************/
+        $id = 4;
+        $bonus = Bonus::where('id', $id)->firstOrFail();
     }
 
     public function travelBonus()
@@ -169,6 +193,24 @@ class BonusController extends Controller
 
           el viaje tendrá 60 días para ser redimido. Aplica términos y condiciones.
          ******************************************************************/
+
+        $id = 5;
+        $bonus = Bonus::where('id', $id)->firstOrFail();
+
+        $user = User::find(Auth::user()->id);
+        $create = $user->created_at;
+         
+        if($create->diffInDays(Carbon::now()) <= $bonus->days){
+            if(count($user->children) >= $bonus->referrals){
+                //Registrar la fecha en que se cumple la condición para comenzar el conteo de la segunda persona en el viaje
+                dd("Cumple los requisitos para el bono");
+            }else{
+                dd("No tiene suficientes referidos");
+            }
+        }else{
+            dd("Ya pasaron más de 30 días");
+        }
+
     }
 
     public function motorbikeBonus()
@@ -179,6 +221,19 @@ class BonusController extends Controller
          Nota: la moto será entregada en los siguientes 60 días después de
           cumplir con el requisito. Aplica términos y condiciones.
          ******************************************************************/
+
+        $id = 6;
+        $bonus = Bonus::where('id', $id)->firstOrFail();
+        $users = User::find(Auth::user()->id)->children;
+        if(count($users) > 0){
+            foreach($users as $user){
+                if(count($user->getOrder) >= $bonus->referrals ){
+                     dd("Se cumple la condición, se gana la moto");
+                }else{
+                    dd("NO Se cumple la condición");
+                }
+            }
+        }
     }
 
     public function carLifeStyleBonus()
@@ -189,6 +244,19 @@ class BonusController extends Controller
          Nota: el carro será entregado en los siguientes 60 días después de 
          cumplir con el requisito. Aplica términos y condiciones.
          ******************************************************************/
+
+        $id = 7;
+        $bonus = Bonus::where('id', $id)->firstOrFail();
+        $users = User::find(Auth::user()->id)->children;
+        if(count($users) > 0){
+            foreach($users as $user){
+                if(count($user->getOrder) >= $bonus->referrals ){
+                     dd("Se cumple la condición, se gana el carro");
+                }else{
+                    dd("NO Se cumple la condición");
+                }
+            }
+        }
     }
 
 }
