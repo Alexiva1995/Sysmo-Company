@@ -99,16 +99,50 @@ trait BonoTrait{
             
             $user = User::find(Auth::user()->id);
             $referidos = $user->children;
-            // dd(count($referidos));
+            $totalOrdenes = [];
+
             foreach($referidos as $referido){
-                dd(count($referido->getOrder));
-                $iterador = intval(ceil(count($referido->getOrder)/10)*10);
-                if(count($referido->getOrder) == $iterador ){
-                    dd('Se cumple la condición del bono "Money" y se genera el pago de 100USD');
+                if($referido->getOrder->isNotEmpty()){
+                    array_push($totalOrdenes, $referido->getOrder);
+                }
+                $iterador = intval(ceil(count($totalOrdenes)/10)*10);
+            }
+
+            $totalOrdenes = count($totalOrdenes);
+
+            if(count( $referidos) < intval(ceil(count( $referidos)/10)*10))
+            {
+                dd("NO Tiene los referidos suficientes, tienes " . count( $referidos) . ' de ' . $iterador);
+            }
+
+            if(count( $referidos) == intval(ceil(count($referidos)/10)*10))
+            {
+                if($totalOrdenes >= $iterador){
+                    dd("Tienes " . count( $referidos) . ' de '. $iterador .', se genera el pago de 100');
                 }else{
-                    dd(count($referido->getOrder) . ' de tus referidos han comprado paquetes, faltan ' . ($iterador-count($referido->getOrder)) . ' para ganar el bono.');
+                    dd("Tus referidos no han comprado los suficientes paquetes, tienes:  " . $totalOrdenes . ' de ' . $iterador);
                 }
             }
+
+
+
+
+
+
+
+
+
+
+            // foreach($referidos as $referido){
+            //     $totalReferidos += count($referido->getOrder);
+            //     $iterador = intval(ceil($totalReferidos/10)*10);
+            // }
+            // if($totalReferidos == $iterador ){
+            //     dd('Se cumple la condición del bono "Money" y se genera el pago de 100USD');
+            // }else{
+            //     dd( $totalReferidos . ' de tus referidos han comprado paquetes, faltan ' . ($iterador-$totalReferidos) . ' para ganar el bono. Total: ' . $iterador . ' Tienes: ' . $totalReferidos);
+            // }
+            // dd($totalReferidos);
         } catch (\Throwable $th) {
             dd($th);
         }
