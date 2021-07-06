@@ -12,15 +12,15 @@ use Illuminate\Support\Facades\Auth;
 use Hexters\CoinPayment\CoinPayment;
 use Hexters\CoinPayment\Helpers\CoinPaymentHelper;
 use App\Models\User;
-
+use App\Traits\BonoTrait;
 
 class ProductWarehouseController extends Controller
 {
+    use BonoTrait;
 
      // permite ver la vista de la tienda
 
      public function index(){
-
         $store = ProductWarehouse::all();
         return view('content.store.user.index')->with('store', $store);
     
@@ -396,25 +396,4 @@ class ProductWarehouseController extends Controller
             // dd($th);
         }    
     }
-
-    public function bonoDirecto($producto)
-    {
-        try {
-            $padre = User::find(Auth::user()->id)->referred_id;
-            $idProducto = $producto;
-
-            if((User::find(Auth::user()->id)->created_at)->diffInYears(Carbon::now()) <= 1)//Validez por 1 año
-            {
-                if($idProducto == 1){
-                    dd('Se genera el pago de 50$USD al usuario: ' . $padre);
-                }elseif($idProducto == 2){
-                    dd('Se genera el pago de 70$USD al usuario: ' . $padre);
-                }
-            }
-           
-        } catch (\Throwable $th) {
-            dd($th);
-        }
-    }
-
 }
