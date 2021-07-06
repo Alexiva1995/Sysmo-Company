@@ -9,6 +9,9 @@ trait BonoTrait{
 
     public function bonoDirecto($producto)
     {
+        /******************************************************************
+         •El bono directo sera  cada paquere rs pagara 50 usd y cada pro pagara 70. 
+         ******************************************************************/
         try {
             $padre = User::find(Auth::user()->id)->referred_id;
             $idProducto = $producto;
@@ -27,4 +30,17 @@ trait BonoTrait{
         }
     }
 
+    public function bonoCarLifeStyle()
+    {
+        /******************************************************************
+         •Al sumar 500 referidos el usuario recibirá  un carro 0 kilómetros. 
+         ******************************************************************/
+        $users = User::find(Auth::user()->id)->children;
+        if(count($users) >= 500){
+            dd("Se cumple la condición, se gana el carro");
+        }else{
+            dd("NO Se cumple la condición");
+        }
+
+    }
 }
