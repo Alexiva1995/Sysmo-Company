@@ -35,8 +35,8 @@ trait BonoTrait{
         /******************************************************************
          •Al sumar 500 referidos el usuario recibirá  un carro 0 kilómetros. 
          ******************************************************************/
-        $users = User::find(Auth::user()->id)->children;
-        if(count($users) >= 500){
+        $referidos = User::find(Auth::user()->id)->children;
+        if(count($referidos) >= 500){
             dd("Se cumple la condición, se gana el carro");
         }else{
             dd("NO cumple la condición para ganarse el carro");
@@ -48,11 +48,31 @@ trait BonoTrait{
         /******************************************************************
          •Al sumar 100 referidos el usuario recibirá una moto 0 kilómetros.
          ******************************************************************/
-        $users = User::find(Auth::user()->id)->children;
-        if(count($users) >= 100){
+        $referidos = User::find(Auth::user()->id)->children;
+        if(count($referidos) >= 100){
             dd("Se cumple la condición, se gana la motocicleta");
         }else{
             dd("NO cumple la condición para ganarse la motocicleta");
+        }
+    }
+
+    public function bonoTravel()
+    {
+        /******************************************************************
+         •Cuando complete los 50 referidos recibirá adicional un viaje a
+          San andres para 1 persona todo incluido, si esos 50 referidos
+          los cumple en los primeros 90 días de su ingreso a sysmo el viaje 
+          aplicara para 2 personas todo incluido.
+         ******************************************************************/
+
+        $user = User::find(Auth::user()->id);
+        if(count($user->children) >= 5){
+            if($user->created_at->diffInDays(Carbon::now()) <= 90){
+                dd("Cumple los requisitos y se gana el viaje para 2 personas");
+            }
+            dd("Cumple los requisitos y se gana el viaje para 1 persona");
+        }else{
+            dd("No tiene suficientes referidos");
         }
     }
 }
