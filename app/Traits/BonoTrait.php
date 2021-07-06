@@ -35,12 +35,17 @@ trait BonoTrait{
         /******************************************************************
          •Al sumar 500 referidos el usuario recibirá  un carro 0 kilómetros. 
          ******************************************************************/
-        $referidos = User::find(Auth::user()->id)->children;
-        if(count($referidos) >= 500){
-            dd("Se cumple la condición, se gana el carro");
-        }else{
-            dd("NO cumple la condición para ganarse el carro");
+        try {
+            $referidos = User::find(Auth::user()->id)->children;
+            if(count($referidos) >= 500){
+                dd("Se cumple la condición, se gana el carro");
+            }else{
+                dd("NO cumple la condición para ganarse el carro");
+            }
+        } catch (\Throwable $th) {
+            dd($th);
         }
+        
     }
 
     public function bonoMotorBike()
@@ -48,12 +53,17 @@ trait BonoTrait{
         /******************************************************************
          •Al sumar 100 referidos el usuario recibirá una moto 0 kilómetros.
          ******************************************************************/
-        $referidos = User::find(Auth::user()->id)->children;
+        try {
+            $referidos = User::find(Auth::user()->id)->children;
         if(count($referidos) >= 100){
             dd("Se cumple la condición, se gana la motocicleta");
         }else{
             dd("NO cumple la condición para ganarse la motocicleta");
         }
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+        
     }
 
     public function bonoTravel()
@@ -64,8 +74,8 @@ trait BonoTrait{
           los cumple en los primeros 90 días de su ingreso a sysmo el viaje 
           aplicara para 2 personas todo incluido.
          ******************************************************************/
-
-        $user = User::find(Auth::user()->id);
+        try {
+            $user = User::find(Auth::user()->id);
         if(count($user->children) >= 50){
             if($user->created_at->diffInDays(Carbon::now()) <= 90){
                 dd("Cumple los requisitos y se gana el viaje para 2 personas");
@@ -74,5 +84,34 @@ trait BonoTrait{
         }else{
             dd("No tiene suficientes referidos");
         }
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+        
+    }
+
+    public function bonoMoney()
+    {
+        /******************************************************************
+         Cada 10 referidos directos que compren paquete se pagara 100usd
+         ******************************************************************/
+        try {
+            
+            $user = User::find(Auth::user()->id);
+            $referidos = $user->children;
+            // dd(count($referidos));
+            foreach($referidos as $referido){
+                dd(count($referido->getOrder));
+                $iterador = intval(ceil(count($referido->getOrder)/10)*10);
+                if(count($referido->getOrder) == $iterador ){
+                    dd('Se cumple la condición del bono "Money" y se genera el pago de 100USD');
+                }else{
+                    dd(count($referido->getOrder) . ' de tus referidos han comprado paquetes, faltan ' . ($iterador-count($referido->getOrder)) . ' para ganar el bono.');
+                }
+            }
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+       
     }
 }
