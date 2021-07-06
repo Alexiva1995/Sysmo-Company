@@ -11,15 +11,16 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Hexters\CoinPayment\CoinPayment;
 use Hexters\CoinPayment\Helpers\CoinPaymentHelper;
-
+use App\Models\User;
+use App\Traits\BonoTrait;
 
 class ProductWarehouseController extends Controller
 {
+    use BonoTrait;
 
      // permite ver la vista de la tienda
 
      public function index(){
-
         $store = ProductWarehouse::all();
         return view('content.store.user.index')->with('store', $store);
     
@@ -395,6 +396,4 @@ class ProductWarehouseController extends Controller
             // dd($th);
         }    
     }
-
-
 }

@@ -223,5 +223,8 @@ return [
 
   "Bot" => "Bot",
   "Bonos" => "Bonos",
+  "Crones" => "Crones",
+  "Activar ordenes" => "Activar ordenes",
+  "Pago comisiones" => "Pago comisiones"
 
 ];
