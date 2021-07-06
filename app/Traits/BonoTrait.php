@@ -66,7 +66,7 @@ trait BonoTrait{
          ******************************************************************/
 
         $user = User::find(Auth::user()->id);
-        if(count($user->children) >= 5){
+        if(count($user->children) >= 50){
             if($user->created_at->diffInDays(Carbon::now()) <= 90){
                 dd("Cumple los requisitos y se gana el viaje para 2 personas");
             }
