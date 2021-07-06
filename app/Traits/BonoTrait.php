@@ -129,4 +129,41 @@ trait BonoTrait{
         }
        
     }
+
+    public function bonoSpeed()
+    {
+         /******************************************************************
+         •Si en los primeros 30 días después de su ingreso tiene 20 referidos 
+         se le dará como bono el retorno del 100% de los próximos 2 referidos.
+         Nota:(para aplicar a este bono debe tener esos 2 referidos en los Siguientes 15 días)
+         ******************************************************************/
+        try {
+            $user = User::find(Auth::user()->id);
+            if($user->created_at->diffInDays(Carbon::now()) <= 30){
+                if(count($user->children) >= 20){
+                    $fechaReferido20 = [];
+                    $fechas = $user->children;
+                    foreach($fechas as $fecha){
+                        array_push($fechaReferido20, $fecha->created_at); //Crea un array con las fechas de los referidos
+                    }
+                    sort($fechaReferido20, SORT_STRING); //Ordena la colección por fecha
+                    // dd($fechaReferido20[4]);
+                    $fechaReferido20 = $fechaReferido20[19]->format('d-m-Y');//El Indice del array tiene que ser 19
+                    $referidosExtra = ($fechas->whereBetween('created_at', [Carbon::parse($fechaReferido20), Carbon::parse($fechaReferido20)->addDays(15)]));
+                    if(count($referidosExtra) > 2){
+                        dd('Cumple con todos los requisitos, tienes: '. count($user->children) .' referidos, el referido n° 20 se registró el ' . $fechaReferido20 . ', ' .$user->created_at->diffInDays($fechaReferido20) . ' días despues de su registro, y desde esa fecha has hecho ' . (count($referidosExtra)-1) . ' Referidos');
+                    }else{
+                        dd('Necesitas al menos 2 referidos para ganar el bono');
+                    }
+                }else{
+                    dd("No tiene suficientes referidos, tienes " . count($user->children) . ' de 20');
+                }
+            }
+            } catch (\Throwable $th) {
+                dd($th);
+            }
+
+
+        
+    }
 }
