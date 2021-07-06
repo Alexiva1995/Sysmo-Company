@@ -9,6 +9,10 @@ class BonusPivot extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'bonuses_id', 'user_id', 'bonus_date','status'
+    ];
+
     public function getBonus()
     {
         return $this->belongsTo('App\Models\Bonus', 'id');
