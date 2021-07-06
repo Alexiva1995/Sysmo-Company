@@ -39,8 +39,20 @@ trait BonoTrait{
         if(count($users) >= 500){
             dd("Se cumple la condición, se gana el carro");
         }else{
-            dd("NO Se cumple la condición");
+            dd("NO cumple la condición para ganarse el carro");
         }
+    }
 
+    public function bonoMotorBike()
+    {
+        /******************************************************************
+         •Al sumar 100 referidos el usuario recibirá una moto 0 kilómetros.
+         ******************************************************************/
+        $users = User::find(Auth::user()->id)->children;
+        if(count($users) >= 100){
+            dd("Se cumple la condición, se gana la motocicleta");
+        }else{
+            dd("NO cumple la condición para ganarse la motocicleta");
+        }
     }
 }
