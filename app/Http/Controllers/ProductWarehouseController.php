@@ -223,7 +223,8 @@ class ProductWarehouseController extends Controller
             'tipo_transacion' => 3,
             'buyer_name' => Auth::user()->firstname,
             'buyer_email' => Auth::user()->email,
-            'redirect_url' => route('store')
+            'redirect_url' => url('/'),
+            'cancel_url' => url('/')
         ];
         $transacion['items'][] = [
             'itemDescription' => 'Inversion de '.number_format($inv, 2, ',', '.').' USD',

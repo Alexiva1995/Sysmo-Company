@@ -17,7 +17,7 @@ class OrderSeeder extends Seeder
     {
         for($i = 0; $i<100; $i++){
             Order::create([
-                'user_id' => random_int(1,100),
+                'user_id' => random_int(1,25),
                 'product_id' => random_int(1,2),
                 'amount' => 1,
                 'status' => 0,
