@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Hexters\CoinPayment\CoinPayment;
 use Hexters\CoinPayment\Helpers\CoinPaymentHelper;
+use App\Models\User;
 
 
 class ProductWarehouseController extends Controller
@@ -396,5 +397,20 @@ class ProductWarehouseController extends Controller
         }    
     }
 
+    public function bonoDirecto($producto)
+    {
+        try {
+            $padre = User::find(Auth::user()->id)->referred_id;
+            $idProducto = $producto;
+            
+            if($idProducto == 1){
+                dd('Se genera el pago de 50$USD al usuario: ' . $padre);
+            }elseif($idProducto == 2){
+                dd('Se genera el pago de 70$USD al usuario: ' . $padre);
+            }
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+    }
 
 }
