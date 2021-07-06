@@ -124,25 +124,6 @@ trait BonoTrait{
                 }
             }
 
-
-
-
-
-
-
-
-
-
-            // foreach($referidos as $referido){
-            //     $totalReferidos += count($referido->getOrder);
-            //     $iterador = intval(ceil($totalReferidos/10)*10);
-            // }
-            // if($totalReferidos == $iterador ){
-            //     dd('Se cumple la condición del bono "Money" y se genera el pago de 100USD');
-            // }else{
-            //     dd( $totalReferidos . ' de tus referidos han comprado paquetes, faltan ' . ($iterador-$totalReferidos) . ' para ganar el bono. Total: ' . $iterador . ' Tienes: ' . $totalReferidos);
-            // }
-            // dd($totalReferidos);
         } catch (\Throwable $th) {
             dd($th);
         }
