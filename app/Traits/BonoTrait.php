@@ -82,7 +82,7 @@ trait BonoTrait{
             }
             dd("Cumple los requisitos y se gana el viaje para 1 persona");
         }else{
-            dd("No tiene suficientes referidos");
+            dd("No tiene suficientes referidos para ganarse el viaje");
         }
         } catch (\Throwable $th) {
             dd($th);
@@ -137,28 +137,31 @@ trait BonoTrait{
          se le dará como bono el retorno del 100% de los próximos 2 referidos.
          Nota:(para aplicar a este bono debe tener esos 2 referidos en los Siguientes 15 días)
          ******************************************************************/
-        try {
+        try{
             $user = User::find(Auth::user()->id);
-            if($user->created_at->diffInDays(Carbon::now()) <= 30){
-                if(count($user->children) >= 20){
+
+            $referidosRangoFecha = $user->children->whereBetween('created_at', [Carbon::parse($user->created_at), Carbon::parse($user->created_at)->addDays(30)] );
+
+            if(count($referidosRangoFecha) >= 20  ) {
+
                     $fechaReferido20 = [];
-                    $fechas = $user->children;
-                    foreach($fechas as $fecha){
+                    foreach($user->children as $fecha){
                         array_push($fechaReferido20, $fecha->created_at); //Crea un array con las fechas de los referidos
                     }
                     sort($fechaReferido20, SORT_STRING); //Ordena la colección por fecha
-                    // dd($fechaReferido20[4]);
-                    $fechaReferido20 = $fechaReferido20[19]->format('d-m-Y');//El Indice del array tiene que ser 19
-                    $referidosExtra = ($fechas->whereBetween('created_at', [Carbon::parse($fechaReferido20), Carbon::parse($fechaReferido20)->addDays(15)]));
-                    if(count($referidosExtra) > 2){
-                        dd('Cumple con todos los requisitos, tienes: '. count($user->children) .' referidos, el referido n° 20 se registró el ' . $fechaReferido20 . ', ' .$user->created_at->diffInDays($fechaReferido20) . ' días despues de su registro, y desde esa fecha has hecho ' . (count($referidosExtra)-1) . ' Referidos');
+
+                    $fechaReferido20 = $fechaReferido20[19]->format('d-m-Y');//El Índice del array tiene que ser 19
+                    $referidosExtra = ($user->children->whereBetween('created_at', [Carbon::parse($fechaReferido20), Carbon::parse($fechaReferido20)->addDays(15)]));//Guarda cuantos referidos se registraron despues de que el referido N°20 se registró hasta 15 días después
+
+                     if(count($referidosExtra) > 2){
+                        dd('Cumple con todos los requisitos, tienes: '. count($user->children) .' referidos, el referido n° 20 se registró el ' . $fechaReferido20 . ', ' .$user->created_at->diffInDays($fechaReferido20) . ' días despues de que usted se registró, y desde esa fecha hasta 30 días después, has hecho ' . (count($referidosExtra)-1) . ' Referidos');
                     }else{
-                        dd('Necesitas al menos 2 referidos para ganar el bono');
+                        dd("Necesitas al menos 2 referido más antes de la fecha ". Carbon::parse($fechaReferido20)->addDays(30)->format('d-m-Y') ." para ganar el bono");
                     }
-                }else{
-                    dd("No tiene suficientes referidos, tienes " . count($user->children) . ' de 20');
-                }
+            }else{
+                dd("No registró suficientes referidos en el rango de fecha establecido, al momento de caducar tenías " . count($referidosRangoFecha) . ' de 20');
             }
+
         } catch (\Throwable $th) {
             dd($th);
         }
@@ -167,7 +170,7 @@ trait BonoTrait{
         
     }
 
-    public function startBonus()
+    public function bonoStart()
     {
         /******************************************************************
          • 3 referidos en los primeros 15 días de su ingreso a SYSMO.
@@ -178,25 +181,27 @@ trait BonoTrait{
 
         try{
             $user = User::find(Auth::user()->id);
-            if($user->created_at->diffInDays(Carbon::now()) <= 15){
-                if(count($user->children) >= 3){
-                    $fechaReferido3 = [];
-                    $fechas = $user->children;
-                    foreach($fechas as $fecha){
+
+            $referidosRangoFecha = $user->children->whereBetween('created_at', [Carbon::parse($user->created_at), Carbon::parse($user->created_at)->addDays(15)] );
+
+            if(count($referidosRangoFecha) >= 3  ) {
+
+                $fechaReferido3 = [];
+                    foreach($user->children as $fecha){
                         array_push($fechaReferido3, $fecha->created_at); //Crea un array con las fechas de los referidos
                     }
                     sort($fechaReferido3, SORT_STRING); //Ordena la colección por fecha
-                    // dd($fechaReferido20[4]);
-                    $fechaReferido3 = $fechaReferido3[2]->format('d-m-Y');//El Indice del array tiene que ser 19
-                    $referidosExtra = ($fechas->whereBetween('created_at', [Carbon::parse($fechaReferido3), Carbon::parse($fechaReferido3)->addDays(30)]));
+                    $fechaReferido3 = $fechaReferido3[2]->format('d-m-Y');//El Índice del array tiene que ser 2
+                    
+                    $referidosExtra = ($user->children->whereBetween('created_at', [Carbon::parse($fechaReferido3), Carbon::parse($fechaReferido3)->addDays(30)]));//Guarda cuantos referidos se registraron despues de que el referido N°3 se registró hasta 30 días después
+                    
                     if(count($referidosExtra) > 1){
-                        dd("Cumples con todos los requisitos, has ganado un bono de $50");
+                        dd('Cumple con todos los requisitos, tienes: '. count($user->children) .' referidos, el referido n° 3 se registró el ' . $fechaReferido3 . ', ' .$user->created_at->diffInDays($fechaReferido3) . ' días despues de que usted se registró, y desde esa fecha hasta 30 días después, has hecho ' . (count($referidosExtra)-1) . ' Referidos');
                     }else{
-                        dd("Necesitas al menos 1 referidos para ganar el bono");
+                        dd("Necesitas al menos 1 referido más antes de la fecha ". Carbon::parse($fechaReferido3)->addDays(30)->format('d-m-Y') ." para ganar el bono");
                     }
-                }else{
-                    dd("No tiene suficientes referidos, tienes " . count($user->children) . ' de 3');
-                }
+            }else{
+                dd("No registró suficientes referidos en el rango de fecha establecido, al momento de caducar tenías " . count($referidosRangoFecha) . ' de 3');
             }
         }catch (\Throwable $th) {
             dd($th);
