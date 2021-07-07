@@ -38,9 +38,9 @@ trait BonoTrait{
         try {
             $referidos = User::find(Auth::user()->id)->children;
             if(count($referidos) >= 500){
-                dd("Se cumple la condición, se gana el carro");
+                dd("Se cumple la condición, se gana el carro, tienes " .count($referidos) . " de 500");
             }else{
-                dd("NO cumple la condición para ganarse el carro");
+                dd("NO cumple la condición para ganarse el carro, tienes " .count($referidos) . " de 500");
             }
         } catch (\Throwable $th) {
             dd($th);
@@ -56,9 +56,9 @@ trait BonoTrait{
         try {
             $referidos = User::find(Auth::user()->id)->children;
         if(count($referidos) >= 100){
-            dd("Se cumple la condición, se gana la motocicleta");
+            dd("Se cumple la condición, se gana la motocicleta, tienes " . count($referidos). " de 100");
         }else{
-            dd("NO cumple la condición para ganarse la motocicleta");
+            dd("NO cumple la condición para ganarse la motocicleta, tienes " . count($referidos). " de 100");
         }
         } catch (\Throwable $th) {
             dd($th);
@@ -78,11 +78,11 @@ trait BonoTrait{
             $user = User::find(Auth::user()->id);
         if(count($user->children) >= 50){
             if($user->created_at->diffInDays(Carbon::now()) <= 90){
-                dd("Cumple los requisitos y se gana el viaje para 2 personas");
+                dd("Cumple los requisitos y se gana el viaje para 2 personas, tiene " . count($user->children) . " de 50 referidos");
             }
-            dd("Cumple los requisitos y se gana el viaje para 1 persona");
+            dd("Cumple los requisitos y se gana el viaje para 1 persona " . count($user->children) . " de 50 referidos");
         }else{
-            dd("No tiene suficientes referidos para ganarse el viaje");
+            dd("No tiene suficientes referidos para ganarse el viaje, tiene " . count($user->children) . " de 50 referidos");
         }
         } catch (\Throwable $th) {
             dd($th);
@@ -96,8 +96,13 @@ trait BonoTrait{
          Cada 10 referidos directos que compren paquete se pagara 100usd
          ******************************************************************/
         try {
-            
             $user = User::find(Auth::user()->id);
+            /******************************** */
+            // $padre = $user->referred_id;
+                                                //Dependiendo de la manera en que se llame el método, se activan o no estas variables
+            // $user = User::find($padre);
+            /******************************* */
+            // dd($user);
             $totalOrdenes = [];
 
             foreach($user->children as $referido){
@@ -107,17 +112,19 @@ trait BonoTrait{
             }
             $iterador = intval(ceil(count($totalOrdenes)/10)*10);
             $totalOrdenes = count($totalOrdenes);
-
+        if($totalOrdenes != 0){
             if($totalOrdenes == $iterador){
                 dd("10 de tus referidos han comprado paquetes. Tienes " . $totalOrdenes. ' de '. $iterador .', se genera el pago de 100$USD');
             }else{
                 dd("Tus referidos no han comprado los paquetes suficientes, tienes " . $totalOrdenes . ' de ' . $iterador);
             }
+        }else{
+            dd("Ninguno de tus referidos ha comprado paquetes");
+        }
             
         } catch (\Throwable $th) {
             dd($th);
         }
-       
     }
 
     public function bonoSpeed()
@@ -129,9 +136,14 @@ trait BonoTrait{
          ******************************************************************/
         try{
             $user = User::find(Auth::user()->id);
+            /******************************** */
+            // $padre = $user->referred_id;
+                                                //Dependiendo de la manera en que se llame el método, se activan o no estas variables
+            // $user = User::find($padre);
+            /******************************* */
+            // dd($user);
 
             $referidosRangoFecha = $user->children->whereBetween('created_at', [Carbon::parse($user->created_at), Carbon::parse($user->created_at)->addDays(30)] );
-
             if(count($referidosRangoFecha) >= 20  ) {
 
                     $fechaReferido20 = [];
