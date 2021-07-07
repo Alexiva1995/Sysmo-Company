@@ -98,32 +98,22 @@ trait BonoTrait{
         try {
             
             $user = User::find(Auth::user()->id);
-            $referidos = $user->children;
             $totalOrdenes = [];
 
-            foreach($referidos as $referido){
+            foreach($user->children as $referido){
                 if($referido->getOrder->isNotEmpty()){
                     array_push($totalOrdenes, $referido->getOrder);
                 }
-                $iterador = intval(ceil(count($totalOrdenes)/10)*10);
             }
-
+            $iterador = intval(ceil(count($totalOrdenes)/10)*10);
             $totalOrdenes = count($totalOrdenes);
 
-            if(count( $referidos) < intval(ceil(count( $referidos)/10)*10))
-            {
-                dd("NO Tiene los referidos suficientes, tienes " . count( $referidos) . ' de ' . $iterador);
+            if($totalOrdenes == $iterador){
+                dd("10 de tus referidos han comprado paquetes. Tienes " . $totalOrdenes. ' de '. $iterador .', se genera el pago de 100$USD');
+            }else{
+                dd("Tus referidos no han comprado los paquetes suficientes, tienes " . $totalOrdenes . ' de ' . $iterador);
             }
-
-            if(count( $referidos) == intval(ceil(count($referidos)/10)*10))
-            {
-                if($totalOrdenes >= $iterador){
-                    dd("Tienes " . count( $referidos) . ' de '. $iterador .', se genera el pago de 100');
-                }else{
-                    dd("Tus referidos no han comprado los suficientes paquetes, tienes:  " . $totalOrdenes . ' de ' . $iterador);
-                }
-            }
-
+            
         } catch (\Throwable $th) {
             dd($th);
         }
