@@ -163,7 +163,7 @@ class WalletController extends Controller
         try {
             if ($data['type_transaction'] == 1) {
                 $wallet = Wallet::create($data);
-                $saldoAcumulado = ($wallet->getWalletUser->wallet - $data['credit']);
+                $saldoAcumulado = ($wallet->getWalletUser->wallet - $data['amount']);
                 $wallet->getWalletUser->update(['wallet' => $saldoAcumulado]);
                 $wallet->update(['balance' => $saldoAcumulado]);
             }else{

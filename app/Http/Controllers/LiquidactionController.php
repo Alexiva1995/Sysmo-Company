@@ -139,7 +139,7 @@ class LiquidactionController extends Controller
             'user_id' => $id,
             'username' => $user->username,
             'commissions' => $commissions,
-            'total' => number_format($commissions->sum('debit'), 2, ',', '.')
+            'total' => number_format($commissions->sum('amount'), 2, ',', '.')
         ];
 
         return json_encode($details);        
@@ -170,7 +170,7 @@ class LiquidactionController extends Controller
             'user_id' => $user->id,
             'username' => $user->username,
             'commissions' => $commissions,
-            'total' => number_format($commissions->sum('debit'), 2, ',', '.')
+            'total' => number_format($commissions->sum('amount'), 2, ',', '.')
         ];
 
         return json_encode($details);
@@ -217,7 +217,7 @@ class LiquidactionController extends Controller
                     ['type_transaction', '=', 0],
                     ['user_id', '=', $user_id]
                 ])->select(
-                    DB::raw('sum(debit) as total'), 'user_id'
+                    DB::raw('sum(amount) as total'), 'user_id'
                 )->groupBy('user_id')->get();
             }else{
                 $commissionstmp = Wallet::where([
@@ -225,7 +225,7 @@ class LiquidactionController extends Controller
                     ['liquidation_id', '=', null],
                     ['type_transaction', '=', 0],
                 ])->select(
-                    DB::raw('sum(debit) as total'), 'user_id'
+                    DB::raw('sum(amount) as total'), 'user_id'
                 )->groupBy('user_id')->get();
             }
 
@@ -288,7 +288,7 @@ class LiquidactionController extends Controller
                 $commissions = Wallet::whereIn('id', $listComision)->get();
             }
 
-            $crude = $commissions->sum('debit');
+            $crude = $commissions->sum('amount');
             $feed = ($crude * 0);
             $total = ($crude - $feed);
 
@@ -307,7 +307,7 @@ class LiquidactionController extends Controller
             $arrayWallet =[
                 'user_id' => $user->id,
                 'referred_id' => $user->id,
-                'credit' => $crude,
+                'amount' => $crude,
                 'description' => $concept,
                 'status' => 0,
                 'type_transaction' => 1,
@@ -429,7 +429,7 @@ class LiquidactionController extends Controller
             'user_id' => $liquidation->user_id,
             'orden_id' => null,
             'referred_id' => $liquidation->user_id,
-            'debit' => $liquidation->gross_amount,
+            'amount' => $liquidation->gross_amount,
             'description' => $concept,
             'status' => 1,
             'type_transaction' => 0,

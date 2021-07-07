@@ -19,9 +19,7 @@ class CreateWalletsTable extends Migration
             $table->bigInteger('referred_id')->unsigned()->nullable();
             $table->bigInteger('orden_id')->unsigned()->nullable();;
             $table->bigInteger('liquidation_id')->unsigned()->nullable();
-            $table->decimal('debit')->default(0)->comment('entrada de cash');
-            $table->decimal('credit')->default(0)->comment('salida de cash');
-            $table->decimal('balance')->nullable()->comment('balance del cash');
+            $table->decimal('amount')->default(0)->comment('cash');
             $table->string('description');
             $table->tinyInteger('status')->default(0)->comment('0 - En espera, 1 - Pagado (liquidado), 2 - Cancelado');
             $table->tinyInteger('type_transaction')->default(0)->comment('0 - comision, 1 - retiro');

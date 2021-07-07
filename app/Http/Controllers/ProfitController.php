@@ -30,8 +30,8 @@ class ProfitController extends Controller
         // dd($product_warehouse);
 
         // $profit = DB::table('wallets')->where('user_id', $user_id);
-        $comision = Wallet::all()->where('type_transaction', '0')->sum('debit');
-        $retiro = Wallet::all()->where('type_transaction', '1')->sum('credit');
+        $comision = Wallet::all()->where('type_transaction', '0')->sum('amount');
+        $retiro = Wallet::all()->where('type_transaction', '1')->sum('amount');
 
         $profit = Wallet::all();
 
