@@ -159,11 +159,47 @@ trait BonoTrait{
                     dd("No tiene suficientes referidos, tienes " . count($user->children) . ' de 20');
                 }
             }
-            } catch (\Throwable $th) {
-                dd($th);
-            }
+        } catch (\Throwable $th) {
+            dd($th);
+        }
 
 
         
+    }
+
+    public function startBonus()
+    {
+        /******************************************************************
+         • 3 referidos en los primeros 15 días de su ingreso a SYSMO.
+         recibirá por su 4 referido un bono extra de 50usd
+         Nota: (para aplicar a esta comisión extra el referido #4 debe
+         traerlo durante los primeros 30 dias)
+         ******************************************************************/
+
+        try{
+            $user = User::find(Auth::user()->id);
+            if($user->created_at->diffInDays(Carbon::now()) <= 15){
+                if(count($user->children) >= 3){
+                    $fechaReferido3 = [];
+                    $fechas = $user->children;
+                    foreach($fechas as $fecha){
+                        array_push($fechaReferido3, $fecha->created_at); //Crea un array con las fechas de los referidos
+                    }
+                    sort($fechaReferido3, SORT_STRING); //Ordena la colección por fecha
+                    // dd($fechaReferido20[4]);
+                    $fechaReferido3 = $fechaReferido3[2]->format('d-m-Y');//El Indice del array tiene que ser 19
+                    $referidosExtra = ($fechas->whereBetween('created_at', [Carbon::parse($fechaReferido3), Carbon::parse($fechaReferido3)->addDays(30)]));
+                    if(count($referidosExtra) > 1){
+                        dd("Cumples con todos los requisitos, has ganado un bono de $50");
+                    }else{
+                        dd("Necesitas al menos 1 referidos para ganar el bono");
+                    }
+                }else{
+                    dd("No tiene suficientes referidos, tienes " . count($user->children) . ' de 3');
+                }
+            }
+        }catch (\Throwable $th) {
+            dd($th);
+        }
     }
 }
