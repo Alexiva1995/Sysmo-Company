@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Support\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
@@ -53,12 +54,31 @@ class BonoTravel extends Command
                 $user = User::find($i);
                 if($user->status == 1){
                     if(count($user->children) >= 10 && $user->created_at->diffInDays(Carbon::now()) <= 90){
-                        Storage::append("BonoTravel.txt", $i . " si cumple para 2 personas");
+                        if(Wallet::where([['user_id', User::find($i)->id],['bonus_id', 5]])->count() == 0){
+                            Wallet::create([
+                                'user_id' => User::find($i)->id,
+                                'bonus_id' => 5,
+                                'description' => 'Ganó el bono Travel para 2 personas',
+                                'status' => 2
+                            ]);
+                            Storage::append("BonoTravel.txt", $i . " ganó el bono Travel para 2 personas");
+                        }
+                        // Storage::append("BonoTravel.txt", $i . " si cumple para 2 personas");
                     }elseif(count($user->children) >= 10){
-                        Storage::append("BonoTravel.txt", $i . " si cumple para 1 persona");
-                    }else{
-                        Storage::append("BonoTravel.txt", $i . " No cumple");
+                        if(Wallet::where([['user_id', User::find($i)->id],['bonus_id', 5]])->count() == 0){
+                            Wallet::create([
+                                'user_id' => User::find($i)->id,
+                                'bonus_id' => 5,
+                                'description' => 'Ganó el bono Travel para 1 persona',
+                                'status' => 2
+                            ]);
+                            Storage::append("BonoTravel.txt", $i . " ganó el bono Travel para 1 persona");
+                        }
+                        // Storage::append("BonoTravel.txt", $i . " si cumple para 1 persona");
                     }
+                    // else{
+                    //     Storage::append("BonoTravel.txt", $i . " No cumple");
+                    // }
                 }
             }
         } catch (\Throwable $th) {

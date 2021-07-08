@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Support\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
@@ -50,10 +51,19 @@ class BonoMotorBike extends Command
                 if(User::find($i)->status == 1){
                     $referidos = User::find($i)->children;
                     if(count($referidos) >= 100){
-                        Storage::append("BonoMotorBike.txt", $i . " si cumple");
-                    }else{
-                        Storage::append("BonoMotorBike.txt", $i . " No cumple");
+                        if(Wallet::where([['user_id', User::find($i)->id],['bonus_id', 6]])->count() == 0){
+                            Wallet::create([
+                                'user_id' => User::find($i)->id,
+                                'bonus_id' => 6,
+                                'description' => 'Ganó una Motocicleta 0 Kilómetros',
+                                'status' => 2
+                            ]);
+                            Storage::append("BonoMotorBike.txt", $i . " ganó una Motocicleta");
+                        }
                     }
+                    // else{
+                    //     Storage::append("BonoMotorBike.txt", $i . " No cumple");
+                    // }
                 }
             }
         } catch (\Throwable $th) {

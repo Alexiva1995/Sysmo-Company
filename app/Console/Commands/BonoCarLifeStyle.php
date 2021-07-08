@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Support\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
@@ -46,14 +47,29 @@ class BonoCarLifeStyle extends Command
          ******************************************************************/
         $alluser = count(User::all());
         try {
+            
             for($i = 1; $i <= $alluser; $i++){
                 if(User::find($i)->status == 1){
                     $referidos = User::find($i)->children;
                     if(count($referidos) >= 500){
-                        Storage::append("BonoCarLifeStyle.txt", $i . "si cumple");
-                    }else{
-                        Storage::append("BonoCarLifeStyle.txt", $i . " No cumple");
+                        if(Wallet::where([['user_id', User::find($i)->id],['bonus_id', 7]])->count() == 0){
+                            Wallet::create([
+                                'user_id' => User::find($i)->id,
+                                'bonus_id' => 7,
+                                'description' => 'Ganó un Automóvil 0 Kilómetros',
+                                'status' => 2
+                            ]);
+                            Storage::append("BonoCarLifeStyle.txt", $i . " ganó un auto");
+                        }
+                        // else{
+                        //     Storage::append("BonoCarLifeStyle.txt", $i . " ya había ganado un auto");
+                        // }
+                        
+                        
                     }
+                    // else{
+                    //     Storage::append("BonoCarLifeStyle.txt", $i . " No cumple");
+                    // }
                 }
             }
         } catch (\Throwable $th) {

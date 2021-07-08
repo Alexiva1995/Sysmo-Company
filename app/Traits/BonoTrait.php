@@ -2,6 +2,7 @@
 namespace App\Traits;
 
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -19,13 +20,28 @@ trait BonoTrait{
             if((User::find($padre)->created_at)->diffInDays(Carbon::now()) <= 365)//Validez por 1 año
             {
                 if($idProducto == 1){
+                    Wallet::create([
+                        'user_id' => User::find($padre)->id,
+                        'bonus_id' => 4,
+                        'amount' => 50,
+                        'description' => 'Ganó 1 Bono Direct de 50$USD',
+                        'status' => 2
+                    ]);
                     Storage::append("BonoDirecto.txt", 'Se genera el pago de 50$USD al usuario: ' . $padre);
                 }elseif($idProducto == 2){
+                    Wallet::create([
+                        'user_id' => User::find($padre)->id,
+                        'bonus_id' => 4,
+                        'amount' => 70,
+                        'description' => 'Ganó 1 Bono Direct de 70$USD',
+                        'status' => 2
+                    ]);
                     Storage::append("BonoDirecto.txt", 'Se genera el pago de 70$USD al usuario: ' . $padre);
                 }
-            }else{
-                Storage::append("BonoDirecto.txt", 'Se venció el bono directo al usuario: ' . $padre);
             }
+            // else{
+            //     Storage::append("BonoDirecto.txt", 'Se venció el bono directo al usuario: ' . $padre);
+            // }
            
         } catch (\Throwable $th) {
             Storage::append("BonoDirecto.txt", 'LOG | Error: '. $th .' Fecha: '. Carbon::now());
@@ -56,67 +72,77 @@ trait BonoTrait{
             $totalOrdenes = count($totalOrdenes);
         if($totalOrdenes != 0){
             if($totalOrdenes == $iterador){
-                Storage::append("BonoMoney.txt", $padre .' tiene ' . $totalOrdenes. ' de '. $iterador .', se genera el pago de 100$USD');
-            }else{
-                Storage::append("BonoMoney.txt", $padre . ' tiene Tus referidos no han comprado los paquetes suficientes, tienes ' . $totalOrdenes . ' de ' . $iterador);
+                Wallet::create([
+                    'user_id' => User::find($user)->id,
+                    'bonus_id' => 1,
+                    'ammount' => 100,
+                    'description' => 'Ganó 1 Bono Money',
+                    'status' => 2
+                ]);
+                Storage::append("BonoMoney.txt", $padre .'Ganó 1 Bono Money de 100$USD');
             }
-        }else{
-            Storage::append("BonoMoney.txt", ' Ninguno de los referidos de '. $padre .' ha comprado paquetes');
+            // else{
+            //     Storage::append("BonoMoney.txt", $padre . ' tiene Tus referidos no han comprado los paquetes suficientes, tienes ' . $totalOrdenes . ' de ' . $iterador);
+            // }
         }
+        // else{
+        //     Storage::append("BonoMoney.txt", ' Ninguno de los referidos de '. $padre .' ha comprado paquetes');
+        // }
             
         } catch (\Throwable $th) {
             Storage::append("BonoMoney.txt", 'LOG | Error: '. $th .' Fecha: '. Carbon::now());
         }
     }
 
-//     public function bonoCarLifeStyle()
-//     {
-//         /******************************************************************
-//          •Al sumar 500 referidos el usuario recibirá  un carro 0 kilómetros. 
-//          ******************************************************************/
-//         try {
-//             $alluser = count(User::all());
-//             // dd($alluser);
-//             for($i = 1; $i <= $alluser; $i++){
-//                 $referidos = User::find($i)->children;
-//                 if(count($referidos) >= 500){
-//                     echo "<pre>";
-//                     print_r("Usuario ". $i . " si cumple");
-//                     echo "</pre>";
-//                     // return 1;
-//                     // dd("Se cumple la condición, se gana el carro, tienes " .count($referidos) . " de 500");
-//                 }else{
-//                     echo "<pre>";
-//                     print_r("Usuario ". $i . " no cumple");
-//                     echo "</pre>";
-//                     // return 0;
-//                     // dd("NO cumple la condición para ganarse el carro, tienes " .count($referidos) . " de 500");
-//                 }
-//             }
+    // public function bonoCarLifeStyle()
+    // {
+    //     /******************************************************************
+    //      •Al sumar 500 referidos el usuario recibirá  un carro 0 kilómetros. 
+    //      ******************************************************************/
+    //     try {
+    //         $alluser = count(User::all());
+    //         // dd($alluser);
+    //         dd(Wallet::where([['user_id', User::find(7)->id],['bonus_id', 7]])->count());
+    //         for($i = 1; $i <= $alluser; $i++){
+    //             $referidos = User::find($i)->children;
+    //             if(count($referidos) >= 500){
+    //                 echo "<pre>";
+    //                 print_r("Usuario ". $i . " si cumple");
+    //                 echo "</pre>";
+    //                 // return 1;
+    //                 // dd("Se cumple la condición, se gana el carro, tienes " .count($referidos) . " de 500");
+    //             }else{
+    //                 echo "<pre>";
+    //                 print_r("Usuario ". $i . " no cumple");
+    //                 echo "</pre>";
+    //                 // return 0;
+    //                 // dd("NO cumple la condición para ganarse el carro, tienes " .count($referidos) . " de 500");
+    //             }
+    //         }
             
-//         } catch (\Throwable $th) {
-//             dd($th);
-//         }
+    //     } catch (\Throwable $th) {
+    //         dd($th);
+    //     }
         
-//     }
+    // }
 
-//     public function bonoMotorBike()
-//     {
-//         /******************************************************************
-//          •Al sumar 100 referidos el usuario recibirá una moto 0 kilómetros.
-//          ******************************************************************/
-//         try {
-//             $referidos = User::find(Auth::user()->id)->children;
-//         if(count($referidos) >= 100){
-//             dd("Se cumple la condición, se gana la motocicleta, tienes " . count($referidos). " de 100");
-//         }else{
-//             dd("NO cumple la condición para ganarse la motocicleta, tienes " . count($referidos). " de 100");
-//         }
-//         } catch (\Throwable $th) {
-//             dd($th);
-//         }
+    // public function bonoMotorBike()
+    // {
+    //     /******************************************************************
+    //      •Al sumar 100 referidos el usuario recibirá una moto 0 kilómetros.
+    //      ******************************************************************/
+    //     try {
+    //         $referidos = User::find(Auth::user()->id)->children;
+    //     if(count($referidos) >= 100){
+    //         dd("Se cumple la condición, se gana la motocicleta, tienes " . count($referidos). " de 100");
+    //     }else{
+    //         dd("NO cumple la condición para ganarse la motocicleta, tienes " . count($referidos). " de 100");
+    //     }
+    //     } catch (\Throwable $th) {
+    //         dd($th);
+    //     }
         
-//     }
+    // }
 
 //     public function bonoTravel()
 //     {

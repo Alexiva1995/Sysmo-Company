@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Support\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
@@ -65,13 +66,24 @@ class BonoSpeed extends Command
                             $referidosExtra = ($user->children->whereBetween('created_at', [Carbon::parse($fechaReferido20), Carbon::parse($fechaReferido20)->addDays(15)]));//Guarda cuantos referidos se registraron despues de que el referido N°20 se registró hasta 15 días después
 
                             if(count($referidosExtra) > 2){
-                                Storage::append("BonoSpeed.txt", 'El usuario '. $i .' Cumple con todos los requisitos, tienes: '. count($user->children) .' referidos, el referido n° 20 se registró el ' . $fechaReferido20 . ', ' .$user->created_at->diffInDays($fechaReferido20) . ' días despues de que usted se registró, y desde esa fecha hasta 30 días después, has hecho ' . (count($referidosExtra)-1) . ' Referidos');
-                            }else{
-                                Storage::append("BonoSpeed.txt", 'El usuario '. $i .' Necesita al menos 2 referido más antes de la fecha '. Carbon::parse($fechaReferido20)->addDays(30)->format('d-m-Y') .' para ganar el bono');
+                                if(Wallet::where([['user_id', User::find($i)->id],['bonus_id', 2]])->count() == 0){
+                                    Wallet::create([
+                                        'user_id' => User::find($i)->id,
+                                        'bonus_id' => 2,
+                                        'description' => 'Ganó el bono Speed',
+                                        'status' => 2
+                                    ]);
+                                    Storage::append("BonoSpeed.txt", $i . " ganó el bono Speed");
+                                }
+                                // Storage::append("BonoSpeed.txt", 'El usuario '. $i .' Cumple con todos los requisitos, tienes: '. count($user->children) .' referidos, el referido n° 20 se registró el ' . $fechaReferido20 . ', ' .$user->created_at->diffInDays($fechaReferido20) . ' días despues de que usted se registró, y desde esa fecha hasta 30 días después, has hecho ' . (count($referidosExtra)-1) . ' Referidos');
                             }
-                    }else{
-                        Storage::append("BonoSpeed.txt", 'El usuario '. $i .', No registró suficientes referidos en el rango de fecha establecido, al momento de caducar tenía ' . count($referidosRangoFecha) . ' de 20');
+                            // else{
+                            //     Storage::append("BonoSpeed.txt", 'El usuario '. $i .' Necesita al menos 2 referido más antes de la fecha '. Carbon::parse($fechaReferido20)->addDays(30)->format('d-m-Y') .' para ganar el bono');
+                            // }
                     }
+                    // else{
+                    //     Storage::append("BonoSpeed.txt", 'El usuario '. $i .', No registró suficientes referidos en el rango de fecha establecido, al momento de caducar tenía ' . count($referidosRangoFecha) . ' de 20');
+                    // }
                 }
             }
 
