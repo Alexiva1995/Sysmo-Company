@@ -36,12 +36,25 @@ trait BonoTrait{
          •Al sumar 500 referidos el usuario recibirá  un carro 0 kilómetros. 
          ******************************************************************/
         try {
-            $referidos = User::find(Auth::user()->id)->children;
-            if(count($referidos) >= 500){
-                dd("Se cumple la condición, se gana el carro, tienes " .count($referidos) . " de 500");
-            }else{
-                dd("NO cumple la condición para ganarse el carro, tienes " .count($referidos) . " de 500");
+            $alluser = count(User::all());
+            // dd($alluser);
+            for($i = 1; $i <= $alluser; $i++){
+                $referidos = User::find($i)->children;
+                if(count($referidos) >= 500){
+                    echo "<pre>";
+                    print_r("Usuario ". $i . " si cumple");
+                    echo "</pre>";
+                    // return 1;
+                    // dd("Se cumple la condición, se gana el carro, tienes " .count($referidos) . " de 500");
+                }else{
+                    echo "<pre>";
+                    print_r("Usuario ". $i . " no cumple");
+                    echo "</pre>";
+                    // return 0;
+                    // dd("NO cumple la condición para ganarse el carro, tienes " .count($referidos) . " de 500");
+                }
             }
+            
         } catch (\Throwable $th) {
             dd($th);
         }
