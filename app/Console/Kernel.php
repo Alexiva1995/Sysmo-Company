@@ -20,7 +20,9 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\BonoCarLifeStyle::class,
         Commands\BonoMotorBike::class,
-        Commands\BonoTravel::class
+        Commands\BonoTravel::class,
+        Commands\BonoSpeed::class,
+        Commands\BonoStart::class
     ];
 
     /**
@@ -31,10 +33,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        
         $schedule->command('bono:carlifestyle')->everyMinute();
         $schedule->command('bono:motorbike')->everyMinute();
         $schedule->command('bono:travel')->everyMinute();
+        $schedule->command('bono:speed')->everyMinute();
+        $schedule->command('bono:start')->everyMinute();
     }
 
     /**
