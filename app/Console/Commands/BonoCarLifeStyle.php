@@ -57,7 +57,7 @@ class BonoCarLifeStyle extends Command
                 }
             }
         } catch (\Throwable $th) {
-            dd($th);
+            Storage::append("BonoCarLifeStyle.txt", 'LOG | Error: '. $th .' Fecha: '. Carbon::now());
         }
     }
 }

@@ -52,10 +52,9 @@ class BonoTravel extends Command
             for($i = 1; $i <= $alluser; $i++){
                 $user = User::find($i);
                 if($user->status == 1){
-                    if(count($user->children) >= 50){
-                        if($user->created_at->diffInDays(Carbon::now()) <= 90){
-                            Storage::append("BonoTravel.txt", $i . " si cumple para 2 personas");
-                        }
+                    if(count($user->children) >= 10 && $user->created_at->diffInDays(Carbon::now()) <= 90){
+                        Storage::append("BonoTravel.txt", $i . " si cumple para 2 personas");
+                    }elseif(count($user->children) >= 10){
                         Storage::append("BonoTravel.txt", $i . " si cumple para 1 persona");
                     }else{
                         Storage::append("BonoTravel.txt", $i . " No cumple");
@@ -63,7 +62,7 @@ class BonoTravel extends Command
                 }
             }
         } catch (\Throwable $th) {
-            dd($th);
+            Storage::append("BonoTravel.txt", 'LOG | Error: '. $th .' Fecha: '. Carbon::now());
         }
         
     }

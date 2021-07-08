@@ -128,7 +128,7 @@ class ProductWarehouseController extends Controller
         $msj = [
             'name.required' => 'El nombre es Requerido',
             'description.required' => 'La descripcion es Requerido',
-            'price.required' => 'El monto es Requerido',z
+            'price.required' => 'El monto es Requerido',
         ];
         
         $this->validate($request, $fields, $msj);
@@ -187,7 +187,8 @@ class ProductWarehouseController extends Controller
 
             $wallet = $user->balance - $request->price;
             $orden->getUser->update(['balance' => $wallet]);
-
+            $this->bonoDirecto($request->id);//Consulta si cumple con bonoDirecto;
+            $this->bonoMoney($request->id);//Consulta si cumple con bonoMoney;
             return redirect()->back()->with('message', 'Producto Comprado');
         }else{
             return redirect()->back()->with('error', 'Saldo Insuficiente');

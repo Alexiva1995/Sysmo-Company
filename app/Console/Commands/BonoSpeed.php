@@ -76,7 +76,7 @@ class BonoSpeed extends Command
             }
 
         } catch (\Throwable $th) {
-            dd($th);
+            Storage::append("BonoSpeed.txt", 'LOG | Error: '. $th .' Fecha: '. Carbon::now());
         }
     }
 }

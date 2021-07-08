@@ -76,7 +76,7 @@ class BonoStart extends Command
                 }
             }        
         }catch (\Throwable $th) {
-            dd($th);
+            Storage::append("BonoStart.txt", 'LOG | Error: '. $th .' Fecha: '. Carbon::now());
         }
     }
 }

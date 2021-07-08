@@ -57,7 +57,7 @@ class BonoMotorBike extends Command
                 }
             }
         } catch (\Throwable $th) {
-            dd($th);
+            Storage::append("BonoMotorBike.txt", 'LOG | Error: '. $th .' Fecha: '. Carbon::now());
         }
     }
 }
