@@ -18,7 +18,11 @@ class Kernel extends ConsoleKernel
      */
     use BonoTrait;
     protected $commands = [
-        Commands\BonoScan::class
+        Commands\BonoCarLifeStyle::class,
+        Commands\BonoMotorBike::class,
+        Commands\BonoTravel::class,
+        Commands\BonoSpeed::class,
+        Commands\BonoStart::class
     ];
 
     /**
@@ -29,8 +33,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        
-        $schedule->command('bono:scan')->everyMinute();
+        $schedule->command('bono:carlifestyle')->daily();
+        $schedule->command('bono:motorbike')->daily();
+        $schedule->command('bono:travel')->daily();
+        $schedule->command('bono:speed')->daily();
+        $schedule->command('bono:start')->daily();
     }
 
     /**
