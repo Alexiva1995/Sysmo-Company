@@ -38,7 +38,7 @@ class WalletController extends Controller
             ->where('status', '=', 0)
             ->where('liquidation_id', '=', null)
             ->where('type_transaction', '=', 0)
-            ->sum('balance');
+            ->sum('amount');
 
         $this->payComision();
         // dd('parar');
@@ -165,7 +165,7 @@ class WalletController extends Controller
                 $wallet = Wallet::create($data);
                 $saldoAcumulado = ($wallet->getWalletUser->wallet - $data['amount']);
                 $wallet->getWalletUser->update(['wallet' => $saldoAcumulado]);
-                $wallet->update(['balance' => $saldoAcumulado]);
+                $wallet->update(['amount' => $saldoAcumulado]);
             }else{
                 if ($data['orden_id'] != null) {
                     $check = Wallet::where([
@@ -180,7 +180,7 @@ class WalletController extends Controller
                 }
                 $saldoAcumulado = ($wallet->getWalletUser->wallet + $data['debit']);
                 $wallet->getWalletUser->update(['wallet' => $saldoAcumulado]);
-                $wallet->update(['balance' => $saldoAcumulado]);
+                $wallet->update(['amount' => $saldoAcumulado]);
             }
         } catch (\Throwable $th) {
             // return redirect()->back()->with('msj', 'Ocurrio un error, Por favor comunicarse con el administrador');

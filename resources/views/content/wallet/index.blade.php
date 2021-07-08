@@ -48,7 +48,7 @@
                                     <td>{{$wallet->id}}</td>
                                     <td>{{date('d-m-Y', strtotime($wallet->created_at))}}</td>
                                     <td>{{$wallet->description}}</td>
-                                    <td>{{$wallet->balance}}</td>
+                                    <td>{{$wallet->amount}}</td>
                                     <td>
                                         @if ($wallet->status == 1)
                                             Pagado
