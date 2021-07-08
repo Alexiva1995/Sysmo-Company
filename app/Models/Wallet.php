@@ -44,4 +44,9 @@ class Wallet extends Model
     {
         return $this->belongsTo('App\Models\User', 'referred_id', 'id');
     }
+
+    public function getWalletBonus()
+    {
+        return $this->belongsTo('App\Models\Bonus', 'bonus_id', 'id');
+    }
 }
