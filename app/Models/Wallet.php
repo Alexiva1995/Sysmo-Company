@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Wallet extends Model
 {
@@ -45,8 +47,8 @@ class Wallet extends Model
         return $this->belongsTo('App\Models\User', 'referred_id', 'id');
     }
 
-    public function getWalletBonus()
+    public function bonus(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Bonus', 'bonus_id', 'id');
+        return $this->belongsTo(Bonus::class);
     }
 }
