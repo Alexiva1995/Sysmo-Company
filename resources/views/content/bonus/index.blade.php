@@ -36,12 +36,12 @@
                                     <th>ID</th>
                                     <th>Nombre del bono</th>
                                     <th>Progreso</th>
-                                    <th>Recurrente</th>
+                                    <!-- <th>Recurrente</th> -->
                                     <th>Referidos necesarios</th>
-                                    <th>Días de validez</th>
+                                    <th>Días Restantes</th>
                                     <th>Descripción del premio</th> 
                                     <th>Notas</th>
-                                    <th>Estado</th>
+                                    <!-- <th>Estado</th> -->
                                 </tr>
 
                             </thead>
@@ -58,11 +58,11 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>@if ($bonus->recurrent == 1)
+                                    <!-- <td>@if ($bonus->recurrent == 1)
                                         Si
                                         @else
                                         No
-                                    @endif</td>
+                                    @endif</td> -->
                                     <td>@if ($bonus->referrals == 0)
                                         No Aplica
                                         @else
@@ -75,7 +75,7 @@
                                     @endif</td>
                                     <td>{{$bonus->description}}</td>
                                     <td>{{$bonus->note}}</td>
-                                    <td></td>                                   
+                                    <!-- <td></td>                                    -->
                                 </tr>
                                 @endforeach
                             </tbody>

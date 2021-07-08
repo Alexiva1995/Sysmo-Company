@@ -83,24 +83,11 @@
     },
 
     {
-      "name": "Crones",
+      "name": "Bonos",
       "badgeClass": "badge badge-light-warning badge-pill ml-auto mr-1",
       "icon": "tool",
-      "slug": "Crones",
-      "submenu": [
-        {
-          "url": "admin/crones/index",
-          "name": "Activar ordenes",
-          "icon": "circle",
-          "slug": "Activar ordenes"
-        },
-        {
-          "url": "admin/crones/commission",
-          "name": "Pago comisiones",
-          "icon": "circle",
-          "slug": "Pago comisiones"
-        }
-      ]
+      "slug": "Bonos",
+      "url": "admin/bonus/BonosCanjeados"
     }
 
     

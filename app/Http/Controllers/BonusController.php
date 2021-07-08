@@ -259,4 +259,9 @@ class BonusController extends Controller
         }
     }
 
+    public function logBonus(){
+        $bonuses = BonusPivot::get();
+        return view('content.bonus.logBonus')->with('bonuses', $bonuses);
+    }
+
 }

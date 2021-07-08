@@ -116,6 +116,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('ecommerce', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('auth', 'checkrole:1');
   });
 
+    // Bonus user
+    Route::prefix('bonus')->group(function ()
+    {
+      Route::get('BonosCanjeados', [BonusController::class,'logBonus'])->name('bonus.logBonus');
+    });
 
  
     // store admin
