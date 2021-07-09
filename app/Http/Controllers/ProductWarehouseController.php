@@ -215,13 +215,33 @@ class ProductWarehouseController extends Controller
       ->with('store', $store);
     }
 
-    public function buyProduct($id){
-        $inv = 20000;
+    public function guardarOrden($infoOrden)
+    {
+        $orden = Order::create($infoOrden);
+
+        return $orden->id;
+
+    }
+
+    public function buyProduct($id)
+    {
+        $product = ProductWarehouse::find($id);
+        $user = Auth::user()->id;
+        $data = Order::latest('id')->first();
+        $hayData = $data? $data->id+1 : 1;
+
+        $infoOrden = [
+            'user_id' => Auth::user()->id,
+            'product_id' => $product->id,
+            'amount' => $product->price,
+            'status' => '0'
+        ];
+
         $transacion = [
-            'amountTotal' => 1000,
-            'note' => 'Inversion de '.number_format($inv, 2, ',', '.').' USD',
-            'order_id' => 1,//$this->saveOrden($inversion),
-            'tipo' => 'inversion',
+            'amountTotal' => $product->price,
+            'note' => 'Compra de paquete: '.$product->name.' por un precio de '.$product->price,
+            'order_id' => $this->guardarOrden($infoOrden),
+            'tipo' => 'Compra de un paquete',
             'tipo_transacion' => 3,
             'buyer_name' => Auth::user()->firstname,
             'buyer_email' => Auth::user()->email,
@@ -229,10 +249,10 @@ class ProductWarehouseController extends Controller
             'cancel_url' => url('/')
         ];
         $transacion['items'][] = [
-            'itemDescription' => 'Inversion de '.number_format($inv, 2, ',', '.').' USD',
-            'itemPrice' => 1000, // USD
+            'itemDescription' => 'Compra de paquete '.$product->name,
+            'itemPrice' => $product->price, // USD
             'itemQty' => (INT) 1,
-            'itemSubtotalAmount' => 1000 // USD
+            'itemSubtotalAmount' => $product->price // USD
         ];
         $ruta = \CoinPayment::generatelink($transacion);
         return redirect($ruta);

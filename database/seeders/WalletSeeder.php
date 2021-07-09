@@ -11,7 +11,6 @@ class WalletSeeder extends Seeder
     {
         // Generar Liquidaciones user
         Wallet::create([
-            'bonus_id' => '1',
             'user_id' => '2',
             'referred_id' => '1',
             'amount' => '1500',
@@ -22,7 +21,6 @@ class WalletSeeder extends Seeder
             'liquidation_id' => '1'
         ]);
         Wallet::create([
-            'bonus_id' => '1',
             'user_id' => '2',
             'referred_id' => '1',
             'amount' => '2500',
@@ -32,7 +30,6 @@ class WalletSeeder extends Seeder
             'liquidated' => '0'            
         ]);
         Wallet::create([
-            'bonus_id' => '1',
             'user_id' => '2',
             'referred_id' => '1',
             'amount' => '900',
@@ -44,7 +41,6 @@ class WalletSeeder extends Seeder
         
         // Generar Liquidaciones Leonardo
         Wallet::create([
-            'bonus_id' => '1',
             'user_id' => '3',
             'referred_id' => '1',
             'amount' => '10000',
@@ -54,7 +50,6 @@ class WalletSeeder extends Seeder
             'liquidated' => '0'            
         ]);
         Wallet::create([
-            'bonus_id' => '1',
             'user_id' => '3',
             'referred_id' => '1',
             'amount' => '12000',
@@ -66,7 +61,6 @@ class WalletSeeder extends Seeder
         
         // Generar Liquidaciones Alexis
         Wallet::create([
-            'bonus_id' => '1',
             'user_id' => '4',
             'referred_id' => '3',
             'amount' => '3500',
@@ -76,7 +70,6 @@ class WalletSeeder extends Seeder
             'liquidated' => '0'            
         ]);
         Wallet::create([
-            'bonus_id' => '1',
             'user_id' => '4',
             'referred_id' => '3',
             'amount' => '15000',
@@ -89,7 +82,6 @@ class WalletSeeder extends Seeder
 
         // Liquidaciones
         Wallet::create([
-            'bonus_id' => '1',
             'user_id' => '2',
             'amount' => '1500',
             'referred_id' => '1',
@@ -99,7 +91,6 @@ class WalletSeeder extends Seeder
             'liquidated' => '0'            
         ]); 
         Wallet::create([
-            'bonus_id' => '1',
             'user_id' => '2',
             'amount' => '2500',
             'referred_id' => '1',
@@ -109,7 +100,6 @@ class WalletSeeder extends Seeder
             'liquidated' => '0'            
         ]); 
         Wallet::create([
-            'bonus_id' => '1',
             'user_id' => '2',
             'amount' => '2500',
             'referred_id' => '1',
@@ -119,7 +109,6 @@ class WalletSeeder extends Seeder
             'liquidated' => '0'            
         ]); 
         Wallet::create([
-            'bonus_id' => '1',
             'user_id' => '4',
             'referred_id' => '3',
             'amount' => '15000',
