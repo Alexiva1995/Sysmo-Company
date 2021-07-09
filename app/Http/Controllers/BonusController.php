@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Bonus;
 use App\Models\BonusPivot;
 use App\Models\Order;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -260,7 +261,7 @@ class BonusController extends Controller
     }
 
     public function logBonus(){
-        $bonuses = BonusPivot::get();
+        $bonuses = Wallet::all()->where('bonus_id', '>', 0);
         return view('content.bonus.logBonus')->with('bonuses', $bonuses);
     }
 

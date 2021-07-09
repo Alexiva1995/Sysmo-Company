@@ -38,13 +38,22 @@
                                     <th>Nombre</th>
                                     <th>Correo</th>
                                     <th>Nombre del bono</th>
-                                    <th>Descripción del premio</th> 
+                                    <th>Monto</th> 
                                     <th>Fecha de entrega</th>
                                 </tr>
 
                             </thead>
                             <tbody>
-
+                            @foreach($bonuses as $bonus)
+                                <tr class="text-center">
+                                    <td>{{$bonus->id}}</td>
+                                    <td>{{$bonus->getWalletUser->username}}</td>
+                                    <td>{{$bonus->getWalletUser->email}}</td>
+                                    <td>{{$bonus->bonus->name}}</td>
+                                    <td>{{$bonus->amount}}</td>
+                                    <td>{{date('d-m-Y', strtotime($bonus->created_at))}}</tr>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
