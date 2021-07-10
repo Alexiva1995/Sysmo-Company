@@ -10,9 +10,12 @@ use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\BonoTrait;
 
 class BonusController extends Controller
 {
+    use BonoTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -28,73 +31,24 @@ class BonusController extends Controller
         // $this->travelBonus();
         // $this->motorbikeBonus();
         // $this->carLifeStyleBonus();
-        return view('content.bonus.index')->with('bonuses', $bonuses);
-    }
+        $ref = User::find(Auth::user()->id)->children;
+        
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        $bonoMoney = $this->showBonoMoney();
+        // $bonoRapido = $this->showBonoRapido();
+        // $bonoInicio = $this->showBonoMoney();
+        $bonoDirecto = $this->showBonoDirecto();
+        $bonoViaje = $this->showBonoViaje();
+        $bonoMoto = $this->showBonoMoto();
+        $bonoCarro = $this->showBonoCarro();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Bonus  $bonus
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Bonus $bonus)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Bonus  $bonus
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Bonus $bonus)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Bonus  $bonus
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Bonus $bonus)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Bonus  $bonus
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Bonus $bonus)
-    {
-        //
+        return view('content.bonus.index')->with('bonuses', $bonuses)
+                                        ->with('ref',count($ref))
+                                        ->with('bonoMoney', $bonoMoney)
+                                        ->with('bonoDirecto', $bonoDirecto)
+                                        ->with('bonoViaje', $bonoViaje)
+                                        ->with('bonoMoto', $bonoMoto)
+                                        ->with('bonoCarro', $bonoCarro);
     }
 
 

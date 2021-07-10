@@ -48,6 +48,88 @@ trait BonoTrait{
         }
     }
 
+    
+    public function showBonoMoney()
+    {
+        $bonoDirecto = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 1);
+        
+        if($bonoDirecto){
+            return count($bonoDirecto);
+        }else{
+            return 0;
+        }
+    }
+
+    public function showBonoRapido()
+    {
+        $bonoRapido = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 2);
+
+        if($bonoRapido){
+            return count($bonoRapido);
+        }else{
+            return 0;
+        }
+    }
+
+    public function showBonoInicio()
+    {
+        $bonoInicio = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 3);
+
+        if($bonoInicio){
+            return count($bonoInicio);
+        }else{
+            return 0;
+        }
+    }
+    
+    public function showBonoDirecto()
+    {
+        $bonoDirecto = Wallet::all()->where('referred_id', '=', Auth::user()->id)->where('bonus_id', '=', 5);
+
+        if($bonoDirecto){
+            return count($bonoDirecto);
+        }else{
+            return 0;
+        }
+    }
+
+    public function showBonoViaje()
+    {
+        $bonoViaje = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 5);
+
+        if($bonoViaje){
+            return count($bonoViaje);
+        }else{
+            return 0;
+        }
+    }
+
+    public function showBonoMoto()
+    {
+        $bonoMoto = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 6);
+
+        if($bonoMoto){
+            return count($bonoMoto);
+        }else{
+            return 0;
+        }
+    }
+
+    public function showBonoCarro()
+    {
+        $bonoCarro = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 7);
+
+        if($bonoCarro){
+            return count($bonoCarro);
+        }else{
+            return 0;
+        }
+    }
+
+
+
+
+    
     public function bonoMoney()
     {
         /******************************************************************
@@ -81,13 +163,13 @@ trait BonoTrait{
                 ]);
                 Storage::append("BonoMoney.txt", $padre .'Ganó 1 Bono Money de 100$USD');
             }
-            // else{
-            //     Storage::append("BonoMoney.txt", $padre . ' tiene Tus referidos no han comprado los paquetes suficientes, tienes ' . $totalOrdenes . ' de ' . $iterador);
-            // }
+            else{
+                return 'Tus referidos no han comprado los paquetes suficientes, tienes ' . $totalOrdenes . ' de ' . $iterador;
+            }
         }
-        // else{
-        //     Storage::append("BonoMoney.txt", ' Ninguno de los referidos de '. $padre .' ha comprado paquetes');
-        // }
+        else{
+             return 'Ninguno de tus referidos ha comprado paquetes';
+        }
             
         } catch (\Throwable $th) {
             Storage::append("BonoMoney.txt", 'LOG | Error: '. $th .' Fecha: '. Carbon::now());
