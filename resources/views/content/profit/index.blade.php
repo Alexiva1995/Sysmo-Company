@@ -80,7 +80,7 @@
                                     @else
                                     <td> <a class=" badge badge-success text-white">Retiro</a></td>
                                     @endif
-                                    <td> {{$item->balance}} </td>
+                                    <td> {{$item->amount}} </td>
                                 </tr>
                             @endforeach
                             </tbody>

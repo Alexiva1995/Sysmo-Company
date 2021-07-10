@@ -39,7 +39,7 @@
                                     <th>Correo</th>
                                     <th>Nombre del bono</th>
                                     <th>Monto</th> 
-                                    <th>Fecha de entrega</th>
+                                    <th>Fecha</th>
                                 </tr>
 
                             </thead>

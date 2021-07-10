@@ -51,8 +51,14 @@
                                     <td>{{ $item->id}}</td>
                                     <td> {{$item->getWalletUser->username}} </td>
                                     <td>{{ $item->description}}</td>
-                                    <td>{{ $item->debit}}</td>
-                                    <td>{{ $item->state}}</td>
+                                    <td>{{ $item->amount}}</td>
+                                    @if($item->status == 0)
+                                        <td><a class=" badge badge-info text-white">En Espera</a></td>
+                                    @elseif($item->status == 1)
+                                        <td><a class=" badge badge-success text-white">Pagado</a></td>   
+                                    @else
+                                        <td><a class=" badge badge-danger text-white">Cancelado</a></td>                                    
+                                    @endif
                                     <td>{{ date('d-m-Y', strtotime($item->created_at))}}</td>
                                 </tr>
                                 @endforeach
