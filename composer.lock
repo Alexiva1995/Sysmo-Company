@@ -1419,7 +1419,7 @@
                     "email": "hexters@gmail.com"
                 }
             ],
-            "description": "CoinPayment is a Laravel module for handling transactions from CoinPayment like a create transaction, history transaction, etc.",
+            "description": "CoinPayment is a Laravel module for handling transactions from  like a create transaction, history transaction, etc.",
             "keywords": [
                 "Coinpayment",
                 "bitcoin",

@@ -22,7 +22,8 @@ class Kernel extends ConsoleKernel
         Commands\BonoMotorBike::class,
         Commands\BonoTravel::class,
         Commands\BonoSpeed::class,
-        Commands\BonoStart::class
+        Commands\BonoStart::class,
+        Commands\scanOrderStatus::class
     ];
 
     /**
@@ -38,6 +39,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('bono:travel')->daily();
         $schedule->command('bono:speed')->daily();
         $schedule->command('bono:start')->daily();
+        $schedule->command('scan:orderstatus')->everyFiveMinutes();
     }
 
     /**
