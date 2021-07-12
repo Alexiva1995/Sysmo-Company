@@ -35,7 +35,8 @@ class BonusController extends Controller
         
 
         $bonoMoney = $this->showBonoMoney();
-        // $bonoRapido = $this->showBonoRapido();
+        $bonoRapido = $this->showBonoRapido();
+        $bonoSpeed = $this->bonoSpeed();
         $bonoInicio = $this->bonoStart();
         $bonoInicio2 = $this->showBonoInicio();
         $bonoDirecto = $this->showBonoDirecto();
@@ -51,7 +52,9 @@ class BonusController extends Controller
                                         ->with('bonoMoto', $bonoMoto)
                                         ->with('bonoCarro', $bonoCarro)
                                         ->with('bonoInicio', $bonoInicio)
-                                        ->with('bonoInicio2', $bonoInicio2);
+                                        ->with('bonoInicio2', $bonoInicio2)
+                                        ->with('bonoSpeed', $bonoSpeed)
+                                        ->with('bonoRapido', $bonoRapido);
     }
 
 

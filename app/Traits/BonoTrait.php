@@ -250,50 +250,54 @@ trait BonoTrait{
         
 //     }
 
-//     public function bonoSpeed()
-//     {
-//          /******************************************************************
-//          •Si en los primeros 30 días después de su ingreso tiene 20 referidos 
-//          se le dará como bono el retorno del 100% de los próximos 2 referidos.
-//          Nota:(para aplicar a este bono debe tener esos 2 referidos en los Siguientes 15 días)
-//          ******************************************************************/
-//         try{
-//             $user = User::find(Auth::user()->id);
-//             /******************************** */
-//             // $padre = $user->referred_id;
-//                                                 //Dependiendo de la manera en que se llame el método, se activan o no estas variables
-//             // $user = User::find($padre);
-//             /******************************* */
-//             // dd($user);
+    public function bonoSpeed()
+    {
+        /******************************************************************
+         •Si en los primeros 30 días después de su ingreso tiene 20 referidos 
+        se le dará como bono el retorno del 100% de los próximos 2 referidos.
+        Nota:(para aplicar a este bono debe tener esos 2 referidos en los Siguientes 15 días)
+        ******************************************************************/
+        try{
+            $user = User::find(Auth::user()->id);
+            /******************************** */
+            // $padre = $user->referred_id;
+                                                //Dependiendo de la manera en que se llame el método, se activan o no estas variables
+            // $user = User::find($padre);
+            /******************************* */
+            // dd($user);
 
-//             $referidosRangoFecha = $user->children->whereBetween('created_at', [Carbon::parse($user->created_at), Carbon::parse($user->created_at)->addDays(30)] );
-//             if(count($referidosRangoFecha) >= 20  ) {
+            $fechaTope = Carbon::parse($user->created_at)->addDays(30);
 
-//                     $fechaReferido20 = [];
-//                     foreach($user->children as $fecha){
-//                         array_push($fechaReferido20, $fecha->created_at); //Crea un array con las fechas de los referidos
-//                     }
-//                     sort($fechaReferido20, SORT_STRING); //Ordena la colección por fecha
+            $referidosRangoFecha = $user->children->whereBetween('created_at', [Carbon::parse($user->created_at), Carbon::parse($user->created_at)->addDays(30)] );
+            if(count($referidosRangoFecha) >= 20  ) {
 
-//                     $fechaReferido20 = $fechaReferido20[19]->format('d-m-Y');//El Índice del array tiene que ser 19
-//                     $referidosExtra = ($user->children->whereBetween('created_at', [Carbon::parse($fechaReferido20), Carbon::parse($fechaReferido20)->addDays(15)]));//Guarda cuantos referidos se registraron despues de que el referido N°20 se registró hasta 15 días después
+                    $fechaReferido20 = [];
+                    foreach($user->children as $fecha){
+                        array_push($fechaReferido20, $fecha->created_at); //Crea un array con las fechas de los referidos
+                    }
+                    sort($fechaReferido20, SORT_STRING); //Ordena la colección por fecha
 
-//                      if(count($referidosExtra) > 2){
-//                         dd('Cumple con todos los requisitos, tienes: '. count($user->children) .' referidos, el referido n° 20 se registró el ' . $fechaReferido20 . ', ' .$user->created_at->diffInDays($fechaReferido20) . ' días despues de que usted se registró, y desde esa fecha hasta 30 días después, has hecho ' . (count($referidosExtra)-1) . ' Referidos');
-//                     }else{
-//                         dd("Necesitas al menos 2 referido más antes de la fecha ". Carbon::parse($fechaReferido20)->addDays(30)->format('d-m-Y') ." para ganar el bono");
-//                     }
-//             }else{
-//                 dd("No registró suficientes referidos en el rango de fecha establecido, al momento de caducar tenías " . count($referidosRangoFecha) . ' de 20');
-//             }
+                    $fechaReferido20 = $fechaReferido20[19]->format('d-m-Y');//El Índice del array tiene que ser 19
+                    $referidosExtra = ($user->children->whereBetween('created_at', [Carbon::parse($fechaReferido20), Carbon::parse($fechaReferido20)->addDays(15)]));//Guarda cuantos referidos se registraron despues de que el referido N°20 se registró hasta 15 días después
 
-//         } catch (\Throwable $th) {
-//             dd($th);
-//         }
+                    if(count($referidosExtra) > 2){
+                        return 'Cumple con todos los requisitos, tienes: '. count($user->children) .' referidos, el referido n° 20 se registró el ' . $fechaReferido20 . ', ' .$user->created_at->diffInDays($fechaReferido20) . ' días despues de que usted se registró, y desde esa fecha hasta 30 días después, has hecho ' . (count($referidosExtra)-1) . ' Referidos';
+                    }else{
+                        return "Necesitas al menos 2 referido más antes de la fecha ". Carbon::parse($fechaReferido20)->addDays(30)->format('d-m-Y') ." para ganar el bono";
+                    }
+            }else if (($fechaTope < Carbon::now()) && count($referidosRangoFecha < 3)){
+                return "No registró suficientes referidos en el rango de fecha establecido, al momento de caducar tenías " . count($referidosRangoFecha) . ' de 20';
+            }else{
+                return "No ha registrado suficientes referidos en el rango de fecha establecido, tiene " . count($referidosRangoFecha) . ' de 20. Para seguir optando por este bono, necesita conseguir los referidos restantes antes del '.$fechaTope->format('d-m-Y') ;
+            }
+
+        } catch (\Throwable $th) {
+            dd($th);
+        }
 
 
-        
-//     }
+    
+    }
 
      public function bonoStart()
      {

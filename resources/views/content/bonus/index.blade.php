@@ -70,9 +70,11 @@
                             <div class="flex justify-center">
                                 <img src="/images/Bonus/speed.png" class="object-center" width="300" height="300">
                             </div>
-                            <!-- <div class="bg-green-500 flex justify-center content-center">
+                            @if($bonoRapido)
+                            <div class="bg-green-500 flex justify-center content-center">
                                 <div class="text-sm font-semibold text-gray-900">Bono Obtenido</div>
-                            </div> -->
+                            </div> 
+                            @endif
                             <div class="bg-gray-100 flex justify-center content-center mb-1">
                                 <div class="font-bold text-gray-900 text-xl py-1">Speed Bonus</div>
                             </div>                            
@@ -87,7 +89,7 @@
                                 </p>
                                 <br>
                                 <p class="text-gray-700 text-base">
-                                    <strong>Progreso: </strong> / 10 referidos
+                                    <strong>Progreso: </strong> {{$bonoSpeed}}
                                 </p>
                             </div>
                         </div>
