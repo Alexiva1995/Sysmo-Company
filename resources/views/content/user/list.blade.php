@@ -41,7 +41,6 @@
                                     <th>Email</th>
                                     <th>Rol</th>
                                     <th>Estado</th>
-                                    <th>Fecha de Creacion</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
@@ -65,8 +64,6 @@
                                     @else
                                     <td> <a class=" badge badge-success text-white">Activo</a></td>
                                     @endif
-
-                                    <td>{{ date('d-m-Y', strtotime($item->created_at))}}</td>
 
                                     <td>
                                         @if(Auth::user()->id == $item->id)

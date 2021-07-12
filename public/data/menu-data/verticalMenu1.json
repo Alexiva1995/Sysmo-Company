@@ -82,6 +82,29 @@
       ]
     },
 
+
+    {
+      "name": "Organización",
+      "badgeClass": "badge badge-light-warning badge-pill ml-auto mr-1",
+      "icon": "users",
+      "slug": "Organización",
+      "submenu": [
+        {
+          "url": "user/referred/tree/tree",
+          "name": "Arbol",
+          "icon": "circle",
+          "slug": "Arbol"
+        },
+        {
+          "name": "Usuarios",
+          "icon": "circle",
+          "url": "admin/users/user-list",
+          "slug": "Bonus"      
+        }
+        
+      ]
+    },
+
     {
       "name": "Bonos",
       "badgeClass": "badge badge-light-warning badge-pill ml-auto mr-1",
