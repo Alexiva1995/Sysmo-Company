@@ -58,7 +58,8 @@
                                     </p> 
                                 @else
                                     <p class="text-gray-700 text-base">
-                                        <strong>Progreso: </strong> Aun no has ganado este Bono
+                                        <strong>Progreso: </strong> Aun no has ganado este Bono <br>
+                                        {{$bonoDinero}}
                                     </p>
                                 @endif 
                             </div>

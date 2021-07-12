@@ -154,14 +154,7 @@ trait BonoTrait{
             $totalOrdenes = count($totalOrdenes);
         if($totalOrdenes != 0){
             if($totalOrdenes == $iterador){
-                Wallet::create([
-                    'user_id' => User::find($user)->id,
-                    'bonus_id' => 1,
-                    'ammount' => 100,
-                    'description' => 'Ganó 1 Bono Money',
-                    'status' => 2
-                ]);
-                Storage::append("BonoMoney.txt", $padre .'Ganó 1 Bono Money de 100$USD');
+                return '0';
             }
             else{
                 return 'Tus referidos no han comprado los paquetes suficientes, tienes ' . $totalOrdenes . ' de ' . $iterador;
@@ -172,7 +165,7 @@ trait BonoTrait{
         }
             
         } catch (\Throwable $th) {
-            Storage::append("BonoMoney.txt", 'LOG | Error: '. $th .' Fecha: '. Carbon::now());
+            return $th;
         }
     }
 
