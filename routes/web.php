@@ -84,7 +84,7 @@ Route::group(['prefix' => 'user'], function () {
   Route::group(['prefix' => 'referred'], function () {
 
     Route::get('tree/{type}', [ReferredController::class,'index'])->name('tree_type');
-    Route::get('{type}/{id}', [ReferredController::class,'moretree'])->name('tree_type_id');
+    Route::get('tree/{type}/{id}', [ReferredController::class,'moretree'])->name('tree_type_id');
     
     Route::get('list-direct', [ReferredController::class,'listDirect'])->name('referred.list.direct');
     Route::get('list-net', [ReferredController::class,'listNet'])->name('referred.list.net');
