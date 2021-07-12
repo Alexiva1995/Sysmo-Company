@@ -131,6 +131,7 @@ Route::group(['prefix' => 'admin'], function () {
       Route::patch('update-admin/{id}', [ProductWarehouseController::class,'updateAdmin'])->name('store.update');
       Route::get('list-admin', [ProductWarehouseController::class,'listAdmin'])->name('store.list-admin');
       Route::get('list-orders', [ProductWarehouseController::class,'orders'])->name('store.list-orders');
+      Route::get('show/{id}', [ProductWarehouseController::class,'showOrder'])->name('show-orders');
       Route::get('attend-order/{id}', [ProductWarehouseController::class,'orderAttend'])->name('store.attend');
       Route::patch('update-order/{id}', [ProductWarehouseController::class,'updateOrder'])->name('store.order');
       Route::delete('delete/{id}', [ProductWarehouseController::class,'destroy'])->name('store.destroy');

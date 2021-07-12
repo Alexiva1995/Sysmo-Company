@@ -215,6 +215,12 @@ class ProductWarehouseController extends Controller
       ->with('store', $store);
     }
 
+    public function showOrder($id){
+        $order = Order::find($id);
+        
+        return $order;
+    }
+
     public function guardarOrden($infoOrden)
     {
         $orden = Order::create($infoOrden);
