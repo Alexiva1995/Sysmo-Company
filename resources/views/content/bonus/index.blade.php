@@ -98,9 +98,11 @@
                             <div class="flex justify-center my-1" style="padding-bottom:9px;">
                                 <img src="/images/Bonus/start.png" class="object-center" width="300" height="300">
                             </div>
-                            <!-- <div class="bg-green-500 flex justify-center content-center">
+                            @if($bonoInicio2)
+                            <div class="bg-green-500 flex justify-center content-center">
                                 <div class="text-sm font-semibold text-gray-900">Bono Obtenido</div>
-                            </div>  -->
+                            </div> 
+                            @endif
                             <div class="bg-gray-100 flex justify-center content-center">
                                 <div class="font-bold text-gray-900 text-xl py-1">Start Bonus</div>
                             </div>                            
@@ -115,7 +117,7 @@
                                 </p> 
                                 <br>
                                 <p class="text-gray-700 text-base">
-                                    <strong>Progreso: </strong> / 10 referidos
+                                    <strong>Progreso: </strong> {{$bonoInicio}}
                                 </p>                               
                             </div>
                         </div>  
