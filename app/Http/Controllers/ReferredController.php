@@ -62,12 +62,26 @@ class ReferredController extends Controller
      */
     public function index($type)
     {
-            $trees = $this->getDataEstructura(Auth::user()->id, $type);
-            $type = ucfirst($type);
-            $base = Auth::user();
-            $base->children = User::where('referred_id', '=', Auth::id())->get();
-            $base->logoarbol = asset('images/logo/logoarbol.png');
-            return view('content.referred.tree.tree', compact('trees','type', 'base'));
+            // $trees = $this->getDataEstructura(Auth::user()->id, $type);
+            // $type = ucfirst($type);
+            // $base = Auth::user();
+            // $base->children = User::where('referred_id', '=', Auth::id())->get();
+            // $base->logoarbol = asset('images/logo/logoarbol.png');
+            // return view('content.referred.tree.tree', compact('trees','type', 'base'));
+            try {
+                //Titulo
+                // View::share('titleg', 'Arbol');
+                $trees = $this->getDataEstructura(Auth::id(), $type);
+                $users = User::all("firstname");
+                $type = ucfirst($type);
+                $base = Auth::user();
+                $base->logoarbol = asset('images/logo/logoarbol.png');
+                return view('content.referred.tree.tree', compact('trees', 'type', 'base', 'users'));
+            } catch (\Throwable $th) {
+                // Log::error('Tree - index -> Error: '.$th);
+                dd($th);
+                abort(403, "Ocurrio un error, contacte con el administrador");
+            }
     }
 
 
@@ -80,17 +94,35 @@ class ReferredController extends Controller
      */
     public function moretree($type, $id)
     {
-
-            $trees = $this->getDataEstructura($id, strtolower($type));
+        try {
+            // titulo
+            // View::share('titleg', 'Arbol');
+            $id = base64_decode($id);
+            $trees = $this->getDataEstructura($id, $type);
             $type = ucfirst($type);
             $base = User::find($id);
-
             if (empty($base)) {
                 return redirect()->back()->with('msj2', 'El ID '. $id.', no se encuentra registrado');
             }
             $base->children = User::where('referred_id', '=', $base->id)->get();
-            $base->logoarbol = asset('images/logo/logoarbol.png');
-            return view('content.referred.tree.tree')->with(compact('base', 'trees', 'type'));
+            $base->logoarbol = asset('assets/img/sistema/favicon.png');
+            return view('content.referred.tree.tree', compact('trees', 'type', 'base'));
+        } catch (\Throwable $th) {
+            // Log::error('Tree - moretree -> Error: '.$th);
+            dd($th);
+            abort(403, "Ocurrio un error, contacte con el administrador");
+        }
+
+            // $trees = $this->getDataEstructura($id, strtolower($type));
+            // $type = ucfirst($type);
+            // $base = User::find($id);
+
+            // if (empty($base)) {
+            //     return redirect()->back()->with('msj2', 'El ID '. $id.', no se encuentra registrado');
+            // }
+            // $base->children = User::where('referred_id', '=', $base->id)->get();
+            // $base->logoarbol = asset('images/logo/logoarbol.png');
+            // return view('content.referred.tree.tree')->with(compact('base', 'trees', 'type'));
 
     }
 
@@ -102,18 +134,35 @@ class ReferredController extends Controller
      * @param string $type - tipo de estructura a general
      * @return void
      */
+    // private function getDataEstructura($id, $type)
+    // {
+    //         $genealogyType = [
+    //             'tree' => 'referred_id',
+    //             'matriz' => 'referred_id',
+    //         ];
+
+
+    //         $childres = $this->getData($id, 1, $genealogyType[$type]);
+    //         $trees = $this->getChildren($childres, 2, $genealogyType[$type]);
+    //         return $trees;
+    // } 
     private function getDataEstructura($id, $type)
     {
+        try {
             $genealogyType = [
                 'tree' => 'referred_id',
-                'matriz' => 'referred_id',
+                'matriz' => 'binary_id',
+                'alterno' => 'alternativo_id'
             ];
-
-
+            
             $childres = $this->getData($id, 1, $genealogyType[$type]);
             $trees = $this->getChildren($childres, 2, $genealogyType[$type]);
             return $trees;
-    } 
+        } catch (\Throwable $th) {
+            // Log::error('Tree - getDataEstructura -> Error: '.$th);
+            abort(403, "Ocurrio un error, contacte con el administrador");
+        }
+    }
 
     /**
      * Permite obtener a todos mis hijos y los hijos de mis hijos
@@ -123,17 +172,35 @@ class ReferredController extends Controller
      * @param string $typeTree - el tipo de arbol a usar
      * @return void
      */
+    // public function getChildren($users, $nivel, $typeTree)
+    // {
+    //         if (!empty($users)) {
+    //             foreach ($users as $user) {
+    //                 $user->children = $this->getData($user->id, $nivel, $typeTree);
+    //                 // $this->getChildren($user->children, ($nivel+1), $typeTree);
+    //             }
+    //             return $users;
+    //         }else{
+    //             return $users;
+    //         }
+    // }
+
     public function getChildren($users, $nivel, $typeTree)
     {
+        try {
             if (!empty($users)) {
                 foreach ($users as $user) {
                     $user->children = $this->getData($user->id, $nivel, $typeTree);
-                    // $this->getChildren($user->children, ($nivel+1), $typeTree);
+                    $this->getChildren($user->children, ($nivel+1), $typeTree);
                 }
                 return $users;
             }else{
                 return $users;
             }
+        } catch (\Throwable $th) {
+            // Log::error('Tree - getChildren -> Error: '.$th);
+            abort(403, "Ocurrio un error, contacte con el administrador");
+        }
     }
 
     /**
@@ -144,17 +211,33 @@ class ReferredController extends Controller
      * @param string $typeTree - tipo de arbol a usar
      * @return object
      */
-    private function getData($id, $nivel, $typeTree) : object
-    {
-            $resul = User::where($typeTree, '=', $id)->get();
+    // private function getData($id, $nivel, $typeTree) : object
+    // {
+    //         $resul = User::where($typeTree, '=', $id)->get();
             
-            foreach ($resul as $user) {
+    //         foreach ($resul as $user) {
                 
+    //             $user->nivel = $nivel;
+    //             $user->logoarbol = asset('images/logo/logoarbol.png');
+
+    //         }
+    //         return $resul;
+    // }
+    private function getData($id, $nivel, $typeTree)
+    {
+        try {
+            $resul = User::where($typeTree, '=', $id)->get();
+
+            foreach ($resul as $user) {
                 $user->nivel = $nivel;
                 $user->logoarbol = asset('images/logo/logoarbol.png');
-
             }
             return $resul;
+        } catch (\Throwable $th) {
+            // Log::error('Tree - getData -> Error: '.$th);
+            abort(403, "Ocurrio un error, contacte con el administrador");
+        }
     }
+
 
 }

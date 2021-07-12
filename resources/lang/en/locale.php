@@ -225,6 +225,8 @@ return [
   "Bonos" => "Bonos",
   "Log Bonos" => "Log Bonos",
   "Activar ordenes" => "Activar ordenes",
-  "Pago comisiones" => "Pago comisiones"
+  "Pago comisiones" => "Pago comisiones",
+  "Usuarios" => "Usuarios",
+  "Organización" => "Organización",
 
 ];
