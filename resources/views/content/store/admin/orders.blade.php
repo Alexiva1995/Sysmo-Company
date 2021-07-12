@@ -4,6 +4,13 @@
 
 @section('page-style')
 {{-- Page Css files --}}
+<link rel="stylesheet" type="text/css" href="{{asset('assets/app-assets/vendors/css/extensions/sweetalert2.min.css')}}">
+<script src="{{asset('assets/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
+<script src="{{asset('assets/app-assets/vendors/js/extensions/polyfill.min.js')}}"></script>
+<script src="{{asset('assets/js/librerias/vue.js')}}"></script>
+<script src="{{asset('assets/js/librerias/axios.min.js')}}"></script>
+<script src="{{asset('assets/js/order.js')}}"></script>
+
 <link rel="stylesheet" type="text/css" href="{{asset('css/additional/data-tables/dataTables.min.css')}}">
 @endsection
 
@@ -25,7 +32,7 @@
     </div>
 </div>
 
-<div id="record">
+<div id="settlement">
     <div class="col-12">
         <div class="card">
             <div class="card-content">
@@ -54,44 +61,12 @@
                                     <td>{{ $item->getUser->username}}</td>
 
                                     @if ($item->status == '0')
-                                    <td> <a class=" badge badge-info text-white">En Espera</a></td>
+                                    <td> <a onclick="vm_order.setStatusOrder({{$item->id}})" class=" badge badge-info text-white">En Espera</a></td>
                                     @else
-                                    <td> <a class=" badge badge-success text-white">Atendido</a></td>
+                                    <td> <a onclick="vm_order.setStatusOrder({{$item->id}})" class=" badge badge-success text-white">Atendido</a></td>
                                     @endif
 
                                     <td>{{ $item->created_at}}</td>
-
-                                    <td>
-                                        <a href="{{ route('store.attend',$item->id) }}" class="btn
-                                        btn-secondary text-bold-600">Atender</a> 
-{{-- 
-                                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#Modal">Eliminar</button> --}}
-                                    </td>
-                                </tr>
-
-                                <!-- Modal -->
-                                {{-- <div class="modal fade" id="Modal" tabindex="-1" role="dialog"
-                                    aria-labelledby="ModalTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-body">
-                                                <form class="float-right ml-1"
-                                                    action="{{ route('store.destroy', $item->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <h1 class="text-center card-title">Seguro que quieres Eliminar esta orden ?</h1>
-                                            </div>
-                                            <div class="modal-footer justify-conten-center">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Cerrar</button>
-                                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                                            </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div> --}}
-                                
                                 @endforeach
                         </table>
                     </div>
@@ -99,6 +74,7 @@
             </div>
         </div>
     </div>
+    @include('content.store.admin.components.modalAction')
 </div>
 
 
