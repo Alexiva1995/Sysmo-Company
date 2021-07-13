@@ -102,7 +102,7 @@ class LiquidactionController extends Controller
                         $this->generateLiquidation($user_id, []);
                     }
                 }
-                return redirect()->back()->with('message', 'Liquidaciones Generada Exitoxamente');
+                return redirect()->back()->with('message', 'Liquidaciones Generadas Exitosamente');
             }
         } catch (\Throwable $th) {
             Log::error('Store LiquidactionController -> '.$th);
@@ -294,8 +294,8 @@ class LiquidactionController extends Controller
 
             $arrayLiquidation = [
                 'user_id' => $user_id,
-                'total' => $total,
                 'gross_amount' => $crude,
+                'total' => $total,
                 'feed' => $feed,
                 'hash',
                 'wallet_used',

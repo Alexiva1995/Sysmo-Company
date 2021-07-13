@@ -41,9 +41,6 @@
                       <a class="dropdown-item" href="{{ route('profile.show') }}">
                           <i class="mr-50" data-feather="user"></i> Perfil
                       </a>
-                      <a class="dropdown-item" href="{{ route('profile.show') }}">
-                          <i class="mr-100" data-feather="user"></i> Añadir usuario
-                      </a>
                       <a>
                           @if (session('impersonated_by'))
                           <a class="dropdown-item" href="{{ route('impersonate.stop') }}">
