@@ -105,7 +105,7 @@ class ReferredController extends Controller
                 return redirect()->back()->with('msj2', 'El ID '. $id.', no se encuentra registrado');
             }
             $base->children = User::where('referred_id', '=', $base->id)->get();
-            $base->logoarbol = asset('assets/img/sistema/favicon.png');
+            $base->logoarbol = asset('images/logo/logoarbol.png');
             return view('content.referred.tree.tree', compact('trees', 'type', 'base'));
         } catch (\Throwable $th) {
             // Log::error('Tree - moretree -> Error: '.$th);
@@ -191,7 +191,7 @@ class ReferredController extends Controller
             if (!empty($users)) {
                 foreach ($users as $user) {
                     $user->children = $this->getData($user->id, $nivel, $typeTree);
-                    $this->getChildren($user->children, ($nivel+1), $typeTree);
+                    // $this->getChildren($user->children, ($nivel+1), $typeTree);
                 }
                 return $users;
             }else{
