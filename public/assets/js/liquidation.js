@@ -22,6 +22,16 @@ var vm_liquidation = new Vue({
             }) 
         }, 
 
+        setStatusOrder: function(id){
+            axios.get('showOrder/'+ id).then((response) => {
+                this.CommissionsDetails = response.data
+                console.log(this.CommissionsDetails)
+                $('#modalModalSetStatus').modal('show')
+            }).catch(function (error) {
+                console.log(error)
+            })
+        },        
+
         /**
          * Permite obtener la informacion de las comisiones de las liquidaciones
          * @param {integer}  user_id 

@@ -29,7 +29,7 @@ class ProductWarehouseController extends Controller
      // permite ver la vista de la tienda
     public function orders(){
 
-        $store = Order::all();
+        $store = Order::orderByDesc('id')->get();
         return view('content.store.admin.orders')->with('store', $store);
     
     }
@@ -217,8 +217,50 @@ class ProductWarehouseController extends Controller
 
     public function showOrder($id){
         $order = Order::find($id);
+        $user = User::find($order->user_id);
+        $product = ProductWarehouse::find($order->product_id);
+
+        $details = [
+            'order_id' => $order->id,
+            'order_amount' => $order->amount,
+            'order_status' => $order->status,
+            'user_id' => $user->id,
+            'username' => $user->username,
+            'firstname' => $user->firstname,
+            'lastname' => $user->lastname,
+            'email' => $user->email,
+            'product_id' => $product->id,
+            'product_name' => $product->name,
+            'product_description' => $product->description,
+            'product_price' => $product->price
+        ];
         
-        return $order;
+        return json_encode($details);
+    }
+
+    public function editOrder(Request $request){
+
+        $id = $request->id;
+        $status = $request->status;
+
+        if($status == "0"){
+            $newStatus = "1";
+        }else{
+            $newStatus = "0";
+        }
+
+
+        $order = Order::findOrFail($id);
+        $order->status = $newStatus;
+        if($order->save()){
+            return redirect()->route('store.list-orders')->with('message', 'El Pedido fue actualizado Exitosamente');
+        }else{
+            return redirect()->route('store.list-orders')->with('error', 'El Pedido NO pudo ser actualizado Exitosamente');
+        }
+
+
+
+        return dd("Estatus: ".$status." ID: ".$id);
     }
 
     public function guardarOrden($infoOrden)

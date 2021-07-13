@@ -43,12 +43,12 @@
                                 <td v-text="item.description"></td>
                                 <td v-text="item.referred_id"></td>
                                 <td v-text="item.referred.username"></td>
-                                <td v-text="item.debit +' $'"></td>
+                                <td v-text="item.amount +' $'"></td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr> 
-                                <th colspan="4" class="text-right">Total Comision</th>
+                                <th colspan="5" class="text-right">Total Comision</th>
                                 <th colspan="2" v-text="CommissionsDetails.total+' $'" class="text-right"></th>
                             </tr>
                         </tfoot>
