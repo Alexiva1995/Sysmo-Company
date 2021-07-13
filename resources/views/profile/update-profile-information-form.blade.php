@@ -49,38 +49,39 @@
             <x-jet-input-error for="photo" class="mt-2" />
         </div>
         @endif
+        <div class="col-span-6 sm:col-span-8">
         <div class="row">
             <!-- Name -->
-            <div class="col-6 mb-2 ">
+            <div class="col-12 mb-2 ">
                 <x-jet-label for="username" value="{{ __('username') }}" />
-                <x-jet-input id="username" type="text" class="mt-1 block w-full" wire:model.defer="state.username"
+                <x-jet-input id="username" value="{{Auth::user()->username}}" type="text" class="mt-1 block w-full" wire:model.defer="state.username"
                     autocomplete="username" />
                 <x-jet-input-error for="username" class="mt-2" />
             </div>
 
             <!-- Email -->
-            <div class="col-6 mb-2 ">
+            <div class="col-12 mb-2 ">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
+                <x-jet-input id="email" value="{{Auth::user()->email}}" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
                 <x-jet-input-error for="email" class="mt-2" />
             </div>
 
             <!-- whatsapp -->
-            <div class="col-3 mb-2 ">
+            <div class="col-12 mb-2 ">
                 <x-jet-label for="whatsapp" value="{{ __('whatsapp') }}" />
-                <x-jet-input id="whatsapp" type="text" class="mt-1 block w-full" wire:model.defer="state.whatsapp" />
+                <x-jet-input id="whatsapp" value="{{Auth::user()->whatsapp}}" type="text" class="mt-1 block w-full" wire:model.defer="state.whatsapp" />
                 <x-jet-input-error for="whatsapp" class="mt-2" />
             </div>
 
              <!-- balance -->
-             <div class="col-3 mb-2 ">
+             <div class="col-12 mb-2 ">
                 <x-jet-label for="balance" value="{{ __('balance') }}" />
-                <x-jet-input id="balance" type="number" class="mt-1 block w-full" wire:model.defer="state.balance" />
+                <x-jet-input id="balance" value="{{Auth::user()->balance}}" type="number" class="mt-1 block w-full disabled" wire:model.defer="state.balance" />
                 <x-jet-input-error for="balance" class="mt-2" />
             </div>
 
             <!-- role -->
-            <div class="col-3 mb-2 ">
+            <div class="col-12 mb-2 ">
                 <x-jet-label for="role" value="{{ __('role') }}" />
                 <select id="role" type="number" class="mt-1 block w-full" wire:model.defer="state.role" >
                     <option value="0" @if(Auth::user()->role == '0') selected  @endif>Normal</option>
@@ -90,7 +91,7 @@
             </div>
 
               <!-- status -->
-              <div class="col-3 mb-2 ">
+              <div class="col-12 mb-2 ">
                 <x-jet-label for="status" value="{{ __('status') }}" />
                 <select id="status" type="number" class="mt-1 block w-full" wire:model.defer="state.status" >
                     <option value="0" @if(Auth::user()->status == '0') selected  @endif>Inactivo</option>
@@ -99,6 +100,7 @@
                 <x-jet-input-error for="status" class="mt-2" />
             </div>
 
+        </div>
         </div>
     </x-slot>
 
