@@ -191,7 +191,7 @@ class ReferredController extends Controller
             if (!empty($users)) {
                 foreach ($users as $user) {
                     $user->children = $this->getData($user->id, $nivel, $typeTree);
-                    // $this->getChildren($user->children, ($nivel+1), $typeTree);
+                    $this->getChildren($user->children, ($nivel+1), $typeTree);
                 }
                 return $users;
             }else{
