@@ -55,10 +55,10 @@ class BonoMotorBike extends Command
                             Wallet::create([
                                 'user_id' => User::find($i)->id,
                                 'bonus_id' => 6,
-                                'description' => 'Ganó una Motocicleta 0 Kilómetros',
-                                'status' => 2
+                                'description' => 'Bono MotorBike para ' . User::find($i)->username . ' (' .User::find($i)->email . ')',
+                                'status' => 1
                             ]);
-                            Storage::append("BonoMotorBike.txt", $i . " ganó una Motocicleta");
+                            Storage::append("BonoMotorBike.txt", 'Bono MotorBike para ' . User::find($i)->username . ' (' .User::find($i)->email . ')');
                         }
                     }
                     // else{

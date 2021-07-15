@@ -15,33 +15,39 @@ trait BonoTrait{
          •El bono directo sera  cada paquere rs pagara 50 usd y cada pro pagara 70. 
          ******************************************************************/
         try {
-            $padre = User::find(Auth::user()->id)->referred_id;
-            $idProducto = $producto;
+            $idProducto = $producto['product_id'];
+            $userId = $producto['user_id'];
+            $nombreUser = User::find($userId)->username;
+            $correoUser = User::find($userId)->email;
+            $padre = User::find($userId)->referred_id;
+            // Storage::append("BonoDirecto.txt", 'ID Padre del padre; '. User::find($padre)->referred_id . " ID User: " . $userId);
             if((User::find($padre)->created_at)->diffInDays(Carbon::now()) <= 365)//Validez por 1 año
             {
                 if($idProducto == 1){
                     Wallet::create([
                         'user_id' => User::find($padre)->id,
                         'bonus_id' => 4,
+                        'referred_id' => User::find($padre)->referred_id,
                         'amount' => 50,
-                        'description' => 'Ganó 1 Bono Direct de 50$USD',
-                        'status' => 2
+                        'description' => 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')',
+                        'status' => 1
                     ]);
-                    Storage::append("BonoDirecto.txt", 'Se genera el pago de 50$USD al usuario: ' . $padre);
+                    Storage::append("BonoDirecto.txt", 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')');
                 }elseif($idProducto == 2){
                     Wallet::create([
                         'user_id' => User::find($padre)->id,
                         'bonus_id' => 4,
+                        'referred_id' => User::find($padre)->referred_id,
                         'amount' => 70,
-                        'description' => 'Ganó 1 Bono Direct de 70$USD',
-                        'status' => 2
+                        'description' => 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')',
+                        'status' => 1
                     ]);
-                    Storage::append("BonoDirecto.txt", 'Se genera el pago de 70$USD al usuario: ' . $padre);
+                    Storage::append("BonoDirecto.txt", 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')');
                 }
             }
-            // else{
-            //     Storage::append("BonoDirecto.txt", 'Se venció el bono directo al usuario: ' . $padre);
-            // }
+            else{
+                Storage::append("BonoDirecto.txt", 'Se venció el bono directo al usuario: ' . $padre);
+            }
            
         } catch (\Throwable $th) {
             Storage::append("BonoDirecto.txt", 'LOG | Error: '. $th .' Fecha: '. Carbon::now());
@@ -84,7 +90,7 @@ trait BonoTrait{
     
     public function showBonoDirecto()
     {
-        $bonoDirecto = Wallet::all()->where('referred_id', '=', Auth::user()->id)->where('bonus_id', '=', 5);
+        $bonoDirecto = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 4);
 
         if($bonoDirecto){
             return count($bonoDirecto);
@@ -130,37 +136,62 @@ trait BonoTrait{
 
 
     
-    public function bonoMoney()
+    public function bonoMoney($order)
     {
         /******************************************************************
          Cada 10 referidos directos que compren paquete se pagara 100usd
          ******************************************************************/
+        $user = $order["user_id"];
         try {
-            $user = User::find(Auth::user()->id);
+            // $user = User::find(Auth::user()->id);
             /******************************** */
-            $padre = $user->referred_id;
-                                                //Dependiendo de la manera en que se llame el método, se activan o no estas variables
-            $user = User::find($padre);
+            $userName = User::find($user)->username;
+            $userMail = User::find($user)->email;
+            $user = User::find($user)->referred_id;
+            //Dependiendo de la manera en que se llame el método, se activan o no estas variables
+            $user = User::find($user);
+            // Storage::append("BonoMoney.txt", $user);
+            
             /******************************* */
             // dd($user);
             $totalOrdenes = [];
-
+            
             foreach($user->children as $referido){
-                if($referido->getOrder->isNotEmpty()){
-                    array_push($totalOrdenes, $referido->getOrder);
+                // Storage::append("BonoMoney.txt", 'Total Ordenes: ' . $totalOrdenes );
+                if($referido->getOrder->where('status', '1')->isNotEmpty()){
+                    array_push($totalOrdenes, $referido->getOrder->where('status', '1'));
+                    // Storage::append("BonoMoney.txt", 'Total Ordenes: ' . count($totalOrdenes) );
                 }
             }
-            $iterador = intval(ceil(count($totalOrdenes)/10)*10);
+            $it = Wallet::where('status', '1')->where('bonus_id', 1)->where('user_id', $user->id)->get();
+            $it = count($it);
+            
+            Storage::append("BonoMoney.txt", 'Iterador Base de datos: ' . $it );
+            $iterador = 10*($it+1);
+            // $iterador = intval(ceil(count($totalOrdenes)/(2))*(2));
+            // Storage::append("BonoMoney.txt", 'Iterador: ' . $iterador );
+            // Storage::append("BonoMoney.txt", 'totalOrdenes: ' . count($totalOrdenes ));
             $totalOrdenes = count($totalOrdenes);
         if($totalOrdenes != 0){
             if($totalOrdenes == $iterador){
-                return '0';
+                Wallet::create([
+                    'user_id' => $user->id,
+                    'bonus_id' => 1,
+                    'referred_id' => $user->referred_id,
+                    'amount' => 100,
+                    'description' => 'Bono Money por el usuario '.$userName. ' (' .$userMail. ')',
+                    'status' => 1
+                ]);
+                Storage::append("BonoMoney.txt", 'Bono Money por el usuario '.$userName. ' (' .$userMail. ')');
+                return 0;
             }
             else{
+                Storage::append("BonoMoney.txt", 'Tus referidos no han comprado los paquetes suficientes, tienes ' . $totalOrdenes . ' de ' . $iterador);
                 return 'Tus referidos no han comprado los paquetes suficientes, tienes ' . $totalOrdenes . ' de ' . $iterador;
             }
         }
         else{
+            Storage::append("BonoMoney.txt", 'Ninguno de tus referidos ha comprado paquetes');
              return 'Ninguno de tus referidos ha comprado paquetes';
         }
             

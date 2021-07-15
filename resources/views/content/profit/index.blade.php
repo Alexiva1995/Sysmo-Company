@@ -68,11 +68,12 @@
                                 <tr class="text-center text-dark bg-purple-alt2">
                                     <th>ID</th>
                                     <th>Tipo de Transaccion</th>
+                                    <th>Correo del usuario al que pertenece</th>
                                     <th>Monto</th>                                
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach ($profit as $item)
+                            @foreach ($profit as $val => $item)
                                 <tr class="text-center">
                                     <td>{{$item->id}}</td>
                                     @if ($item->type_transaction == '0')
@@ -80,6 +81,7 @@
                                     @else
                                     <td> <a class=" badge badge-success text-white">Retiro</a></td>
                                     @endif
+                                    <td>{{$correos[$val]}}</td>
                                     <td> {{$item->amount}} </td>
                                 </tr>
                             @endforeach

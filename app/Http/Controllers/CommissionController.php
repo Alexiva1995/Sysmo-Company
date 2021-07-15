@@ -12,7 +12,7 @@ class CommissionController extends Controller
    
     public function indexCommissions(){
         
-        $wallet = Wallet::all();
+        $wallet = Wallet::where('bonus_id', '!=', 0)->get();
 
         return view('content.commissions.index')->with('wallet', $wallet);
     }

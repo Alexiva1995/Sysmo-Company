@@ -52,7 +52,7 @@
                 <div class="card-body card-dashboard">
                     <div class="table-responsive"> 
                         <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped"
-                            data-order='[[ 1, "asc" ]]' data-page-length='10'>
+                            data-order='[[ 0, "desc" ]]' data-page-length='10'>
                             <thead class="bg-purple-alt2">
 
                                 <tr class="text-center text-dark">
@@ -61,6 +61,7 @@
                                     <th>Usuario</th>
                                     <th>Estado</th>
                                     <th>Fecha</th>
+                                    <th>Acciones</th>
                                 </tr>
 
                             </thead>
@@ -73,12 +74,72 @@
                                     <td>{{ $item->getUser->username}}</td>
 
                                     @if ($item->status == '0')
-                                    <td> <a onclick="vm_liquidation.setStatusOrder({{$item->id}})" class=" badge badge-info text-white">En Espera</a></td>
+                                    <td> <a class=" badge badge-info text-white">En Espera</a></td>
+                                    @elseif($item->status == '1')
+                                    <td> <a class=" badge badge-success text-white">Completado</a></td>
                                     @else
-                                    <td> <a onclick="vm_liquidation.setStatusOrder({{$item->id}})" class=" badge badge-success text-white">Atendido</a></td>
+                                    <td> <a class=" badge badge-danger text-white">Cancelado</a></td>
+                                    
                                     @endif
 
                                     <td>{{ $item->created_at}}</td>
+
+                                    <td class="d-flex"> 
+                                        <a  onclick="vm_liquidation.setStatusOrder({{$item->id}})" class="btn btn-primary">Ver</a>
+                                        
+                                        @if ($item->status == '0')
+                                        
+                                        <form action="{{route('edit-order')}}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{$item->id}}">
+                                            <input type="hidden" name="status" value="1">
+                                            <input type="submit" class="btn btn-success" value="Completar">
+                                        </form>
+
+                                        <form action="{{route('edit-order')}}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{$item->id}}">
+                                            <input type="hidden" name="status" value="2">
+                                            <input type="submit" class="btn btn-danger" value="Cancelar">
+                                        </form>
+                                        
+                                        @elseif ($item->status == '1')
+
+                                        <form action="{{route('edit-order')}}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{$item->id}}">
+                                            <input type="hidden" name="status" value="0">
+                                            <input type="submit" class="btn btn-info" value="En Espera">
+                                        </form>
+
+                                        <form action="{{route('edit-order')}}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{$item->id}}">
+                                            <input type="hidden" name="status" value="2">
+                                            <input type="submit" class="btn btn-danger" value="Cancelar">
+                                        </form>
+
+                                        
+                                        @else
+
+                                        <form action="{{route('edit-order')}}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{$item->id}}">
+                                            <input type="hidden" name="status" value="1">
+                                            <input type="submit" class="btn btn-success" value="Completar">
+                                        </form>
+
+                                        <form action="{{route('edit-order')}}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{$item->id}}">
+                                            <input type="hidden" name="status" value="0">
+                                            <input type="submit" class="btn btn-info" value="En Espera">
+                                        </form>
+                                        @endif
+                                        {{-- <a v-if="CommissionsDetails.order_status == 1" class="btn btn-primary">Ver</a> --}}
+                                        
+                                    </td>
+                                    
                                 </tr>
                                 @endforeach
                             </tbody>

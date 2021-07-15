@@ -58,10 +58,10 @@ class BonoTravel extends Command
                             Wallet::create([
                                 'user_id' => User::find($i)->id,
                                 'bonus_id' => 5,
-                                'description' => 'Ganó el bono Travel para 2 personas',
-                                'status' => 2
+                                'description' => 'Bono Travel (2 personas), para ' . User::find($i)->username . ' (' .User::find($i)->email . ')',
+                                'status' => 1
                             ]);
-                            Storage::append("BonoTravel.txt", $i . " ganó el bono Travel para 2 personas");
+                            Storage::append("BonoTravel.txt", 'Bono Travel (2 personas) para ' . User::find($i)->username . ' (' . User::find($i)->email . ')');
                         }
                         // Storage::append("BonoTravel.txt", $i . " si cumple para 2 personas");
                     }elseif(count($user->children) >= 10){
@@ -69,10 +69,10 @@ class BonoTravel extends Command
                             Wallet::create([
                                 'user_id' => User::find($i)->id,
                                 'bonus_id' => 5,
-                                'description' => 'Ganó el bono Travel para 1 persona',
-                                'status' => 2
+                                'description' => 'Bono Travel (1 persona) para ' . User::find($i)->username . ' (' .User::find($i)->email . ')',
+                                'status' => 1
                             ]);
-                            Storage::append("BonoTravel.txt", $i . " ganó el bono Travel para 1 persona");
+                            Storage::append("BonoTravel.txt", 'Bono Travel (1 persona) para ' . User::find($i)->username . ' (' .User::find($i)->email . ')');
                         }
                         // Storage::append("BonoTravel.txt", $i . " si cumple para 1 persona");
                     }

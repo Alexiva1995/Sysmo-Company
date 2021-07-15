@@ -59,7 +59,7 @@
                                 @else
                                     <p class="text-gray-700 text-base">
                                         <strong>Progreso: </strong> Aun no has ganado este Bono <br>
-                                        {{$bonoDinero}}
+                                        
                                     </p>
                                 @endif 
                             </div>
@@ -133,7 +133,7 @@
                             </div>
                             @if($bonoDirecto)
                                 <div class="bg-green-500 flex justify-center content-center">
-                                    <div class="text-sm font-semibold text-gray-900">Bono Obtenido</div>
+                                    <div class="text-sm font-semibold text-gray-900">{{$bonoDirecto}} Bonos Obtenidos</div>
                                 </div> 
                             @endif
                             <div class="bg-gray-100 flex justify-center content-center mb-1">
