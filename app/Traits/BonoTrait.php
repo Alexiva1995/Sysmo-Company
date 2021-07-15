@@ -167,7 +167,7 @@ trait BonoTrait{
             $it = count($it);
             
             Storage::append("BonoMoney.txt", 'Iterador Base de datos: ' . $it );
-            $iterador = 2*($it+1);
+            $iterador = 10*($it+1);
             // $iterador = intval(ceil(count($totalOrdenes)/(2))*(2));
             // Storage::append("BonoMoney.txt", 'Iterador: ' . $iterador );
             // Storage::append("BonoMoney.txt", 'totalOrdenes: ' . count($totalOrdenes ));

@@ -72,10 +72,10 @@ class BonoStart extends Command
                                         'user_id' => User::find($i)->id,
                                         'bonus_id' => 3,
                                         'amount' => 50,
-                                        'description' => 'Ganó el bono Start por 50$USD',
+                                        'description' => 'Bono Start para ' . User::find($i)->username . ' (' .User::find($i)->email . ')',
                                         'status' => 1
                                     ]);
-                                    Storage::append("BonoStart.txt", $i . ' ganó el bono Start por 50$USD');
+                                    Storage::append("BonoStart.txt", $i . 'Bono Start para ' . User::find($i)->username . ' (' .User::find($i)->email . ')');
                                 }
                                 // Storage::append("BonoStart.txt", 'El usuario ' .$i. ' Cumple con todos los requisitos, tienes: '. count($user->children) .' referidos, el referido n° 3 se registró el ' . $fechaReferido3 . ', ' .$user->created_at->diffInDays($fechaReferido3) . ' días despues de que usted se registró, y desde esa fecha hasta 30 días después, has hecho ' . (count($referidosExtra)-1) . ' Referidos');
                             }

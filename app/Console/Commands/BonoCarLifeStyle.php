@@ -51,15 +51,15 @@ class BonoCarLifeStyle extends Command
             for($i = 1; $i <= $alluser; $i++){
                 if(User::find($i)->status == 1){
                     $referidos = User::find($i)->children;
-                    if(count($referidos) >= 500){
+                    if(count($referidos) >= 5){
                         if(Wallet::where([['user_id', User::find($i)->id],['bonus_id', 7]])->count() == 0){
                             Wallet::create([
                                 'user_id' => User::find($i)->id,
                                 'bonus_id' => 7,
-                                'description' => 'Ganó un Automóvil 0 Kilómetros',
+                                'description' => 'Bono CarLifeStyle para ' . User::find($i)->username . ' (' .User::find($i)->email . ')',
                                 'status' => 1
                             ]);
-                            Storage::append("BonoCarLifeStyle.txt", $i . " ganó un auto");
+                            Storage::append("BonoCarLifeStyle.txt", 'Bono CarLifeStyle para ' . User::find($i)->username . ' (' .User::find($i)->email . ')');
                         }
                         // else{
                         //     Storage::append("BonoCarLifeStyle.txt", $i . " ya había ganado un auto");

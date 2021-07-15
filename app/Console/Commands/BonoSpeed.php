@@ -70,10 +70,10 @@ class BonoSpeed extends Command
                                     Wallet::create([
                                         'user_id' => User::find($i)->id,
                                         'bonus_id' => 2,
-                                        'description' => 'Ganó el bono Speed',
+                                        'description' => 'Bono Speed para ' . User::find($i)->username . ' (' .User::find($i)->email . ')',
                                         'status' => 1
                                     ]);
-                                    Storage::append("BonoSpeed.txt", $i . " ganó el bono Speed");
+                                    Storage::append("BonoSpeed.txt", 'Bono Speed para ' . User::find($i)->username . ' (' .User::find($i)->email . ')');
                                 }
                                 // Storage::append("BonoSpeed.txt", 'El usuario '. $i .' Cumple con todos los requisitos, tienes: '. count($user->children) .' referidos, el referido n° 20 se registró el ' . $fechaReferido20 . ', ' .$user->created_at->diffInDays($fechaReferido20) . ' días despues de que usted se registró, y desde esa fecha hasta 30 días después, has hecho ' . (count($referidosExtra)-1) . ' Referidos');
                             }
