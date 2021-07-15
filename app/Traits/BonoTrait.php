@@ -145,6 +145,8 @@ trait BonoTrait{
         try {
             // $user = User::find(Auth::user()->id);
             /******************************** */
+            $userName = User::find($user)->username;
+            $userMail = User::find($user)->email;
             $user = User::find($user)->referred_id;
             //Dependiendo de la manera en que se llame el método, se activan o no estas variables
             $user = User::find($user);
@@ -161,7 +163,7 @@ trait BonoTrait{
                     // Storage::append("BonoMoney.txt", 'Total Ordenes: ' . count($totalOrdenes) );
                 }
             }
-            $it = Wallet::where('status', '2')->where('bonus_id', 1)->where('user_id', $user->id)->get();
+            $it = Wallet::where('status', '1')->where('bonus_id', 1)->where('user_id', $user->id)->get();
             $it = count($it);
             
             Storage::append("BonoMoney.txt", 'Iterador Base de datos: ' . $it );
@@ -177,10 +179,10 @@ trait BonoTrait{
                     'bonus_id' => 1,
                     'referred_id' => $user->referred_id,
                     'amount' => 100,
-                    'description' => 'Ganó 1 Bono Money de 100$USD',
+                    'description' => 'Bono Money por el usuario '.$userName. ' (' .$userMail. ')',
                     'status' => 1
                 ]);
-                Storage::append("BonoMoney.txt", 'Ganó 1 Bono Money de 100$USD, Total Ordenes: ' .$totalOrdenes . ' Iteraddor: '. $iterador);
+                Storage::append("BonoMoney.txt", 'Bono Money por el usuario '.$userName. ' (' .$userMail. ')');
                 return 0;
             }
             else{
