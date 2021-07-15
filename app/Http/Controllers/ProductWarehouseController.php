@@ -187,8 +187,6 @@ class ProductWarehouseController extends Controller
 
             $wallet = $user->balance - $request->price;
             $orden->getUser->update(['balance' => $wallet]);
-            $this->bonoDirecto($request->id);//Consulta si cumple con bonoDirecto;
-            $this->bonoMoney($request->id);//Consulta si cumple con bonoMoney;
             return redirect()->back()->with('message', 'Producto Comprado');
         }else{
             return redirect()->back()->with('error', 'Saldo Insuficiente');
@@ -239,10 +237,8 @@ class ProductWarehouseController extends Controller
     }
 
     public function editOrder(Request $request){
-
         $id = $request->id;
         $status = $request->status;
-
         if($status == "0"){
             $newStatus = "1";
         }else{
@@ -253,6 +249,8 @@ class ProductWarehouseController extends Controller
         $order = Order::findOrFail($id);
         $order->status = $newStatus;
         if($order->save()){
+            $this->bonoDirecto($order);//Consulta si cumple con bonoDirecto
+            $this->bonoMoney($order);//Consulta si cumple con bonoMoney
             return redirect()->route('store.list-orders')->with('message', 'El Pedido fue actualizado Exitosamente');
         }else{
             return redirect()->route('store.list-orders')->with('error', 'El Pedido NO pudo ser actualizado Exitosamente');
