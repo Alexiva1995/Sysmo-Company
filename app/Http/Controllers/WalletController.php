@@ -35,7 +35,6 @@ class WalletController extends Controller
 
         $total = DB::table('wallets')
             ->where('user_id', '=', Auth::id())
-            ->where('status', '=', 0)
             ->where('liquidation_id', '=', null)
             ->where('type_transaction', '=', 0)
             ->sum('amount');
