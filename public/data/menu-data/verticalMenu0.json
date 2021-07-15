@@ -14,12 +14,6 @@
       "slug": "Tienda"
     },
 
-    {
-      "name": "Bot",
-      "icon": "codesandbox",
-      "url": "user/bot/index",
-      "slug": "Bot"
-    },
 
     {
       "name": "Financiero",
