@@ -10,8 +10,8 @@
                 </button>
             </div>
             <div class="modal-body text-justify">
-                <form action="{{route('edit-order')}}" method="post">
-                    @csrf
+                {{-- <form action="{{route('edit-order')}}" method="post"> --}}
+                    {{-- @csrf --}}
                     <input type="hidden" name="id" :value="CommissionsDetails.order_id">
                     <input type="hidden" name="status" :value="CommissionsDetails.order_status">
                     
@@ -79,16 +79,16 @@
                                     <td><p v-text="CommissionsDetails.order_id"></p></td>
                                     <td><p v-text="CommissionsDetails.product_price"></p></td>
                                     <td v-if="CommissionsDetails.order_status == 0"> <a class="badge badge-info text-white">En Espera</a></td>
-                                    <td v-if="CommissionsDetails.order_status == 0"> <button class="btn btn-success">Cambiar a Atendido</a></td>
+                                    {{-- <td v-if="CommissionsDetails.order_status == 0"> <button class="btn btn-success">Cambiar a Atendido</a></td> --}}
                                     <td v-if="CommissionsDetails.order_status == 1"> <a class="badge badge-success text-white">Atendida</a></td>
-                                    <td v-if="CommissionsDetails.order_status == 1"> <button class="btn btn-info">Regresar a En Espera</button></td>
+                                    {{-- <td v-if="CommissionsDetails.order_status == 1"> <button class="btn btn-info">Regresar a En Espera</button></td> --}}
                                 </tr>
                             <tbody>
                             </tbody>
                         </table>
                     </div> 
 
-                </form>
+                {{-- </form> --}}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>

@@ -237,17 +237,19 @@ class ProductWarehouseController extends Controller
     }
 
     public function editOrder(Request $request){
+        // dd($request);
+
         $id = $request->id;
         $status = $request->status;
-        if($status == "0"){
-            $newStatus = "1";
-        }else{
-            $newStatus = "0";
-        }
+        // if($status == "0"){
+        //     $newStatus = "1";
+        // }else{
+        //     $newStatus = "0";
+        // }
 
 
         $order = Order::findOrFail($id);
-        $order->status = $newStatus;
+        $order->status = $status;
         if($order->save()){
             $this->bonoDirecto($order);//Consulta si cumple con bonoDirecto
             $this->bonoMoney($order);//Consulta si cumple con bonoMoney
