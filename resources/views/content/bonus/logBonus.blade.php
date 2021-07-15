@@ -38,7 +38,6 @@
                                     <th>Nombre</th>
                                     <th>Correo</th>
                                     <th>Nombre del bono</th>
-                                    <th>Monto</th> 
                                     <th>Fecha</th>
                                 </tr>
 
@@ -50,7 +49,6 @@
                                     <td>{{$bonus->getWalletUser->username}}</td>
                                     <td>{{$bonus->getWalletUser->email}}</td>
                                     <td>{{$bonus->bonus->name}}</td>
-                                    <td>{{$bonus->amount}}</td>
                                     <td>{{date('d-m-Y', strtotime($bonus->created_at))}}</tr>
                                 </tr>
                             @endforeach
