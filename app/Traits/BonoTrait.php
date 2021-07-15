@@ -28,7 +28,7 @@ trait BonoTrait{
                         'referred_id' => User::find($padre)->referred_id,
                         'amount' => 50,
                         'description' => 'Ganó 1 Bono Direct de 50$USD',
-                        'status' => 2
+                        'status' => 1
                     ]);
                     Storage::append("BonoDirecto.txt", 'Se genera el pago de 50$USD al usuario: ' . $padre);
                 }elseif($idProducto == 2){
@@ -38,7 +38,7 @@ trait BonoTrait{
                         'referred_id' => User::find($padre)->referred_id,
                         'amount' => 70,
                         'description' => 'Ganó 1 Bono Direct de 70$USD',
-                        'status' => 2
+                        'status' => 1
                     ]);
                     Storage::append("BonoDirecto.txt", 'Se genera el pago de 70$USD al usuario: ' . $padre);
                 }
@@ -176,7 +176,7 @@ trait BonoTrait{
                     'referred_id' => $user->referred_id,
                     'amount' => 100,
                     'description' => 'Ganó 1 Bono Money de 100$USD',
-                    'status' => 2
+                    'status' => 1
                 ]);
                 Storage::append("BonoMoney.txt", 'Ganó 1 Bono Money de 100$USD, Total Ordenes: ' .$totalOrdenes . ' Iteraddor: '. $iterador);
                 return 0;

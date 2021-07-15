@@ -73,7 +73,7 @@ class BonoStart extends Command
                                         'bonus_id' => 3,
                                         'amount' => 50,
                                         'description' => 'Ganó el bono Start por 50$USD',
-                                        'status' => 2
+                                        'status' => 1
                                     ]);
                                     Storage::append("BonoStart.txt", $i . ' ganó el bono Start por 50$USD');
                                 }

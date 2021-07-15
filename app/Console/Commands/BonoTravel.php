@@ -59,7 +59,7 @@ class BonoTravel extends Command
                                 'user_id' => User::find($i)->id,
                                 'bonus_id' => 5,
                                 'description' => 'Ganó el bono Travel para 2 personas',
-                                'status' => 2
+                                'status' => 1
                             ]);
                             Storage::append("BonoTravel.txt", $i . " ganó el bono Travel para 2 personas");
                         }
@@ -70,7 +70,7 @@ class BonoTravel extends Command
                                 'user_id' => User::find($i)->id,
                                 'bonus_id' => 5,
                                 'description' => 'Ganó el bono Travel para 1 persona',
-                                'status' => 2
+                                'status' => 1
                             ]);
                             Storage::append("BonoTravel.txt", $i . " ganó el bono Travel para 1 persona");
                         }

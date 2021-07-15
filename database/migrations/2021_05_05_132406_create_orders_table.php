@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('product_id');
             $table->bigInteger('amount')->nullable();
-            $table->enum('status', [0, 1])->default(0)->comment('0 - En espera, 1 - Atendida');
+            $table->tinyInteger('status')->default(0)->comment('0 - En espera, 1 - Completado, 2 - Cancelado');
             $table->timestamps();
         });
     }

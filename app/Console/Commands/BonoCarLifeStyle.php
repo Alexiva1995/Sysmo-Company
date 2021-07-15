@@ -57,7 +57,7 @@ class BonoCarLifeStyle extends Command
                                 'user_id' => User::find($i)->id,
                                 'bonus_id' => 7,
                                 'description' => 'Ganó un Automóvil 0 Kilómetros',
-                                'status' => 2
+                                'status' => 1
                             ]);
                             Storage::append("BonoCarLifeStyle.txt", $i . " ganó un auto");
                         }

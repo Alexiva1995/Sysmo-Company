@@ -71,7 +71,7 @@ class BonoSpeed extends Command
                                         'user_id' => User::find($i)->id,
                                         'bonus_id' => 2,
                                         'description' => 'Ganó el bono Speed',
-                                        'status' => 2
+                                        'status' => 1
                                     ]);
                                     Storage::append("BonoSpeed.txt", $i . " ganó el bono Speed");
                                 }
