@@ -20,7 +20,7 @@ class OrderSeeder extends Seeder
                 'user_id' => random_int(1,3),
                 'product_id' => random_int(1,2),
                 'amount' => 1,
-                'status' => random_int(0,1),
+                'status' => '0',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
