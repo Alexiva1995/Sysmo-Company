@@ -17,6 +17,8 @@ trait BonoTrait{
         try {
             $idProducto = $producto['product_id'];
             $userId = $producto['user_id'];
+            $nombreUser = User::find($userId)->username;
+            $correoUser = User::find($userId)->email;
             $padre = User::find($userId)->referred_id;
             // Storage::append("BonoDirecto.txt", 'ID Padre del padre; '. User::find($padre)->referred_id . " ID User: " . $userId);
             if((User::find($padre)->created_at)->diffInDays(Carbon::now()) <= 365)//Validez por 1 año
@@ -27,20 +29,20 @@ trait BonoTrait{
                         'bonus_id' => 4,
                         'referred_id' => User::find($padre)->referred_id,
                         'amount' => 50,
-                        'description' => 'Ganó 1 Bono Direct de 50$USD',
+                        'description' => 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')',
                         'status' => 1
                     ]);
-                    Storage::append("BonoDirecto.txt", 'Se genera el pago de 50$USD al usuario: ' . $padre);
+                    Storage::append("BonoDirecto.txt", 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')');
                 }elseif($idProducto == 2){
                     Wallet::create([
                         'user_id' => User::find($padre)->id,
                         'bonus_id' => 4,
                         'referred_id' => User::find($padre)->referred_id,
                         'amount' => 70,
-                        'description' => 'Ganó 1 Bono Direct de 70$USD',
+                        'description' => 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')',
                         'status' => 1
                     ]);
-                    Storage::append("BonoDirecto.txt", 'Se genera el pago de 70$USD al usuario: ' . $padre);
+                    Storage::append("BonoDirecto.txt", 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')');
                 }
             }
             else{
