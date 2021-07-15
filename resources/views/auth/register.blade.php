@@ -97,7 +97,7 @@
                             </div>
                             <div class="form-group col-6">
                                 <label for="register-username" class="form-label">Nombre de Usuario</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                <input type="text" class="form-control @error('username') is-invalid @enderror"
                                     id="register-username" name="username" placeholder="Username"
                                     aria-describedby="register-username" tabindex="1" autofocus
                                     value="{{ old('username') }}" required />
@@ -110,14 +110,14 @@
                             <div class="form-group col-6">
                                 <label for="register-referred_id" class="form-label">ID del Referido</label>
                                 @if ($referred != null)
-                                <input type="number" class="form-control @error('name') is-invalid @enderror"
+                                <input type="number" class="form-control @error('referred_id') is-invalid @enderror"
                                 id="register-referred_id" name="referred_id" placeholder="{{ $referred->username }}"
                                 aria-describedby="register-referred_id" tabindex="1" autofocus
                                 value="{{ $referred->id }}" readonly/>
 
                                 @else
 
-                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                <input type="text" class="form-control @error('referred_id') is-invalid @enderror"
                                 id="register-referred_id" name="referred_id" placeholder="Sin referido"
                                 aria-describedby="register-referred_id" tabindex="1" autofocus
                                 value="1" readonly/>
