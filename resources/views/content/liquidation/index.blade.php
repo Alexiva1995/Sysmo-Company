@@ -58,12 +58,14 @@
                                     <th>ID Usuario</th>
                                     <th>Usuario</th>
                                     <th>Email</th>
+                                    <th>Billetera</th>
                                     <th>Total Comision</th>
                                     <th>Estado</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {{-- {{dd($commissions)}} --}}
                                 @foreach ($commissions as $comision)
                                     <tr class="text-center">
                                         {{-- <td>
@@ -72,6 +74,7 @@
                                         <td>{{$comision->user_id}}</td>
                                         <td>{{$comision->getWalletUser->username}}</td>
                                         <td>{{$comision->getWalletUser->email}}</td>
+                                        <td>{{$comision->getWalletUser->billetera}}</td>
                                         <td>{{$comision->total}}</td>
                                         <td>{{$comision->getWalletUser->status}}</td>
                                         <td>
