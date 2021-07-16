@@ -5,13 +5,36 @@
 @include('content.referred.tree.component.tree-css')
 
 @section('content')
-<div class="row">
-<div class="col-9 text-center">
     <div class="padre">
+        <div class="card shadow-lg" style="margin-bottom: 0px;" id="tarjeta">
+            <div class="card-body p-1">
+                <div class="row no-gutters">
+                    <div class="col-4">
+                        <img class="float-left rounded-circle shadow-lg" id="imagen" src="{{$base->logoarbol}}" width="96" height="96">     
+                    </div>
+                    <div class="col-8">
+                        <div class="ml-1"><span class="font-weight-bold">Nombre:</span><span id="nombre"> {{$base->firstname}} </span></div> 
+            
+                        <div class="ml-1"><span class="font-weight-bold">Paquete:</span> <span id="inversion">{{$paquete}}</span></div>
+
+                        <div class="ml-1 mb-1"><span class="font-weight-bold">Estado:</span> <span id="estado">
+                        @if ($base->status == 0)
+                        <span class="badge badge-warning">Inactivo</span>
+                        @else
+                        <span class="badge badge-success">Activo</span>
+                        @endif    
+                        </span></div>
+
+                        <div class="ml-1"><a id="ver_arbol" class="btn btn-primary btn-sm btn-block" href=>Ver arbol</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <ul>
             <li class="baseli px-0"  style="width:100%;">
                 <a class="base" href="#">
-                    <img src="{{$base->logoarbol}}" alt="{{$base->name}}" title="{{$base->name}}" height="96">
+                    <img src="{{$base->logoarbol}}" alt="{{$base->name}}" title="{{$base->name}}" height="82">
                 </a>
                 {{-- Nivel 1 --}}
                 <ul>
@@ -74,66 +97,29 @@
         <a class="btn btn-info" href="{{route('tree_type', strtolower($type))}}">Regresar a mi arbol</a>
     </div>
     @endif
-</div>
-<div class="col-3 mt-5">
-    <div class="card" id="tarjeta">
-        <img src="{{$base->logoarbol}}" id="#imagen" width="150px" height="150px" class="mx-auto">
-        <div class="card-body">
-          <h5 class="card-title">Nombre</h5>
-          <ul class="list-group list-group-flush">
-            {{-- <li class="list-group-item">Paquete</li> --}}
-            <li class="list-group-item" id="estado">Estado</li>
-          </ul>
-        </div>
-        <div class="card-footer">
-            <a href="" id="ver_arbol" class="btn btn-success btn-block disabled">Ver Árbol</a>
-        </div>
-      </div>
-</div>
-@endsection
 
-
-<script> 
-    function referred(id, type) {
-        let ruta = "{{url('user/referred')}}/" + type + '/' + id
-        window.location.href = ruta
-    }
+    <script type="text/javascript">
     
-    function copyReferralsLink() {
-        let copyText = $('#referrals_link').attr('data-link');
-        const textArea = document.createElement('textarea');
-        textArea.textContent = copyText;
-        document.body.append(textArea);
-        textArea.select();
-        document.execCommand("copy");
-        textArea.remove();
-    }
-
-    function tarjeta(data, url){
-        console.log(url);
+        function tarjeta(data, url){
             //console.log('assets/img/sistema/favicon.png');
-            $('.card-title').text("Nombre: " + data.firstname);
-            if(data.profile_photo_url == null){
+            $('#nombre').text(data.firstname);
+            // if(data.profile_photo_url == null){
                 $('#imagen').attr('src', data.logoarbol );   
-            }else{
-                $('#imagen').attr('src', data.profile_photo_url);    
-            }
-            if(url != "" || url != null){
-                $('#ver_arbol').attr('href', url);
-                $('#ver_arbol').removeClass('disabled');
-            }else{
-                $('#ver_arbol').addClass('disabled');
-            }
-            // $('#inversion').text(data.inversion);
+            // }else{
+            //     $('#imagen').attr('src', data.profile_photo_url);    
+            // }
+            
+            $('#ver_arbol').attr('href', url);
+            $('#inversion').text("AQUÍ VA EL PAQUETE DEL USUARIO");
             if(data.status == 0){
-                $('#estado').html('<li>Estado: <span class="badge badge-warning">Inactivo</span></li>');
+                $('#estado').html('<span class="badge badge-warning">Inactivo</span>');
             }else if(data.status == 1){
-                $('#estado').html('<li>Estado: <span class="badge badge-success">Activo</span></li>');
+                $('#estado').html('<span class="badge badge-success">Activo</span>');
             }else if(data.status == 2){
-                $('#estado').html('<li>Estado: <span class="badge badge-danger">Espanminado</li>');
+                $('#estado').html('<span class="badge badge-danger">Eliminado</span>');
             }
             
-            // $('#tarjeta').removeClass('d-none');
+            $('#tarjeta').removeClass('d-none');
         }
-
-</script>
+    </script>
+@endsection

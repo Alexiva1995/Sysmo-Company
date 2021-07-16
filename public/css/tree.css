@@ -1,10 +1,10 @@
 .padre ul {
-    padding-top: 21px;
+    padding-top: 20px;
     padding-left: 0px;
     position: relative;
     display: flex;
     overflow: auto;
-    justify-content: start;
+    justify-content: center;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
@@ -20,7 +20,7 @@
 }
 
 .padre .baseli{
-    width: 100%;
+    width: 50%;
 }
 
 .padre li {
@@ -28,7 +28,7 @@
     text-align: center;
     list-style-type: none;
     position: relative;
-    padding: 20px 40px 0; 
+    padding: 20px 40px 0;
 
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -43,7 +43,7 @@
     position: absolute;
     top: 0;
     right: 50%;
-    border-top: 2px solid #693ED0;
+    border-top: 2px solid #13192E;
     width: 50%;
     height: 20px;
 }
@@ -51,7 +51,7 @@
 .padre li::after {
     right: auto;
     left: 50%;
-    border-left: 2px solid #693ED0;
+    border-left: 2px solid #13192E;
 }
 
 /*We need to remove left-right connectors from elements without 
@@ -75,7 +75,7 @@ right connector from last child*/
 
 /*Adding back the vertical connector to the last nodes*/
 .padre li:last-child::before {
-    border-right: 2px solid #693ED0;
+    border-right: 2px solid #13192E;
     border-radius: 0 5px 0 0;
     -webkit-border-radius: 0 5px 0 0;
     -moz-border-radius: 0 5px 0 0;
@@ -90,16 +90,16 @@ right connector from last child*/
 /*Time to add downward connectors from parents*/
 .padre ul ul::before {
     content: '';
-    position: absolute; 
+    position: absolute;
     top: 0;
     left: 50%;
-    border-left: 2px solid #693ED0;
+    border-left: 2px solid #13192E;
     width: 0;
-    height: 20px;  
+    height: 20px;
 }
 
 .padre li a {
-    border: 2px solid #693ED0;
+    border: 2px solid #13192E;
     /* padding: 8px 5px; */
     text-decoration: none;
     color: #666;
@@ -132,4 +132,13 @@ right connector from last child*/
 .padre li a:hover+ul::before,
 .padre li a:hover+ul ul::before {
     border-color: #94a0b4;
+}
+
+@media (min-width: 768px) {
+    #tarjeta{
+        width: 33%;
+        position: absolute;
+        right: 50px;
+        z-index: 1;
+    }
 }
