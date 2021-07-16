@@ -30,7 +30,7 @@ trait BonoTrait{
                         'referred_id' => User::find($padre)->referred_id,
                         'amount' => 50,
                         'description' => 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')',
-                        'status' => 1
+                        'status' => 0
                     ]);
                     Storage::append("BonoDirecto.txt", 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')');
                 }elseif($idProducto == 2){
@@ -40,7 +40,7 @@ trait BonoTrait{
                         'referred_id' => User::find($padre)->referred_id,
                         'amount' => 70,
                         'description' => 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')',
-                        'status' => 1
+                        'status' => 0
                     ]);
                     Storage::append("BonoDirecto.txt", 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')');
                 }
@@ -163,7 +163,7 @@ trait BonoTrait{
                     // Storage::append("BonoMoney.txt", 'Total Ordenes: ' . count($totalOrdenes) );
                 }
             }
-            $it = Wallet::where('status', '1')->where('bonus_id', 1)->where('user_id', $user->id)->get();
+            $it = Wallet::where('bonus_id', 1)->where('user_id', $user->id)->get();
             $it = count($it);
             
             Storage::append("BonoMoney.txt", 'Iterador Base de datos: ' . $it );
@@ -180,7 +180,7 @@ trait BonoTrait{
                     'referred_id' => $user->referred_id,
                     'amount' => 100,
                     'description' => 'Bono Money por el usuario '.$userName. ' (' .$userMail. ')',
-                    'status' => 1
+                    'status' => 0
                 ]);
                 Storage::append("BonoMoney.txt", 'Bono Money por el usuario '.$userName. ' (' .$userMail. ')');
                 return 0;

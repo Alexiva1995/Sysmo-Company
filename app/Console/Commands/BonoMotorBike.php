@@ -56,7 +56,7 @@ class BonoMotorBike extends Command
                                 'user_id' => User::find($i)->id,
                                 'bonus_id' => 6,
                                 'description' => 'Bono MotorBike para ' . User::find($i)->username . ' (' .User::find($i)->email . ')',
-                                'status' => 1
+                                'status' => 0
                             ]);
                             Storage::append("BonoMotorBike.txt", 'Bono MotorBike para ' . User::find($i)->username . ' (' .User::find($i)->email . ')');
                         }

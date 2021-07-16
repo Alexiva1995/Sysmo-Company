@@ -73,7 +73,7 @@ class BonoStart extends Command
                                         'bonus_id' => 3,
                                         'amount' => 50,
                                         'description' => 'Bono Start para ' . User::find($i)->username . ' (' .User::find($i)->email . ')',
-                                        'status' => 1
+                                        'status' => 0
                                     ]);
                                     Storage::append("BonoStart.txt", 'Bono Start para ' . User::find($i)->username . ' (' .User::find($i)->email . ')');
                                 }
