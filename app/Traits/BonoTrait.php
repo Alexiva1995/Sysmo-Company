@@ -54,6 +54,79 @@ trait BonoTrait{
         }
     }
 
+    public function bonoMoney($order)
+    {
+        /******************************************************************
+         Cada 10 referidos directos que compren paquete se pagara 100usd
+         ******************************************************************/
+        
+        try {
+            // $user = User::find(Auth::user()->id);
+            /******************************** */
+            if(isset($order["user_id"])){
+                $user = $order["user_id"];
+                $user = User::find($user)->referred_id;
+                //Dependiendo de la manera en que se llame el método, se activan o no estas variables
+                $user = User::find($user);
+                // dd("If", $user);
+            }else{
+                $user = User::find($order->id);
+                // dd("Else", $user);
+            }
+            $userName = $user->username;
+            $userMail = $user->email;
+            
+            // dd($user);
+            // Storage::append("BonoMoney.txt", $user);
+            
+            /******************************* */
+            // dd($user);
+            $totalOrdenes = [];
+            
+            foreach($user->children as $referido){
+                // Storage::append("BonoMoney.txt", 'Total Ordenes: ' . $totalOrdenes );
+                if($referido->getOrder->where('status', '1')->isNotEmpty()){
+                    array_push($totalOrdenes, $referido->getOrder->where('status', '1'));
+                    // Storage::append("BonoMoney.txt", 'Total Ordenes: ' . count($totalOrdenes) );
+                }
+            }
+            $it = Wallet::where('bonus_id', 1)->where('user_id', $user->id)->get();
+            $it = count($it);
+            
+            Storage::append("BonoMoney.txt", 'Iterador Base de datos: ' . $it );
+            $iterador = 10*($it+1);
+            // $iterador = intval(ceil(count($totalOrdenes)/(2))*(2));
+            // Storage::append("BonoMoney.txt", 'Iterador: ' . $iterador );
+            // Storage::append("BonoMoney.txt", 'totalOrdenes: ' . count($totalOrdenes ));
+            $totalOrdenes = count($totalOrdenes);
+        if($totalOrdenes != 0){
+            if($totalOrdenes == $iterador){
+                Wallet::create([
+                    'user_id' => $user->id,
+                    'bonus_id' => 1,
+                    'referred_id' => $user->referred_id,
+                    'amount' => 100,
+                    'description' => 'Bono Money por el usuario '.$userName. ' (' .$userMail. ')',
+                    'status' => 0
+                ]);
+                Storage::append("BonoMoney.txt", 'Bono Money por el usuario '.$userName. ' (' .$userMail. ')');
+                return $totalOrdenes . ' / ' . $iterador . ' referidos con paquetes. Ha ganado otro bono';
+            }
+            else{
+                Storage::append("BonoMoney.txt", 'Tus referidos no han comprado los paquetes suficientes, tienes ' . $totalOrdenes . ' de ' . $iterador);
+                return $totalOrdenes . ' / ' . $iterador . ' referidos con paquetes';
+            }
+        }
+        else{
+            Storage::append("BonoMoney.txt", 'Ninguno de tus referidos ha comprado paquetes');
+             return 'Ninguno de tus referidos ha comprado paquetes';
+        }
+            
+        } catch (\Throwable $th) {
+            return $th;
+        }
+    }
+
     
     public function showBonoMoney()
     {
@@ -136,69 +209,7 @@ trait BonoTrait{
 
 
     
-    public function bonoMoney($order)
-    {
-        /******************************************************************
-         Cada 10 referidos directos que compren paquete se pagara 100usd
-         ******************************************************************/
-        $user = $order["user_id"];
-        try {
-            // $user = User::find(Auth::user()->id);
-            /******************************** */
-            $userName = User::find($user)->username;
-            $userMail = User::find($user)->email;
-            $user = User::find($user)->referred_id;
-            //Dependiendo de la manera en que se llame el método, se activan o no estas variables
-            $user = User::find($user);
-            // Storage::append("BonoMoney.txt", $user);
-            
-            /******************************* */
-            // dd($user);
-            $totalOrdenes = [];
-            
-            foreach($user->children as $referido){
-                // Storage::append("BonoMoney.txt", 'Total Ordenes: ' . $totalOrdenes );
-                if($referido->getOrder->where('status', '1')->isNotEmpty()){
-                    array_push($totalOrdenes, $referido->getOrder->where('status', '1'));
-                    // Storage::append("BonoMoney.txt", 'Total Ordenes: ' . count($totalOrdenes) );
-                }
-            }
-            $it = Wallet::where('bonus_id', 1)->where('user_id', $user->id)->get();
-            $it = count($it);
-            
-            Storage::append("BonoMoney.txt", 'Iterador Base de datos: ' . $it );
-            $iterador = 10*($it+1);
-            // $iterador = intval(ceil(count($totalOrdenes)/(2))*(2));
-            // Storage::append("BonoMoney.txt", 'Iterador: ' . $iterador );
-            // Storage::append("BonoMoney.txt", 'totalOrdenes: ' . count($totalOrdenes ));
-            $totalOrdenes = count($totalOrdenes);
-        if($totalOrdenes != 0){
-            if($totalOrdenes == $iterador){
-                Wallet::create([
-                    'user_id' => $user->id,
-                    'bonus_id' => 1,
-                    'referred_id' => $user->referred_id,
-                    'amount' => 100,
-                    'description' => 'Bono Money por el usuario '.$userName. ' (' .$userMail. ')',
-                    'status' => 0
-                ]);
-                Storage::append("BonoMoney.txt", 'Bono Money por el usuario '.$userName. ' (' .$userMail. ')');
-                return 0;
-            }
-            else{
-                Storage::append("BonoMoney.txt", 'Tus referidos no han comprado los paquetes suficientes, tienes ' . $totalOrdenes . ' de ' . $iterador);
-                return 'Tus referidos no han comprado los paquetes suficientes, tienes ' . $totalOrdenes . ' de ' . $iterador;
-            }
-        }
-        else{
-            Storage::append("BonoMoney.txt", 'Ninguno de tus referidos ha comprado paquetes');
-             return 'Ninguno de tus referidos ha comprado paquetes';
-        }
-            
-        } catch (\Throwable $th) {
-            return $th;
-        }
-    }
+  
 
     // public function bonoCarLifeStyle()
     // {

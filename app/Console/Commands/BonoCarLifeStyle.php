@@ -51,7 +51,7 @@ class BonoCarLifeStyle extends Command
             for($i = 1; $i <= $alluser; $i++){
                 if(User::find($i)->status == 1){
                     $referidos = User::find($i)->children;
-                    if(count($referidos) >= 5){
+                    if(count($referidos) >= 500){
                         if(Wallet::where([['user_id', User::find($i)->id],['bonus_id', 7]])->count() == 0){
                             Wallet::create([
                                 'user_id' => User::find($i)->id,
