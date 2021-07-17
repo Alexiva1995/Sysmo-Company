@@ -73,10 +73,20 @@ class ReferredController extends Controller
                 // View::share('titleg', 'Arbol');
                 $trees = $this->getDataEstructura(Auth::id(), $type);
                 $users = User::all("firstname");
+                $paquete = User::find(Auth::user()->id)->getOrder->where('status', '1')->pluck('product_id')->last();
+                // dd($paquete);
+                if($paquete == 1){
+                    $paquete = 'Cashbot RS';
+                }elseif($paquete == 2){
+                    $paquete = 'Cashbot PRO';
+                }else{
+                    $paquete = 'Sin Paquete';
+                }
+                // dd($paquete);
                 $type = ucfirst($type);
                 $base = Auth::user();
                 $base->logoarbol = asset('images/logo/logoarbol.png');
-                return view('content.referred.tree.tree', compact('trees', 'type', 'base', 'users'));
+                return view('content.referred.tree.tree', compact('trees', 'type', 'base', 'users', 'paquete'));
             } catch (\Throwable $th) {
                 // Log::error('Tree - index -> Error: '.$th);
                 dd($th);
@@ -101,12 +111,21 @@ class ReferredController extends Controller
             $trees = $this->getDataEstructura($id, $type);
             $type = ucfirst($type);
             $base = User::find($id);
+            $paquete = User::find($id)->getOrder->where('status', '1')->pluck('product_id')->last();
+                // dd($paquete);
+                if($paquete == 1){
+                    $paquete = 'Cashbot RS';
+                }elseif($paquete == 2){
+                    $paquete = 'Cashbot PRO';
+                }else{
+                    $paquete = 'Sin Paquete';
+                }
             if (empty($base)) {
                 return redirect()->back()->with('msj2', 'El ID '. $id.', no se encuentra registrado');
             }
             $base->children = User::where('referred_id', '=', $base->id)->get();
             $base->logoarbol = asset('images/logo/logoarbol.png');
-            return view('content.referred.tree.tree', compact('trees', 'type', 'base'));
+            return view('content.referred.tree.tree', compact('trees', 'type', 'base', 'paquete'));
         } catch (\Throwable $th) {
             // Log::error('Tree - moretree -> Error: '.$th);
             dd($th);

@@ -228,5 +228,6 @@ return [
   "Pago comisiones" => "Pago comisiones",
   "Usuarios" => "Usuarios",
   "Organización" => "Organización",
+  "Whoops! Something went wrong." => "Ooops! Algo salió mal",
 
 ];

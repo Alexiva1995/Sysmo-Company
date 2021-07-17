@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Liquidaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RangeController extends Controller
 {
@@ -13,7 +15,12 @@ class RangeController extends Controller
      */
     public function index()
     {
-        return view('content.range.index');
+        $liquidations = Liquidaction::where('user_id', Auth::user()->id)->where('status', '!=', 2)->get();
+        // foreach ($liquidations as $liqui) {
+        //     $liqui->email = $liqui->getUserLiquidation->email;
+        // }
+        // dd($liquidations);
+        return view('content.range.index')->with('liquidations', $liquidations);
     }
 
     /**

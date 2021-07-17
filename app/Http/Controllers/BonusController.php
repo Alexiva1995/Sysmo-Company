@@ -35,6 +35,7 @@ class BonusController extends Controller
         
 
         $bonoMoney = $this->showBonoMoney();
+        $bonoDinero = $this->bonoMoney(Auth::user());
         $bonoRapido = $this->showBonoRapido();
         $bonoSpeed = $this->bonoSpeed();
         $bonoInicio = $this->bonoStart();
@@ -47,6 +48,7 @@ class BonusController extends Controller
         return view('content.bonus.index')->with('bonuses', $bonuses)
                                         ->with('ref',count($ref))
                                         ->with('bonoMoney', $bonoMoney)
+                                        ->with('bonoDinero', $bonoDinero)
                                         ->with('bonoDirecto', $bonoDirecto)
                                         ->with('bonoViaje', $bonoViaje)
                                         ->with('bonoMoto', $bonoMoto)

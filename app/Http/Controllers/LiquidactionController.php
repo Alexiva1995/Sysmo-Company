@@ -82,6 +82,7 @@ class LiquidactionController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         if ($request->tipo = 'detallada') {
             $validate = $request->validate([
                 'listCommissions' => ['required', 'array'],
@@ -138,6 +139,7 @@ class LiquidactionController extends Controller
         $details = [
             'user_id' => $id,
             'username' => $user->username,
+            'billetera' => $user->billetera,
             'commissions' => $commissions,
             'total' => number_format($commissions->sum('amount'), 2, ',', '.')
         ];
@@ -298,7 +300,7 @@ class LiquidactionController extends Controller
                 'total' => $total,
                 'feed' => $feed,
                 'hash',
-                'wallet_used',
+                'wallet_used' => $user->billetera,
                 'status' => 0,
             ];
             $liquidation_id = $this->saveLiquidation($arrayLiquidation);

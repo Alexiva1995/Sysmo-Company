@@ -53,24 +53,24 @@ class BonoTravel extends Command
             for($i = 1; $i <= $alluser; $i++){
                 $user = User::find($i);
                 if($user->status == 1){
-                    if(count($user->children) >= 10 && $user->created_at->diffInDays(Carbon::now()) <= 90){
+                    if(count($user->children) >= 50 && $user->created_at->diffInDays(Carbon::now()) <= 90){
                         if(Wallet::where([['user_id', User::find($i)->id],['bonus_id', 5]])->count() == 0){
                             Wallet::create([
                                 'user_id' => User::find($i)->id,
                                 'bonus_id' => 5,
                                 'description' => 'Bono Travel (2 personas), para ' . User::find($i)->username . ' (' .User::find($i)->email . ')',
-                                'status' => 1
+                                'status' => 0
                             ]);
                             Storage::append("BonoTravel.txt", 'Bono Travel (2 personas) para ' . User::find($i)->username . ' (' . User::find($i)->email . ')');
                         }
                         // Storage::append("BonoTravel.txt", $i . " si cumple para 2 personas");
-                    }elseif(count($user->children) >= 10){
+                    }elseif(count($user->children) >= 50){
                         if(Wallet::where([['user_id', User::find($i)->id],['bonus_id', 5]])->count() == 0){
                             Wallet::create([
                                 'user_id' => User::find($i)->id,
                                 'bonus_id' => 5,
                                 'description' => 'Bono Travel (1 persona) para ' . User::find($i)->username . ' (' .User::find($i)->email . ')',
-                                'status' => 1
+                                'status' => 0
                             ]);
                             Storage::append("BonoTravel.txt", 'Bono Travel (1 persona) para ' . User::find($i)->username . ' (' .User::find($i)->email . ')');
                         }

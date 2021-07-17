@@ -70,7 +70,7 @@
                                     <td>{{$liqui->email}}</td>
                                     <td>{{date('Y-m-d', strtotime($liqui->created_at))}}</td>
                                     <td>{{$liqui->total}}</td>
-                                    <td>{{$liqui->gross_amount}}</td>
+                                    <td>{{$liqui->wallet_used}}</td>
                                     <td>{{$liqui->hash}}</td>
                                     <!-- <td>{{$liqui->wallet_used}}</td> -->
                                     <td>

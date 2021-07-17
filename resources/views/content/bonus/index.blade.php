@@ -54,12 +54,12 @@
                                 <br>
                                 @if($bonoMoney)
                                     <p class="text-gray-700 text-base">
-                                        <strong>Progreso: </strong> Has ganado este bono {{$bonoMoney}} veces
+                                        <strong></strong> Has ganado este bono {{$bonoMoney}} veces <br>
+                                        <strong>Progreso: </strong> {{$bonoDinero}} <br>
                                     </p> 
                                 @else
                                     <p class="text-gray-700 text-base">
-                                        <strong>Progreso: </strong> Aun no has ganado este Bono <br>
-                                        
+                                        <strong>Progreso: </strong> {{$bonoDinero}} <br>     
                                     </p>
                                 @endif 
                             </div>

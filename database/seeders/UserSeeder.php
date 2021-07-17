@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'username'=> 'admin',
             'email'=> 'admin@email.com',
             'password'=> 'password',
+            'billetera' => '$*$*BILLETERA-Admin*$*$*$',
             'role'=> '1',
             'range_id'=> '0',
             'status'=> '1',
@@ -30,6 +31,7 @@ class UserSeeder extends Seeder
             'username'=> 'user',
             'email'=> 'user@email.com',
             'password'=> 'password',
+            'billetera' => '$*$*BILLETERA-User*$*$*$',
             'role'=> '0',
             'range_id'=> '0',
             'status'=> '1',
@@ -42,6 +44,7 @@ class UserSeeder extends Seeder
             'username'=> 'leomiguel',
             'email'=> 'leomiguel@valdusoft.com',
             'password'=> '123456',
+            'billetera' => '$*$*BILLETERA-Leonardo*$*$*$',
             'role'=> '1',
             'range_id'=> '0',
             'status'=> '1',
@@ -54,22 +57,11 @@ class UserSeeder extends Seeder
             'username'=> 'alexis95',
             'email'=> 'alexisvalera@valdusoft.com',
             'password'=> '123456',
+            'billetera' => '$*$*BILLETERA-Alexis*$*$*$',
             'role'=> '0',
             'range_id'=> '0',
             'status'=> '1',
             'balance'=> '10000',
-            'referred_id' => '3'
-        ]);
-        User::create([
-            'firstname'=> 'Pedro',
-            'lastname'=> 'Perez',
-            'username'=> 'peperez',
-            'email'=> 'peperez9911@gmail.com',
-            'password'=> 'password',
-            'role'=> '0',
-            'range_id'=> '0',
-            'status'=> '1',
-            'balance'=> '20000',
             'referred_id' => '3'
         ]);
         User::create([
@@ -78,6 +70,7 @@ class UserSeeder extends Seeder
             'username'=> 'eulinp',
             'email'=> 'eulinpr@gmail.com',
             'password'=> '12345678',
+            'billetera' => '$*$*BILLETERA-Eulin*$*$*$',
             'role'=> '0',
             'range_id'=> '0',
             'status'=> '1',
@@ -93,6 +86,7 @@ class UserSeeder extends Seeder
                 'username'=> Str::random(5),
                 'email'=> Str::random(5).'@gmail.com',
                 'password'=> '12345678',
+                'billetera' => '$*$*BILLETERA-'.Str::random(5).'*$*$*$',
                 'role'=> '0',
                 'range_id'=> '0',
                 'status'=> '1',

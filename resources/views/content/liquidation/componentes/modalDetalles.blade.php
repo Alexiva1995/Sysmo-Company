@@ -26,6 +26,7 @@
                                 <th>ID Comision</th>
                                 <th>Fecha</th>
                                 <th>Concepto</th>
+                                <th>Billetera</th>
                                 <th>ID Referido</th>
                                 <th>Referido</th>
                                 <th>Monto</th>
@@ -41,6 +42,7 @@
                                 <td v-text="item.id"></td>
                                 <td v-text="item.date"></td>
                                 <td v-text="item.description"></td>
+                                <td v-text="CommissionsDetails.billetera"></td>
                                 <td v-text="item.referred_id"></td>
                                 <td v-text="item.referred.username"></td>
                                 <td v-text="item.amount +' $'"></td>
