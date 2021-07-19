@@ -19,14 +19,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     public function update($user, array $input)
     {
         Validator::make($input, [
-            'username' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
-            //'whatsapp' => ['nullable','string', 'max:255'],
-            //'role' => ['nullable','string', 'max:255'],
-            //'balance' => ['nullable','string', 'max:255'],
-            //'status' => ['nullable','string', 'max:255'],
-            // 'range_id' => ['nullable','string', 'max:255'],
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
@@ -38,12 +33,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $this->updateVerifiedUser($user, $input);
         } else {
             $user->forceFill([
-                'username' => $input['username'],
+                'name' => $input['name'],
                 'email' => $input['email'],
-                'whatsapp' => $input['whatsapp'],
-                'role' => $input['role'],
-                'balance' => $input['balance'],
-                'status' => $input['status'],
             ])->save();
         }
     }

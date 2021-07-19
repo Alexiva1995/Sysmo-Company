@@ -20,30 +20,17 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        $messages = [
-            'firstname.required' => 'El Campo nombre es requerido',
-            'lastname.required' => 'El Campo apellido es requerido',
-            'username.required' => 'El Campo Nombre de Usuario es requerido.',
-            'username.unique' => 'Ya existe este nombre de usuario en nuestra base de datos',
-            'email.require' => 'El campo Correo es requerido',
-            'email.unique' => 'Ya existe este correo en nuestra base de datos',
-          ];
         Validator::make($input, [
-            'firstname' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', 'unique:users,username'],
-            'email' => ['required', 'email', 'string', 'max:255', 'unique:users,email'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
-        ], $messages)->validate();
-
+            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
+        ])->validate();
 
         return User::create([
-            'firstname' => $input['firstname'],
-            'lastname' => $input['lastname'],
-            'username' => $input['username'],
+            'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-            'referred_id' => $input['referred_id'],
         ]);
     }
 }
