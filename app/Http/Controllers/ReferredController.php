@@ -112,14 +112,15 @@ class ReferredController extends Controller
             $type = ucfirst($type);
             $base = User::find($id);
             $paquete = User::find($id)->getOrder->where('status', '1')->pluck('product_id')->last();
-                // dd($paquete);
-                if($paquete == 1){
-                    $paquete = 'Cashbot RS';
-                }elseif($paquete == 2){
-                    $paquete = 'Cashbot PRO';
-                }else{
-                    $paquete = 'Sin Paquete';
-                }
+            // dd($paquete);
+            if($paquete == 1){
+                $paquete = 'Cashbot RS';
+            }elseif($paquete == 2){
+                $paquete = 'Cashbot PRO';
+            }else{
+                $paquete = 'Sin Paquete';
+            }
+            
             if (empty($base)) {
                 return redirect()->back()->with('msj2', 'El ID '. $id.', no se encuentra registrado');
             }
@@ -175,6 +176,7 @@ class ReferredController extends Controller
             ];
             
             $childres = $this->getData($id, 1, $genealogyType[$type]);
+            // dd($childres);
             $trees = $this->getChildren($childres, 2, $genealogyType[$type]);
             return $trees;
         } catch (\Throwable $th) {
@@ -246,11 +248,27 @@ class ReferredController extends Controller
     {
         try {
             $resul = User::where($typeTree, '=', $id)->get();
+           
+                
 
             foreach ($resul as $user) {
+                $paquete = User::find($user->id)
+                ->getOrder
+                ->where('status', '1')
+                ->pluck('product_id')
+                ->last();
                 $user->nivel = $nivel;
                 $user->logoarbol = asset('images/logo/logoarbol.png');
+                if($paquete == 1){
+                    $paquete = 'Cashbot RS';
+                }elseif($paquete == 2){
+                    $paquete = 'Cashbot PRO';
+                }else{
+                    $paquete = 'Sin Paquete';
+                }
+                $user->paquete = $paquete;
             }
+            // dd($user);
             return $resul;
         } catch (\Throwable $th) {
             // Log::error('Tree - getData -> Error: '.$th);
