@@ -16,7 +16,7 @@
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.0",
-        "livewire/livewire": "^2.0",
+        "livewire/livewire": "^2.5",
         "symfony/filesystem": "^5.2",
         "tightenco/ziggy": "^0.9.4"
     },

@@ -71,7 +71,15 @@ class ReferredController extends Controller
             try {
                 //Titulo
                 // View::share('titleg', 'Arbol');
-                $trees = $this->getDataEstructura(Auth::id(), $type);
+
+                //*************  Descomentar en caso de que los administradores vean todos los usuarios en el arbol  *************//
+                // if(Auth::user()->role == '1'){
+                //     $trees = $this->getDataEstructura(User::find(1)->id, $type);  
+                // }else{
+                    $trees = $this->getDataEstructura(Auth::id(), $type);  
+                // }
+                /*******************************************/
+                // $trees = $this->getDataEstructura(Auth::id(), $type);
                 $users = User::all("firstname");
                 $paquete = User::find(Auth::user()->id)->getOrder->where('status', '1')->pluck('product_id')->last();
                 // dd($paquete);

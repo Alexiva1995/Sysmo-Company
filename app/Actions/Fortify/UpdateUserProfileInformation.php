@@ -19,13 +19,14 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     public function update($user, array $input)
     {
         Validator::make($input, [
-            'username' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
-            //'whatsapp' => ['nullable','string', 'max:255'],
-            //'role' => ['nullable','string', 'max:255'],
-            //'balance' => ['nullable','string', 'max:255'],
-            //'status' => ['nullable','string', 'max:255'],
+            'whatsapp' => ['nullable','string', 'max:255'],
+            'billetera' => ['nullable','string', 'max:255'],
+            // 'role' => ['nullable','string', 'max:255'],
+            // 'balance' => ['nullable','number', 'max:255'],
+            // 'status' => ['nullable','string', 'max:255'],
             // 'range_id' => ['nullable','string', 'max:255'],
         ])->validateWithBag('updateProfileInformation');
 
@@ -41,6 +42,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'username' => $input['username'],
                 'email' => $input['email'],
                 'whatsapp' => $input['whatsapp'],
+                'billetera' => $input['billetera'],
                 'role' => $input['role'],
                 'balance' => $input['balance'],
                 'status' => $input['status'],
