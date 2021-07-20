@@ -32,7 +32,7 @@
                 <div class="card-body card-dashboard">
                         <h1 href="#" class="btn btn-primary float-right mb-0 waves-effect waves-light">Saldo Disponible: {{ $total }}$</h1>
                     <div class="table-responsive">
-                        <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped" data-order='[[ 1, "desc" ]]' data-page-length='10'>
+                        <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped" data-order='[[ 0, "desc" ]]' data-page-length='10'>
                             <thead class="">
                                 <tr class="text-center text-dark bg-purple-alt2">
                                     <th>ID</th>
@@ -43,19 +43,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($wallets as $wallet)
+                                @foreach ($comisiones as $comision)
                                 <tr class="text-center">
-                                    <td>{{$wallet->id}}</td>
-                                    <td>{{date('d-m-Y', strtotime($wallet->created_at))}}</td>
-                                    <td>{{$wallet->description}}</td>
-                                    <td>{{$wallet->amount}}</td>
+                                    <td>{{$comision->id}}</td>
+                                    <td>{{date('d-m-Y', strtotime($comision->created_at))}}</td>
+                                    <td>{{$comision->description}}</td>
+                                    <td>{{$comision->amount}}</td>
                                     <td>
-                                        @if ($wallet->status == 1)
-                                            Pagado
-                                        @elseif ($wallet->status == 2)
+                                        @if ($comision->status == 0)
+                                            En Espera
+                                        @elseif ($t->status == 2)
                                             Cancelado
                                         @else
-                                            En Espera
+                                            Pagado
                                         @endif
                                     </td>
                                 </tr>

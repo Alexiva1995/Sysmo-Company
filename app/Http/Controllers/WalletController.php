@@ -35,20 +35,25 @@ class WalletController extends Controller
 
         $total = DB::table('wallets')
             ->where('user_id', '=', Auth::id())
-            ->where('liquidation_id', '=', null)
+            ->where('bonus_id', '!=', 0)
             ->where('type_transaction', '=', 0)
+            ->where('liquidated', '=', 0)
             ->sum('amount');
 
-        $this->payComision();
-        // dd('parar');
-        if (Auth::user()->role == 1) {
-            $wallets = Wallet::all();
-        }else{
-            $wallets = Auth::user()->getWallet;
-        }
+        // $this->payComision();
+        // // dd('parar');
+        // if (Auth::user()->role == 1) {
+        //     $wallets = Wallet::all();
+        // }else{
+        //     $wallets = Auth::user()->getWallet;
+        // }
+
+        //COMISIONES
+        $comisiones = Wallet::where('user_id', Auth::id())->where('bonus_id', '!=', 0)->get();
+        // dd($total);
         return view('content.wallet.index')
-        ->with('total', $total)
-        ->with('wallets', $wallets);
+        ->with('comisiones', $comisiones)
+        ->with('total', $total);
     }
 
     /**

@@ -30,10 +30,10 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'billetera',
         'role',
         'range_id',
         'status',
-        'wallet_id',
         'balance',
         'referred_id',
     ];

@@ -15,7 +15,7 @@
                     <div class="col-8">
                         <div class="ml-1"><span class="font-weight-bold">Nombre:</span><span id="nombre"> {{$base->firstname}} </span></div> 
             
-                        <div class="ml-1"><span class="font-weight-bold">Paquete:</span> <span id="inversion">{{$paquete}}</span></div>
+                        <div class="ml-1"><span class="font-weight-bold">Paquete:</span> <span id="inversion"> {{$paquete}} </span></div>
 
                         <div class="ml-1 mb-1"><span class="font-weight-bold">Estado:</span> <span id="estado">
                         @if ($base->status == 0)
@@ -101,8 +101,8 @@
     <script type="text/javascript">
     
         function tarjeta(data, url){
-            //console.log('assets/img/sistema/favicon.png');
-            $('#nombre').text(data.firstname);
+            console.log('Data', data);
+            $('#nombre').text(" "+ data.firstname );
             // if(data.profile_photo_url == null){
                 $('#imagen').attr('src', data.logoarbol );   
             // }else{
@@ -110,7 +110,7 @@
             // }
             
             $('#ver_arbol').attr('href', url);
-            $('#inversion').text("AQUÍ VA EL PAQUETE DEL USUARIO");
+            $('#inversion').text(" "+ data.paquete );
             if(data.status == 0){
                 $('#estado').html('<span class="badge badge-warning">Inactivo</span>');
             }else if(data.status == 1){
