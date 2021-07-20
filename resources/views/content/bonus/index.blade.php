@@ -37,7 +37,7 @@
                         <!-- Carta de Money Bonus -->
                         <div class="max-w-sm rounded overflow-hidden shadow-lg">
                             <div class="flex justify-center">
-                                <img src="/images/Bonus/bonus.png" class="object-center" width="300" height="300">
+                                <img src="{{asset('images/Bonus/bonus.png')}}" class="object-center" width="300" height="300">
                             </div>
                             @if($bonoMoney)
                                 <div class="bg-green-500 flex justify-center content-center">
@@ -69,7 +69,7 @@
                         <!-- Carta de speed Bonus -->
                         <div class="max-w-sm rounded overflow-hidden shadow-lg">
                             <div class="flex justify-center">
-                                <img src="/images/Bonus/speed.png" class="object-center" width="300" height="300">
+                                <img src="{{asset('images/Bonus/speed.png')}}" class="object-center" width="300" height="300">
                             </div>
                             @if($bonoRapido)
                             <div class="bg-green-500 flex justify-center content-center">
@@ -99,7 +99,7 @@
                         <!-- Carta de Start Bonus -->
                         <div class="max-w-sm rounded overflow-hidden shadow-lg">
                             <div class="flex justify-center my-1" style="padding-bottom:9px;">
-                                <img src="/images/Bonus/start.png" class="object-center" width="300" height="300">
+                                <img src="{{asset('images/Bonus/start.png')}}" class="object-center" width="300" height="300">
                             </div>
                             @if($bonoInicio2)
                             <div class="bg-green-500 flex justify-center content-center">
@@ -129,7 +129,7 @@
                         <!-- Carta de Direct Bonus -->
                         <div class="max-w-sm rounded overflow-hidden shadow-lg">
                             <div class="flex justify-center">
-                                <img src="/images/Bonus/direct.png" class="object-center" width="300" height="300">
+                                <img src="{{asset('images/Bonus/direct.png')}}" class="object-center" width="300" height="300">
                             </div>
                             @if($bonoDirecto)
                                 <div class="bg-green-500 flex justify-center content-center">
@@ -165,7 +165,7 @@
                         <!-- Carta de Travel Bonus -->
                         <div class="max-w-sm rounded overflow-hidden shadow-lg">
                             <div class="flex justify-center my-4">
-                                <img src="/images/Bonus/travel.png" class="object-center" width="300" height="300">
+                                <img src="{{asset('images/Bonus/travel.png')}}" class="object-center" width="300" height="300">
                             </div>
                             @if($bonoViaje)
                                 <div class="bg-green-500 flex justify-center content-center">
@@ -194,7 +194,7 @@
                         <!-- Carta de Motorbike Bonus --> 
                         <div class="max-w-sm rounded overflow-hidden shadow-lg">
                             <div class="flex justify-center my-4 pb-1">
-                                <img src="/images/Bonus/moto.png" class="object-center" width="300" height="300">
+                                <img src="{{asset('images/Bonus/moto.png')}}" class="object-center" width="300" height="300">
                             </div>
                             @if($bonoMoto)
                                 <div class="bg-green-500 flex justify-center content-center">
@@ -224,7 +224,7 @@
                         <!-- Carta de Car Life Style Bonus -->
                         <div class="max-w-sm rounded overflow-hidden shadow-lg">
                             <div class="flex justify-center">
-                                <img src="/images/Bonus/car.png" class="object-center" width="300" height="300">
+                                <img src="{{asset('images/Bonus/car.png')}}" class="object-center" width="300" height="300">
                             </div>
                             @if($bonoCarro)
                                 <div class="bg-green-500 flex justify-center content-center">
