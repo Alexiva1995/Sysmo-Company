@@ -21,7 +21,7 @@
 <!-- account setting page -->
 <section id="page-account-settings">
     <div class="row">
-        <!-- left menu section -->
+        {{-- <!-- left menu section -->
         <div class="col-md-3 mb-2 mb-md-0">
             <ul class="nav nav-pills flex-column nav-left">
                 <!-- general -->
@@ -43,10 +43,10 @@
 
             </ul>
         </div>
-        <!--/ left menu section -->
+        <!--/ left menu section --> --}}
 
         <!-- right content section -->
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                     <div class="tab-content">
@@ -56,6 +56,11 @@
                             @if (Laravel\Fortify\Features::canUpdateProfileInformation())
                             @livewire('profile.update-profile-information-form')
                             @endif
+                            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
+                            <div class="mt-10">
+                                @livewire('profile.update-password-form')
+                            </div>
+                            @endif
                         </div>
                         <!--/ general tab -->
 
@@ -63,7 +68,7 @@
                         <div class="tab-pane fade" id="account-vertical-password" role="tabpanel"
                             aria-labelledby="account-pill-password" aria-expanded="false">
                             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
-                            <div class="mt-10 sm:mt-0">
+                            <div class="mt-10">
                                 @livewire('profile.update-password-form')
                             </div>
                             @endif
