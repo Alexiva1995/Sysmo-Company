@@ -10,7 +10,7 @@
     <x-slot name="form">
         <!-- Profile Photo -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-            <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
+            <div x-data="{photoName: null, photoPreview: null}" class="col-12 row flex-column align-items-center">
                 <!-- Profile Photo File Input -->
                 <input type="file" class="hidden"
                             wire:model="photo"
@@ -28,12 +28,12 @@
 
                 <!-- Current Profile Photo -->
             @if (Auth::user()->profile_photo_path != NULL)
-            <div class="mt-2" x-show="! photoPreview">
+            <div class="mt-0" x-show="! photoPreview">
                 <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}"
                     class="rounded-full h-20 w-20 object-cover">
             </div>
             @else
-            <div class="mt-2" x-show="! photoPreview">
+            <div class="mt-0" x-show="! photoPreview">
                 <img src="https://ui-avatars.com/api/?background=random&name={{ Auth::user()->username }}"
                     alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
             </div>
@@ -61,42 +61,43 @@
         @endif
         {{-- {{dd($this->user)}} --}}
         <!-- username -->
-        <div class="col-span-6 sm:col-span-4">
+        <div class="row">
+        <div class="col-sm-12 col-md-6 my-1">
             <x-jet-label for="username" value="{{ __('Nombre de usuario') }}" />
             <x-jet-input id="username" type="text" class="mt-1 block w-full" wire:model.defer="state.username" autocomplete="username" />
             <x-jet-input-error for="username" class="mt-2" />
         </div>
 
         <!-- Email -->
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-sm-12 col-md-6 my-1">
             <x-jet-label for="email" value="{{ __('Email') }}" />
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
         </div>
 
         <!-- whatsapp -->
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-sm-12 col-md-6 my-1">
             <x-jet-label for="whatsapp" value="{{ __('whatsapp') }}" />
             <x-jet-input id="whatsapp" type="text" class="mt-1 block w-full" wire:model.defer="state.whatsapp" />
             <x-jet-input-error for="whatsapp" class="mt-2" />
         </div>
 
         <!-- balance -->
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-sm-12 col-md-6 my-1">
             <x-jet-label for="balance" value="{{ __('balance') }}" />
             <x-jet-input id="balance" type="number" class="mt-1 block w-full" wire:model.defer="state.balance" />
             <x-jet-input-error for="balance" class="mt-2" />
         </div>
 
         <!-- billetera -->
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-sm-12 col-md-6 my-1">
             <x-jet-label for="billetera" value="{{ __('billetera') }}" />
             <x-jet-input id="billetera" type="text" class="mt-1 block w-full" wire:model.defer="state.billetera" />
             <x-jet-input-error for="billetera" class="mt-2" />
         </div>
 
         <!-- role -->
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-sm-12 col-md-6 my-1">
             <x-jet-label for="role" value="{{ __('role') }}" />
             <select id="role" type="number" class="mt-1 block w-full" wire:model.defer="state.role" >
                 <option value="0" @if(Auth::user()->role == '0') selected  @endif>Normal</option>
@@ -106,7 +107,7 @@
         </div>
 
           <!-- status -->
-          <div class="col-span-6 sm:col-span-4">
+          <div class="col-sm-12 col-md-6 my-1">
             <x-jet-label for="status" value="{{ __('status') }}" />
             <select id="status" type="number" class="mt-1 block w-full" wire:model.defer="state.status" >
                 <option value="0" @if(Auth::user()->status == '0') selected  @endif>Inactivo</option>
@@ -114,6 +115,7 @@
         </select>
             <x-jet-input-error for="status" class="mt-2" />
         </div>
+    </div>
         
     </x-slot>
 
@@ -123,7 +125,7 @@
         </x-jet-action-message>
 
         <x-jet-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
+            {{ __('Guardar') }}
         </x-jet-button>
     </x-slot>
 </x-jet-form-section>
