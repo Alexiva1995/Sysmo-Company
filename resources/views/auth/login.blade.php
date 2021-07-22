@@ -5,13 +5,13 @@
 @section('page-style')
 {{-- Page Css files --}}
 <link rel="stylesheet" href="{{ asset('css/base/pages/page-auth.css') }}">
-<link rel="stylesheet" href="{{ asset('css/custom-login.css') }}">
+<link rel="stylesheet" href="{{ asset('css/custom-login-register.css') }}">
 @endsection
 
 @section('content')
 <x-guest-layout>
 
-    <div class="bg-login"></div>
+    <div class="bg-login-register"></div>
     <div class="auth-wrapper auth-v1 px-2">
         <div class="auth-inner py-2">
             <!-- Login v1 -->
@@ -75,7 +75,7 @@
                                     tabindex="3" {{ old('remember-me') ? 'checked' : '' }} />
                                     <span class="checkmark"></span>
                                     <label class="recordar-datos" for="remember-me">Recordar Datos</label>
-                                  </label>
+                                </label>
                         <button type="submit" class="btn btn-primary btn-block" tabindex="4">Entrar</button>
                     </form>
 
