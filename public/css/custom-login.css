@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.bg-login{
+    position: fixed;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: url(../images/pages/login/bg-login.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card{
+    background: rgba(0, 17, 66, 0.6);
+    backdrop-filter: blur(25px);
+/* Note: backdrop-filter has minimal browser support */
+
+    border-radius: 20px;
+}
+
+.card-title{
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 30px;
+    color: #FFFFFF;
+}
+.card-text{
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 20px;
+    color: #FFFFFF;
+}
+
+.form-label{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+}
+
+input[type="text"], input[type="password"]{
+    border: 1px solid #FFFFFF;
+    /* box-sizing: border-box; */
+    border-radius: 27px;
+    background-color: transparent !important;
+    margin-bottom: 3rem;
+    color: #eee !important;
+}
+
+.input-group-text{
+    background-color: transparent !important;
+    color: #FFFFFF;
+}
+
+small{
+    font-family: 'Montserrat', sans-serif;
+    color: #A88034;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 18px;
+    text-decoration-line: underline;
+    margin-top: 1rem;
+}
+
+
+.containercheck {
+    display: block;
+    margin: 2rem 0rem;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .containercheck input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px solid #FFFFFF;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .containercheck:hover input ~ .checkmark {
+    background-color: #a87f3467;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .containercheck input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .containercheck input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .containercheck .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+
+  .recordar-datos{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 18px;
+    color: #FFFFFF;
+  }
+
+  button[type="submit"]{
+    background: #A88034 !important;
+    border: 1px solid #A88034 !important;
+    box-sizing: border-box;
+    border-radius: 27px;
+  }
+
+  button[type="submit"]:hover{
+    -webkit-box-shadow: 0px 12px 10px 3px rgba(168,128,52,0.53); 
+    box-shadow: 0px 12px 10px 3px rgba(168,128,52,0.53);
+  }
+
+  .creaunacuenta, .creaunacuenta2{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+    color: #FFFFFF;
+  }
+
+  .creaunacuenta2{
+    color:#A88034 !important;
+    text-decoration: underline;
+  }
