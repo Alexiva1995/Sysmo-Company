@@ -83,6 +83,8 @@ class ReferredController extends Controller
                 $users = User::all("firstname");
                 $paquete = User::find(Auth::user()->id)->getOrder->where('status', '1')->pluck('product_id')->last();
                 // dd($paquete);
+                $referred = User::where('id', Auth::user()->referred_id)->get('username');
+                // dd($referred);
                 if($paquete == 1){
                     $paquete = 'Cashbot RS';
                 }elseif($paquete == 2){
@@ -90,11 +92,13 @@ class ReferredController extends Controller
                 }else{
                     $paquete = 'Sin Paquete';
                 }
+                // dd($trees);
                 // dd($paquete);
                 $type = ucfirst($type);
                 $base = Auth::user();
                 $base->logoarbol = asset('images/logo/logoarbol.png');
-                return view('content.referred.tree.tree', compact('trees', 'type', 'base', 'users', 'paquete'));
+                // dd($trees);
+                return view('content.referred.tree.tree', compact('trees', 'type', 'base', 'users', 'paquete', 'referred'));
             } catch (\Throwable $th) {
                 // Log::error('Tree - index -> Error: '.$th);
                 dd($th);
@@ -121,6 +125,10 @@ class ReferredController extends Controller
             $base = User::find($id);
             $paquete = User::find($id)->getOrder->where('status', '1')->pluck('product_id')->last();
             // dd($paquete);
+            
+            $referred = User::where('id', $base->referred_id)->get('username');
+            // dd($referred);
+            
             if($paquete == 1){
                 $paquete = 'Cashbot RS';
             }elseif($paquete == 2){
@@ -134,7 +142,8 @@ class ReferredController extends Controller
             }
             $base->children = User::where('referred_id', '=', $base->id)->get();
             $base->logoarbol = asset('images/logo/logoarbol.png');
-            return view('content.referred.tree.tree', compact('trees', 'type', 'base', 'paquete'));
+            // dd($trees);
+            return view('content.referred.tree.tree', compact('trees', 'type', 'base', 'paquete', 'referred'));
         } catch (\Throwable $th) {
             // Log::error('Tree - moretree -> Error: '.$th);
             dd($th);
@@ -260,6 +269,10 @@ class ReferredController extends Controller
                 
 
             foreach ($resul as $user) {
+                // dd($user->referred_id);
+                $referred = User::where('id', $user->referred_id)->pluck('username');
+                $user->referred = $referred;
+                // dd($referred);
                 $paquete = User::find($user->id)
                 ->getOrder
                 ->where('status', '1')
