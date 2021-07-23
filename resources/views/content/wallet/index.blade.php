@@ -52,7 +52,7 @@
                                     <td>
                                         @if ($comision->status == 0)
                                             En Espera
-                                        @elseif ($t->status == 2)
+                                        @elseif ($comision->status == 2)
                                             Cancelado
                                         @else
                                             Pagado
