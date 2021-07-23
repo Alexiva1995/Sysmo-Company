@@ -35,6 +35,7 @@
 
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 <link rel="stylesheet" href="{{ asset('css/tree.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/custom-main-menu.css') }}" />
 
 
 {{-- additional --}}

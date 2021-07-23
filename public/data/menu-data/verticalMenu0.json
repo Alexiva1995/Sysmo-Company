@@ -1,17 +1,17 @@
 {
   "menu": [
     {
-      "name": "Dashboard",
+      "name": "Resumen",
       "icon": "home",
       "url": "/",
-      "slug": "dashboard-analytics"
+      "slug": "dashboard"
     },
 
     {
       "name": "Tienda",
       "icon": "shopping-bag",
       "url": "user/store/store",
-      "slug": "Tienda"
+      "slug": "store.index"
     },
 
 
@@ -25,14 +25,14 @@
           "url": "user/wallet/index",
           "name": "Wallet",
           "icon": "circle",
-          "slug": "Wallet"
+          "slug": "wallet.index"
         },
 
         {
           "url": "admin/range/index",
           "name": "Pagos",
           "icon": "circle",
-          "slug": "Pagos"
+          "slug": "range.index"
         }
       ]
     },
@@ -48,19 +48,19 @@
           "url": "user/referred/tree/tree",
           "name": "Arbol",
           "icon": "circle",
-          "slug": "Arbol"
+          "slug": "tree_type"
         },
         {
           "url": "user/referred/list-direct",
           "name": "Directos",
           "icon": "circle",
-          "slug": "Directos"
+          "slug": "referred.list.direct"
         },
         {
           "url": "user/referred/list-net",
           "name": "Red",
           "icon": "circle",
-          "slug": "Red"
+          "slug": "referred.list.net"
         }
       ]
     },
@@ -70,7 +70,7 @@
       "name": "Bonos",
       "icon": "award",
       "url": "user/bonus/index",
-      "slug": "Bonus"      
+      "slug": "bonus.index"      
     }
 
   ]

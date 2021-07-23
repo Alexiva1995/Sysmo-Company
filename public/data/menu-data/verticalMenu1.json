@@ -1,9 +1,9 @@
 {
   "menu": [
     {
-      "name": "Dashboard",
+      "name": "Resumen",
       "icon": "home",
-      "slug": "",
+      "slug": "dashboard",
       "url": "/"
     },
 
@@ -16,14 +16,14 @@
         {
           "name": "Productos",
           "icon": "circle",
-          "slug": "Productos",
+          "slug": "store.list-admin",
           "url": "admin/store/list-admin"
         },
         {
           "url": "user/store/store",
           "name": "Tienda",
           "icon": "circle",
-          "slug": "Tienda"
+          "slug": "store.index"
         }
       ]
     },
@@ -38,19 +38,19 @@
           "url": "admin/store/list-orders",
           "name": "Pedidos",
           "icon": "circle",
-          "slug": "Pedidos"
+          "slug": "store.list-orders"
         },
         {
           "url": "admin/commissions/index",
           "name": "Comisiones",
           "icon": "circle",
-          "slug": "Comisiones"
+          "slug": "commission.index"
         },
         {
           "url": "admin/profit/index",
           "name": "Flujo de ganancia",
           "icon": "circle",
-          "slug": "Flujo de ganancia"
+          "slug": "profit.index"
         }
       ]
     },
@@ -65,19 +65,19 @@
           "url": "admin/liquidaction/index",
           "name": "Generar liquidaciones",
           "icon": "circle",
-          "slug": "Generar liquidaciones"
+          "slug": "liquidaction.index"
         },
         {
           "url": "admin/liquidaction/pending",
           "name": "Pendientes",
           "icon": "circle",
-          "slug": "Pendientes"
+          "slug": "liquidaction.pending"
         },
         {
           "url": "admin/liquidaction/history",
           "name": "Liquidaciones realizadas",
           "icon": "circle",
-          "slug": "Liquidaciones realizadas"
+          "slug": "liquidaction.history.status"
         }
       ]
     },
@@ -93,13 +93,13 @@
           "url": "user/referred/tree/tree",
           "name": "Arbol",
           "icon": "circle",
-          "slug": "Arbol"
+          "slug": "tree_type"
         },
         {
           "name": "Usuarios",
           "icon": "circle",
           "url": "admin/users/user-list",
-          "slug": "Bonus"      
+          "slug": "user.list"      
         }
         
       ]
@@ -109,7 +109,7 @@
       "name": "Bonos",
       "badgeClass": "badge badge-light-warning badge-pill ml-auto mr-1",
       "icon": "tool",
-      "slug": "Bonos",
+      "slug": "bonus.logBonus",
       "url": "admin/bonus/BonosCanjeados"
     }
 
