@@ -89,38 +89,29 @@
 
   </div>
 
-
-  <div class="row match-height">
-    <!-- Timeline Card -->
-    
-      <div class="card col-12">
-        <h1 class="text-dark texto-card-2 p-2">Premios</h1>
-        <div class="card-body row">
-          <div class="col-lg-4 col-md-6 col-12">
-            <div class="card border mt-5">
-             <img src="{{asset('assets/app-assets/images/backgrounds/chat-bg.png')}}" alt="">
-             <p class="texto-card-1 text-center py-1">Premio 1</p>
-            </div>
+    <div class="card col-12">
+      <h1 class="text-dark texto-card-2 p-2">Premios</h1>
+      <div class="card-body row">
+        <div class="col-lg-4 col-md-6 col-12">
+          <div class="card border mt-5">
+            <img src="{{asset('assets/app-assets/images/backgrounds/chat-bg.png')}}" alt="">
+            <p class="texto-card-1 text-center py-1">Premio 1</p>
           </div>
-          <div class="col-lg-4 col-md-6 col-12">
-            <div class="card border">
-              <img src="{{asset('assets/app-assets/images/backgrounds/chat-bg.png')}}" alt="">
-              <p class="texto-card-2 text-center py-1">Premio 2</p>
-            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-12">
+          <div class="card border">
+            <img src="{{asset('assets/app-assets/images/backgrounds/chat-bg.png')}}" alt="">
+            <p class="texto-card-2 text-center py-1">Premio 2</p>
           </div>
-          <div class="col-lg-4 col-md-6 col-12">
-            <div class="card border mt-5">
-              <img src="{{asset('assets/app-assets/images/backgrounds/chat-bg.png')}}" alt="">
-              <p class="texto-card-1 text-center py-1">Premio 3</p>
-            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-12">
+          <div class="card border mt-5">
+            <img src="{{asset('assets/app-assets/images/backgrounds/chat-bg.png')}}" alt="">
+            <p class="texto-card-1 text-center py-1">Premio 3</p>
           </div>
         </div>
       </div>
-    <!--/ Timeline Card -->
-
-   
-
-  </div>
+    </div>
 
 </section>
 <!-- Dashboard Analytics end -->
