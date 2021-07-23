@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+h1,h2,h3,h4,h5,h6,p,a{
+    font-family: 'Montserrat';
+}
+.card{
+    border-radius: 10px;
+}
+
+.card-congratulations{
+    background: linear-gradient(180deg, #0051B0 0%, #000E3D 100%) !important;
+}
+
+.texto-card-1{
+    font-size: 14pt !important;
+    font-weight: 500 !important;
+}
+.texto-card-2{
+    font-size: 16pt !important;
+    font-weight: 700 !important;
+    color: #000E3D;
+}
+
+.border-radius-30{
+    border-radius: 30px;
+}
+
+.member{
+    height: 340px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /* background: linear-gradient(180deg, #0051B0 0%, #000F3E 100%); */
+    box-shadow: 10px 5px 5px rgba(180, 180, 180, 0.774) !important;
+}
+.membercolor1{
+    background: linear-gradient(180deg, #0051B0 0%, #000F3E 100%) !important;
+}
+.membercolor2{
+    background: linear-gradient(127.65deg, #0051B0 27.91%, #000F3E 98.28%) !important;
+}
+.membercolor3{
+    background: linear-gradient(126.94deg, #CDA860 2.02%, #AD8539 119.5%) !important;
+}
+.btn-danger{
+    background : #A88034 !important;
+    box-shadow: 0px 5px 14px 2px rgba(168,128,52,0.78) !important;
+    color : #FFFFFF !important;
+    font-weight : 400;
+    border-radius : 27px !important;
+}
+
+.nombre{
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 43px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+
+.academia{
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.separador{
+    width: 120px;
+    height: 8px;
+    background: linear-gradient(90deg, #EBC57D 0%, #AE863A 100%);
+}
+.precio{
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+.precio .cantidad{
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+
+.incluye{
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: center;
+}

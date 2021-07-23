@@ -2,47 +2,43 @@
 
 @section('title', 'Store')
 
+@section('page-style')
+{{-- Page Css files --}}
+<link rel="stylesheet" href="{{ asset('css/custom-store.css') }}">
+@endsection
+
 @section('content')
 
 <section id="columns">
     <div class="row">
-
-        @foreach ( $store as $item )
-        @if ($item->status == 1)
-        
-        <div class="col-3">
-            {{-- <form action="{{ route('store.save') }}" method="POST" target="_blank"> --}}
-                {{ csrf_field() }}
-                <input type="number" value="{{ $item->id }}" class=" d-none" name="id">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="d-flex justify-content-center mt-2">
-                        <img class="" src="{{asset('storage/products/'.$item->photoDB)}}" height="180" width="230" alt="Card">
+        <div class="card col-12">
+            <h1 class="text-dark texto-card-2 p-2">Elige tu membresía</h1>
+            <h2 class="text-dark texto-card-1 p-2">Conviértete en miembro de la cripto academia y comienza el viaje hacia el éxito </h2>
+            <div class="card-body row">
+                @foreach ( $store as $key => $item )
+                @if ($item->status == 1)
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border member membercolor{{$key+1}}">
+                        <div>
+                            <h1 class="text-white nombre">Crypto</h1>
+                            <h2 class="text-white academia">Academia</h2>
+                            <div class="separador"></div>
                         </div>
-                        <div class="card-body">
-                            <h4 class="card-title float-right pb-0">{{ $item->price }} $</h4>
-                            <input type="number" value="{{ $item->price }}" class=" d-none" name="price">
-                            <h4 class="card-title">⭐⭐⭐⭐⭐</h4>
-                            <br>
-                            <h6 class="card-title small font-weight-medium">{{ $item->name }}</h6>
-                            <input type="text" value="{{ $item->name }}" class=" d-none" name="name">
-                            <p class="card-text">{{ $item->description }}</p>
-                        </div>
-                        <button type="submit" class="col-12 btn btn-lg btn-success waves-effect waves-light"><a target="_blank" href="{{route('store.buyProduct', $item->id)}}"><i data-feather='shopping-bag' class="mr-1"></i> Comprar</a></button>    
-                        {{-- @if (Auth::user()->balance >= $item->price)
-                        <button type="submit" class="col-12 btn btn-lg btn-success waves-effect waves-light"><i data-feather='shopping-bag' class="mr-1"></i> Comprar</button>    
-                        @else
-                        <button type="submit" class="col-12 btn btn-lg btn-danger waves-effect waves-light"><i data-feather='alert-circle' class=" mr-1"></i>Saldo Insuficiente</button> 
-                        @endif --}}
                         
+                        <h2 class="text-white precio">Precio 
+                            <span class="text-white cantidad">49$</span>
+                        </h2>
+                        <h2 class="text-white incluye">Incluye el servicio por un mes</h2>
                     </div>
+                    <a class="btn btn-outline-warning border-radius-30 btn-block text-dark py-2 texto-card-1" target="_blank" href="{{route('store.buyProduct', $item->id)}}"> Comprar</a>
+                
                 </div>
-            {{-- </form> --}}
+                @endif
+                @endforeach
+            </div>
         </div>
-        @endif
-        @endforeach
-
     </div>
+
 </section>
 
 @endsection
