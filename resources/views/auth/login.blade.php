@@ -33,7 +33,7 @@
                     {{-- <h4 class="card-title mb-1">Bienvenido a Sysmo Company! 👋</h4> --}}
                     <p class="card-title">Iniciar Sesión</p>
 
-                    <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sunt iusto deserunt ad aspernatur.</p>
+                    {{-- <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis sunt iusto deserunt ad aspernatur.</p> --}}
 
                     <x-jet-validation-errors class="mb-4" />
 
