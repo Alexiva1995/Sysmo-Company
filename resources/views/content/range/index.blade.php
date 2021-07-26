@@ -26,41 +26,39 @@
 </div>
 
 <div id="record">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-content">
-                <div class="card-body card-dashboard">
-                        {{-- <h1 href="#" class="btn btn-primary float-right mb-0 waves-effect waves-light">Comisiones sin liquidar: {{$user}}</h1> --}}
-                    <div class="table-responsive">
-                        <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped" data-order='[[ 0, "asc" ]]' data-page-length='10'>
-                            <thead class="thead-primary">
-                                <tr class="text-center text-dark bg-purple-alt2">
-                                    <th>#</th>
-                                    <th>Referencia</th>
-                                    <th>Monto</th>
-                                    <th>Fecha</th>
-                                    <th>Estado</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($liquidations as $liquidation)
-                                <tr class="text-center">
-                                    <td>{{$liquidation->id}}</td>
-                                    <td>{{$liquidation->hash}}</td>
-                                    <td>{{$liquidation->total}}</td>
-                                    <td>{{date('d-m-Y', strtotime($liquidation->created_at))}}</td>
-                                    <td>
-                                        @if ($liquidation->status == 1)
-                                            Pagado
-                                        @else
-                                            En Espera
-                                        @endif
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+    <div class="card col-12">
+        <div class="card-content">
+            <div class="card-body card-dashboard">
+                    {{-- <h1 href="#" class="btn btn-primary float-right mb-0 waves-effect waves-light">Comisiones sin liquidar: {{$user}}</h1> --}}
+                <div class="table-responsive">
+                    <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped" data-order='[[ 0, "asc" ]]' data-page-length='10'>
+                        <thead class="thead-primary">
+                            <tr class="text-center text-dark bg-purple-alt2">
+                                <th>#</th>
+                                <th>Referencia</th>
+                                <th>Monto</th>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($liquidations as $liquidation)
+                            <tr class="text-center">
+                                <td>{{$liquidation->id}}</td>
+                                <td>{{$liquidation->hash}}</td>
+                                <td>{{$liquidation->total}}</td>
+                                <td>{{date('d-m-Y', strtotime($liquidation->created_at))}}</td>
+                                <td>
+                                    @if ($liquidation->status == 1)
+                                        Pagado
+                                    @else
+                                        En Espera
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
