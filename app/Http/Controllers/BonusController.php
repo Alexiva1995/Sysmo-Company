@@ -34,29 +34,34 @@ class BonusController extends Controller
         $ref = User::find(Auth::user()->id)->children;
         
 
-        $bonoMoney = $this->showBonoMoney();
-        $bonoDinero = $this->bonoMoney(Auth::user());
-        $bonoRapido = $this->showBonoRapido();
+        $bonoMoney = $this->bonoMoney(Auth::user());
+        $bonoStart = $this->bonoStart();
         $bonoSpeed = $this->bonoSpeed();
-        $bonoInicio = $this->bonoStart();
-        $bonoInicio2 = $this->showBonoInicio();
-        $bonoDirecto = $this->showBonoDirecto();
-        $bonoViaje = $this->showBonoViaje();
-        $bonoMoto = $this->showBonoMoto();
-        $bonoCarro = $this->showBonoCarro();
+
+        $dbBonoMoney = $this->showBonoMoney();
+        $dbBonoSpeed = $this->showBonoRapido();
+        $dbBonoStart = $this->showBonoInicio();
+        $dbBonoDirect = $this->showBonoDirecto();
+        $dbBonoTravel = $this->showBonoViaje();
+        $dbBonoMoto = $this->showBonoMoto();
+        $dbBonoCarro = $this->showBonoCarro();
+
+        $dbBonos = [
+           'dbBonoMoney' => $dbBonoMoney,
+           'dbBonoSpeed' => $dbBonoSpeed,
+           'dbBonoStart' => $dbBonoStart,
+           'dbBonoDirect' => $dbBonoDirect,
+           'dbBonoTravel' => $dbBonoTravel,
+           'dbBonoMoto' => $dbBonoMoto,
+           'dbBonoCarro' => $dbBonoCarro,
+        ];
 
         return view('content.bonus.index')->with('bonuses', $bonuses)
                                         ->with('ref',count($ref))
                                         ->with('bonoMoney', $bonoMoney)
-                                        ->with('bonoDinero', $bonoDinero)
-                                        ->with('bonoDirecto', $bonoDirecto)
-                                        ->with('bonoViaje', $bonoViaje)
-                                        ->with('bonoMoto', $bonoMoto)
-                                        ->with('bonoCarro', $bonoCarro)
-                                        ->with('bonoInicio', $bonoInicio)
-                                        ->with('bonoInicio2', $bonoInicio2)
+                                        ->with('bonoStart', $bonoStart)
                                         ->with('bonoSpeed', $bonoSpeed)
-                                        ->with('bonoRapido', $bonoRapido);
+                                        ->with('dbBonos', $dbBonos);
     }
 
 

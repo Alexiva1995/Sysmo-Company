@@ -319,6 +319,12 @@ trait BonoTrait{
             $fechaTope = Carbon::parse($user->created_at)->addDays(30);
 
             $referidosRangoFecha = $user->children->whereBetween('created_at', [Carbon::parse($user->created_at), Carbon::parse($user->created_at)->addDays(30)] );
+            
+            $porcentaje = round(count($referidosRangoFecha)/22*100, 2);
+            if($porcentaje > 100){
+                $porcentaje = 100;
+            }
+
             if(count($referidosRangoFecha) >= 20  ) {
 
                     $fechaReferido20 = [];
@@ -329,16 +335,35 @@ trait BonoTrait{
 
                     $fechaReferido20 = $fechaReferido20[19]->format('d-m-Y');//El Índice del array tiene que ser 19
                     $referidosExtra = ($user->children->whereBetween('created_at', [Carbon::parse($fechaReferido20), Carbon::parse($fechaReferido20)->addDays(15)]));//Guarda cuantos referidos se registraron despues de que el referido N°20 se registró hasta 15 días después
-
+                    
+                    
                     if(count($referidosExtra) > 2){
-                        return 'Cumple con todos los requisitos, tienes: '. count($user->children) .' referidos, el referido n° 20 se registró el ' . $fechaReferido20 . ', ' .$user->created_at->diffInDays($fechaReferido20) . ' días despues de que usted se registró, y desde esa fecha hasta 30 días después, has hecho ' . (count($referidosExtra)-1) . ' Referidos';
+                        // return $porcentaje;
+                        $retorno = '
+                        <div class="progress w-100" style="height: 20px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%">100%</div>
+                        </div>';
+
+                        return $retorno;
                     }else{
-                        return "Necesitas al menos 2 referido más antes de la fecha ". Carbon::parse($fechaReferido20)->addDays(30)->format('d-m-Y') ." para ganar el bono";
+                        $retorno = '
+                        <p class="text-white small">Fecha Límite: <strong>'. Carbon::parse($fechaReferido20)->addDays(30)->format('d-m-Y') .'</strong></p>
+                        <div class="progress w-100" style="height: 20px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: '.$porcentaje.'%">'.$porcentaje.'%</div>
+                        </div>';
+
+                        return $retorno;
                     }
-            }else if (($fechaTope < Carbon::now()) && count($referidosRangoFecha < 3)){
-                return "No registró suficientes referidos en el rango de fecha establecido, al momento de caducar tenías " . count($referidosRangoFecha) . ' de 20';
+            }else if (($fechaTope < Carbon::now()) && count($referidosRangoFecha) < 3){
+                return 0;
             }else{
-                return "No ha registrado suficientes referidos en el rango de fecha establecido, tiene " . count($referidosRangoFecha) . ' de 20. Para seguir optando por este bono, necesita conseguir los referidos restantes antes del '.$fechaTope->format('d-m-Y') ;
+                $retorno = '
+                <p class="text-white small">Fecha Límite: '.$fechaTope->format('d-m-Y').'</p>
+                <div class="progress w-100" style="height: 20px;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: '.$porcentaje.'%">'.$porcentaje.'%</div>
+                </div>';
+
+                return $retorno;
             }
 
         } catch (\Throwable $th) {
@@ -364,6 +389,11 @@ trait BonoTrait{
             $fechaTope = Carbon::parse($user->created_at)->addDays(15);
             $referidosRangoFecha = $user->children->whereBetween('created_at', [Carbon::parse($user->created_at), Carbon::parse($user->created_at)->addDays(15)] );
 
+            $porcentaje = round(count($referidosRangoFecha)/4*100, 2);
+            if($porcentaje > 100){
+                $porcentaje = 100;
+            }
+
              if(count($referidosRangoFecha) >= 3  ) {
 
                  $fechaReferido3 = [];
@@ -379,14 +409,31 @@ trait BonoTrait{
                     // return $referidosExtra;
 
                      if(count($referidosExtra) > 3){
-                         return 'Cumple con todos los requisitos, tienes: '. count($user->children) .' referidos, el referido n° 3 se registró el ' . $fechaReferido3 . ', ' .$user->created_at->diffInDays($fechaReferido3) . ' días despues de que usted se registró, y desde esa fecha hasta 30 días después, has hecho ' . (count($referidosExtra)-1) . ' Referidos';
+
+                        $retorno = '
+                        <div class="progress w-100" style="height: 20px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%">100%</div>
+                        </div>';
+
+                        return $retorno;
                      }else{
-                         return "Tienes los 3 referidos necesarios. \nPero necesitas al menos 1 referido más antes de la fecha ". Carbon::parse($fechaReferido3)->addDays(30)->format('d-m-Y') ." para ganar el bono";
+                        $retorno = '
+                        <p class="text-white small">Fecha Límite: <strong>'. Carbon::parse($fechaReferido3)->addDays(30)->format('d-m-Y')  .'</strong></p>
+                        <div class="progress w-100" style="height: 20px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: '.$porcentaje.'%">'.$porcentaje.'%</div>
+                        </div>';
+                         return $retorno;
                      }
-             }else if (($fechaTope < Carbon::now()) && count($referidosRangoFecha < 3)){
-                return "No registró suficientes referidos en el rango de fecha establecido, al momento de caducar tenías " . count($referidosRangoFecha) . ' de 3';
+             }else if (($fechaTope < Carbon::now()) && count($referidosRangoFecha) < 3){
+                return 0;
              }else{
-                return "No ha registrado suficientes referidos en el rango de fecha establecido, tiene " . count($referidosRangoFecha) . ' de 3. Para seguir optando por este bono, necesita conseguir los referidos restantes antes del '.$fechaTope->format('d-m-Y') ;
+                $retorno = '
+                <p class="text-white small">Fecha Límite: '.$fechaTope->format('d-m-Y').'</p>
+                <div class="progress w-100" style="height: 20px;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: '.$porcentaje.'%">'.$porcentaje.'%</div>
+                </div>';
+
+                return $retorno;
              }
          }catch (\Throwable $th) {
              dd($th);
