@@ -33,7 +33,7 @@
                         {{-- <h1 href="#" class="btn btn-primary float-right mb-0 waves-effect waves-light">Comisiones sin liquidar: {{$user}}</h1> --}}
                     <div class="table-responsive">
                         <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped" data-order='[[ 0, "asc" ]]' data-page-length='10'>
-                            <thead class="">
+                            <thead class="thead-primary">
                                 <tr class="text-center text-dark bg-purple-alt2">
                                     <th>#</th>
                                     <th>Referencia</th>
