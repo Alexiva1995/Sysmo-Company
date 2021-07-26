@@ -75,7 +75,7 @@
                                     <!-- <td>{{$liqui->wallet_used}}</td> -->
                                     <td>
                                         @if ($liqui->status == 1)
-                                        <button class="btn btn-info" onclick="vm_liquidation.getDetailComisionLiquidation({{$liqui->id}})">
+                                        <button class="btn btn-warning" onclick="vm_liquidation.getDetailComisionLiquidation({{$liqui->id}})">
                                             Ver
                                         </button>
                                         @endif

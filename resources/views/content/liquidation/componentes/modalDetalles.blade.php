@@ -14,7 +14,7 @@
                     @csrf
                     <input type="hidden" name="user_id" :value="CommissionsDetails.user_id">
                     <table class="table nowrap scroll-horizontal-vertical table-striped" style="width: 100%">
-                        <thead>
+                        <thead class="thead-primary">
                             <tr class="text-center">
                                 @if ($all)
                                 <th> 
@@ -57,7 +57,7 @@
                     </table>
                     @if ($all)
                     <div class="form-group text-center">
-                        <button class="btn btn-primary" type="submit">Generar Liquidacion</button>
+                        <button class="btn btn-warning" type="submit">Generar Liquidacion</button>
                     </div>
                     @endif
                 </form>
