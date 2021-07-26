@@ -36,13 +36,10 @@ h1,h2,h3,h4,h5,h6,p,a{
     box-shadow: 10px 5px 5px rgba(180, 180, 180, 0.774) !important;
 }
 .membercolor1{
-    background: linear-gradient(180deg, #0051B0 0%, #000F3E 100%) !important;
+    background: linear-gradient(126.94deg, #CDA860 2.02%, #AD8539 119.5%) !important;
 }
 .membercolor2{
-    background: linear-gradient(127.65deg, #0051B0 27.91%, #000F3E 98.28%) !important;
-}
-.membercolor3{
-    background: linear-gradient(126.94deg, #CDA860 2.02%, #AD8539 119.5%) !important;
+    background: linear-gradient(180deg, #0051B0 0%, #000F3E 100%) !important;
 }
 .btn-danger{
     background : #A88034 !important;

@@ -17,7 +17,7 @@
             <div class="card-body row">
                 @foreach ( $store as $key => $item )
                 @if ($item->status == 1)
-                <div class="col-lg-4 col-md-6 col-12">
+                <div class="col-md-6 col-12">
                     <div class="card border member membercolor{{$key+1}}">
                         <div>
                             <h1 class="text-white nombre">Crypto</h1>
