@@ -85,7 +85,7 @@
                                     <td>{{ $item->created_at}}</td>
 
                                     <td class="text-center"> 
-                                        <a  onclick="vm_liquidation.setStatusOrder({{$item->id}})" class="btn btn-warning">Ver</a>
+                                        <a  onclick="vm_liquidation.setStatusOrder({{$item->id}})" class="btn btn-warning"><i class="fa fa-eye"></i></a>
                                         
                                         {{-- @if ($item->status == '0')
                                         

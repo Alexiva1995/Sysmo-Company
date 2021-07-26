@@ -68,10 +68,10 @@
                                     <td class="d-flex">
                                         @if(Auth::user()->id == $item->id)
                                         <a href="{{ route('profile.show') }}"
-                                            class="btn btn-info text-bold-600">Ver Mi Perfil</a>
+                                            class="btn btn-info text-bold-600"><i class="fa fa-user"></i></a>
                                         @else
                                          <a href="{{ route('user.edit',$item->id) }}"
-                                            class="btn btn-info text-bold-600">Editar</a>
+                                            class="btn btn-info text-bold-600"><i class="fa fa-edit"></i></a>
                                              
                                         {{-- <form class="float-right ml-1" action="{{ route('user.destroy', $item->id) }}"
                                             method="POST">
@@ -83,7 +83,7 @@
                                         <form class="float-right ml-1" action="{{route('impersonate.start', $item)}}"
                                             method="POST" id="formImpersonate">
                                             @csrf
-                                            <button class="btn btn-warning">Ver</button>
+                                            <button class="btn btn-warning"><i class="fa fa-eye"></i></button>
                                         </form>
                                         @endif
                                     </td>

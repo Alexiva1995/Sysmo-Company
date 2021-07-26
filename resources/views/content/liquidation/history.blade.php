@@ -76,7 +76,7 @@
                                     <td>
                                         @if ($liqui->status == 1)
                                         <button class="btn btn-warning" onclick="vm_liquidation.getDetailComisionLiquidation({{$liqui->id}})">
-                                            Ver
+                                            <i class="fa fa-eye"></i>
                                         </button>
                                         @endif
                                     </td>

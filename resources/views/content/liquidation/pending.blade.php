@@ -78,13 +78,13 @@
                                     <td>{{$liqui->status}}</td>
                                     <td>
                                         <a onclick="vm_liquidation.getDetailComisionLiquidation({{$liqui->id}})" class="btn btn-info">
-                                            Ver
+                                            <i class="fa fa-eye"></i>
                                         </a>
                                         <button type="button" class="btn btn-success" onclick="vm_liquidation.getDetailComisionLiquidationStatus({{$liqui->id}}, 'aproved')">
-                                            Aprobar
+                                            <i class="fa fa-check-circle"></i>
                                         </button>
                                         <button type="button" class="btn btn-danger" onclick="vm_liquidation.getDetailComisionLiquidationStatus({{$liqui->id}}, 'reverse')">
-                                            Reversar
+                                            <i class="fa fa-times-circle"></i>
                                         </button>
                                     </td>
                                 </tr>
