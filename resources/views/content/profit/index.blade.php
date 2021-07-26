@@ -30,31 +30,25 @@
         <div class="card">
 
             <div class="row match-height">
-                <div class="col-lg-6 col-12">
-                    <div class="card mb-0 pb-0">
-                        <div class="card-header d-flex justify-content-between pb-0">
-                        <h4 class="card-title">Ganancia Total</h4>
-                        </div>
-                        <div class="card-body mb-0 pb-0">
-                            <div class="row">
-                                <div class="col-sm-2 col-12 d-flex flex-column flex-wrap text-center">
-                                    <h1 class="font-large-2 font-weight-bolder mt-2 mb-0">{{number_format($comision-$retiro,2,".",",")}}</h1>
-                                </div>
-                                <div class="col-sm-10 col-12 d-flex justify-content-center">
-                                    <div id="support-trackers-chart"></div>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between mt-1">
-                                <div class="text-center">
-                                    <p class="card-text mb-50">Comisión</p>
-                                    <span class="font-large-1 font-weight-bold">{{number_format($comision, 2, ".",",")}}</span>
-                                </div>
-                                <div class="text-center">
-                                    <p class="card-text mb-50">Retiro</p>
-                                    <span class="font-large-1 font-weight-bold">{{number_format($retiro,2,".",",")}}</span>
-                                </div>
-                            </div>
-                        </div>
+                
+                <div class="col-md-4 col-12 mt-2">
+                    <div class="card btn-warning text-center mx-2">
+                        <p class="card-title my-2">Ganancia Total</p>
+                        <span class="font-large-2 font-weight-bolder">{{number_format($comision-$retiro,2,".",",")}}</span>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 col-12 mt-2">
+                    <div class="card btn-primary text-center mx-2">
+                        <p class="card-title my-2">Comisión</p>
+                        <span class="font-large-1 font-weight-bold">{{number_format($comision, 2, ".",",")}}</span>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-12 mt-2">
+                    <div class="card btn-primary text-center mx-2">
+                        <p class="card-title my-2">Retiro</p>
+                        <span class="font-large-1 font-weight-bold">{{number_format($retiro,2,".",",")}}</span>
                     </div>
                 </div>
             </div>
