@@ -110,16 +110,31 @@ trait BonoTrait{
                     'status' => 0
                 ]);
                 Storage::append("BonoMoney.txt", 'Bono Money por el usuario '.$userName. ' (' .$userMail. ')');
-                return $totalOrdenes . ' / ' . $iterador . ' referidos con paquetes. Ha ganado otro bono';
+                // if($totalOrdenes < 10){
+                //     return $totalOrdenes*10;
+                // }else{
+                //     return ($totalOrdenes*10-(100*($iterador/10)-100));
+                // }
+                // return $totalOrdenes;
+                // return $iterador;
+                
             }
             else{
                 Storage::append("BonoMoney.txt", 'Tus referidos no han comprado los paquetes suficientes, tienes ' . $totalOrdenes . ' de ' . $iterador);
-                return $totalOrdenes . ' / ' . $iterador . ' referidos con paquetes';
+                
+                if($totalOrdenes < 10){
+                    return ($totalOrdenes*10);
+                }else{
+                    return ($totalOrdenes*10-(100*($iterador/10)-100));
+                }
+                // return $totalOrdenes;
+                // return $iterador;
+                // return (($iterador-$totalOrdenes)*100)/10;
             }
         }
         else{
             Storage::append("BonoMoney.txt", 'Ninguno de tus referidos ha comprado paquetes');
-             return 'Ninguno de tus referidos ha comprado paquetes';
+             return 0;
         }
             
         } catch (\Throwable $th) {

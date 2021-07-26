@@ -5,6 +5,7 @@
 @section('page-style')
 {{-- Page Css files --}}
 <link rel="stylesheet" type="text/css" href="{{asset('css/additional/data-tables/dataTables.min.css')}}">
+<link rel="stylesheet" href="{{ asset('css/custom-bonus.css') }}">
 @endsection
 
 @section('content')
@@ -34,6 +35,70 @@
                 <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5">
 
                     <!-- Carta de Money Bonus -->
+                    @foreach ($bonuses as $key => $bonus)
+                    <div class="col-md-12 col-12">
+                        <div class="card border member membercolor1">
+                            <div>
+                                
+                                <h1 class="text-white nombre mt-2">{{$bonus->name}}</h1>
+                                <div class="separador"></div>
+                                <p class="text-white p-2 small">Descripción: {{$bonus->description}}</p>
+                                {{-- <h2 class="text-white academia">Academia</h2> --}}
+                            </div>
+
+
+                            @switch($key+1)
+
+                            
+                                @case(1)
+                                {{-- {{$bonoDinero}} --}}
+                                <div class="progress w-100" style="height: 20px;">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{$bonoDinero}}%">{{$bonoDinero}}%</div>
+                                </div>
+                                @if($bonoMoney)
+                                    <div class="bg-warning w-100 font-weight-bold h3 text-white text-center mb-2">
+                                        @if($bonoMoney<1)
+                                        Bono Obtenido 
+                                        @elseif($bonoMoney == 1) 
+                                        {{$bonoMoney}} Bono Obtenido 
+                                        @else
+                                        {{$bonoMoney}} Bonos Obtenidos
+                                        @endif 
+                                    </div>
+                                @endif
+                                @break
+                                @case(2)
+                                    @if($bonoMoney)
+                                    @endif
+                                @break
+                                @case(3)
+                                    @if($bonoInicio2)
+                                    @endif
+                                @break
+                                @case(4)
+                                    @if($bonoInicio2)
+                                    @endif
+                                @break
+                                @case(5)
+                                    @if($bonoInicio2)
+                                    @endif
+                                @break
+                                @case(6)
+                                    @if($bonoInicio2)
+                                    @endif
+                                @break
+                                @case(7)
+                                    @if($bonoInicio2)
+                                    @endif
+                                @break
+                                
+                            @endswitch
+                        </div>
+                    </div> 
+                    @endforeach
+                    
+
+
                     <div class="max-w-sm rounded overflow-hidden shadow-lg">
                         <div class="flex justify-center">
                             <img src="{{asset('images/Bonus/bonus.png')}}" class="object-center" width="300" height="300">
@@ -51,6 +116,7 @@
                                 <strong>Descripción: </strong>Por cada 10 referidos directos que compren algún paquete, usted ganará 100USD
                             </p>
                             <br>
+                           
                             @if($bonoMoney)
                                 <p class="text-gray-700 text-base">
                                     <strong></strong> Has ganado este bono {{$bonoMoney}} veces <br>
