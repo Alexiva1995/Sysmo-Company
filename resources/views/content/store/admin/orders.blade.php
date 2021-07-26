@@ -84,58 +84,58 @@
 
                                     <td>{{ $item->created_at}}</td>
 
-                                    <td class="d-flex"> 
-                                        <a  onclick="vm_liquidation.setStatusOrder({{$item->id}})" class="btn btn-primary">Ver</a>
+                                    <td class="text-center"> 
+                                        <a  onclick="vm_liquidation.setStatusOrder({{$item->id}})" class="btn btn-warning">Ver</a>
                                         
-                                        @if ($item->status == '0')
+                                        {{-- @if ($item->status == '0')
                                         
-                                        <form action="{{route('edit-order')}}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="id" value="{{$item->id}}">
-                                            <input type="hidden" name="status" value="1">
-                                            <input type="submit" class="btn btn-success" value="Completar">
-                                        </form>
+                                            <form action="{{route('edit-order')}}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{$item->id}}">
+                                                <input type="hidden" name="status" value="1">
+                                                <input type="submit" class="btn btn-success" value="Completar">
+                                            </form>
 
-                                        <form action="{{route('edit-order')}}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="id" value="{{$item->id}}">
-                                            <input type="hidden" name="status" value="2">
-                                            <input type="submit" class="btn btn-danger" value="Cancelar">
-                                        </form>
-                                        
-                                        @elseif ($item->status == '1')
+                                            <form action="{{route('edit-order')}}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{$item->id}}">
+                                                <input type="hidden" name="status" value="2">
+                                                <input type="submit" class="btn btn-danger" value="Cancelar">
+                                            </form>
+                                            
+                                            @elseif ($item->status == '1')
 
-                                        <form action="{{route('edit-order')}}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="id" value="{{$item->id}}">
-                                            <input type="hidden" name="status" value="0">
-                                            <input type="submit" class="btn btn-info" value="En Espera">
-                                        </form>
+                                            <form action="{{route('edit-order')}}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{$item->id}}">
+                                                <input type="hidden" name="status" value="0">
+                                                <input type="submit" class="btn btn-info" value="En Espera">
+                                            </form>
 
-                                        <form action="{{route('edit-order')}}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="id" value="{{$item->id}}">
-                                            <input type="hidden" name="status" value="2">
-                                            <input type="submit" class="btn btn-danger" value="Cancelar">
-                                        </form>
+                                            <form action="{{route('edit-order')}}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{$item->id}}">
+                                                <input type="hidden" name="status" value="2">
+                                                <input type="submit" class="btn btn-danger" value="Cancelar">
+                                            </form>
 
-                                        
-                                        @else
+                                            
+                                            @else
 
-                                        <form action="{{route('edit-order')}}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="id" value="{{$item->id}}">
-                                            <input type="hidden" name="status" value="1">
-                                            <input type="submit" class="btn btn-success" value="Completar">
-                                        </form>
+                                            <form action="{{route('edit-order')}}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{$item->id}}">
+                                                <input type="hidden" name="status" value="1">
+                                                <input type="submit" class="btn btn-success" value="Completar">
+                                            </form>
 
-                                        <form action="{{route('edit-order')}}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="id" value="{{$item->id}}">
-                                            <input type="hidden" name="status" value="0">
-                                            <input type="submit" class="btn btn-info" value="En Espera">
-                                        </form>
-                                        @endif
+                                            <form action="{{route('edit-order')}}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{$item->id}}">
+                                                <input type="hidden" name="status" value="0">
+                                                <input type="submit" class="btn btn-info" value="En Espera">
+                                            </form>
+                                        @endif --}}
                                         {{-- <a v-if="CommissionsDetails.order_status == 1" class="btn btn-primary">Ver</a> --}}
                                         
                                     </td>
