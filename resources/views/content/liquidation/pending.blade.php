@@ -49,49 +49,47 @@
     </div>
 </div>
 <div id="settlement">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-content">
-                <div class="card-body card-dashboard">
-                    <div class="table-responsive">
-                        <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped"
-                            data-order='[[ 1, "asc" ]]' data-page-length='10'>
-                            <thead class="thead-primary">
-                                <tr class="text-center text-black bg-purple-alt2">
-                                    <th>ID</th>
-                                    <th>Correo</th>
-                                    <th>Fecha</th>
-                                    <th>Billetera</th>
-                                    <th>Total</th>
-                                    <th>Status</th>
-                                    <th>Accion</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($liquidations as $liqui)
-                                <tr class="text-center">
-                                    <td>{{$liqui->id}}</td> 
-                                    <td>{{$liqui->email}}</td> 
-                                    <td>{{date('Y-m-d', strtotime($liqui->created_at))}}</td>
-                                    <td>{{$liqui->wallet_used}}</td>
-                                    <td>{{$liqui->total}}</td>
-                                    <td>{{$liqui->status}}</td>
-                                    <td>
-                                        <a onclick="vm_liquidation.getDetailComisionLiquidation({{$liqui->id}})" class="btn btn-info">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-success" onclick="vm_liquidation.getDetailComisionLiquidationStatus({{$liqui->id}}, 'aproved')">
-                                            <i class="fa fa-check-circle"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger" onclick="vm_liquidation.getDetailComisionLiquidationStatus({{$liqui->id}}, 'reverse')">
-                                            <i class="fa fa-times-circle"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+    <div class="card col-12">
+        <div class="card-content">
+            <div class="card-body card-dashboard">
+                <div class="table-responsive">
+                    <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped"
+                        data-order='[[ 1, "asc" ]]' data-page-length='10'>
+                        <thead class="thead-primary">
+                            <tr class="text-center text-black bg-purple-alt2">
+                                <th>ID</th>
+                                <th>Correo</th>
+                                <th>Fecha</th>
+                                <th>Billetera</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($liquidations as $liqui)
+                            <tr class="text-center">
+                                <td>{{$liqui->id}}</td> 
+                                <td>{{$liqui->email}}</td> 
+                                <td>{{date('Y-m-d', strtotime($liqui->created_at))}}</td>
+                                <td>{{$liqui->wallet_used}}</td>
+                                <td>{{$liqui->total}}</td>
+                                <td>{{$liqui->status}}</td>
+                                <td>
+                                    <a onclick="vm_liquidation.getDetailComisionLiquidation({{$liqui->id}})" class="btn btn-info">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-success" onclick="vm_liquidation.getDetailComisionLiquidationStatus({{$liqui->id}}, 'aproved')">
+                                        <i class="fa fa-check-circle"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger" onclick="vm_liquidation.getDetailComisionLiquidationStatus({{$liqui->id}}, 'reverse')">
+                                        <i class="fa fa-times-circle"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

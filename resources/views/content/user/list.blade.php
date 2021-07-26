@@ -26,71 +26,69 @@
 </div>
 
 <div id="record">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-content">
-                <div class="card-body card-dashboard">
-                    <div class="table-responsive">
-                        <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped"
-                            data-order='[[ 0, "asc" ]]' data-page-length='10'>
-                            <thead class="thead-primary">
+    <div class="card col-12">
+        <div class="card-content">
+            <div class="card-body card-dashboard">
+                <div class="table-responsive">
+                    <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped"
+                        data-order='[[ 0, "asc" ]]' data-page-length='10'>
+                        <thead class="thead-primary">
 
-                                <tr class="text-center text-dark">
-                                    <th>ID</th>
-                                    <th>Nombre de Usuario</th>
-                                    <th>Email</th>
-                                    <th>Rol</th>
-                                    <th>Estado</th>
-                                    <th>Accion</th>
-                                </tr>
-                            </thead>
+                            <tr class="text-center text-dark">
+                                <th>ID</th>
+                                <th>Nombre de Usuario</th>
+                                <th>Email</th>
+                                <th>Rol</th>
+                                <th>Estado</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
 
-                            <tbody>
-                                @foreach ($user as $item)
-                                <tr class="text-center">
-                                    <td>{{ $item->id}}</td>
-                                    <td>{{ $item->username}}</td>
-                                    <td>{{ $item->email}}</td>
-                                    {{-- <td>{{ $item->balance}}</td> --}}
+                        <tbody>
+                            @foreach ($user as $item)
+                            <tr class="text-center">
+                                <td>{{ $item->id}}</td>
+                                <td>{{ $item->username}}</td>
+                                <td>{{ $item->email}}</td>
+                                {{-- <td>{{ $item->balance}}</td> --}}
 
-                                    @if ($item->role == '1')
-                                    <td>Administrador</td>
+                                @if ($item->role == '1')
+                                <td>Administrador</td>
+                                @else
+                                <td>Normal</td>
+                                @endif
+
+                                @if ($item->status == '0')
+                                <td> <a class=" badge badge-danger text-white">Inactivo</a></td>
+                                @else
+                                <td> <a class=" badge badge-success text-white">Activo</a></td>
+                                @endif
+
+                                <td class="d-flex">
+                                    @if(Auth::user()->id == $item->id)
+                                    <a href="{{ route('profile.show') }}"
+                                        class="btn btn-info text-bold-600"><i class="fa fa-user"></i></a>
                                     @else
-                                    <td>Normal</td>
+                                        <a href="{{ route('user.edit',$item->id) }}"
+                                        class="btn btn-info text-bold-600"><i class="fa fa-edit"></i></a>
+                                            
+                                    {{-- <form class="float-right ml-1" action="{{ route('user.destroy', $item->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form> --}}
+
+                                    <form class="float-right ml-1" action="{{route('impersonate.start', $item)}}"
+                                        method="POST" id="formImpersonate">
+                                        @csrf
+                                        <button class="btn btn-warning"><i class="fa fa-eye"></i></button>
+                                    </form>
                                     @endif
-
-                                    @if ($item->status == '0')
-                                    <td> <a class=" badge badge-danger text-white">Inactivo</a></td>
-                                    @else
-                                    <td> <a class=" badge badge-success text-white">Activo</a></td>
-                                    @endif
-
-                                    <td class="d-flex">
-                                        @if(Auth::user()->id == $item->id)
-                                        <a href="{{ route('profile.show') }}"
-                                            class="btn btn-info text-bold-600"><i class="fa fa-user"></i></a>
-                                        @else
-                                         <a href="{{ route('user.edit',$item->id) }}"
-                                            class="btn btn-info text-bold-600"><i class="fa fa-edit"></i></a>
-                                             
-                                        {{-- <form class="float-right ml-1" action="{{ route('user.destroy', $item->id) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                                        </form> --}}
-
-                                        <form class="float-right ml-1" action="{{route('impersonate.start', $item)}}"
-                                            method="POST" id="formImpersonate">
-                                            @csrf
-                                            <button class="btn btn-warning"><i class="fa fa-eye"></i></button>
-                                        </form>
-                                        @endif
-                                    </td>
-                                </tr>
-                                @endforeach
-                        </table>
-                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                    </table>
                 </div>
             </div>
         </div>
