@@ -20,13 +20,13 @@
                 <div class="col-md-6 col-12">
                     <div class="card border member membercolor{{$key+1}}">
                         <div>
-                            <h1 class="text-white nombre">Crypto</h1>
-                            <h2 class="text-white academia">Academia</h2>
+                            <h1 class="text-white nombre">{{$item->name}}</h1>
+                            {{-- <h2 class="text-white academia">Academia</h2> --}}
                             <div class="separador"></div>
                         </div>
                         
                         <h2 class="text-white precio">Precio 
-                            <span class="text-white cantidad">49$</span>
+                            <span class="text-white cantidad">{{$item->price}}$</span>
                         </h2>
                         <h2 class="text-white incluye">Incluye el servicio por un mes</h2>
                     </div>
