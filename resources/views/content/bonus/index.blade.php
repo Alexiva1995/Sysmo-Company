@@ -96,28 +96,41 @@
 
                                 {{-- BONO START --}}
                                 @case(3)
-                                        @if($dbBonos['dbBonoStart']<1)
-                                            @if($bonoStart != 0)
-                                            {!! $bonoStart !!} 
-                                                <div class="bg-primary w-100 font-weight-bold h3 text-white text-center mb-2">
-                                                    En Progreso
-                                                </div>
-                                            @else
-                                                <div class="bg-danger w-100 font-weight-bold h3 text-white text-center mb-2">
-                                                    No Obtenido
-                                                </div> 
-                                            @endif
-                                        @else
-                                            <div class="bg-success w-100 font-weight-bold h3 text-white text-center mb-2">
-                                                Bono Obtenido 
+                                    @if($dbBonos['dbBonoStart']<1)
+                                        @if($bonoStart != 0)
+                                        {!! $bonoStart !!} 
+                                            <div class="bg-primary w-100 font-weight-bold h3 text-white text-center mb-2">
+                                                En Progreso
                                             </div>
+                                        @else
+                                            <div class="bg-danger w-100 font-weight-bold h3 text-white text-center mb-2">
+                                                No Obtenido
+                                            </div> 
                                         @endif
-                                    
+                                    @else
+                                        <div class="bg-success w-100 font-weight-bold h3 text-white text-center mb-2">
+                                            Bono Obtenido 
+                                        </div>
+                                    @endif
                                 @break
 
                                 @case(4)
-                                  
+                                    @if($dbBonos['dbBonoDirect']<1)
+                                        <div class="bg-primary w-100 font-weight-bold h3 text-white text-center mb-2">
+                                            En Progreso
+                                        </div>
+                                    @elseif($dbBonos['dbBonoDirect']==1)
+                                        <div class="bg-success w-100 font-weight-bold h3 text-white text-center mb-2">
+                                          {{$dbBonos['dbBonoDirect']}}  Bono Obtenido 
+                                        </div>
+                                    @else
+                                        <div class="bg-success w-100 font-weight-bold h3 text-white text-center mb-2">
+                                            {{$dbBonos['dbBonoDirect']}}  Bonos Obtenidos 
+                                        </div>
+                                    @endif
                                 @break
+
+
                                 @case(5)
                                     
                                 @break
