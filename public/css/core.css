@@ -13011,6 +13011,9 @@ input[type=number]::-webkit-outer-spin-button {
   margin-right: 0.6rem;
   background-size: 14px;
 }
+.content-header{
+  display: none;
+}
 
 @media (max-width: 648px) {
   .content-header .breadcrumb {
