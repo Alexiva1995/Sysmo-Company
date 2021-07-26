@@ -53,9 +53,9 @@
                     <div class="table-responsive"> 
                         <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped"
                             data-order='[[ 0, "desc" ]]' data-page-length='10'>
-                            <thead class="bg-purple-alt2">
+                            <thead class="thead-primary">
 
-                                <tr class="text-center text-dark">
+                                <tr class="text-center text-white">
                                     <th>ID</th>
                                     <th>Producto</th>
                                     <th>Usuario</th>

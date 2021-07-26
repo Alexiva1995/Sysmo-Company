@@ -33,7 +33,7 @@
                     <div class="table-responsive">
                         <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped"
                             data-order='[[ 0, "asc" ]]' data-page-length='10'>
-                            <thead class="bg-purple-alt2">
+                            <thead class="thead-primary">
 
                                 <tr class="text-center text-dark">
                                     <th>ID</th>
@@ -65,7 +65,7 @@
                                     <td> <a class=" badge badge-success text-white">Activo</a></td>
                                     @endif
 
-                                    <td>
+                                    <td class="d-flex">
                                         @if(Auth::user()->id == $item->id)
                                         <a href="{{ route('profile.show') }}"
                                             class="btn btn-info text-bold-600">Ver Mi Perfil</a>
@@ -83,7 +83,7 @@
                                         <form class="float-right ml-1" action="{{route('impersonate.start', $item)}}"
                                             method="POST" id="formImpersonate">
                                             @csrf
-                                            <button class="btn btn-primary">Ver</button>
+                                            <button class="btn btn-warning">Ver</button>
                                         </form>
                                         @endif
                                     </td>

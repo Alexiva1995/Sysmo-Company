@@ -35,7 +35,7 @@
                     <div class="table-responsive">
                         <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped"
                             data-order='[[ 1, "asc" ]]' data-page-length='10'>
-                            <thead class="bg-purple-alt2">
+                            <thead class="thead-primary">
                                 <tr class="text-center text-dark">
                                     <th>ID</th>
                                     <th>Imagen</th>

@@ -64,8 +64,8 @@
                         {{-- <h1 href="#" class="btn btn-primary float-right mb-0 waves-effect waves-light">Comisiones sin liquidar: {{$user}}</h1> --}}
                     <div class="table-responsive">
                         <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped" data-order='[[ 1, "asc" ]]' data-page-length='10'>
-                            <thead class="">
-                                <tr class="text-center text-dark bg-purple-alt2">
+                            <thead class="thead-primary">
+                                <tr class="text-center text-white bg-purple-alt2">
                                     <th>ID</th>
                                     <th>Tipo de Transaccion</th>
                                     <th>Correo del usuario al que pertenece</th>

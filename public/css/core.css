@@ -1883,6 +1883,11 @@ pre code {
   background-color: #4b4b4b;
   border-color: #404040;
 }
+.table .thead-primary th {
+  color: #fff;
+  background: linear-gradient(180deg, #0051B0 0%, #000E3D 100%);
+  border-color: #0051B0;
+}
 .table .thead-light th {
   color: #5e5873;
   background-color: #f3f2f7;
@@ -11116,6 +11121,11 @@ h3 {
   .table .thead-dark th {
     color: inherit;
     border-color: #ebe9f1;
+  }
+
+  .table .thead-primary th {
+    color: inherit;
+    border-color: #0051B0;
   }
 }
 a:focus {
@@ -23453,6 +23463,11 @@ body.dark-layout {
 .dark-layout .table tfoot.thead-dark th {
   background-color: #fff;
   color: #4b4b4b !important;
+}
+.dark-layout .table thead.thead-primary th,
+.dark-layout .table tfoot.thead-primary th {
+  background: linear-gradient(180deg, #0051B0 0%, #000E3D 100%) !important;
+  color: #0051B0 !important;
 }
 .dark-layout .table:not(.table-dark):not(.table-light) thead:not(.thead-dark) th, .dark-layout .table:not(.table-dark):not(.table-light) tfoot:not(.thead-dark) th {
   background-color: #343d55;

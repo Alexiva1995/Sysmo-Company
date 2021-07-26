@@ -52,7 +52,7 @@
                 <div class="card-body card-dashboard">
                     <div class="table-responsive"> 
                         <table class="table nowrap scroll-horizontal-vertical myTable table-striped" id='mytable'>
-                            <thead class="">
+                            <thead class="thead-primary">
                                 <tr class="text-center text-black bg-purple-alt2"> 
                                     {{-- <th> Seleccionar Todo </th>                              --}}
                                     <th>ID Usuario</th>

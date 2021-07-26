@@ -32,9 +32,9 @@
                 <div class="card-body card-dashboard">
                     <div class="table-responsive">
                         <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped" data-order='[[ 1, "asc" ]]' data-page-length='10'>
-                            <thead class="">
+                            <thead class="thead-primary">
 
-                                <tr class="text-center text-black bg-purple-alt2">
+                                <tr class="text-center text-white">
                                     <th>ID</th>
                                     <th>Usuario</th>
                                     <th>Descripción</th> 

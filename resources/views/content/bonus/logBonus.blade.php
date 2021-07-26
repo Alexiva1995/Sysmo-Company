@@ -32,7 +32,7 @@
                 <div class="card-body card-dashboard">
                     <div class="table-responsive">
                         <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped" data-order='[[ 2, "asc" ]]' data-page-length='10'>
-                            <thead class="">
+                            <thead class="thead-primary">
                                 <tr class="text-center text-black bg-purple-alt2">
                                     <th>ID</th>
                                     <th>Nombre</th>
