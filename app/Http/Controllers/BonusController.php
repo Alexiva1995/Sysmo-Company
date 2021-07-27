@@ -28,15 +28,22 @@ class BonusController extends Controller
         // $this->moneyBonus();
         // $this->speedBonus();
         // $this->startBonus();
-        // $this->travelBonus();
-        // $this->motorbikeBonus();
-        // $this->carLifeStyleBonus();
-        $ref = User::find(Auth::user()->id)->children;
-        
 
+        $bonoMoto = $this->bonoMotorBike();
+        $bonoCarro = $this->bonoCarLifeStyle();
+        $bonoTravel = $this->bonoTravel();
         $bonoMoney = $this->bonoMoney(Auth::user());
         $bonoStart = $this->bonoStart();
         $bonoSpeed = $this->bonoSpeed();
+
+        $bono = [
+            'bonoMoto' => $bonoMoto,
+            'bonoCarro' => $bonoCarro,
+            'bonoTravel' => $bonoTravel,
+            'bonoMoney' => $bonoMoney,
+            'bonoStart' => $bonoStart,
+            'bonoSpeed' => $bonoSpeed
+         ];
 
         $dbBonoMoney = $this->showBonoMoney();
         $dbBonoSpeed = $this->showBonoRapido();
@@ -57,10 +64,7 @@ class BonusController extends Controller
         ];
 
         return view('content.bonus.index')->with('bonuses', $bonuses)
-                                        ->with('ref',count($ref))
-                                        ->with('bonoMoney', $bonoMoney)
-                                        ->with('bonoStart', $bonoStart)
-                                        ->with('bonoSpeed', $bonoSpeed)
+                                        ->with('bono', $bono)
                                         ->with('dbBonos', $dbBonos);
     }
 
