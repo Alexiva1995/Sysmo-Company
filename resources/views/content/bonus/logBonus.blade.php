@@ -26,35 +26,33 @@
 </div>
 
 <div id="record">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-content">
-                <div class="card-body card-dashboard">
-                    <div class="table-responsive">
-                        <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped" data-order='[[ 2, "asc" ]]' data-page-length='10'>
-                            <thead class="">
-                                <tr class="text-center text-black bg-purple-alt2">
-                                    <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Correo</th>
-                                    <th>Nombre del bono</th>
-                                    <th>Fecha</th>
-                                </tr>
+    <div class="card col-12">
+        <div class="card-content">
+            <div class="card-body card-dashboard">
+                <div class="table-responsive">
+                    <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped" data-order='[[ 2, "asc" ]]' data-page-length='10'>
+                        <thead class="thead-primary">
+                            <tr class="text-center text-black bg-purple-alt2">
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Nombre del bono</th>
+                                <th>Fecha</th>
+                            </tr>
 
-                            </thead>
-                            <tbody>
-                            @foreach($bonuses as $bonus)
-                                <tr class="text-center">
-                                    <td>{{$bonus->id}}</td>
-                                    <td>{{$bonus->getWalletUser->username}}</td>
-                                    <td>{{$bonus->getWalletUser->email}}</td>
-                                    <td>{{$bonus->bonus->name}}</td>
-                                    <td>{{date('d-m-Y', strtotime($bonus->created_at))}}</tr>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                        </thead>
+                        <tbody>
+                        @foreach($bonuses as $bonus)
+                            <tr class="text-center">
+                                <td>{{$bonus->id}}</td>
+                                <td>{{$bonus->getWalletUser->username}}</td>
+                                <td>{{$bonus->getWalletUser->email}}</td>
+                                <td>{{$bonus->bonus->name}}</td>
+                                <td>{{date('d-m-Y', strtotime($bonus->created_at))}}</tr>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

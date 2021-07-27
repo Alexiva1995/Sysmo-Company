@@ -2,36 +2,54 @@
 
 @section('title', 'tree')
 
-@include('content.referred.tree.component.tree-css')
+{{-- @include('content.referred.tree.component.tree-css') --}}
+
+@section('page-style')
+  <!-- Page css files -->
+  <link rel="stylesheet" href="{{ asset('css/tree.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/custom-tree.css') }}">
+  @endsection
 
 @section('content')
     <div class="padre">
-        <div class="card shadow-lg" style="margin-bottom: 0px;" id="tarjeta">
+        <div class="card shadow-lg" id="tarjeta">
             <div class="card-body p-1">
                 <div class="row no-gutters">
                     <div class="col-4">
                         <img class="float-left rounded-circle shadow-lg" id="imagen" src="{{$base->logoarbol}}" width="96" height="96">     
                     </div>
                     <div class="col-8">
-                        <div class="ml-1"><span class="font-weight-bold">Nombre:</span><span id="nombre"> {{$base->firstname}} </span></div> 
+                        <div class="text-dark">
+                            <span class="font-weight-normal">Fecha de ingreso:</span>
+                            <span class="font-weight-bolder" id="ingreso"> {{ \Carbon\Carbon::parse($base->created_at)->format('d/m/Y')}}</span>
+                        </div> 
             
-                        <div class="ml-1"><span class="font-weight-bold">Paquete:</span> <span id="inversion"> {{$paquete}} </span></div>
+                        <div class="text-dark py-1">
+                            <span class="font-weight-normal">Email:</span> 
+                            <span class="font-weight-bolder" id="email"> {{$base->email}} </span>
+                        </div>
 
-                        <div class="ml-1 mb-1"><span class="font-weight-bold">Estado:</span> <span id="estado">
-                        @if ($base->status == 0)
-                        <span class="badge badge-warning">Inactivo</span>
-                        @else
-                        <span class="badge badge-success">Activo</span>
-                        @endif    
-                        </span></div>
+                        <div class="text-dark mb-1">
+                            <span class="font-weight-normal">Patrocinador:</span> 
+                            <span class="font-weight-bolder" id="patrocinador"> {{$referred[0]->username}} </span>
+                            {{-- <span id="estado">
+                                @if ($base->status == 0)
+                                <span class="badge badge-warning font-weight-bolder">Inactivo</span>
+                                @else
+                                <span class="badge badge-success font-weight-bolder">Activo</span>
+                                @endif    
+                            </span> --}}
+                        </div>
 
-                        <div class="ml-1"><a id="ver_arbol" class="btn btn-primary btn-sm btn-block" href=>Ver arbol</a></div>
+                    </div>
+                    <div class="col-12 my-2">
+                        <a id="ver_arbol" class="btn btn-outline-warning btn-block border-radius-30 text-dark font-weight-bolder text-uppercase" href=>Ver arbol</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <ul>
+        <ul class="arbol">
             <li class="baseli px-0"  style="width:100%;">
                 <a class="base" href="#">
                     <img src="{{$base->logoarbol}}" alt="{{$base->name}}" title="{{$base->name}}" height="82">
@@ -102,7 +120,8 @@
     
         function tarjeta(data, url){
             console.log('Data', data);
-            $('#nombre').text(" "+ data.firstname );
+            let fecha = new Date(data.created_at);
+            $('#ingreso').text(" "+ fecha.toLocaleDateString());
             // if(data.profile_photo_url == null){
                 $('#imagen').attr('src', data.logoarbol );   
             // }else{
@@ -110,14 +129,16 @@
             // }
             
             $('#ver_arbol').attr('href', url);
-            $('#inversion').text(" "+ data.paquete );
-            if(data.status == 0){
-                $('#estado').html('<span class="badge badge-warning">Inactivo</span>');
-            }else if(data.status == 1){
-                $('#estado').html('<span class="badge badge-success">Activo</span>');
-            }else if(data.status == 2){
-                $('#estado').html('<span class="badge badge-danger">Eliminado</span>');
-            }
+            $('#email').text(" "+ data.email );
+            $('#patrocinador').text(" "+ data.referred[0])
+            // if(data.status == 0){
+            //     $('#estado').html('<span class="badge badge-warning">Inactivo</span>');
+            // }else if(data.status == 1){
+            //     $('#estado').html('<span class="badge badge-success">Activo</span>');
+            // }else if(data.status == 2){
+            //     $('#estado').html('<span class="badge badge-danger">Eliminado</span>');
+            // }
+
             
             $('#tarjeta').removeClass('d-none');
         }

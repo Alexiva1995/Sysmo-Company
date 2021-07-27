@@ -46,49 +46,48 @@
     </div>
 </div>
 <div id="settlement">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-content">
-                <div class="card-body card-dashboard">
-                    <div class="table-responsive"> 
-                        <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped"
-                            data-order='[[ 0, "desc" ]]' data-page-length='10'>
-                            <thead class="bg-purple-alt2">
+    <div class="card col-12">
+        <div class="card-content">
+            <div class="card-body card-dashboard">
+                <div class="table-responsive"> 
+                    <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped"
+                        data-order='[[ 0, "desc" ]]' data-page-length='10'>
+                        <thead class="thead-primary">
 
-                                <tr class="text-center text-dark">
-                                    <th>ID</th>
-                                    <th>Producto</th>
-                                    <th>Usuario</th>
-                                    <th>Estado</th>
-                                    <th>Fecha</th>
-                                    <th>Acciones</th>
-                                </tr>
+                            <tr class="text-center text-white">
+                                <th>ID</th>
+                                <th>Producto</th>
+                                <th>Usuario</th>
+                                <th>Estado</th>
+                                <th>Fecha</th>
+                                <th>Acciones</th>
+                            </tr>
 
-                            </thead>
+                        </thead>
 
-                            <tbody>
-                                @foreach ($store as $item)
-                                <tr class="text-center">
-                                    <td>{{ $item->id}}</td>                                    
-                                    <td>{{ $item->getProduct->name}}</td>
-                                    <td>{{ $item->getUser->username}}</td>
+                        <tbody>
+                            @foreach ($store as $item)
+                            <tr class="text-center">
+                                <td>{{ $item->id}}</td>                                    
+                                <td>{{ $item->getProduct->name}}</td>
+                                <td>{{ $item->getUser->username}}</td>
 
-                                    @if ($item->status == '0')
-                                    <td> <a class=" badge badge-info text-white">En Espera</a></td>
-                                    @elseif($item->status == '1')
-                                    <td> <a class=" badge badge-success text-white">Completado</a></td>
-                                    @else
-                                    <td> <a class=" badge badge-danger text-white">Cancelado</a></td>
+                                @if ($item->status == '0')
+                                <td> <a class=" badge badge-info text-white">En Espera</a></td>
+                                @elseif($item->status == '1')
+                                <td> <a class=" badge badge-success text-white">Completado</a></td>
+                                @else
+                                <td> <a class=" badge badge-danger text-white">Cancelado</a></td>
+                                
+                                @endif
+
+                                <td>{{ $item->created_at}}</td>
+
+                                <td class="text-center"> 
+                                    <a  onclick="vm_liquidation.setStatusOrder({{$item->id}})" class="btn btn-warning"><i class="fa fa-eye"></i></a>
                                     
-                                    @endif
-
-                                    <td>{{ $item->created_at}}</td>
-
-                                    <td class="d-flex"> 
-                                        <a  onclick="vm_liquidation.setStatusOrder({{$item->id}})" class="btn btn-primary">Ver</a>
-                                        
-                                        @if ($item->status == '0')
-                                        
+                                    {{-- @if ($item->status == '0')
+                                    
                                         <form action="{{route('edit-order')}}" method="POST">
                                             @csrf
                                             <input type="hidden" name="id" value="{{$item->id}}">
@@ -135,16 +134,15 @@
                                             <input type="hidden" name="status" value="0">
                                             <input type="submit" class="btn btn-info" value="En Espera">
                                         </form>
-                                        @endif
-                                        {{-- <a v-if="CommissionsDetails.order_status == 1" class="btn btn-primary">Ver</a> --}}
-                                        
-                                    </td>
+                                    @endif --}}
+                                    {{-- <a v-if="CommissionsDetails.order_status == 1" class="btn btn-primary">Ver</a> --}}
                                     
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                </td>
+                                
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

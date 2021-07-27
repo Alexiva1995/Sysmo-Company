@@ -49,7 +49,7 @@ input[type="text"], input[type="password"], input[type="email"]{
     /* box-sizing: border-box; */
     border-radius: 27px;
     background-color: transparent !important;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     color: #eee !important;
 }
 

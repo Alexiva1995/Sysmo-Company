@@ -26,43 +26,41 @@
 </div>
 
 <div id="record">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-content">
-                <div class="card-body card-dashboard">
-                        <h1 href="#" class="btn btn-primary float-right mb-0 waves-effect waves-light">Saldo Disponible: {{ $total }}$</h1>
-                    <div class="table-responsive">
-                        <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped" data-order='[[ 0, "desc" ]]' data-page-length='10'>
-                            <thead class="">
-                                <tr class="text-center text-dark bg-purple-alt2">
-                                    <th>ID</th>
-                                    <th>Fecha</th>
-                                    <th>Descripción</th>
-                                    <th>Monto</th>
-                                    <th>Estado</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($comisiones as $comision)
-                                <tr class="text-center">
-                                    <td>{{$comision->id}}</td>
-                                    <td>{{date('d-m-Y', strtotime($comision->created_at))}}</td>
-                                    <td>{{$comision->description}}</td>
-                                    <td>{{$comision->amount}}</td>
-                                    <td>
-                                        @if ($comision->status == 0)
-                                            En Espera
-                                        @elseif ($t->status == 2)
-                                            Cancelado
-                                        @else
-                                            Pagado
-                                        @endif
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+    <div class="card col-12">
+        <div class="card-content">
+            <div class="card-body card-dashboard">
+                    <h1 href="#" class="btn btn-primary float-right mb-0 waves-effect waves-light">Saldo Disponible: {{ $total }}$</h1>
+                <div class="table-responsive">
+                    <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped" data-order='[[ 0, "desc" ]]' data-page-length='10'>
+                        <thead class="thead-primary">
+                            <tr class="text-center text-dark bg-purple-alt2">
+                                <th>ID</th>
+                                <th>Fecha</th>
+                                <th>Descripción</th>
+                                <th>Monto</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($comisiones as $comision)
+                            <tr class="text-center">
+                                <td>{{$comision->id}}</td>
+                                <td>{{date('d-m-Y', strtotime($comision->created_at))}}</td>
+                                <td>{{$comision->description}}</td>
+                                <td>{{$comision->amount}}</td>
+                                <td>
+                                    @if ($comision->status == 0)
+                                        En Espera
+                                    @elseif ($comision->status == 2)
+                                        Cancelado
+                                    @else
+                                        Pagado
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

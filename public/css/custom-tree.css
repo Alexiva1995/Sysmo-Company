@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+h1,h2,h3,h4,h5,h6,p,a,span{
+    font-family: 'Montserrat';
+}
+
+.padre .arbol{
+    padding-top: 200px;
+}
+@media (min-width: 768px) {
+    #tarjeta{
+        width: 400px;
+        position: absolute;
+        left: 25px;
+        z-index: 1;
+        margin-bottom: 4rem;
+    }
+}
+
+.border-radius-30{
+    border-radius: 30px;
+}
+
+.padre .base{
+    border: none;
+}
+
+.padre ul{
+    justify-content: space-between;
+}
+
+.padre ul li{
+    width: 100%;
+}
+
+.padre ul ul::before {
+    border-left: 3px solid #0051B0;
+}
+
+.padre li::before,
+.padre li::after {
+    border-top: 3px solid #0051B0;
+}
+.padre li::after {
+    border-left: 3px solid #0051B0;
+}
+.padre li a {
+    border: 3px solid #0051B0;
+}
+.padre li:last-child::before {
+    border-right: 3px solid #0051B0;
+}

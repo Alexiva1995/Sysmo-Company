@@ -3,7 +3,7 @@
 {{-- Vendor Styles --}}
 @yield('vendor-style')
 {{-- Theme Styles --}}
-
+<link rel="stylesheet" type="text/css" href="{{asset('/fonts/font-awesome/css/font-awesome.min.css')}}">
 <link rel="stylesheet" href="{{ asset('css/core.css') }}" />
 
 {{-- {!! Helper::applClasses() !!} --}}
@@ -34,7 +34,6 @@
 
 
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-<link rel="stylesheet" href="{{ asset('css/tree.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/custom-main-menu.css') }}" />
 
 

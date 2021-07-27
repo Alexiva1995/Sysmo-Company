@@ -1883,6 +1883,11 @@ pre code {
   background-color: #4b4b4b;
   border-color: #404040;
 }
+.table .thead-primary th {
+  color: #fff;
+  background: linear-gradient(180deg, #0051B0 0%, #000E3D 100%);
+  border-color: #0051B0;
+}
 .table .thead-light th {
   color: #5e5873;
   background-color: #f3f2f7;
@@ -2444,7 +2449,7 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #7367f0;
+  background: linear-gradient(180deg, #0051B0 0%, #000E3D 100%) !important;
   border-color: #7367f0;
 }
 .btn-primary:hover {
@@ -2563,14 +2568,14 @@ fieldset:disabled a.btn {
 }
 
 .btn-warning {
-  color: #2a2e30;
-  background-color: #ff9f43;
-  border-color: #ff9f43;
+  background-color: #ca9a40;
+  border-color: #ca9a40;
+  color: #fff;
 }
 .btn-warning:hover {
-  color: #2a2e30;
-  background-color: #ff8b1d;
-  border-color: #ff8510;
+  color: #fff;
+  background-color: #ff8b1d !important;
+  border-color: #ff8510 !important;
 }
 .btn-warning:focus, .btn-warning.focus {
   color: #2a2e30;
@@ -11117,6 +11122,11 @@ h3 {
     color: inherit;
     border-color: #ebe9f1;
   }
+
+  .table .thead-primary th {
+    color: inherit;
+    border-color: #0051B0;
+  }
 }
 a:focus {
   outline: none;
@@ -13000,6 +13010,9 @@ input[type=number]::-webkit-outer-spin-button {
   color: #6e6b7b;
   margin-right: 0.6rem;
   background-size: 14px;
+}
+.content-header{
+  display: none;
 }
 
 @media (max-width: 648px) {
@@ -15354,7 +15367,7 @@ input:focus ~ .bg-light {
 
 .btn-primary {
   border-color: #7367f0 !important;
-  background-color: #7367f0 !important;
+  background: linear-gradient(180deg, #0051B0 0%, #000E3D 100%) !important;
   color: #fff !important;
 }
 .btn-primary:focus, .btn-primary:active, .btn-primary.active {
@@ -18041,8 +18054,8 @@ input:focus ~ .bg-info {
 }
 
 .btn-warning {
-  border-color: #ff9f43 !important;
-  background-color: #ff9f43 !important;
+  background-color: #ca9a40 !important;
+  border-color: #ca9a40 !important;
   color: #fff !important;
 }
 .btn-warning:focus, .btn-warning:active, .btn-warning.active {
@@ -23453,6 +23466,11 @@ body.dark-layout {
 .dark-layout .table tfoot.thead-dark th {
   background-color: #fff;
   color: #4b4b4b !important;
+}
+.dark-layout .table thead.thead-primary th,
+.dark-layout .table tfoot.thead-primary th {
+  background: linear-gradient(180deg, #0051B0 0%, #000E3D 100%) !important;
+  color: #0051B0 !important;
 }
 .dark-layout .table:not(.table-dark):not(.table-light) thead:not(.thead-dark) th, .dark-layout .table:not(.table-dark):not(.table-light) tfoot:not(.thead-dark) th {
   background-color: #343d55;

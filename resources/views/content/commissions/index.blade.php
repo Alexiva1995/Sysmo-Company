@@ -26,46 +26,44 @@
 </div>
 
 <div id="record">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-content">
-                <div class="card-body card-dashboard">
-                    <div class="table-responsive">
-                        <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped" data-order='[[ 1, "asc" ]]' data-page-length='10'>
-                            <thead class="">
+    <div class="card col-12">
+        <div class="card-content">
+            <div class="card-body card-dashboard">
+                <div class="table-responsive">
+                    <table id="mytable" class="table nowrap scroll-horizontal-vertical myTable table-striped" data-order='[[ 1, "asc" ]]' data-page-length='10'>
+                        <thead class="thead-primary">
 
-                                <tr class="text-center text-black bg-purple-alt2">
-                                    <th>ID</th>
-                                    <th>Usuario</th>
-                                    <th>Descripción</th> 
-                                    <th>monto</th>
-                                    <th>Estado</th>
-                                    <th>Fecha</th>
-                                </tr>
+                            <tr class="text-center text-white">
+                                <th>ID</th>
+                                <th>Usuario</th>
+                                <th>Descripción</th> 
+                                <th>monto</th>
+                                <th>Estado</th>
+                                <th>Fecha</th>
+                            </tr>
 
-                            </thead>
-                            <tbody>
+                        </thead>
+                        <tbody>
 
-                                @foreach ($wallet as $item)
-                                <tr class="text-center">
-                                    <td>{{ $item->id}}</td>
-                                    <td> {{$item->getWalletUser->username}} </td>
-                                    <td>{{ $item->description}}</td>
-                                    <td>{{ $item->amount}}</td>
-                                    @if($item->status == 0)
-                                        <td><a class=" badge badge-info text-white">En Espera</a></td>
-                                    @elseif($item->status == 1)
-                                        <td><a class=" badge badge-success text-white">Pagado</a></td>   
-                                    @else
-                                        <td><a class=" badge badge-danger text-white">Cancelado</a></td>                                    
-                                    @endif
-                                    <td>{{ date('d-m-Y', strtotime($item->created_at))}}</td>
-                                </tr>
-                                @endforeach
+                            @foreach ($wallet as $item)
+                            <tr class="text-center">
+                                <td>{{ $item->id}}</td>
+                                <td> {{$item->getWalletUser->username}} </td>
+                                <td>{{ $item->description}}</td>
+                                <td>{{ $item->amount}}</td>
+                                @if($item->status == 0)
+                                    <td><a class=" badge badge-info text-white">En Espera</a></td>
+                                @elseif($item->status == 1)
+                                    <td><a class=" badge badge-success text-white">Pagado</a></td>   
+                                @else
+                                    <td><a class=" badge badge-danger text-white">Cancelado</a></td>                                    
+                                @endif
+                                <td>{{ date('d-m-Y', strtotime($item->created_at))}}</td>
+                            </tr>
+                            @endforeach
 
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

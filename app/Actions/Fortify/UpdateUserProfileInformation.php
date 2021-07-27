@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
+use Symfony\Component\Console\Input\Input;
 
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 {
@@ -19,8 +20,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     public function update($user, array $input)
     {
         Validator::make($input, [
-            'username' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'username' => ['nullable', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'email' => ['nullable', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
             'whatsapp' => ['nullable','string', 'max:255'],
             'billetera' => ['nullable','string', 'max:255'],
@@ -33,7 +34,12 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
         }
-
+        if($input['email'] == ""){
+           $input['email'] = $user->email;
+        }
+        if($input['username'] == ""){
+            $input['username'] = "$user->username";
+         }
         if ($input['email'] !== $user->email &&
             $user instanceof MustVerifyEmail) {
             $this->updateVerifiedUser($user, $input);
