@@ -69,7 +69,7 @@ class WalletController extends Controller
             // dd($total);
             foreach ($comisionesaliquidar as $com)
                 {
-                    $com->status = 0;
+                    $com->status = 1;
                     $com->save();
                 }
                 // dd($comisionesaliquidar);
