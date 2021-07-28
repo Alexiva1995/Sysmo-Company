@@ -35,7 +35,7 @@
               
               <div class="text-left">
                 <p class="card-text m-auto w-75">
-                  <button class="btn  btn-outline-danger border-radius-30 text-dark font-bold px-3">Retirar</button>
+                  <button class="btn btn-outline-warning text-dark font-bold px-3">Retirar</button>
                 </p>
               </div>
             </div>
@@ -78,7 +78,7 @@
             <div class="text-center col-12">
               <p class="card-text m-auto w-100">
                 {{-- <button class="btn  btn-outline-danger border-radius-30 text-dark font-bold px-3">Retirar</button> --}}
-                <button class="btn btn-danger btn-block" data-link="{{Request::url()}}/register?referred_id={{Auth::user()->id}}" id="referrals_link" onclick="copyReferralsLink();">Copiar link de referido <i class="far fa-copy"></i></button>
+                <button class="btn btn-warning btn-block" data-link="{{Request::url()}}/register?referred_id={{Auth::user()->id}}" id="referrals_link" onclick="copyReferralsLink();">Copiar link de referido <i class="far fa-copy"></i></button>
               </p>
             </div>
           </div>
