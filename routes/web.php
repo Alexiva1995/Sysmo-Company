@@ -18,15 +18,10 @@ use App\Http\Controllers\BotController;
 use App\Http\Controllers\BonusController;
 
 
-    Route::get('/', [DashboardController::class,'index'])->name('dashboard');
-
-
 // Main Page Route
 // Route::get('/', [DashboardController::class,'dashboardAnalytics'])->name('dashboard-analytics')->middleware('verified');
 
-// Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
-//   return view('dashboard');
-// })->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/', [DashboardController::class,'index'])->name('dashboard');
 
 // rutas para usuarios logueados
 Route::group(['middleware'=>['auth']], function() {
