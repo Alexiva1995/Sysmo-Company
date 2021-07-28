@@ -30,7 +30,7 @@
                         <div class="col-6 d-flex flex-column">
 
                             <h1 class="mb-1 text-dark texto-card-1">Saldo Disponible</h1>
-                            <h1 class="mb-1 text-primary texto-card-2">$78.20</h1>
+                            <h1 class="mb-1 text-primary texto-card-2">${{$total}}</h1>
 
                             <div class="text-left">
                                 <p class="card-text m-auto w-75">
