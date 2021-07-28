@@ -9,9 +9,9 @@
                       <div class="user-nav d-sm-flex d-none">
                           <span class="user-name font-weight-bolder">{{ Auth::user()->username }}</span>
                           @if (Auth::user()->role == 1)
-                          <h5 class="user-status badge badge-primary">Administrador</h5>
+                          <h5 class="user-status badge badge-warning">Administrador</h5>
                           @else
-                          <h1 class="user-status badge badge-primary">Saldo: {{ Auth::user()->balance }} $</h5>
+                          <h1 class="user-status badge badge-warning">Saldo: {{ Auth::user()->balance }} $</h5>
                           @endif
                       </div>
                       <span class="avatar">
