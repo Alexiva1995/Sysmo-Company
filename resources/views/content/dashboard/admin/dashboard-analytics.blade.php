@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="{{ asset('vendors/css/extensions/toastr.min.css') }}">
   <link rel="stylesheet" href="{{ asset('vendors/css/tables/datatable/datatables.min.css') }}">
   <link rel="stylesheet" href="{{ asset('vendors/css/tables/datatable/responsive.bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendors/css/extensions/sweetalert2.min.css') }}">
 @endsection
 @section('page-style')
   <!-- Page css files -->
@@ -127,6 +128,7 @@
   <script src="{{ asset('vendors/js/tables/datatable/datatables.bootstrap4.min.js') }}"></script>
   <script src="{{ asset('vendors/js/tables/datatable/dataTables.responsive.min.js') }}"></script>
   <script src="{{ asset('vendors/js/tables/datatable/responsive.bootstrap.min.js') }}"></script>
+  <script src="{{ asset('vendors/js/extensions/sweetalert2.all.min.js') }}"></script>
 @endsection
 @section('page-script')
   <!-- Page js files -->
@@ -143,6 +145,21 @@
         textArea.select();      
         document.execCommand("copy");    
         textArea.remove();
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        Toast.fire({
+          icon: 'success',
+          title: 'Se copió el link de referido'
+        })
     }
 </script>
 @endsection
