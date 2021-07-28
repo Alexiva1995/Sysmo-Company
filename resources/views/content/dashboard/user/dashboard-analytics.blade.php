@@ -34,8 +34,8 @@
 
                             <div class="text-left">
                                 <p class="card-text m-auto w-75">
-                                    <button
-                                        class="btn  btn-outline-warning border-radius-30 text-dark font-bold px-3">Retirar</button>
+                                    <a
+                                       href="{{ route('wallet.paypending') }}" class="btn  btn-outline-warning border-radius-30 text-dark font-bold px-3">Retirar</a>
                                 </p>
                             </div>
                         </div>

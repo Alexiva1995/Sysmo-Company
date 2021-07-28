@@ -65,6 +65,7 @@ Route::group(['prefix' => 'user'], function () {
   Route::prefix('wallet')->group(function ()
   {
     Route::get('index', [WalletController::class,'index'])->name('wallet.index');
+    Route::get('paypending', [WalletController::class,'liquidarComisionesPendientes'])->name('wallet.paypending');
   });
 
   //bot user
