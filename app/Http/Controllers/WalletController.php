@@ -57,29 +57,7 @@ class WalletController extends Controller
         ->with('total', $total);
     }
 
-    /**
-     * Permite pagar las comisiones de los usuarios
-     *
-     * @return void
-     */
-    public function liquidarComisionesPendientes()
-    {
-        try {
-            $comisionesaliquidar = Wallet::where('user_id', Auth::id())->where('bonus_id', '!=', 0)->where('status', 0)->where('amount', '>', 0)->get();
-            $total = $comisionesaliquidar->sum('amount');
-            // dd($total);
-            foreach ($comisionesaliquidar as $com)
-                {
-                    $com->status = 1;
-                    $com->save();
-                }
-                // dd($comisionesaliquidar);
-                return redirect()->back()->with('message', 'Se ha retirado '.$total.' a su cuenta exitosamente.');
-        } catch (\Throwable $th) {
-            Log::error('Funcion liquidarComisionesPendientes -> '.$th);
-            return redirect()->back()->with('msj', 'Ocurrio un error, Por favor comunicarse con el administrador');
-        }
-    }
+    
 
     /**
      * Permite pagar las comisiones de los usuarios

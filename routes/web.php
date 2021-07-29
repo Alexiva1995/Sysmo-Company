@@ -65,7 +65,6 @@ Route::group(['prefix' => 'user'], function () {
   Route::prefix('wallet')->group(function ()
   {
     Route::get('index', [WalletController::class,'index'])->name('wallet.index');
-    Route::get('paypending', [WalletController::class,'liquidarComisionesPendientes'])->name('wallet.paypending');
   });
 
   //bot user
@@ -169,6 +168,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('edit/{id}', [LiquidactionController::class,'edit'])->name('liquidaction.edit');
     Route::get('show/{id}', [LiquidactionController::class,'show'])->name('liquidaction.show');
     Route::post('store', [LiquidactionController::class,'store'])->name('liquidaction.store');
+    Route::get('paypending', [LiquidactionController::class,'liquidarComisionesPendientes'])->name('wallet.paypending');
  
   });
 
