@@ -31,7 +31,10 @@
 
                         <div class="text-dark mb-1">
                             <span class="font-weight-normal">Patrocinador:</span> 
-                            <span class="font-weight-bolder" id="patrocinador"> {{$referred[0]->username}} </span>
+                            <span class="font-weight-bolder" id="patrocinador"> 
+                               
+                                    {{$referred}}
+                            </span>
                             {{-- <span id="estado">
                                 @if ($base->status == 0)
                                 <span class="badge badge-warning font-weight-bolder">Inactivo</span>

@@ -19,9 +19,6 @@ class CreateBonusesTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->text('note')->nullable();
-            $table->enum('recurrent', [0, 1])->default(1)->comment('0 - Inactivo, 1 - Activo')->comment('Verifica si el bono es recurrente o no. 0 - Inactivo, 1 - Activo');
-            $table->integer('referrals')->nullable()->comment('Referidos necesarios para cumplir la condición');
-            $table->integer('days')->nullable()->comment('Días antes de que el bono deje de ser válido');
             $table->timestamps();
         });
 

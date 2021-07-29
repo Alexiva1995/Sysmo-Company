@@ -37,6 +37,8 @@ var vm_liquidation = new Vue({
          * @param {integer}  user_id 
          */
          getDetailComisionLiquidation: function(user_id){
+            console.log('getDetailComisionLiquidation');
+
             this.seleAllComision = false
             axios.get('edit/' + user_id).then((response) => {
                 this.CommissionsDetails = response.data 

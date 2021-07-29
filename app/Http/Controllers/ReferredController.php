@@ -83,8 +83,11 @@ class ReferredController extends Controller
                 $users = User::all("firstname");
                 $paquete = User::find(Auth::user()->id)->getOrder->where('status', '1')->pluck('product_id')->last();
                 // dd($paquete);
-                $referred = User::where('id', Auth::user()->referred_id)->get('username');
-                // dd($referred);
+                $referred = User::where('id', Auth::user()->referred_id)->pluck('username')->first();
+                
+                if($referred == null){
+                    $referred = "Admin";
+                }
                 if($paquete == 1){
                     $paquete = 'Cashbot RS';
                 }elseif($paquete == 2){
