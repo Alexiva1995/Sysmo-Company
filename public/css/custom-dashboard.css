@@ -48,7 +48,7 @@ h1,h2,h3,h4,h5,h6,p,a{
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     /* background: linear-gradient(180deg, #0051B0 0%, #000F3E 100%); */
     box-shadow: 10px 5px 5px rgba(180, 180, 180, 0.774) !important;

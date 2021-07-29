@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bonus;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,9 @@ class DashboardController extends Controller
     ->where('status', 0)
     ->sum('amount');
 
-     return view('dashboard')->with('total', $total);
+    $bonuses = Bonus::get();
+
+     return view('dashboard')->with('total', $total)->with('bonuses', $bonuses);
    }
 
   //  // Dashboard - Analytics user

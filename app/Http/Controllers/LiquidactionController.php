@@ -311,6 +311,7 @@ class LiquidactionController extends Controller
             if ($listComision == []) {
                 $commissions = Wallet::where([
                     ['user_id', '=', $user_id],
+                    ['bonus_id', '=', 0],
                     ['status', '=', 0],
                     ['type_transaction', '=', 0],
                 ])->get();

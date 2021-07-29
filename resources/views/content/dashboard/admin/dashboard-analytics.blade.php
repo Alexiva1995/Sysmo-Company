@@ -29,13 +29,13 @@
                     <div class="row">
                         <div class="col-6 d-flex flex-column">
 
-                            <h1 class="mb-1 text-dark texto-card-1">Saldo Disponible Admin</h1>
+                            <h1 class="mb-1 text-dark texto-card-1">Saldo Disponible</h1>
                             <h1 class="mb-1 text-primary texto-card-2">${{$total}}</h1>
 
                             <div class="text-left">
                                 <p class="card-text m-auto w-75">
-                                    <button
-                                        class="btn  btn-outline-warning border-radius-30 text-dark font-bold px-3 @if($total < 1) disabled @endif">Retirar</button>
+                                    <a
+                                       href="{{ route('wallet.paypending') }}" class="btn  btn-outline-warning border-radius-30 text-dark font-bold px-3 @if($total < 1) disabled @endif">Retirar</a>
                                 </p>
                             </div>
                         </div>
@@ -105,25 +105,37 @@
 
             <div class="col-4">
                 <div class="card border member membercolor1 mt-5">
-                    <h1 class="text-white nombre mt-2">Premio 1</h1>
-                    <div class="separador"></div>
-                    <p class="text-white p-2" style="font-size: 9pt; line-height: 1.4;">Descripción 1</p>
+                    <div>
+                        <h1 class="text-white nombre mt-2">{{$bonuses[5]->name}}</h1>
+                        <div class="separador"></div>
+                    </div>
+                    <div>
+                        <p class="text-white p-2" style="font-size: 9pt; line-height: 1.4;">{{$bonuses[5]->description}}</p>
+                    </div>
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="card border member membercolor1">
-                    <h1 class="text-white nombre mt-2">Premio 2</h1>
-                    <div class="separador"></div>
-                    <p class="text-white p-2" style="font-size: 9pt; line-height: 1.4;">Descripción 2</p>
+                    <div>
+                        <h1 class="text-white nombre mt-2">{{$bonuses[4]->name}}</h1>
+                        <div class="separador"></div>
+                    </div>
+                    <div>
+                        <p class="text-white p-2" style="font-size: 9pt; line-height: 1.4;">{{$bonuses[4]->description}}</p>
+                    </div>
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="card border member membercolor1 mt-5">
-                    <h1 class="text-white nombre mt-2">Premio 3</h1>
-                    <div class="separador"></div>
-                    <p class="text-white p-2" style="font-size: 9pt; line-height: 1.4;">Descripción 3</p>
+                    <div>
+                        <h1 class="text-white nombre mt-2">{{$bonuses[6]->name}}</h1>
+                        <div class="separador"></div>
+                    </div>
+                    <div>
+                        <p class="text-white p-2" style="font-size: 9pt; line-height: 1.4;">{{$bonuses[6]->description}}</p>
+                    </div>
                 </div>
             </div>
             

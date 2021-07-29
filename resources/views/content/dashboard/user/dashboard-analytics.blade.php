@@ -105,25 +105,37 @@
 
             <div class="col-4">
                 <div class="card border member membercolor1 mt-5">
-                    <h1 class="text-white nombre mt-2">Premio 1</h1>
-                    <div class="separador"></div>
-                    <p class="text-white p-2" style="font-size: 9pt; line-height: 1.4;">Descripción 1</p>
+                    <div>
+                        <h1 class="text-white nombre mt-2">{{$bonuses[5]->name}}</h1>
+                        <div class="separador"></div>
+                    </div>
+                    <div>
+                        <p class="text-white p-2" style="font-size: 9pt; line-height: 1.4;">{{$bonuses[5]->description}}</p>
+                    </div>
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="card border member membercolor1">
-                    <h1 class="text-white nombre mt-2">Premio 2</h1>
-                    <div class="separador"></div>
-                    <p class="text-white p-2" style="font-size: 9pt; line-height: 1.4;">Descripción 2</p>
+                    <div>
+                        <h1 class="text-white nombre mt-2">{{$bonuses[4]->name}}</h1>
+                        <div class="separador"></div>
+                    </div>
+                    <div>
+                        <p class="text-white p-2" style="font-size: 9pt; line-height: 1.4;">{{$bonuses[4]->description}}</p>
+                    </div>
                 </div>
             </div>
 
             <div class="col-4">
                 <div class="card border member membercolor1 mt-5">
-                    <h1 class="text-white nombre mt-2">Premio 3</h1>
-                    <div class="separador"></div>
-                    <p class="text-white p-2" style="font-size: 9pt; line-height: 1.4;">Descripción 3</p>
+                    <div>
+                        <h1 class="text-white nombre mt-2">{{$bonuses[6]->name}}</h1>
+                        <div class="separador"></div>
+                    </div>
+                    <div>
+                        <p class="text-white p-2" style="font-size: 9pt; line-height: 1.4;">{{$bonuses[6]->description}}</p>
+                    </div>
                 </div>
             </div>
             
