@@ -37,7 +37,6 @@
                         <thead class="thead-primary">
                             <tr class="text-center text-dark">
                                 <th>ID</th>
-                                <th>Imagen</th>
                                 <th>Nombre</th>
                                 <th>Precio</th>
                                 <th>Estado</th>
@@ -48,11 +47,6 @@
                             @foreach ($store as $item)
                             <tr class="text-center">
                                 <td>{{ $item->id}}</td>
-                                @if ($item->photoDB != NULL)
-                                <td><img src="{{asset('storage/products/'.$item->photoDB)}}" alt="photo" class="rounded" width="50px" height="70px"></td>
-                                @else
-                                <td>No Tiene Imagen</td>
-                                @endif
                                 <td>{{ $item->name}}</td>
                                 <td>{{ $item->price}}</td>
 

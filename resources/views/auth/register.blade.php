@@ -170,13 +170,13 @@
                                     tabindex="3" required {{ old('remember-me') ? 'checked' : '' }} />
                                     <span class="checkmark"></span>
                                     <label class="recordar-datos" for="register-privacy-policy">
-                                        Acepto las <a href="#terms" class="text-danger">política y condiciones de
+                                        Acepto las <a href="#terms" class="text-info">política y condiciones de
                                             privacidad</a></label>
                                 </label>
                                 
 
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block" tabindex="5">Registrarme</button>
+                            <button type="submit" class="btn btn-warning btn-block border-radius-30" tabindex="5">Registrarme</button>
                         </div>
                     </form>
 

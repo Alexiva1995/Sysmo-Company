@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Liquidaction;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Wallet;
-use Carbon\Carbon;
+use App\Models\Liquidaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\WalletController;
 
@@ -166,7 +167,7 @@ class LiquidactionController extends Controller
             $comi->referred = User::find($comi->referred_id)->only('username');
         }
         $user = User::find($commissions->pluck('user_id')[0]);
-
+        
         $details = [
             'liquidation_id' => $id,
             'user_id' => $user->id,
@@ -266,6 +267,33 @@ class LiquidactionController extends Controller
     }
 
     /**
+     * Permite pagar las comisiones de los usuarios
+     *
+     * @return void
+     */
+    public function liquidarComisionesPendientes()
+    {
+        try {
+            $comisionesaliquidar = Wallet::where('user_id', Auth::id())->where('bonus_id', '!=', 0)->where('status', 0)->where('amount', '>', 0)->get();
+            $comisionId = $comisionesaliquidar->pluck('id')->toArray();
+            // dd($comisionId);
+            $total = $comisionesaliquidar->sum('amount');
+            // dd($total);
+            $this->generateLiquidation(Auth::id(), $comisionId);
+            // foreach ($comisionesaliquidar as $com)
+            //     {
+            //         $com->status = 1;
+            //         $com->save();
+            //     }
+                // dd($comisionesaliquidar);
+                return redirect()->back()->with('message', 'Se ha retirado '.$total.' a su cuenta exitosamente.');
+        } catch (\Throwable $th) {
+            Log::error('Funcion liquidarComisionesPendientes -> '.$th);
+            return redirect()->back()->with('msj', 'Ocurrio un error, Por favor comunicarse con el administrador');
+        }
+    }
+    
+    /**
      * Permite procesar las liquidations
      *
      * @param integer $user_id -  id del usuario
@@ -274,7 +302,7 @@ class LiquidactionController extends Controller
      */
     public function generateLiquidation(int $user_id, array $listComision)
     {
-
+        // dd($listComision);
       
         try {
             $user = User::find($user_id);

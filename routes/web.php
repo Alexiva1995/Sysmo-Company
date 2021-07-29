@@ -17,12 +17,11 @@ use App\Http\Controllers\ProductWarehouseController;
 use App\Http\Controllers\BotController;
 use App\Http\Controllers\BonusController;
 
-// Main Page Route
-Route::get('/', [DashboardController::class,'dashboardAnalytics'])->name('dashboard-analytics')->middleware('verified');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
-  return view('dashboard');
-})->name('dashboard');
+// Main Page Route
+// Route::get('/', [DashboardController::class,'dashboardAnalytics'])->name('dashboard-analytics')->middleware('verified');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/', [DashboardController::class,'index'])->name('dashboard');
 
 // rutas para usuarios logueados
 Route::group(['middleware'=>['auth']], function() {
@@ -31,9 +30,9 @@ Route::group(['middleware'=>['auth']], function() {
 Route::group(['prefix' => 'user'], function () {
 
   // home user
-  Route::group(['prefix' => 'dashboard'], function () {
-    Route::get('/', [DashboardController::class,'dashboardAnalyticsUser'])->name('dashboard-analytics-user');
-  });
+  // Route::group(['prefix' => 'dashboard'], function () {
+  //   Route::get('/', [DashboardController::class,'dashboardAnalyticsUser'])->name('dashboard-analytics-user');
+  // });
  
    // store user
    Route::prefix('store')->group(function(){
@@ -111,10 +110,10 @@ Route::group(['prefix' => 'user'], function () {
 Route::group(['prefix' => 'admin'], function () {
 
   // home admin
-  Route::group(['prefix' => 'dashboard'], function () {
-    Route::get('/', [DashboardController::class,'dashboardAnalytics'])->name('dashboard-analytics')->middleware('auth', 'checkrole:1');
-    Route::get('ecommerce', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('auth', 'checkrole:1');
-  });
+  // Route::group(['prefix' => 'dashboard'], function () {
+  //   Route::get('/', [DashboardController::class,'dashboardAnalytics'])->name('dashboard-analytics')->middleware('auth', 'checkrole:1');
+  //   Route::get('ecommerce', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('auth', 'checkrole:1');
+  // });
 
     // Bonus user
     Route::prefix('bonus')->group(function ()
@@ -169,6 +168,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('edit/{id}', [LiquidactionController::class,'edit'])->name('liquidaction.edit');
     Route::get('show/{id}', [LiquidactionController::class,'show'])->name('liquidaction.show');
     Route::post('store', [LiquidactionController::class,'store'])->name('liquidaction.store');
+    Route::get('paypending', [LiquidactionController::class,'liquidarComisionesPendientes'])->name('wallet.paypending');
  
   });
 

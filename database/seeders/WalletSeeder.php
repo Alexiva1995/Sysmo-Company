@@ -9,113 +9,32 @@ class WalletSeeder extends Seeder
 {
     public function run()
     {
-        // Generar Liquidaciones user
-        Wallet::create([
-            'user_id' => '2',
-            'referred_id' => '1',
-            'amount' => '1500',
-            'description' => 'PAGO NRO 1',
-            'status' => '0',
-            'type_transaction' => '0',
-            'liquidated' => '0',
-            'liquidation_id' => '1'
-        ]);
-        Wallet::create([
-            'user_id' => '2',
-            'referred_id' => '1',
-            'amount' => '2500',
-            'description' => "PAGO NRO 2",
-            'status' => '0',
-            'type_transaction' => '0',
-            'liquidated' => '0'            
-        ]);
-        Wallet::create([
-            'user_id' => '2',
-            'referred_id' => '1',
-            'amount' => '900',
-            'description' => 'PAGO NRO 3',
-            'status' => '0',
-            'type_transaction' => '0',
-            'liquidated' => '0'            
-        ]);
-        
-        // Generar Liquidaciones Leonardo
-        Wallet::create([
-            'user_id' => '3',
-            'referred_id' => '1',
-            'amount' => '10000',
-            'description' => 'PAGO NRO 4',
-            'status' => '0',
-            'type_transaction' => '0',
-            'liquidated' => '0'            
-        ]);
-        Wallet::create([
-            'user_id' => '3',
-            'referred_id' => '1',
-            'amount' => '12000',
-            'description' => 'PAGO NRO 5',
-            'status' => '0',
-            'type_transaction' => '0',
-            'liquidated' => '0'            
-        ]);   
-        
-        // Generar Liquidaciones Alexis
-        Wallet::create([
-            'user_id' => '4',
-            'referred_id' => '3',
-            'amount' => '3500',
-            'description' => 'PAGO NRO 6',
-            'status' => '0',
-            'type_transaction' => '0',
-            'liquidated' => '0'            
-        ]);
-        Wallet::create([
-            'user_id' => '4',
-            'referred_id' => '3',
-            'amount' => '15000',
-            'description' => 'PAGO NRO 7',
-            'status' => '1',
-            'type_transaction' => '0',
-            'liquidated' => '0',
-            'liquidation_id' => '3'            
-        ]); 
+        // Generar Comisiones user
+        for($i = 1; $i < 5; $i++){
+            Wallet::create([
+                'user_id' => 2,
+                'bonus_id' => 5,
+                'referred_id' => 1,
+                'amount' => 50,
+                'description' => 'Bono Directo por el usuario USUARIO',
+                'status' => random_int(0,1),
+                'type_transaction' => 0,
+                'liquidated' => 0,
+            ]);
+        }
+        for($i = 1; $i < 5; $i++){
+            Wallet::create([
+                'user_id' => 2,
+                'bonus_id' => 5,
+                'referred_id' => 1,
+                'amount' => 70,
+                'description' => 'Bono Directo por el usuario USUARIO',
+                'status' => random_int(0,1),
+                'type_transaction' => 0,
+                'liquidated' => 0,
+            ]);
+        }
+       
 
-        // Liquidaciones
-        Wallet::create([
-            'user_id' => '2',
-            'amount' => '1500',
-            'referred_id' => '1',
-            'description' => 'Liquidacion del usuario user por un monto de 1500',
-            'status' => '0',
-            'type_transaction' => '1',
-            'liquidated' => '0'            
-        ]); 
-        Wallet::create([
-            'user_id' => '2',
-            'amount' => '2500',
-            'referred_id' => '1',
-            'description' => 'Liquidacion del usuario user por un monto de 2500',
-            'status' => '0',
-            'type_transaction' => '1',
-            'liquidated' => '0'            
-        ]); 
-        Wallet::create([
-            'user_id' => '2',
-            'amount' => '2500',
-            'referred_id' => '1',
-            'description' => 'Liquidacion Reservada - Motivo: reversar',
-            'status' => '1',
-            'type_transaction' => '0',
-            'liquidated' => '0'            
-        ]); 
-        Wallet::create([
-            'user_id' => '4',
-            'referred_id' => '3',
-            'amount' => '15000',
-            'description' => 'Liquidacion del usuario alexis95 por un monto de 15000',
-            'status' => '0',
-            'type_transaction' => '1',
-            'liquidated' => '0'            
-        ]);
     }
 }

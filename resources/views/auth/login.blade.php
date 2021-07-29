@@ -76,7 +76,7 @@
                                     <span class="checkmark"></span>
                                     <label class="recordar-datos" for="remember-me">Recordar Datos</label>
                                 </label>
-                        <button type="submit" class="btn btn-primary btn-block" tabindex="4">Entrar</button>
+                        <button type="submit" class="btn btn-warning btn-block border-radius-30" tabindex="4">Entrar</button>
                     </form>
 
                     <p class="text-center mt-2">

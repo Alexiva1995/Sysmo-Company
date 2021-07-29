@@ -38,6 +38,7 @@ class WalletController extends Controller
             ->where('bonus_id', '!=', 0)
             ->where('type_transaction', '=', 0)
             ->where('liquidated', '=', 0)
+            ->where('status', 0)
             ->sum('amount');
 
         // $this->payComision();
@@ -55,6 +56,8 @@ class WalletController extends Controller
         ->with('comisiones', $comisiones)
         ->with('total', $total);
     }
+
+    
 
     /**
      * Permite pagar las comisiones de los usuarios

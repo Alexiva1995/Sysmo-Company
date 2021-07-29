@@ -9,9 +9,9 @@
                       <div class="user-nav d-sm-flex d-none">
                           <span class="user-name font-weight-bolder">{{ Auth::user()->username }}</span>
                           @if (Auth::user()->role == 1)
-                          <h5 class="user-status badge badge-primary">Administrador</h5>
+                          <h5 class="user-status badge badge-warning">Administrador</h5>
                           @else
-                          <h1 class="user-status badge badge-primary">Saldo: {{ Auth::user()->balance }} $</h5>
+                          <h1 class="user-status badge badge-warning">Saldo: {{ Auth::user()->balance }} $</h5>
                           @endif
                       </div>
                       <span class="avatar">
@@ -38,18 +38,18 @@
                       </span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
-                      <a class="dropdown-item" href="{{ route('profile.show') }}">
+                      <a class="dropdown-item text-warning" href="{{ route('profile.show') }}">
                           <i class="mr-50" data-feather="user"></i> Perfil
                       </a>
                       <a>
                           @if (session('impersonated_by'))
-                          <a class="dropdown-item" href="{{ route('impersonate.stop') }}">
+                          <a class="dropdown-item text-warning" href="{{ route('impersonate.stop') }}">
                               <i class="mr-50" data-feather="power"></i> Regresar
                           </a>
                           @else
                           <form method="POST" class="pr-3 mr-3" action="{{ route('logout') }}">
                               @csrf
-                              <button class="dropdown-item mb-0 float-start" href="{{ route('logout') }}" onclick="event.preventDefault();
+                              <button class="dropdown-item mb-0 float-start text-warning" href="{{ route('logout') }}" onclick="event.preventDefault();
                                  this.closest('form').submit();">
                                   <i class="mr-50" data-feather="power"></i> Cerrar sesion
                               </button>
