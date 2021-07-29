@@ -35,7 +35,7 @@
                             <div class="text-left">
                                 <p class="card-text m-auto w-75">
                                     <button
-                                        class="btn  btn-outline-warning border-radius-30 text-dark font-bold px-3">Retirar</button>
+                                        class="btn  btn-outline-warning border-radius-30 text-dark font-bold px-3 @if($total < 1) disabled @endif">Retirar</button>
                                 </p>
                             </div>
                         </div>
