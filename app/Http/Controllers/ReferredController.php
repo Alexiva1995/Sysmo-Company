@@ -129,7 +129,12 @@ class ReferredController extends Controller
             $paquete = User::find($id)->getOrder->where('status', '1')->pluck('product_id')->last();
             // dd($paquete);
             
-            $referred = User::where('id', $base->referred_id)->get('username');
+            // $referred = User::where('id', $base->referred_id)->get('username');
+            $referred = User::where('id', $base->referred_id)->pluck('username')->first();
+                
+                if($referred == null){
+                    $referred = "Admin";
+                }
             // dd($referred);
             
             if($paquete == 1){

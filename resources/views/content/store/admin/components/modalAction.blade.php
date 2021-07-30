@@ -10,10 +10,7 @@
                 </button>
             </div>
             <div class="modal-body text-justify">
-                {{-- <form action="{{route('edit-order')}}" method="post"> --}}
-                    {{-- @csrf --}}
-                    <input type="hidden" name="id" :value="CommissionsDetails.order_id">
-                    <input type="hidden" name="status" :value="CommissionsDetails.order_status">
+                
                     
                     <h2 class="mb-1 mt-1 text-center text-xl text-black">USUARIO</h2>
                     <div class="table-responsive"> 
@@ -75,20 +72,76 @@
                                     <th>Cambiar estado</th>
                                 </tr>
                             </thead>
+                            
                                 <tr class="text-center">
                                     <td><p v-text="CommissionsDetails.order_id"></p></td>
                                     <td><p v-text="CommissionsDetails.product_price"></p></td>
-                                    <td v-if="CommissionsDetails.order_status == 0"> <a class="badge badge-info text-white">En Espera</a></td>
-                                    {{-- <td v-if="CommissionsDetails.order_status == 0"> <button class="btn btn-success">Cambiar a Atendido</a></td> --}}
-                                    <td v-if="CommissionsDetails.order_status == 1"> <a class="badge badge-success text-white">Atendida</a></td>
-                                    {{-- <td v-if="CommissionsDetails.order_status == 1"> <button class="btn btn-info">Regresar a En Espera</button></td> --}}
+                                    <td v-if="CommissionsDetails.order_status == 0"> 
+                                        <a class="badge badge-info text-white">En Espera</a>
+                                    </td>
+                                    
+                                    <td v-if="CommissionsDetails.order_status == 0" class="w-50"> 
+                                        <div class="d-flex justify-content-center">
+                                            <form action="{{route('edit-order')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="id" :value="CommissionsDetails.order_id">
+                                                <input type="hidden" name="status" :value="1">
+                                                <input type="submit" class="btn btn-success" value="Cambiar a Completado">
+                                            </form>
+                                            <form action="{{route('edit-order')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="id" :value="CommissionsDetails.order_id">
+                                                <input type="hidden" name="status" :value="2">
+                                                <input type="submit" class="btn btn-danger" value="Cambiar a Cancelado">
+                                            </form>
+                                        </div>
+                                    </td>
+                                    <td v-if="CommissionsDetails.order_status == 1"> 
+                                        <a class="badge badge-success text-white">Completado</a>
+                                    </td>
+                                    
+                                    <td v-if="CommissionsDetails.order_status == 1" class="w-50"> 
+                                        <div class="d-flex justify-content-center">
+                                            <form action="{{route('edit-order')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="id" :value="CommissionsDetails.order_id">
+                                                <input type="hidden" name="status" :value="0">
+                                                <input type="submit" class="btn btn-info" value="Cambiar a En Espera">
+                                            </form>
+                                            <form action="{{route('edit-order')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="id" :value="CommissionsDetails.order_id">
+                                                <input type="hidden" name="status" :value="2">
+                                                <input type="submit" class="btn btn-danger" value="Cambiar a Cancelado">
+                                            </form>
+                                        </div>
+                                    </td>
+                                    <td v-if="CommissionsDetails.order_status == 2"> 
+                                        <a class="badge badge-danger text-white">Cancelado</a>
+                                    </td>
+                                    
+                                    <td v-if="CommissionsDetails.order_status == 2" class="w-50">
+                                        <div class="d-flex justify-content-center">
+                                            <form action="{{route('edit-order')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="id" :value="CommissionsDetails.order_id">
+                                                <input type="hidden" name="status" :value="0">
+                                                <input type="submit" class="btn btn-info" value="Cambiar a En Espera">
+                                            </form>
+                                            <form action="{{route('edit-order')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="id" :value="CommissionsDetails.order_id">
+                                                <input type="hidden" name="status" :value="1">
+                                                <input type="submit" class="btn btn-success" value="Cambiar a Completado">
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             <tbody>
                             </tbody>
                         </table>
                     </div> 
 
-                {{-- </form> --}}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>

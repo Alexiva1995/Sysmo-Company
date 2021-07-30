@@ -50,8 +50,8 @@
 
                                     {{-- BONO MONEY --}}
                                     @case(1)
-                                        <div class="progress w-100" style="height: 20px;">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{$bono['bonoMoney']}}%">{{$bono['bonoMoney']}}%</div>
+                                        <div class="progress w-100 rounded-0" style="height: 20px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated rounded-0 bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{$bono['bonoMoney']}}%">{{$bono['bonoMoney']}}%</div>
                                         </div>
                                             
                                             @if($dbBonos['dbBonoMoney']<1)
