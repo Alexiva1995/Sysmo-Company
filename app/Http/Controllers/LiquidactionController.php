@@ -286,7 +286,7 @@ class LiquidactionController extends Controller
             //         $com->save();
             //     }
                 // dd($comisionesaliquidar);
-                return redirect()->back()->with('message', 'Se ha retirado '.$total.' a su cuenta exitosamente.');
+                return redirect()->back()->with('message', 'Se ha solicitado el retiro de '.$total.'$ exitosamente.');
         } catch (\Throwable $th) {
             Log::error('Funcion liquidarComisionesPendientes -> '.$th);
             return redirect()->back()->with('msj', 'Ocurrio un error, Por favor comunicarse con el administrador');
