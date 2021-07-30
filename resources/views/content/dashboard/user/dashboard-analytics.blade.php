@@ -13,7 +13,6 @@
 @section('page-style')
 <!-- Page css files -->
 <link rel="stylesheet" href="{{ asset('css/base/plugins/charts/chart-apex.css') }}">
-<link rel="stylesheet" href="{{ asset('css/base/plugins/extensions/ext-component-toastr.css') }}">
 <link rel="stylesheet" href="{{ asset('css/base/pages/app-invoice-list.css') }}">
 <link rel="stylesheet" href="{{ asset('css/custom-dashboard.css') }}">
 @endsection
