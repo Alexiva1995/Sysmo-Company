@@ -241,11 +241,6 @@ class ProductWarehouseController extends Controller
 
         $id = $request->id;
         $status = $request->status;
-        // if($status == "0"){
-        //     $newStatus = "1";
-        // }else{
-        //     $newStatus = "0";
-        // }
 
 
         $order = Order::findOrFail($id);
