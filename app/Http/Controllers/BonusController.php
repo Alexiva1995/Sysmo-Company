@@ -62,7 +62,7 @@ class BonusController extends Controller
            'dbBonoMoto' => $dbBonoMoto,
            'dbBonoCarro' => $dbBonoCarro,
         ];
-
+// dd($dbBonos['dbBonoTravel']);
         return view('content.bonus.index')->with('bonuses', $bonuses)
                                         ->with('bono', $bono)
                                         ->with('dbBonos', $dbBonos);

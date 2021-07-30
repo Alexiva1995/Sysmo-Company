@@ -13,7 +13,7 @@ class WalletSeeder extends Seeder
         for($i = 1; $i < 5; $i++){
             Wallet::create([
                 'user_id' => 2,
-                'bonus_id' => 5,
+                'bonus_id' => 4,
                 'referred_id' => 1,
                 'amount' => 50,
                 'description' => 'Bono Directo por el usuario USUARIO',
@@ -25,7 +25,7 @@ class WalletSeeder extends Seeder
         for($i = 1; $i < 5; $i++){
             Wallet::create([
                 'user_id' => 2,
-                'bonus_id' => 5,
+                'bonus_id' => 4,
                 'referred_id' => 1,
                 'amount' => 70,
                 'description' => 'Bono Directo por el usuario USUARIO',
