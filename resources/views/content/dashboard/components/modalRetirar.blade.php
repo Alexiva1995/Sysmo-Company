@@ -21,7 +21,7 @@
                                 <label for="" class="col font-weight-bold text-dark mr-3">Monto:</label>
                             </div>
                             <div class="col-8">
-                                 <input disabled style="backoground: #5f5f5f5f;" class="col form-control w-50 d-inline" type="text" value="{{ number_format(($total),2) }}">
+                                 <input disabled style="backoground: #5f5f5f5f;" class="col form-control w-50 d-inline" id="monto" type="text" value="{{ number_format(($total),2) }}">
                             </div>
                         </div>
                     </div>
@@ -50,10 +50,17 @@
                 
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-outline-primary data-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn  btn-primary">Retirar</button>
+            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn  btn-primary @if($total < 1) disabled @endif">Retirar</button>
             </div>
         </form>
     </div>
     </div>
 </div>
+
+<script>
+    let monto = $("#monto").val();
+    if(monto < 1){
+        $('#modalSaldoDisponible').find('button[type="submit"]').prop('disabled',true);
+    }
+</script>
