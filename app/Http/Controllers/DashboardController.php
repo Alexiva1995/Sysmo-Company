@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Bonus;
 use App\Models\Wallet;
+use App\Traits\BonoTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+  use BonoTrait;
 
   public function index()
    { 
@@ -20,8 +22,31 @@ class DashboardController extends Controller
     ->sum('amount');
 
     $bonuses = Bonus::get();
+    $bonoMoto = $this->bonoMotorBike();
+    $bonoCarro = $this->bonoCarLifeStyle();
+    $bonoTravel = $this->bonoTravel();
+    $dbBonoTravel = $this->showBonoViaje();
+    $dbBonoMoto = $this->showBonoMoto();
+    $dbBonoCarro = $this->showBonoCarro();
 
-     return view('dashboard')->with('total', $total)->with('bonuses', $bonuses);
+    $bono = [
+      'bonoMoto' => $bonoMoto,
+      'bonoCarro' => $bonoCarro,
+      'bonoTravel' => $bonoTravel,
+   ];
+
+
+    $dbBonos = [
+      'dbBonoTravel' => $dbBonoTravel,
+      'dbBonoMoto' => $dbBonoMoto,
+      'dbBonoCarro' => $dbBonoCarro,
+   ];
+
+     return view('dashboard')
+                            ->with('total', $total)
+                            ->with('bonuses', $bonuses)
+                            ->with('bono', $bono)
+                            ->with('dbBonos', $dbBonos);
    }
 
   //  // Dashboard - Analytics user

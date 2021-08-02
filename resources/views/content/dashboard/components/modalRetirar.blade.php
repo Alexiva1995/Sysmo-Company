@@ -4,10 +4,10 @@
     <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title text-dark" id="exampleModalLabel">Retiro</h5>
-        <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+            <h5 class="modal-title text-dark" id="exampleModalLabel">Retiro</h5>
+            <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <form method="GET" action="{{ route('wallet.paypending') }}">
             @csrf 
