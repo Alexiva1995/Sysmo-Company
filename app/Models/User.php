@@ -78,6 +78,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(User::class, 'referred_id', 'id');
     }
+    public function childrenActive()
+    {
+        return $this->children()->where('status', '1');
+    }
 
         /**
      * Permite obtener todas las ordenes de compra de saldo realizadas

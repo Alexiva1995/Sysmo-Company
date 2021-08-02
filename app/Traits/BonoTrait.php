@@ -38,7 +38,7 @@ trait BonoTrait{
             // dd($user);
             $totalOrdenes = [];
             
-            foreach($user->children as $referido){
+            foreach($user->childrenActive as $referido){
                 // Storage::append("BonoMoney.txt", 'Total Ordenes: ' . $totalOrdenes );
                 if($referido->getOrder->where('status', '1')->isNotEmpty()){
                     array_push($totalOrdenes, $referido->getOrder->where('status', '1'));
@@ -115,7 +115,7 @@ trait BonoTrait{
 
             $fechaTope = Carbon::parse($user->created_at)->addDays(30);
 
-            $referidosRangoFecha = $user->children->whereBetween('created_at', [Carbon::parse($user->created_at), Carbon::parse($user->created_at)->addDays(30)] );
+            $referidosRangoFecha = $user->childrenActive->whereBetween('created_at', [Carbon::parse($user->created_at), Carbon::parse($user->created_at)->addDays(30)] );
             
             $porcentaje = round(count($referidosRangoFecha)/22*100, 2);
             if($porcentaje > 100){
@@ -125,13 +125,13 @@ trait BonoTrait{
             if(count($referidosRangoFecha) >= 20  ) {
 
                     $fechaReferido20 = [];
-                    foreach($user->children as $fecha){
+                    foreach($user->childrenActive as $fecha){
                         array_push($fechaReferido20, $fecha->created_at); //Crea un array con las fechas de los referidos
                     }
                     sort($fechaReferido20, SORT_STRING); //Ordena la colección por fecha
 
                     $fechaReferido20 = $fechaReferido20[19]->format('d-m-Y');//El Índice del array tiene que ser 19
-                    $referidosExtra = ($user->children->whereBetween('created_at', [Carbon::parse($fechaReferido20), Carbon::parse($fechaReferido20)->addDays(15)]));//Guarda cuantos referidos se registraron despues de que el referido N°20 se registró hasta 15 días después
+                    $referidosExtra = ($user->childrenActive->whereBetween('created_at', [Carbon::parse($fechaReferido20), Carbon::parse($fechaReferido20)->addDays(15)]));//Guarda cuantos referidos se registraron despues de que el referido N°20 se registró hasta 15 días después
                     
                     
                     if(count($referidosExtra) > 2){
@@ -184,7 +184,7 @@ trait BonoTrait{
             $user = User::find(Auth::user()->id);
             
             $fechaTope = Carbon::parse($user->created_at)->addDays(15);
-            $referidosRangoFecha = $user->children->whereBetween('created_at', [Carbon::parse($user->created_at), Carbon::parse($user->created_at)->addDays(15)] );
+            $referidosRangoFecha = $user->childrenActive->whereBetween('created_at', [Carbon::parse($user->created_at), Carbon::parse($user->created_at)->addDays(15)] );
 
             $porcentaje = round(count($referidosRangoFecha)/4*100, 2);
             if($porcentaje > 100){
@@ -194,14 +194,14 @@ trait BonoTrait{
              if(count($referidosRangoFecha) >= 3  ) {
 
                  $fechaReferido3 = [];
-                    foreach($user->children as $fecha){
+                    foreach($user->childrenActive as $fecha){
                          array_push($fechaReferido3, $fecha->created_at); //Crea un array con las fechas de los referidos
                     }
                     sort($fechaReferido3, SORT_STRING); //Ordena la colección por fecha
                     $fechaReferido3 = $fechaReferido3[2]->format('d-m-Y'); //El Índice del array tiene que ser 2
 
                     
-                    $referidosExtra = ($user->children->whereBetween('created_at', [Carbon::parse($fechaReferido3), Carbon::parse($fechaReferido3)->addDays(30)])); //Guarda cuantos referidos se registraron despues de que el referido N°3 se registró hasta 30 días después
+                    $referidosExtra = ($user->childrenActive->whereBetween('created_at', [Carbon::parse($fechaReferido3), Carbon::parse($fechaReferido3)->addDays(30)])); //Guarda cuantos referidos se registraron despues de que el referido N°3 se registró hasta 30 días después
                     
                     // return $referidosExtra;
 
@@ -292,11 +292,11 @@ trait BonoTrait{
          ******************************************************************/
         try {
             $user = User::find(Auth::user()->id);
-            $porcentaje = round(count($user->children)/50*100, 2);
+            $porcentaje = round(count($user->childrenActive)/50*100, 2);
             if($porcentaje > 100){
                 $porcentaje = 100;
             }
-            if(count($user->children) >= 50){
+            if(count($user->childrenActive) >= 50){
                 if($user->created_at->diffInDays(Carbon::now()) <= 90){
                    return 2;
                 }
@@ -308,7 +308,7 @@ trait BonoTrait{
                             <div class="progress-bar progress-bar-striped progress-bar-animated rounded-0 bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: '.$porcentaje.'%">'.$porcentaje.'%</div>
                         </div>';
                         return $retorno;
-                // return ("No tiene suficientes referidos para ganarse el viaje, tiene " . count($user->children) . " de 50 referidos");
+                // return ("No tiene suficientes referidos para ganarse el viaje, tiene " . count($user->childrenActive) . " de 50 referidos");
             }
         } catch (\Throwable $th) {
             dd($th);
@@ -322,7 +322,7 @@ trait BonoTrait{
          •Al sumar 100 referidos el usuario recibirá una moto 0 kilómetros.
          ******************************************************************/
         try {
-            $referidos = User::find(Auth::user()->id)->children;
+            $referidos = User::find(Auth::user()->id)->childrenActive;
             $porcentaje = round(count($referidos)/100*100, 2);
             if($porcentaje > 100){
                 $porcentaje = 100;
@@ -348,7 +348,7 @@ trait BonoTrait{
          •Al sumar 500 referidos el usuario recibirá  un carro 0 kilómetros. 
          ******************************************************************/
         try {
-            $referidos = User::find(Auth::user()->id)->children;
+            $referidos = User::find(Auth::user()->id)->childrenActive;
             $porcentaje = round(count($referidos)/500*100, 2);
             if($porcentaje > 100){
                 $porcentaje = 100;

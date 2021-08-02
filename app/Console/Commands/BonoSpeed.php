@@ -54,16 +54,16 @@ class BonoSpeed extends Command
                 $padre = $user->referred_id;
 
                 if($user->status == 1){
-                    $referidosRangoFecha = $user->children->whereBetween('created_at', [Carbon::parse($user->created_at), Carbon::parse($user->created_at)->addDays(30)] );
+                    $referidosRangoFecha = $user->childrenActive->whereBetween('created_at', [Carbon::parse($user->created_at), Carbon::parse($user->created_at)->addDays(30)] );
                     if(count($referidosRangoFecha) >= 20  ) {
                             $fechaReferido20 = [];
-                            foreach($user->children as $fecha){
+                            foreach($user->childrenActive as $fecha){
                                 array_push($fechaReferido20, $fecha->created_at); //Crea un array con las fechas de los referidos
                             }
                             sort($fechaReferido20, SORT_STRING); //Ordena la colección por fecha
 
                             $fechaReferido20 = $fechaReferido20[19]->format('d-m-Y');//El Índice del array tiene que ser 19
-                            $referidosExtra = ($user->children->whereBetween('created_at', [Carbon::parse($fechaReferido20), Carbon::parse($fechaReferido20)->addDays(15)]));//Guarda cuantos referidos se registraron despues de que el referido N°20 se registró hasta 15 días después
+                            $referidosExtra = ($user->childrenActive->whereBetween('created_at', [Carbon::parse($fechaReferido20), Carbon::parse($fechaReferido20)->addDays(15)]));//Guarda cuantos referidos se registraron despues de que el referido N°20 se registró hasta 15 días después
 
                             if(count($referidosExtra) > 2){
                                 if(Wallet::where([['user_id', User::find($i)->id],['bonus_id', 2]])->count() == 0){

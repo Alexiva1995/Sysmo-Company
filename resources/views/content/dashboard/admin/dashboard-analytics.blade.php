@@ -111,7 +111,7 @@
 
                     <div id="bonusMoto" class="collapse py-2">
                         <h3 class="text-white text-left text-warning font-weight-bold">Estado: </h3>
-                        <p class="text-white" style="font-size: 9pt; line-height: 1.4;">Tienes {{ round(count(Auth::user()->children)) }} / 100 referidos. Te faltan {{100 - count(Auth::user()->children)}} referidos</p>
+                        <p class="text-white" style="font-size: 9pt; line-height: 1.4;">Tienes {{ round(count(Auth::user()->childrenActive)) }} / 100 referidos. Te faltan {{100 - count(Auth::user()->childrenActive)}} referidos</p>
                     </div>
 
                     <div class="w-100">
@@ -143,7 +143,7 @@
 
                     <div id="bonusTravel" class="collapse py-2">
                         <h3 class="text-white text-left text-warning font-weight-bold">Estado: </h3>
-                        <p class="text-white" style="font-size: 9pt; line-height: 1.4;">Tienes {{ round(count(Auth::user()->children)) }} / 50 referidos. Te faltan {{50 - count(Auth::user()->children)}} referidos</p>
+                        <p class="text-white" style="font-size: 9pt; line-height: 1.4;">Tienes {{ round(count(Auth::user()->childrenActive)) }} / 50 referidos. Te faltan {{50 - count(Auth::user()->childrenActive)}} referidos</p>
                     </div>
 
                     <div class="w-100">
@@ -179,7 +179,7 @@
 
                     <div id="bonusCar" class="collapse py-2">
                         <h3 class="text-white text-left text-warning font-weight-bold">Estado: </h3>
-                        <p class="text-white" style="font-size: 9pt; line-height: 1.4;">Tienes {{ round(count(Auth::user()->children)) }} / 500 referidos. Te faltan {{500 - count(Auth::user()->children)}} referidos</p>
+                        <p class="text-white" style="font-size: 9pt; line-height: 1.4;">Tienes {{ round(count(Auth::user()->childrenActive)) }} / 500 referidos. Te faltan {{500 - count(Auth::user()->childrenActive)}} referidos</p>
                     </div>
 
                     <div class="w-100">
