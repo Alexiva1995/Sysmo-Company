@@ -3,3 +3,5 @@
 @else
 @include('content.dashboard.admin.dashboard-analytics')
 @endif
+
+@include('content.dashboard.components.modalRetirar')
