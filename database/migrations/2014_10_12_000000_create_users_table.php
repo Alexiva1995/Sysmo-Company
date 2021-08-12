@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             //$table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('billetera')->nullable();
+            $table->string('skrill')->nullable();
             $table->enum('role', [0, 1])->default(0)->comment('0-Normal, 1-Admin');
             $table->double('range_id')->default(0);
             $table->enum('status', [0, 1])->default(0)->comment('0-inactivo, 1-activo');
