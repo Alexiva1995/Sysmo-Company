@@ -29,13 +29,8 @@
                         <div class="col-6 d-flex flex-column">
 
                             <h1 class="mb-1 text-dark texto-card-1">Saldo Disponible</h1>
-                            <h1 class="mb-1 text-primary texto-card-2">${{$total}}</h1>
+                            <h1 class="mb-1 mt-2 text-primary texto-card-2">${{$total}}</h1>
 
-                            <div class="text-left">
-                                <p class="card-text m-auto w-75">
-                                    <button data-toggle="modal" data-target="#modalSaldoDisponible" class="btn  btn-outline-warning border-radius-30 text-dark font-bold px-3 @if($total < 1) disabled @endif">Retirar</button>
-                                </p>
-                            </div>
                         </div>
 
                         <div class="col-6">
