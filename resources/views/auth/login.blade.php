@@ -10,10 +10,10 @@
 
 @section('content')
 <x-guest-layout>
-<div class="row justify-content-center">
+<div class="container row justify-content-center">
     <div class="col-12 order-2 order-md-1 col-md-4 offset-md-2 d-flex justify-content-center align-items-center">
         <div class="py-2">
-            <div class="d-flex flex-column mr-4">
+            <div class="d-flex flex-column">
                 <h2 class="text-dark font-weight-bold h1"><strong>¿Aún no eres parte?</strong></h2>
                 <h3 class="text-dark font-weight-bold h2">Únete ahora</h3>
                 <img src="{{ asset('assets/app-assets/images/pages/login/image-login.png') }}" alt="img">
