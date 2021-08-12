@@ -11,6 +11,60 @@
 
 @section('content')
 <x-guest-layout>
+    <div class="container row justify-content-center">
+        <div class="col-12 order-2 order-md-1 col-md-4 offset-md-2 d-flex justify-content-center align-items-center">
+            <div class="py-2">
+                <div class="d-flex flex-column">
+                    <h2 class="text-dark font-weight-bold h1"><strong>¿Aún no eres parte?</strong></h2>
+                    <h3 class="text-dark font-weight-bold h2">Únete ahora</h3>
+                    <img src="{{ asset('assets/app-assets/images/pages/login/image-login.png') }}" alt="img">
+                </div>
+            </div>
+        </div>
+        <div class="col-12 order-md-2 col-md-6">
+            <div class="py-2">
+                <!-- Login v1 -->
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <a href="javascript:void(0);" class="brand-logo">
+                            <img src="{{asset('assets/app-assets/images/logo/logo-dark.png')}}" alt="">  
+                        </a>
+                        <h3 class="card-title text-center mt-2">¿Olvidó la contraseña?</h3>
+    
+                        <x-jet-validation-errors class="mb-4" />
+    
+                        <form class="auth-forgot-password-form mt-2" action="{{ route('password.email') }}" method="POST">
+                            @csrf
+                            @if (session('status'))
+                            <div class="mb-2 font-medium text-sm text-green-600">
+                                {{ session('status') }}
+                            </div>
+                            @endif
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="Correo" aria-describedby="email" tabindex="1" autofocus
+                                    required :value="old('email')" />
+                            </div>
+                            <p class="text-muted mb-1">Proporcione su dirección de correo electrónico para reestablecer su contraseña</p>
+                            <div class="d-flex justify-content-center">
+                                <button class="btn text-center btnlogin" tabindex="2">
+                                    Reestablecer contraseña
+                                </button>
+                            </div>
+                        </form>
+    
+                        <p class="text-center mt-2">
+                            <a href="{{ route('login') }}"> <i data-feather="chevron-left"></i> Volver para iniciar sesión
+                            </a>
+                        </p>
+    
+                    </div>
+                </div>
+                <!-- /Login v1 -->
+            </div>
+        </div>
+    </div>
     <div class="bg-login-register"></div>
     <div class="auth-wrapper auth-v1 px-2">
         <div class="auth-inner py-2">
