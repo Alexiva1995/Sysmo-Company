@@ -2568,8 +2568,8 @@ fieldset:disabled a.btn {
 }
 
 .btn-warning {
-  background-color: #ca9a40;
-  border-color: #ca9a40;
+  background-color: #00CC33;
+  border-color: #00CC33;
   color: #fff;
 }
 .btn-warning:hover {
@@ -2788,13 +2788,13 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-warning {
-  color: #A88034;
+  color: #00CC33;
   border-color: #c08b29;
 }
 .btn-outline-warning:hover {
   color: #2a2e30;
-  background-color: #c48d28;
-  border-color: #c48d28;
+  background-color: #00CC33;
+  border-color: #00CC33;
 }
 .btn-outline-warning:focus, .btn-outline-warning.focus {
   box-shadow: 0 0 0 0.2rem rgba(255, 159, 67, 0.5);
@@ -3166,7 +3166,7 @@ input[type=button].btn-block {
 .dropdown-item.active, .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #e06e00;;
+  background-color: #078326;;
 }
 .dropdown-item.disabled, .dropdown-item:disabled {
   color: #b9b9c3;
@@ -4778,7 +4778,7 @@ a.badge-info:focus, a.badge-info.focus {
 
 .badge-warning {
   color: #c48f2e;
-  background-color: #A88034;
+  background-color: #00CC33;
 }
 a.badge-warning:hover, a.badge-warning:focus {
   color: #2a2e30;
@@ -10953,11 +10953,11 @@ a.text-info:hover, a.text-info:focus {
 }
 
 .text-warning {
-  color: #ff9f43 !important;
+  color: #00CC33 !important;
 }
 
 a.text-warning:hover, a.text-warning:focus {
-  color: #f67800 !important;
+  color: #00CC33 !important;
 }
 
 .text-danger {
@@ -13766,7 +13766,7 @@ ul.list-inline.list-inline-pipe > li + li:before {
   box-shadow: none;
 }
 .page-item .page-link:hover {
-  color: #A88034;
+  color: #00CC33;
 }
 .page-item.active {
   background-color: #f3f2f7;
@@ -13775,7 +13775,7 @@ ul.list-inline.list-inline-pipe > li + li:before {
 .page-item.active .page-link {
   z-index: 3;
   border-radius: 5rem;
-  background-color: #A88034;
+  background-color: #00CC33;
   color: #fff !important;
   font-weight: 600;
 }
@@ -18054,8 +18054,8 @@ input:focus ~ .bg-info {
 }
 
 .btn-warning {
-  background-color: #ca9a40 !important;
-  border-color: #ca9a40 !important;
+  background-color: #00CC33 !important;
+  border-color: #00CC33 !important;
   color: #fff !important;
 }
 .btn-warning:focus, .btn-warning:active, .btn-warning.active {
