@@ -55,7 +55,7 @@ h1,h2,h3,h4,h5,h6,p,a{
     box-shadow: 10px 5px 5px rgba(180, 180, 180, 0.774) !important;
 }
 .membercolor1{
-    background: linear-gradient(180deg, #0051B0 0%, #000F3E 100%) !important;
+    background: linear-gradient(180deg, #0098ff 0%, #0098ff 100%) !important;
 }
 .membercolor2{
     background: linear-gradient(126.94deg, #00CC33 2.02%, #00CC33 119.5%) !important;
@@ -83,7 +83,7 @@ h1,h2,h3,h4,h5,h6,p,a{
 .separador{
     width: 120px;
     height: 8px;
-    background: linear-gradient(90deg, #EBC57D 0%, #AE863A 100%);
+    background: linear-gradient(90deg, #d72f3a5f 0%, #d72f3a 100%);
 }
 .precio{
     font-size: 15px;
