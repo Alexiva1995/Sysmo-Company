@@ -29,7 +29,7 @@
                     </h2>
                     <h2 class="text-white incluye">Incluye el servicio por un mes</h2>
                 </div>
-                <a class="btn btn-outline-warning border-radius-30 btn-block text-dark py-2 texto-card-1" target="_blank" href="{{route('store.buyProduct', $item->id)}}"> Comprar</a>
+                <a class="btn btn-outline-success border-radius-30 btn-block text-dark py-2 texto-card-1" target="_blank" href="{{route('store.buyProduct', $item->id)}}"> Comprar</a>
             
             </div>
             @endif
