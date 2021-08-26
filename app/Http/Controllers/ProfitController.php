@@ -10,6 +10,7 @@ use App\Models\ProductWarehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\Cast\Object_;
 
 class ProfitController extends Controller
 {
@@ -20,18 +21,8 @@ class ProfitController extends Controller
      */
     public function index()
     {
-        $user = User::all();
-        $order = Order::all();
-        $liquidaction = Liquidaction::all();
-        $product_warehouse = ProductWarehouse::all();
-
-        $user_id = Auth::user()->id;
-
-        // dd($product_warehouse);
-
-        // $profit = DB::table('wallets')->where('user_id', $user_id);
-        $comision = Wallet::all()->where('type_transaction', '0')->sum('amount');
-        $retiro = Wallet::all()->where('type_transaction', '1')->sum('amount');
+        $ordenes = Order::where('status', 1)->sum('amount');
+        $comision = Wallet::where('type_transaction', '0')->sum('amount');
         $profit = Wallet::all();
         $ids = Wallet::pluck('user_id')->toArray();
         $correos2 = [];
@@ -44,10 +35,21 @@ class ProfitController extends Controller
 
         return view('content.profit.index')
                     ->with('profit', $profit)
+                    ->with('ordenes', $ordenes)
                     ->with('comision', $comision)
-                    ->with('retiro', $retiro)
                     ->with('correos', $correos);
 
+    }
+
+    public function rangoFecha($from, $to)
+    {
+        // $from = '2020-08-10';
+        // $to = '2021-08-26';
+        $ordenes = Order::where('status', 1)->whereBetween('created_at', [$from, $to])->sum('amount');
+        $comision = Wallet::where('type_transaction', '0')->whereBetween('created_at', [$from, $to])->sum('amount');
+        $data = [$ordenes, $comision];
+
+        return $data;
     }
 
 
