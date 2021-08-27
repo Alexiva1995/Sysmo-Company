@@ -102,7 +102,6 @@
                 }
                 let url = `rangofecha/${from}/${to}`;
                 let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                console.log(url);
                 fetch(url, {
                     headers: {
                         "Content-Type": "application/json",
@@ -115,9 +114,9 @@
                 .then( response => response.text() )
                 .then( resultText => (
                     data = JSON.parse(resultText),
-                    gananciatotal.innerHTML = data[0]-data[1],
-                    ingresos.innerHTML = data[0],
-                    comision.innerHTML = data[1]
+                    gananciatotal.innerHTML = number_format(data[0]-data[1],2,".",","),
+                    ingresos.innerHTML = number_format( data[0],2,".",","),
+                    comision.innerHTML = number_format( data[1],2,".",",")
 
                 ))
                 .catch(function(error) {
@@ -127,6 +126,27 @@
         });
 
     });
+
+    function number_format(number, decimals, dec_point, thousands_sep) {
+    var n = !isFinite(+number) ? 0 : +number, 
+        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+        toFixedFix = function (n, prec) {
+            // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+            var k = Math.pow(10, prec);
+            return Math.round(n * k) / k;
+        },
+        s = (prec ? toFixedFix(n, prec) : Math.round(n)).toString().split('.');
+    if (s[0].length > 3) {
+        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+    }
+    if ((s[1] || '').length < prec) {
+        s[1] = s[1] || '';
+        s[1] += new Array(prec - s[1].length + 1).join('0');
+    }
+    return s.join(dec);
+}
 
 </script>
 @endsection

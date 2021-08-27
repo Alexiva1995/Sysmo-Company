@@ -45,10 +45,9 @@ class ProfitController extends Controller
     {
         // $from = '2020-08-10';
         // $to = '2021-08-26';
-        $ordenes = Order::where('status', 1)->whereBetween('created_at', [$from, $to])->sum('amount');
-        $comision = Wallet::where('type_transaction', '0')->whereBetween('created_at', [$from, $to])->sum('amount');
+        $ordenes = Order::where('status', 1)->whereDate('created_at', '>=', $from)->whereDate('created_at', '<=', $to)->sum('amount');
+        $comision = Wallet::where('type_transaction', '0')->whereDate('created_at', '>=', $from)->whereDate('created_at', '<=', $to)->sum('amount');
         $data = [$ordenes, $comision];
-
         return $data;
     }
 
