@@ -91,10 +91,37 @@
 
         <!-- billetera -->
         <div class="col-sm-12 col-md-6 my-1">
-            <x-jet-label for="billetera" value="{{ __('billetera') }}" />
-            <x-jet-input id="billetera" type="text" class="mt-1 block w-full" wire:model.defer="state.billetera" />
+            <x-jet-label for="select-billetera" value="{{ __('Método de pago') }}" />
+            <select id="select-billetera" class="mt-1 block w-full">
+                <option value="">--Selecciona una billetera--</option>
+                <option value="skrill">Skrill</option>
+                <option value="wallet">Wallet</option>
+            </select>
+            
+            <x-jet-input id="billetera" type="text" class="mt-1 block w-full d-none" placeholder="Ingrese su Billetera" wire:model.defer="state.billetera" />
             <x-jet-input-error for="billetera" class="mt-2" />
+
+            <x-jet-input id="skrill" type="text" class="mt-1 block w-full d-none" placeholder="Ingrese su Skrill" wire:model.defer="state.skrill" />
+            <x-jet-input-error for="skrill" class="mt-2" />
         </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                let selectBilletera = document.querySelector("#select-billetera"),
+                    skrill = document.querySelector("#skrill"),
+                    billetera = document.querySelector("#billetera");
+                selectBilletera.addEventListener('change', selectBil);
+                function selectBil(){
+                    if(selectBilletera.value == 'skrill'){
+                        skrill.classList.remove('d-none');
+                        billetera.classList.add('d-none');
+                    }else{
+                        billetera.classList.remove('d-none');
+                        skrill.classList.add('d-none');
+                    }
+                }
+            })
+        </script>
 
         <!-- role -->
         <div class="col-sm-12 col-md-6 my-1">

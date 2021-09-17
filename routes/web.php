@@ -150,6 +150,7 @@ Route::group(['prefix' => 'admin'], function () {
 
    Route::group(['prefix' => 'profit'], function () {
     Route::get('index', [ProfitController::class,'index'])->name('profit.index');
+    Route::get('rangofecha/{from}/{to}', [ProfitController::class,'rangoFecha'])->name('profit.fecha');
    });
 
   Route::prefix('commissions')->group(function ()

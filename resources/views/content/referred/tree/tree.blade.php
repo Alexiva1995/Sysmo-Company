@@ -46,7 +46,7 @@
 
                     </div>
                     <div class="col-12 my-2">
-                        <a id="ver_arbol" class="btn btn-outline-warning btn-block border-radius-30 text-dark font-weight-bolder text-uppercase" href=>Ver arbol</a>
+                        <a id="ver_arbol" class="btn btn-outline-success btn-block border-radius-30 text-dark font-weight-bolder text-uppercase" href=>Ver arbol</a>
                     </div>
                 </div>
             </div>
