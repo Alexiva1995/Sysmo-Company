@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="{{ asset('css/base/plugins/forms/form-validation.css') }}">
 @endsection
 
-<script src="{{ mix('js/app.js') }}" defer></script>
+<script src="{{ asset(mix('js/app.js')) }}" defer></script>
  @livewireScripts
 
 @section('content')

@@ -31,6 +31,7 @@ class User extends Authenticatable
         'email',
         'password',
         'billetera',
+        'skrill',
         'role',
         'range_id',
         'status',
@@ -77,6 +78,10 @@ class User extends Authenticatable
     public function children()
     {
         return $this->hasMany(User::class, 'referred_id', 'id');
+    }
+    public function childrenActive()
+    {
+        return $this->children()->where('status', '1');
     }
 
         /**

@@ -49,7 +49,7 @@ class BonoMotorBike extends Command
         try {
             for($i = 1; $i <= $alluser; $i++){
                 if(User::find($i)->status == 1){
-                    $referidos = User::find($i)->children;
+                    $referidos = User::find($i)->childrenActive;
                     if(count($referidos) >= 100){
                         if(Wallet::where([['user_id', User::find($i)->id],['bonus_id', 6]])->count() == 0){
                             Wallet::create([

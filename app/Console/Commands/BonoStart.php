@@ -53,18 +53,18 @@ class BonoStart extends Command
             for($i = 1; $i <= $alluser; $i++){
                 $user = User::find($i);
                 if($user->status == 1){
-                    $referidosRangoFecha = $user->children->whereBetween('created_at', [Carbon::parse($user->created_at), Carbon::parse($user->created_at)->addDays(15)] );
+                    $referidosRangoFecha = $user->childrenActive->whereBetween('created_at', [Carbon::parse($user->created_at), Carbon::parse($user->created_at)->addDays(15)] );
 
                     if(count($referidosRangoFecha) >= 3  ) {
 
                         $fechaReferido3 = [];
-                            foreach($user->children as $fecha){
+                            foreach($user->childrenActive as $fecha){
                                 array_push($fechaReferido3, $fecha->created_at); //Crea un array con las fechas de los referidos
                             }
                             sort($fechaReferido3, SORT_STRING); //Ordena la colección por fecha
                             $fechaReferido3 = $fechaReferido3[2]->format('d-m-Y');//El Índice del array tiene que ser 2
                             
-                            $referidosExtra = ($user->children->whereBetween('created_at', [Carbon::parse($fechaReferido3), Carbon::parse($fechaReferido3)->addDays(30)]));//Guarda cuantos referidos se registraron despues de que el referido N°3 se registró hasta 30 días después
+                            $referidosExtra = ($user->childrenActive->whereBetween('created_at', [Carbon::parse($fechaReferido3), Carbon::parse($fechaReferido3)->addDays(30)]));//Guarda cuantos referidos se registraron despues de que el referido N°3 se registró hasta 30 días después
                             
                             if(count($referidosExtra) > 1){
                                 if(Wallet::where([['user_id', User::find($i)->id],['bonus_id', 3]])->count() == 0){
