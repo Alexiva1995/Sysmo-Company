@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->bigInteger('balance')->default(0);
             $table->bigInteger('referred_id')->nullable();
             $table->text('profile_photo_path')->nullable();
+            $table->bigInteger('user_id_crypto')->nullable()->comment('ID del usuario en el sistema de cryto academy');
             //$table->foreignId('current_team_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
