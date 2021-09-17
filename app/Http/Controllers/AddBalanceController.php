@@ -347,7 +347,7 @@ class AddBalanceController extends Controller
      * @param integer $ user_id
      * @return array
      */
-    public function getDataGraphicBalance($ user_id): array
+    public function getDataGraphicBalance($user_id): array
     {
         try {
             $valorBalance = [];
@@ -364,7 +364,7 @@ class AddBalanceController extends Controller
             }else{
                 $balances = AddBalance::select(DB::raw('SUM(balance) as balance'))
                                 ->where([
-                                    [' user_id', '=', $ user_id],
+                                    [' user_id', '=', $user_id],
                                     ['estado', '>=', 0],
                                 ])
                                 ->groupBy(DB::raw('YEAR(fecha_creacion)'), DB::raw('MONTH(fecha_creacion)'))
