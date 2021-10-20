@@ -21,8 +21,6 @@ $configData = Helper::applClasses();
   {{-- Include core + vendor Styles --}}
   @include('layouts.panels.styles')
 
-  {{-- Include core + vendor Styles --}}
-  @include('layouts.panels.styles')
 </head>
 
 
