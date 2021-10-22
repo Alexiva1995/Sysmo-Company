@@ -61,8 +61,8 @@
                         <div class="col-6 d-flex flex-column">
 
                             <h1 class="mb-1 text-white texto-card-1">Membresía</h1>
-                            <h1 class="mb-1 text-white texto-card-2">Crypto <br>
-                                <span style="font-weight: 300; font-size: 13pt;">Academia</span>
+                            <h1 class="mb-1 text-white texto-card-2">Sysmo <br>
+                                <span style="font-weight: 300; font-size: 13pt;">Company</span>
                             </h1>
 
 

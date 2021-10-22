@@ -84,17 +84,11 @@
 
 
     {
-      "name": "Organización",
+      "name": "Referidos",
       "badgeClass": "badge badge-light-warning badge-pill ml-auto mr-1",
       "icon": "users",
-      "slug": "Organización",
+      "slug": "Referidos",
       "submenu": [
-        {
-          "url": "user/referred/tree/tree",
-          "name": "Arbol",
-          "icon": "circle",
-          "slug": "tree_type"
-        },
         {
           "name": "Usuarios",
           "icon": "circle",
