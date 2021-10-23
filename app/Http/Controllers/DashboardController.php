@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bonus;
+use App\Models\Slider;
 use App\Models\Wallet;
 use App\Traits\BonoTrait;
 use Illuminate\Http\Request;
@@ -42,11 +43,13 @@ class DashboardController extends Controller
       'dbBonoCarro' => $dbBonoCarro,
    ];
 
+   $slider = Slider::where('status', '1')->get();
      return view('dashboard')
                             ->with('total', $total)
                             ->with('bonuses', $bonuses)
                             ->with('bono', $bono)
-                            ->with('dbBonos', $dbBonos);
+                            ->with('dbBonos', $dbBonos)
+                            ->with('slider', $slider);
    }
 
   //  // Dashboard - Analytics user

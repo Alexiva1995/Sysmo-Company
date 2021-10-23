@@ -105,6 +105,12 @@
       "icon": "tool",
       "slug": "bonus.logBonus",
       "url": "admin/bonus/BonosCanjeados"
+    },
+    {
+      "name": "Slider",
+      "icon": "eye",
+      "url": "admin/slider",
+      "slug": "bonus.index"      
     }
 
     

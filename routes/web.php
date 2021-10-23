@@ -1,21 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BotController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BonusController;
 use App\Http\Controllers\RangeController;
 use App\Http\Controllers\ProfitController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\TicketsController;
-use App\Http\Controllers\ReferredController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\ReferredController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\ImpersonateController;
 use App\Http\Controllers\LiquidactionController;
 use App\Http\Controllers\MiscellaneousController;
 use App\Http\Controllers\ProductWarehouseController;
-use App\Http\Controllers\BotController;
-use App\Http\Controllers\BonusController;
 
 
 // Main Page Route
@@ -114,6 +115,10 @@ Route::group(['prefix' => 'admin'], function () {
   //   Route::get('/', [DashboardController::class,'dashboardAnalytics'])->name('dashboard-analytics')->middleware('auth', 'checkrole:1');
   //   Route::get('ecommerce', [DashboardController::class,'dashboardEcommerce'])->name('dashboard-ecommerce')->middleware('auth', 'checkrole:1');
   // });
+
+      // Slider
+      Route::resource('slider', SliderController::class);
+
 
     // Bonus user
     Route::prefix('bonus')->group(function ()
