@@ -25,7 +25,7 @@
                         <label for="">Comentario</label>
                         <textarea name="commentary" class="form-control" :required="(StatusProcess == 'reverse') ? true : false"></textarea>
                     </div>
-                    <div class="col-12 my-2">
+                    <div class="col-12 my-2" :class="(StatusProcess == 'reverse') ? 'd-none' : 'd-block'">
                         <label class="custom-file-label" for="img"><b>Subir imagen</b></label>
                         <input type="file" id="img" class="form-control border border-info rounded" name="img"
                             onchange="previewFile(this, 'photo_preview')" accept="image/*" />
