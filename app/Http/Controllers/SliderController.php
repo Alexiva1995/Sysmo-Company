@@ -23,7 +23,7 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         $fields = [
-            'img' => 'required',
+            'img' => 'required|mimes:jpg,jpeg,gif,png',
             'name' => 'string',
             'description' => 'string',
             'status' => 'required'
@@ -71,6 +71,7 @@ class SliderController extends Controller
     {
         $slide = Slider::find($id);
         $fields = [
+            'img' => 'mimes:jpg,jpeg,gif,png',
             'name' => 'string',
             'description' => 'string',
             'status' => 'required'

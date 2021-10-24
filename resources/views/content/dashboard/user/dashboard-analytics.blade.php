@@ -19,7 +19,6 @@
 
 @section('content')
 <!-- Dashboard Analytics Start -->
-{{dd($slider)}}
 <div id="carouselIndicators" class="carousel slide my-2" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>

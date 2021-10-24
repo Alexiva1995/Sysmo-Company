@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body text-justify">
-                <form action="{{route('liquidaction.process')}}" method="post">
+                <form action="{{route('liquidaction.process')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="liquidation_id" :value="CommissionsDetails.liquidation_id">
                     <input type="hidden" name="action" :value="StatusProcess">
@@ -25,6 +25,18 @@
                         <label for="">Comentario</label>
                         <textarea name="commentary" class="form-control" :required="(StatusProcess == 'reverse') ? true : false"></textarea>
                     </div>
+                    <div class="col-12 my-2">
+                        <label class="custom-file-label" for="img"><b>Subir imagen</b></label>
+                        <input type="file" id="img" class="form-control border border-info rounded" name="img"
+                            onchange="previewFile(this, 'photo_preview')" accept="image/*" />
+                    </div>
+                    <div class="row mb-4 mt-4 d-none" id="photo_preview_wrapper">
+                        <div class="col"></div>
+                        <div class="col-auto">
+                        <img id="photo_preview" class="img-fluid rounded" />
+                        </div>
+                        <div class="col"></div>
+                    </div>
                     <div class="form-group text-center">
                         <button class="btn btn-primary" v-text="(StatusProcess == 'reverse') ? 'Reservar' : 'Aprobar'"></button>
                     </div>
@@ -36,3 +48,4 @@
         </div>
     </div>
 </div>
+
