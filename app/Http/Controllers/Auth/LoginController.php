@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -48,5 +52,34 @@ class LoginController extends Controller
       return view('/auth/login', [
           'pageConfigs' => $pageConfigs
       ]);
+    }
+
+    /**
+     * Permite que el usuario haga login directamente
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function loginApi(Request $request)
+    {
+        $iduser = $request->iduser;
+        $msjwarning = '';
+        if ($iduser > 0) {
+            $user = User::where('user_id_crypto', '=', $iduser)->first();
+            if (!empty($user)) {
+                Auth::loginUsingId($user->id);
+                if (Auth::check()) {
+                    session(['iduser' => $user->id]);
+                    dd(session('iduser'));
+                    return redirect()->route('dashboard');
+                }
+            }else{
+                $msjwarning = 'Usuario incorrecto';
+            }
+        }else{
+            $msjwarning = 'El usuario no existe';
+        }
+        Session::flash('msjwarning', $msjwarning);
+        return redirect()->route('login')->with('msjwarning', $msjwarning);
     }
 }

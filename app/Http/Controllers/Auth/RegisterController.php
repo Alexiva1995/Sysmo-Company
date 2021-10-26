@@ -122,9 +122,9 @@ class RegisterController extends Controller
                 $user = User::create([
                     'firstname' => $input['firstname'],
                     'lastname' => $input['lastname'],
-                    'username' => $input['username'].Carbon::now()->format('Y-m-d-H-i-s'),
-                    'email' => $input['email'],
-                    'password' => Hash::make($input['password']),
+                    'username' => $input['username'].$input['lastname'].'_'.$input['firstname'].'_'.$input['user_id_crypto'],
+                    'email' => trim($input['email']),
+                    'password' => $input['password'],
                     'referred_id' => 1,
                     'user_id_crypto'=> $input['user_id_crypto']
                 ]);

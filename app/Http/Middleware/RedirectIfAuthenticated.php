@@ -21,7 +21,16 @@ class RedirectIfAuthenticated
     {
         $guards = empty($guards) ? [null] : $guards;
 
+        if (!empty($request->iduser)) {
+            Auth::loginUsingId($request->iduser);
+                if (Auth::check()) {
+                    session(['iduser' => $request->iduser]);
+                    return redirect('/');
+                }
+        }
+        
         foreach ($guards as $guard) {
+            // dd(Auth::guard($guard)->check());
             if (Auth::guard($guard)->check()) {
                 if (empty($request->referred_id)) {            
                     return redirect(RouteServiceProvider::HOME);
