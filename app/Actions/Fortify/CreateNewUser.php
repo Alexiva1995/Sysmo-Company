@@ -42,7 +42,7 @@ class CreateNewUser implements CreatesNewUsers
             'lastname' => $input['lastname'],
             'username' => $input['username'],
             'email' => $input['email'],
-            'password' => Hash::make($input['password']),
+            'password' => $input['password'],
             'referred_id' => $input['referred_id'],
         ]);
 
@@ -95,7 +95,7 @@ class CreateNewUser implements CreatesNewUsers
             $arreglo2 = explode(':', $arreglo[1]);
             $iduser = trim($arreglo2[1], "}'");
             // Log::info('Id Ultimo user -> '.$iduser);
-            // dd($iduser);
+            // dd($response);
             $result = $iduser;
         }
         return $result;

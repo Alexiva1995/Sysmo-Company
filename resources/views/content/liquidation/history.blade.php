@@ -54,6 +54,7 @@
                         <thead class="thead-primary">
                             <tr class="text-center text-black bg-purple-alt2">
                                 <th>ID</th>
+                                <th>Comprobante</th>
                                 <th>Correo</th>
                                 <th>Fecha </th>
                                 <th>Monto</th>
@@ -66,6 +67,15 @@
                             @foreach ($liquidations as $liqui)
                             <tr class="text-center">
                                 <td>{{$liqui->id}}</td>
+                                <td>
+                                    @if(isset($liqui->img))
+                                    <a target="_blank" href="{{asset('storage/comprobante/'.$liqui->img)}}">
+                                        <img width="60px" height="60px" style="object-fit: cover;" src="{{asset('storage/comprobante/'.$liqui->img)}}" alt="">
+                                    </a>
+                                    @else
+                                    Sin Imagen
+                                    @endif
+                                </td>
                                 <td>{{$liqui->email}}</td>
                                 <td>{{date('Y-m-d', strtotime($liqui->created_at))}}</td>
                                 <td>{{$liqui->total}}</td>

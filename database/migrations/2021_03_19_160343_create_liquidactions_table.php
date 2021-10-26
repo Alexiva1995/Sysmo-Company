@@ -21,6 +21,7 @@ class CreateLiquidactionsTable extends Migration
             $table->double('feed');
             $table->string('hash')->nullable();
             $table->string('wallet_used')->nullable();
+            $table->string('img')->nullable();
             $table->tinyInteger('status');
             $table->timestamps();
         });
