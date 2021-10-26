@@ -19,6 +19,30 @@
 
 @section('content')
 <!-- Dashboard Analytics Start -->
+<div id="carouselIndicators" class="carousel slide my-2" data-ride="carousel">
+    <ol class="carousel-indicators">
+        @foreach ($slider as $key => $slide)
+        <li data-target="#carouselIndicators" data-slide-to="{{$key}}" class="@if($key == 0) active @endif"></li>
+        @endforeach
+    </ol>
+    <div class="carousel-inner">
+        @foreach ($slider as $key => $slide)
+        <div class="carousel-item @if($key == 0) active @endif">
+            <img class="d-block w-100" style="max-height:400px; object-fit: cover; position-attachment" src="{{asset('storage/slider/'.$slide->img)}}" alt="{{$slide->description}}" title="{{$slide->name}}">
+        </div>
+        @endforeach
+
+    </div>
+    <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
 <section id="dashboard-analytics">
     {{-- Cuadros Informativos zero --}}
     @include('content.dashboard.admin.sections.zero')

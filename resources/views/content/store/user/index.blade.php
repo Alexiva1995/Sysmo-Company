@@ -34,6 +34,22 @@
             </div>
             @endif
             @endforeach
+                <div class="col-md-6 col-12 mx-auto my-2">
+                    <div class="card border member membercolor1">
+                        <div>
+                            <h1 class="text-white nombre">Plan de Trading</h1>
+                            {{-- <h2 class="text-white academia">Academia</h2> --}}
+                            <div class="separador"></div>
+                        </div>
+                        
+                        <h2 class="text-white precio">
+                            <span class="text-white cantidad">GRATIS</span>
+                        </h2>
+                        <h2 class="text-white incluye"></h2>
+                    </div>
+                    <a class="btn btn-outline-success border-radius-30 btn-block text-dark py-2 texto-card-1" target="_blank" href="#"> Obtener</a>
+                
+                </div>
         </div>
     </div>
 

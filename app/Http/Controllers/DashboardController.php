@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bonus;
+use App\Models\Slider;
 use App\Models\Wallet;
 use App\Traits\BonoTrait;
 use App\Traits\DetailDashboardTrait;
