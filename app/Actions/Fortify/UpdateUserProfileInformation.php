@@ -52,7 +52,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'billetera' => $input['billetera'],
                 'skrill' => $input['skrill'],
                 'role' => $input['role'],
-                'balance' => $input['balance'],
                 'status' => $input['status'],
             ])->save();
         }

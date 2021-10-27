@@ -82,12 +82,6 @@
             <x-jet-input-error for="whatsapp" class="mt-2" />
         </div>
 
-        <!-- balance -->
-        <div class="col-sm-12 col-md-6 my-1">
-            <x-jet-label for="balance" value="{{ __('balance') }}" />
-            <x-jet-input id="balance" type="number" class="mt-1 block w-full" wire:model.defer="state.balance" />
-            <x-jet-input-error for="balance" class="mt-2" />
-        </div>
 
         <!-- billetera -->
         <div class="col-sm-12 col-md-6 my-1">
