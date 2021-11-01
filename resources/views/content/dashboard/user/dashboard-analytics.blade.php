@@ -21,24 +21,17 @@
 <!-- Dashboard Analytics Start -->
 <div id="carouselIndicators" class="carousel slide my-2" data-ride="carousel">
     <ol class="carousel-indicators">
-      <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselIndicators" data-slide-to="2"></li>
-      <li data-target="#carouselIndicators" data-slide-to="3"></li>
+        @foreach ($slider as $key => $slide)
+        <li data-target="#carouselIndicators" data-slide-to="{{$key}}" class="@if($key == 0) active @endif"></li>
+        @endforeach
     </ol>
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img class="d-block w-100" src="{{asset('images/banner/banner-1.jpg')}}" alt="First slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="{{asset('images/banner/banner-2.jpg')}}" alt="Second slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="{{asset('images/banner/banner-3.jpg')}}" alt="Third slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="{{asset('images/banner/banner-4.jpg')}}" alt="Third slide">
-      </div>
+        @foreach ($slider as $key => $slide)
+        <div class="carousel-item @if($key == 0) active @endif">
+            <img class="d-block w-100" style="max-height:400px; object-fit: cover; position-attachment" src="{{asset('storage/slider/'.$slide->img)}}" alt="{{$slide->description}}" title="{{$slide->name}}">
+        </div>
+        @endforeach
+
     </div>
     <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -48,7 +41,7 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
-  </div>
+</div>
 
 <section id="dashboard-analytics">
     <div class="row match-height">

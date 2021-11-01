@@ -19,6 +19,18 @@ use App\Http\Controllers\MiscellaneousController;
 use App\Http\Controllers\ProductWarehouseController;
 
 
+Route::get('/storage-link', function(){
+  if(file_exists(public_path('storage'))){
+    return 'The "public/storage" directory already exist';
+  }
+
+  $this->laravel->make("files")->link(
+    storage_path('app/public'), public_path('storage')
+  );
+
+  return 'The [public/storage] directory has been linked.';
+});
+
 // Main Page Route
 // Route::get('/', [DashboardController::class,'dashboardAnalytics'])->name('dashboard-analytics')->middleware('verified');
 

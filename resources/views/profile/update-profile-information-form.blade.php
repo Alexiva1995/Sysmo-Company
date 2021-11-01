@@ -82,12 +82,6 @@
             <x-jet-input-error for="whatsapp" class="mt-2" />
         </div>
 
-        <!-- balance -->
-        <div class="col-sm-12 col-md-6 my-1">
-            <x-jet-label for="balance" value="{{ __('balance') }}" />
-            <x-jet-input id="balance" type="number" class="mt-1 block w-full" wire:model.defer="state.balance" />
-            <x-jet-input-error for="balance" class="mt-2" />
-        </div>
 
         <!-- billetera -->
         <div class="col-sm-12 col-md-6 my-1">
@@ -126,15 +120,6 @@
             })
         </script>
 
-        <!-- role -->
-        <div class="col-sm-12 col-md-6 my-1">
-            <x-jet-label for="role" value="{{ __('role') }}" />
-            <select id="role" type="number" class="mt-1 block w-full" wire:model.defer="state.role" >
-                <option value="0" @if(Auth::user()->role == '0') selected  @endif>Normal</option>
-                <option value="1" @if(Auth::user()->role == '1') selected  @endif>Administrador</option>
-        </select>
-            <x-jet-input-error for="role" class="mt-2" />
-        </div>
 
           <!-- status -->
           <div class="col-sm-12 col-md-6 my-1">
