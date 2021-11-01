@@ -122,6 +122,8 @@ Route::group(['prefix' => 'user'], function () {
   // rutas para los usuarios admin
 Route::group(['prefix' => 'admin'], function () {
 
+  Route::get('graphi_orden', [DashboardController::class, 'getDataOrdenGraphi'])->name('graphic.orders');
+
   // home admin
   // Route::group(['prefix' => 'dashboard'], function () {
   //   Route::get('/', [DashboardController::class,'dashboardAnalytics'])->name('dashboard-analytics')->middleware('auth', 'checkrole:1');

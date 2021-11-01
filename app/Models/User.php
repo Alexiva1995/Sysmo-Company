@@ -66,6 +66,16 @@ class User extends Authenticatable
         return $this->display_name;
     }
 
+    /**
+     * Permite obtener el nombre completo de un usuario
+     *
+     * @return void
+     */
+    public function fullname()
+    {
+        return $this->firstname.' '.$this->lastname;
+    }
+
     public function children()
     {
         return $this->hasMany(User::class, 'referred_id', 'id');

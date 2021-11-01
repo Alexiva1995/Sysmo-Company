@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('v1/register', [RegisterController::class, 'getRegisteApiCrypto'])->name('api.register');
+Route::get('v1/login', [LoginController::class, 'loginApi'])->name('api.register');
