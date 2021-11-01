@@ -322,7 +322,7 @@ trait BonoTrait{
          •Al sumar 100 referidos el usuario recibirá una moto 0 kilómetros.
          ******************************************************************/
         try {
-            dd(Auth::user());
+            // dd(Auth::user());
             $referidos = User::find(Auth::user()->id)->childrenActive;
             $porcentaje = round(count($referidos)/100*100, 2);
             if($porcentaje > 100){

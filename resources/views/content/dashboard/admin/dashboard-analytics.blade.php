@@ -127,6 +127,7 @@
         // ----------------------------------
         var lineChartOptions = {
             chart: {
+                width: '180%',
                 height: 350,
                 type: 'line',
                 zoom: {
