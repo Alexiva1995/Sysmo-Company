@@ -47,7 +47,7 @@
                         </h2>
                         <h2 class="text-white incluye"></h2>
                     </div>
-                    <a class="btn btn-outline-success border-radius-30 btn-block text-dark py-2 texto-card-1" target="_blank" href="#"> Obtener</a>
+                    <a class="btn btn-outline-success border-radius-30 btn-block text-dark py-2 texto-card-1" target="_blank" href="https://docs.google.com/file/d/1QntDNkDv-zbwMUTeaN8k0WfOoHug5Kij/edit?usp=docslist_api&filetype=msword"> Obtener</a>
                 
                 </div>
         </div>
