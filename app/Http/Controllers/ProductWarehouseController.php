@@ -222,6 +222,8 @@ class ProductWarehouseController extends Controller
             'order_id' => $order->id,
             'order_amount' => $order->amount,
             'order_status' => $order->status,
+            'order_method' => $order->method,
+            'order_transaction' => $order->transaction_id,
             'user_id' => $user->id,
             'username' => $user->username,
             'firstname' => $user->firstname,
@@ -266,8 +268,9 @@ class ProductWarehouseController extends Controller
 
     }
 
-    public function buyProduct($id)
-    {
+
+    public function payByPaypal($id){
+        $payPaypal = new PayPalPaymentController;
         $product = ProductWarehouse::find($id);
         $user = Auth::user()->id;
         $data = Order::latest('id')->first();
@@ -277,29 +280,73 @@ class ProductWarehouseController extends Controller
             'user_id' => Auth::user()->id,
             'product_id' => $product->id,
             'amount' => $product->price,
+            'method' => 'paypal',
             'status' => '0'
         ];
 
         $transacion = [
-            'amountTotal' => $product->price,
-            'note' => 'Compra de paquete: '.$product->name.' por un precio de '.$product->price,
-            'order_id' => $this->guardarOrden($infoOrden),
-            'tipo' => 'Compra de un paquete',
-            'tipo_transacion' => 3,
-            'buyer_name' => Auth::user()->firstname,
-            'buyer_email' => Auth::user()->email,
-            'redirect_url' => url('/'),
-            'cancel_url' => url('/')
-        ];
-        $transacion['items'][] = [
-            'itemDescription' => 'Compra de paquete '.$product->name,
-            'itemPrice' => $product->price, // USD
-            'itemQty' => (INT) 1,
-            'itemSubtotalAmount' => $product->price // USD
-        ];
-        $ruta = \CoinPayment::generatelink($transacion);
-        return redirect($ruta);
+                'amountTotal' => $product->price,
+                'note' => 'Compra de paquete: '.$product->name.' por un precio de '.$product->price,
+                'order_id' => $this->guardarOrden($infoOrden),
+                'tipo' => 'Compra de un paquete',
+                'buyer_name' => Auth::user()->firstname,
+                'buyer_email' => Auth::user()->email,
+            ];
 
+            $payPaypal->paymentProcess($transacion);
+    }
+    public function payByCoinbase($id){
+        dd($id);
+    }
+    public function buyProduct(Request $request)
+    {
+
+        $validate = $request->validate([
+            'idProduct' => 'required',
+            'metodoPago' => 'required',
+        ]); 
+
+        if($validate){
+            if($request->metodoPago == 'paypal'){
+                $this->payByPaypal($request->idProduct);
+            }elseif($request->metodoPago == 'coinbase'){
+                $this->payByCoinbase($request->idProduct);
+            }
+        }
+
+
+        // $product = ProductWarehouse::find($id);
+        // $user = Auth::user()->id;
+        // $data = Order::latest('id')->first();
+        // $hayData = $data? $data->id+1 : 1;
+
+        // $infoOrden = [
+        //     'user_id' => Auth::user()->id,
+        //     'product_id' => $product->id,
+        //     'amount' => $product->price,
+        //     'status' => '0'
+        // ];
+
+        // $transacion = [
+        //     'amountTotal' => $product->price,
+        //     'note' => 'Compra de paquete: '.$product->name.' por un precio de '.$product->price,
+        //     'order_id' => $this->guardarOrden($infoOrden),
+        //     'tipo' => 'Compra de un paquete',
+        //     'tipo_transacion' => 3,
+        //     'buyer_name' => Auth::user()->firstname,
+        //     'buyer_email' => Auth::user()->email,
+        //     'redirect_url' => url('/'),
+        //     'cancel_url' => url('/')
+        // ];
+        // $transacion['items'][] = [
+        //     'itemDescription' => 'Compra de paquete '.$product->name,
+        //     'itemPrice' => $product->price, // USD
+        //     'itemQty' => (INT) 1,
+        //     'itemSubtotalAmount' => $product->price // USD
+        // ];
+        // $ruta = \CoinPayment::generatelink($transacion);
+        // return redirect($ruta);
+//////////////////////////////////////////////////////////////
         // try{
         //     $product = ProductWarehouse::find($id);
         //     $user = Auth::user()->id;

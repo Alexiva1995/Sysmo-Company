@@ -16,6 +16,7 @@ use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\ImpersonateController;
 use App\Http\Controllers\LiquidactionController;
 use App\Http\Controllers\MiscellaneousController;
+use App\Http\Controllers\PayPalPaymentController;
 use App\Http\Controllers\ProductWarehouseController;
 
 
@@ -53,7 +54,11 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('store/save', [ProductWarehouseController::class,'saveOrden'])->name('store.save');
     Route::get('list-user', [ProductWarehouseController::class,'listUser'])->name('store.list-user');
     Route::get('show/{id}', [ProductWarehouseController::class,'showUser'])->name('store.show');
-    Route::get('buyProduct/{id}', [ProductWarehouseController::class,'buyProduct'])->name('store.buyProduct');
+    Route::post('buyProduct/', [ProductWarehouseController::class,'buyProduct'])->name('store.buyProduct');
+
+    Route::get('handle-payment', [PayPalPaymentController::class,'paymentProcess'])->name('paypal.make.payment');
+    Route::get('payment-success', [PayPalPaymentController::class,'paymentSuccess'])->name('paypal.success.payment');
+    Route::get('cancel-payment', [PayPalPaymentController::class,'paymentCancel'])->name('paypal.cancel.payment');
   });
 
   // Ruta para agregar saldo

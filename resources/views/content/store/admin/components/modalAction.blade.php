@@ -69,6 +69,8 @@
                                     <th>ID</th>
                                     <th>Monto</th>
                                     <th>Estado</th>
+                                    <th>Método</th>
+                                    <th>ID Transacción</th>
                                     <th>Cambiar estado</th>
                                 </tr>
                             </thead>
@@ -79,7 +81,9 @@
                                     <td v-if="CommissionsDetails.order_status == 0"> 
                                         <a class="badge badge-info text-white">En Espera</a>
                                     </td>
-                                    
+                                    <td><p v-text="CommissionsDetails.order_method"></p></td>
+                                    <td><p v-text="CommissionsDetails.order_transaction"></p></td>
+
                                     <td v-if="CommissionsDetails.order_status == 0" class="w-50"> 
                                         <div class="d-flex justify-content-center">
                                             <form action="{{route('edit-order')}}" method="post">

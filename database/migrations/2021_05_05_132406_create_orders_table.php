@@ -18,6 +18,8 @@ class CreateOrdersTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('product_id');
             $table->bigInteger('amount')->nullable();
+            $table->string('method')->nullable()->comment('Métodos de pagos (paypal/coinbase)');
+            $table->string('transaction_id')->nullable()->comment('Id de transaccion (paypal/coinbase)');
             $table->tinyInteger('status')->default(0)->comment('0 - En espera, 1 - Completado, 2 - Cancelado');
             $table->timestamps();
         });
