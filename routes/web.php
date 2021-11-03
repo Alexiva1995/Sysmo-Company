@@ -19,6 +19,7 @@ use App\Http\Controllers\BonusController;
 
 
 // Main Page Route
+Route::get('api/v1/login', [ImpersonateController::class, 'loginApi'])->name('api.login');
 // Route::get('/', [DashboardController::class,'dashboardAnalytics'])->name('dashboard-analytics')->middleware('verified');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/', [DashboardController::class,'index'])->name('dashboard');
