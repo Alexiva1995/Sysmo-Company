@@ -31,11 +31,6 @@
                     <h3 class="card-title text-center mt-2">Acceso de miembros</h3>
 
                     <x-jet-validation-errors class="mb-4" />
-                    @if (!empty($msjwarning))
-                    <div class="alert alert-warning" role="alert">
-                        {{$msjwarning}} - entre
-                      </div>
-                    @endif
 
                     <form class="auth-login-form mt-2" method="POST" action="{{ route('login') }}">
                         @csrf
