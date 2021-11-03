@@ -382,6 +382,7 @@ class LiquidactionController extends Controller
         if ($request->action == 'aproved') {
             $validate = $request->validate([
                 'hash' => ['required'],
+                'comprobante' => ['mimes:jpg,jpeg,gif,png'],
             ]);
         }else{
             $validate = $request->validate([
@@ -394,12 +395,20 @@ class LiquidactionController extends Controller
                 $liquidation_id = $request->liquidation_id;
                 $accion = 'No Procesada';
 
+                
+
                 if ($request->action == 'reverse') {
                     $accion = 'Reversada';
                     $this->reversarLiquidacion($liquidation_id, $request->commentary);
                 }elseif ($request->action == 'aproved') {
+                    $name = null;
+                    if ($request->hasFile('img')) {
+                        $file = $request->file('img');
+                        $name = md5($file->getClientOriginalName()) . '.' . $file->getClientOriginalExtension();
+                        $file->move(public_path('storage').'/comprobante',$name);
+                    }
                     $accion = 'Aprobada';
-                    $this->ApproveLiquidation($liquidation_id, $request->hash);
+                    $this->ApproveLiquidation($liquidation_id, $request->hash, $name);
                 }
                 if ($accion != 'No Procesada') {
                     $arrayLog = [
@@ -428,11 +437,12 @@ class LiquidactionController extends Controller
      * @param string $hash
      * @return void
      */
-    public function ApproveLiquidation($liquidation_id, $hash)
+    public function ApproveLiquidation($liquidation_id, $hash, $img)
     {
         Liquidaction::where('id', $liquidation_id)->update([
             'status' => 1,
-            'hash' => $hash
+            'hash' => $hash,
+            'img' => $img
         ]);
 
         Wallet::where('liquidation_id', $liquidation_id)->update(['liquidado' => 1]);

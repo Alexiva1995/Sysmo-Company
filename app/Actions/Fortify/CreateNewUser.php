@@ -95,7 +95,7 @@ class CreateNewUser implements CreatesNewUsers
             $arreglo2 = explode(':', $arreglo[1]);
             $iduser = trim($arreglo2[1], "}'");
             // Log::info('Id Ultimo user -> '.$iduser);
-            // dd($iduser);
+            // dd($response);
             $result = $iduser;
         }
         return $result;

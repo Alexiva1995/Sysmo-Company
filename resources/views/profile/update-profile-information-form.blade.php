@@ -95,7 +95,7 @@
             <select id="select-billetera" class="mt-1 block w-full">
                 <option value="">--Selecciona una billetera--</option>
                 <option value="skrill">Skrill</option>
-                <option value="wallet">Wallet</option>
+                {{-- <option value="wallet">Wallet</option> --}}
             </select>
             
             <x-jet-input id="billetera" type="text" class="mt-1 block w-full d-none" placeholder="Ingrese su Billetera" wire:model.defer="state.billetera" />
@@ -115,8 +115,11 @@
                     if(selectBilletera.value == 'skrill'){
                         skrill.classList.remove('d-none');
                         billetera.classList.add('d-none');
-                    }else{
+                    }else if(selectBilletera.value == 'wallet'){
                         billetera.classList.remove('d-none');
+                        skrill.classList.add('d-none');
+                    }else{
+                        billetera.classList.add('d-none');
                         skrill.classList.add('d-none');
                     }
                 }
