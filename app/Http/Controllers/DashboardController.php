@@ -54,11 +54,14 @@ class DashboardController extends Controller
       'listOrdens' => $this->getOrdensList(),
     ];
 
+    $slider = Slider::where('status', '1')->get();
+
     return view('dashboard')
       ->with('total', $total)
       ->with('bonuses', $bonuses)
       ->with('bono', $bono)
       ->with('dbBonos', $dbBonos)
+      ->with('slider', $slider)
       ->with('detalles', $detalles);
   }
 

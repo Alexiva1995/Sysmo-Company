@@ -51,8 +51,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'whatsapp' => $input['whatsapp'],
                 'billetera' => $input['billetera'],
                 'skrill' => $input['skrill'],
-                'role' => $input['role'],
-                'balance' => $input['balance'],
                 'status' => $input['status'],
             ])->save();
         }

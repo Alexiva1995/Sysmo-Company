@@ -37,34 +37,12 @@
       ]
     },
 
-
     {
-      "name": "Organizacion",
-      "badgeClass": "badge badge-light-warning badge-pill ml-auto mr-1",
+      "name": "Referidos",
       "icon": "users",
-      "slug": "Referidos",
-      "submenu": [
-        {
-          "url": "user/referred/tree/tree",
-          "name": "Arbol",
-          "icon": "circle",
-          "slug": "tree_type"
-        },
-        {
-          "url": "user/referred/list-direct",
-          "name": "Directos",
-          "icon": "circle",
-          "slug": "referred.list.direct"
-        },
-        {
-          "url": "user/referred/list-net",
-          "name": "Red",
-          "icon": "circle",
-          "slug": "referred.list.net"
-        }
-      ]
+      "url": "user/referred/list-direct",
+      "slug": "referred.list.direct"
     },
-
     
     {
       "name": "Bonos",

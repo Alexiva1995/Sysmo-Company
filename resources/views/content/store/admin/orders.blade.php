@@ -59,6 +59,7 @@
                                 <th>Producto</th>
                                 <th>Usuario</th>
                                 <th>Estado</th>
+                                <th>Metodo</th>
                                 <th>Fecha</th>
                                 <th>Acciones</th>
                             </tr>
@@ -79,6 +80,12 @@
                                 @else
                                 <td> <a class=" badge badge-danger text-white">Cancelado</a></td>
                                 
+                                @endif
+
+                                @if ($item->method == 'paypal')
+                                <td> <a class=" badge badge-info text-white">PayPal</a></td>
+                                @elseif($item->method == 'coinbase')
+                                <td> <a class=" badge badge-success text-white">CoinBase</a></td>
                                 @endif
 
                                 <td>{{ $item->created_at}}</td>
