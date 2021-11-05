@@ -14,10 +14,10 @@ class LogLiquidactionSeeder extends Seeder
      */
     public function run()
     {
-        LogLiquidation::create([
-            'liquidation_id' => '2',
-            'commentary' => 'reversar',
-            'action' => 'Reversada',            
-        ]);
+        // LogLiquidation::create([
+        //     'liquidation_id' => '2',
+        //     'commentary' => 'reversar',
+        //     'action' => 'Reversada',            
+        // ]);
     }
 }
