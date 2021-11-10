@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Coinbase;
+use App\Models\User;
 use App\Models\Order;
+use App\Traits\BonoTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\ProductWarehouse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth;
 use Hexters\CoinPayment\CoinPayment;
+use Illuminate\Support\Facades\Auth;
 use Hexters\CoinPayment\Helpers\CoinPaymentHelper;
-use App\Models\User;
-use App\Traits\BonoTrait;
 
 class ProductWarehouseController extends Controller
 {
@@ -296,7 +297,46 @@ class ProductWarehouseController extends Controller
             $payPaypal->paymentProcess($transacion);
     }
     public function payByCoinbase($id){
-        dd($id);
+        $product = ProductWarehouse::find($id);
+        $user = Auth::user()->id;
+        $data = Order::latest('id')->first();
+
+        $infoOrden = [
+            'user_id' => Auth::user()->id,
+            'product_id' => $product->id,
+            'amount' => $product->price,
+            'method' => 'paypal',
+            'status' => '0'
+        ];
+
+        $transacion = [
+                'amountTotal' => $product->price,
+                'note' => 'Compra de paquete: '.$product->name.' por un precio de '.$product->price,
+                'order_id' => $this->guardarOrden($infoOrden),
+                'tipo' => 'Compra de un paquete',
+                'buyer_name' => Auth::user()->firstname,
+                'buyer_email' => Auth::user()->email,
+            ];
+
+
+        $charge = Coinbase::createCharge([
+            'name' => 'Producto '.$product->name,
+            'description' => $transacion['note'],
+            'local_price' => [
+                'amount' => $transacion['amountTotal'],
+                'currency' => 'USD',
+            ],
+            'pricing_type' => 'fixed_price',
+        ]);
+
+        $url = $charge['data']['hosted_url'];
+        //    dd($url);
+        if (!empty($url)) {
+            return redirect($url)->send();
+        }else{
+            $product->delete();
+            return redirect()->back()->with('msj', 'Problemas al general la orden, intente mas tarde');
+        }
     }
     public function buyProduct(Request $request)
     {
