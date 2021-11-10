@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Coinbase;
 use App\Models\User;
 use App\Models\Order;
 use App\Traits\BonoTrait;
@@ -297,19 +296,19 @@ class ProductWarehouseController extends Controller
             $payPaypal->paymentProcess($transacion);
     }
     public function payByCoinbase($id){
+        $payCoinbase = new CoinbasePaymentController;
         $product = ProductWarehouse::find($id);
-        $user = Auth::user()->id;
-        $data = Order::latest('id')->first();
 
         $infoOrden = [
             'user_id' => Auth::user()->id,
             'product_id' => $product->id,
             'amount' => $product->price,
-            'method' => 'paypal',
+            'method' => 'coinbase',
             'status' => '0'
         ];
 
         $transacion = [
+                'name' => $product->name,
                 'amountTotal' => $product->price,
                 'note' => 'Compra de paquete: '.$product->name.' por un precio de '.$product->price,
                 'order_id' => $this->guardarOrden($infoOrden),
@@ -318,25 +317,7 @@ class ProductWarehouseController extends Controller
                 'buyer_email' => Auth::user()->email,
             ];
 
-
-        $charge = Coinbase::createCharge([
-            'name' => 'Producto '.$product->name,
-            'description' => $transacion['note'],
-            'local_price' => [
-                'amount' => $transacion['amountTotal'],
-                'currency' => 'USD',
-            ],
-            'pricing_type' => 'fixed_price',
-        ]);
-
-        $url = $charge['data']['hosted_url'];
-        //    dd($url);
-        if (!empty($url)) {
-            return redirect($url)->send();
-        }else{
-            $product->delete();
-            return redirect()->back()->with('msj', 'Problemas al general la orden, intente mas tarde');
-        }
+            $payCoinbase->paymentProcess($transacion);
     }
     public function buyProduct(Request $request)
     {
