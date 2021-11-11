@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BotController;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BonusController;
 use App\Http\Controllers\RangeController;
@@ -19,6 +20,10 @@ use App\Http\Controllers\MiscellaneousController;
 use App\Http\Controllers\PayPalPaymentController;
 use App\Http\Controllers\ProductWarehouseController;
 
+Route::get('/clear-cache', function() {
+  Artisan::call('optimize');
+  return 'DONE'; //Return anything
+});
 
 Route::get('/storage-link', function(){
   if(file_exists(public_path('storage'))){
