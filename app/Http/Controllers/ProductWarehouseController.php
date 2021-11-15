@@ -248,7 +248,7 @@ class ProductWarehouseController extends Controller
         $order = Order::findOrFail($id);
         $order->status = $status;
         if($order->save()){
-            $this->bonoDirecto($order);//Consulta si cumple con bonoDirecto
+            // $this->bonoDirecto($order);//Consulta si cumple con bonoDirecto
             $this->bonoMoney($order);//Consulta si cumple con bonoMoney
             return redirect()->route('store.list-orders')->with('message', 'El Pedido fue actualizado Exitosamente');
         }else{

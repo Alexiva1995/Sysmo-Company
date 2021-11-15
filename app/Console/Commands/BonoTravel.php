@@ -48,31 +48,30 @@ class BonoTravel extends Command
           los cumple en los primeros 90 días de su ingreso a sysmo el viaje 
           aplicara para 2 personas todo incluido.
          ******************************************************************/
-        $alluser = count(User::all());
-         try {
-            for($i = 1; $i <= $alluser; $i++){
-                $user = User::find($i);
-                if($user->status == 1){
+        $alluser = User::get();
+        try{
+            foreach($alluser as $user){   
+                if($user->status == "1"){
                     if(count($user->childrenActive) >= 50 && $user->created_at->diffInDays(Carbon::now()) <= 90){
-                        if(Wallet::where([['user_id', User::find($i)->id],['bonus_id', 5]])->count() == 0){
+                        if(Wallet::where([['user_id', $user->id],['bonus_id', 4]])->count() == 0){
                             Wallet::create([
-                                'user_id' => User::find($i)->id,
-                                'bonus_id' => 5,
-                                'description' => 'Bono Travel (2 personas), para ' . User::find($i)->username . ' (' .User::find($i)->email . ')',
+                                'user_id' => $user->id,
+                                'bonus_id' => 4,
+                                'description' => 'Bono Travel (2 personas), para ' . $user->username . ' (' .$user->email . ')',
                                 'status' => 0
                             ]);
-                            Storage::append("BonoTravel.txt", 'Bono Travel (2 personas) para ' . User::find($i)->username . ' (' . User::find($i)->email . ')');
+                            Storage::append("BonoTravel.txt", 'Bono Travel (2 personas) para ' . $user->username . ' (' . $user->email . ')');
                         }
                         // Storage::append("BonoTravel.txt", $i . " si cumple para 2 personas");
                     }elseif(count($user->childrenActive) >= 50){
-                        if(Wallet::where([['user_id', User::find($i)->id],['bonus_id', 5]])->count() == 0){
+                        if(Wallet::where([['user_id', $user->id],['bonus_id', 4]])->count() == 0){
                             Wallet::create([
-                                'user_id' => User::find($i)->id,
-                                'bonus_id' => 5,
-                                'description' => 'Bono Travel (1 persona) para ' . User::find($i)->username . ' (' .User::find($i)->email . ')',
+                                'user_id' => $user->id,
+                                'bonus_id' => 4,
+                                'description' => 'Bono Travel (1 persona) para ' . $user->username . ' (' .$user->email . ')',
                                 'status' => 0
                             ]);
-                            Storage::append("BonoTravel.txt", 'Bono Travel (1 persona) para ' . User::find($i)->username . ' (' .User::find($i)->email . ')');
+                            Storage::append("BonoTravel.txt", 'Bono Travel (1 persona) para ' . $user->username . ' (' .$user->email . ')');
                         }
                         // Storage::append("BonoTravel.txt", $i . " si cumple para 1 persona");
                     }

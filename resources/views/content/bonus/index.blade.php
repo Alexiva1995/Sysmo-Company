@@ -48,7 +48,7 @@
                             <div class="w-100">
                                 @switch($key+1)
 
-                                    {{-- BONO MONEY --}}
+                                    {{-- BONO Automático --}}
                                     @case(1)
                                         <div class="progress w-100 rounded-0" style="height: 20px;">
                                             <div class="progress-bar progress-bar-striped progress-bar-animated rounded-0 bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{$bono['bonoMoney']}}%">{{$bono['bonoMoney']}}%</div>
@@ -70,29 +70,8 @@
                                             
                                     @break
 
-                                    {{-- BONO SPEED --}}
+                                    {{-- BONO ARRANQUE --}}
                                     @case(2)
-                                            @if($dbBonos['dbBonoSpeed']<1)
-                                                @if($bono['bonoSpeed'] != 0)
-                                                {!! $bono['bonoSpeed'] !!} 
-                                                    <div class="my-1 bg-primary w-100 font-weight-bold h3 text-white text-center mb-2">
-                                                        En Progreso
-                                                    </div>
-                                                @else
-                                                    <div class="my-1 bg-danger w-100 font-weight-bold h3 text-white text-center mb-2">
-                                                        No Obtenido
-                                                    </div> 
-                                                @endif
-                                            @else
-                                                <div class="my-1 bg-success w-100 font-weight-bold h3 text-white text-center mb-2">
-                                                    Bono Obtenido 
-                                                </div>
-                                            @endif
-                                        
-                                    @break
-
-                                    {{-- BONO START --}}
-                                    @case(3)
                                         @if($dbBonos['dbBonoStart']<1)
                                             @if($bono['bonoStart'] != 0)
                                             {!! $bono['bonoStart'] !!} 
@@ -109,10 +88,35 @@
                                                 Bono Obtenido 
                                             </div>
                                         @endif
+                                        
                                     @break
 
+                                    {{-- BONO VELOCIDAD --}}
+                                    @case(3)
+                                            @if($dbBonos['dbBonoSpeed']<1)
+                                                @if($bono['bonoSpeed'] != 0)
+                                                {!! $bono['bonoSpeed'] !!} 
+                                                    <div class="my-1 bg-primary w-100 font-weight-bold h3 text-white text-center mb-2">
+                                                        En Progreso
+                                                    </div>
+                                                @else
+                                                    <div class="my-1 bg-danger w-100 font-weight-bold h3 text-white text-center mb-2">
+                                                        No Obtenido
+                                                    </div> 
+                                                @endif
+                                            @else
+                                                <div class="my-1 bg-success w-100 font-weight-bold h3 text-white text-center mb-2">
+                                                    Bono Obtenido 
+                                                </div>
+                                            @endif
+                                            
+                                        
+                                    @break
+
+                                    
+
                                     {{-- BONO DIRECT --}}
-                                    @case(4)
+                                    {{-- @case(4)
                                         @if($dbBonos['dbBonoDirect']<1)
                                             <div class="my-1 bg-primary w-100 font-weight-bold h3 text-white text-center mb-2">
                                                 En Progreso
@@ -126,10 +130,11 @@
                                                 {{$dbBonos['dbBonoDirect']}}  Bonos Obtenidos 
                                             </div>
                                         @endif
-                                    @break
+                                    @break --}}
 
                                     {{-- BONO TRAVEL --}}
-                                    @case(5)
+                                    @case(4)
+                                    {{-- {{dd($bono['bonoTravel'])}} --}}
                                         @if($dbBonos['dbBonoTravel']<1)
                                             @if($bono['bonoTravel'] != 1 && $bono['bonoTravel'] != 2)
                                                 {!! $bono['bonoTravel'] !!}
@@ -149,10 +154,11 @@
                                                 </div>
                                             @endif
                                         @endif
+                                        
                                     @break
 
                                     {{-- BONO MOTO --}}
-                                    @case(6)
+                                    @case(5)
                                         @if($dbBonos['dbBonoMoto']<1)
                                             @if($bono['bonoMoto'] != 1)
                                                 {!! $bono['bonoMoto'] !!}
@@ -168,10 +174,11 @@
                                                 </div>
                                             @endif
                                         @endif
+                                        
                                     @break
 
                                     {{-- BONO CARRO --}}
-                                    @case(7)
+                                    @case(6)
                                         @if($dbBonos['dbBonoCarro']<1)
                                             @if($bono['bonoCarro'] != 1)
                                                 {!! $bono['bonoCarro'] !!}
@@ -187,9 +194,13 @@
                                                 </div>
                                             @endif
                                         @endif
+                                        
                                     @break
                                     
                                 @endswitch
+                                <div class="d-flex justify-content-center">
+                                    <a class="text-white" href="https://sysmocompany.com/home/terms_and_condition">Términos y condiciones</a>
+                                </div>
                                 
                             </div>
                         </div>

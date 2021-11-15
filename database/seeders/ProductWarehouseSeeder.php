@@ -18,7 +18,7 @@ class ProductWarehouseSeeder extends Seeder
         ProductWarehouse::create([
             'name' => 'Cashbot RS',
             'description' => 'Descripcion de Cashbot RS',
-            'price' => '210',
+            'price' => '250',
             'photoDB' => 'Cashbot RS_caballo.jpg',
             'status' => '1'
         ]);
@@ -26,7 +26,7 @@ class ProductWarehouseSeeder extends Seeder
         ProductWarehouse::create([
             'name' => 'Cashbot Pro',
             'description' => 'Descripcion de Cashbot PRO',
-            'price' => '300',
+            'price' => '357',
             'photoDB' => 'Cashbot Pro_osopolar.jpg',
             'status' => '1'
         ]);

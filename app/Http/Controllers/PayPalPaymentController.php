@@ -151,7 +151,7 @@ class PayPalPaymentController extends Controller
         // dd($request);
         $order->status = $status;
         if($order->save()){
-            $this->bonoDirecto($order);//Consulta si cumple con bonoDirecto
+            // $this->bonoDirecto($order);//Consulta si cumple con bonoDirecto
             $this->bonoMoney($order);//Consulta si cumple con bonoMoney
         }
     }

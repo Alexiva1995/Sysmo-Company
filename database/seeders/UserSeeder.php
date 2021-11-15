@@ -74,7 +74,7 @@ class UserSeeder extends Seeder
         //         'referred_id' => 2
         //     ]);
         // }
-        // for($i = 0; $i<20; $i++){
+        // for($i = 0; $i<48; $i++){
         //     User::create([
         //         'firstname'=> Str::random(5),
         //         'lastname'=> Str::random(5),
@@ -87,7 +87,7 @@ class UserSeeder extends Seeder
         //         'range_id'=> '0',
         //         'status'=> '1',
         //         'balance'=> '30000',
-        //         'referred_id' => random_int(3,20)
+        //         'referred_id' => 2
         //     ]);
         // }
     }
