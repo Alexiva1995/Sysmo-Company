@@ -35,13 +35,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('bono:carlifestyle')->everyMinute();
-        $schedule->command('bono:motorbike')->everyMinute();
-        $schedule->command('bono:travel')->everyMinute();
-        $schedule->command('bono:speed')->everyMinute();
-        $schedule->command('bono:start')->everyMinute();
-        $schedule->command('scan:orderstatus')->everyFiveMinutes();
-        $schedule->command('scanOrder:StatusPaypal')->everyMinute();
+        $schedule->command('bono:carlifestyle')->daily();
+        $schedule->command('bono:motorbike')->daily();
+        $schedule->command('bono:travel')->daily();
+        $schedule->command('bono:speed')->daily();
+        $schedule->command('bono:start')->daily();
+        $schedule->command('scan:orderstatus')->everyTenMinutes();
+        $schedule->command('scanOrder:StatusPaypal')->everyTenMinutes();
     }
 
     /**
