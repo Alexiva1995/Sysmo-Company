@@ -43,6 +43,13 @@
       "icon": "award",
       "url": "user/bonus/index",
       "slug": "bonus.index"      
+    },
+    
+    {
+      "name": "Cursos",
+      "icon": "book",
+      "url": "https://sysmocompany.com/home/my_courses",
+      "slug": ""      
     }
 
   ]

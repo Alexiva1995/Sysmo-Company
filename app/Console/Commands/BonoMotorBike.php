@@ -45,20 +45,20 @@ class BonoMotorBike extends Command
         /******************************************************************
          •Al sumar 100 referidos el usuario recibirá una moto 0 kilómetros.
          ******************************************************************/
-        $alluser = count(User::all());
+        $alluser = User::get();
         try {
-            for($i = 1; $i <= $alluser; $i++){
-                if(User::find($i)->status == 1){
-                    $referidos = User::find($i)->childrenActive;
+            foreach($alluser as $user){      
+                if($user->status == "1"){
+                    $referidos = $user->childrenActive;
                     if(count($referidos) >= 100){
-                        if(Wallet::where([['user_id', User::find($i)->id],['bonus_id', 6]])->count() == 0){
+                        if(Wallet::where([['user_id', $user->id],['bonus_id', 5]])->count() == 0){
                             Wallet::create([
-                                'user_id' => User::find($i)->id,
-                                'bonus_id' => 6,
-                                'description' => 'Bono MotorBike para ' . User::find($i)->username . ' (' .User::find($i)->email . ')',
+                                'user_id' => $user->id,
+                                'bonus_id' => 5,
+                                'description' => 'Bono MotorBike para ' . $user->username . ' (' .$user->email . ')',
                                 'status' => 0
                             ]);
-                            Storage::append("BonoMotorBike.txt", 'Bono MotorBike para ' . User::find($i)->username . ' (' .User::find($i)->email . ')');
+                            Storage::append("BonoMotorBike.txt", 'Bono MotorBike para ' . $user->username . ' (' .$user->email . ')');
                         }
                     }
                     // else{
