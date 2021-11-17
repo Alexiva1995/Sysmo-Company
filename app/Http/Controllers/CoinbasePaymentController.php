@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Coinbase;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Shakurov\Coinbase\Facades\Coinbase;
 
 class CoinbasePaymentController extends Controller
 {

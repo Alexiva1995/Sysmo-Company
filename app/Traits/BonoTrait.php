@@ -144,7 +144,6 @@ trait BonoTrait{
                         return $retorno;
                     // }else{
                     //     $retorno = '
-                    //     <p class="text-white small px-1">Fecha Límite: <strong>'. Carbon::parse($fechaReferido20)->addDays(30)->format('d-m-Y') .'</strong></p>
                     //     <div class="progress w-100 rounded-0" style="height: 20px;">
                     //         <div class="progress-bar progress-bar-striped progress-bar-animated rounded-0 bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: '.$porcentaje.'%">'.$porcentaje.'%</div>
                     //     </div>';
@@ -155,7 +154,6 @@ trait BonoTrait{
                 return 0;
             }else{
                 $retorno = '
-                <p class="text-white small px-1">Fecha Límite: <strong>'.$fechaTope->format('d-m-Y').'</strong></p>
                 <div class="progress w-100 rounded-0" style="height: 20px;">
                     <div class="progress-bar progress-bar-striped progress-bar-animated rounded-0 bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: '.$porcentaje.'%">'.$porcentaje.'%</div>
                 </div>';
@@ -215,7 +213,6 @@ trait BonoTrait{
                         return $retorno;
                     //  }else{
                     //     $retorno = '
-                    //     <p class="text-white small px-1">Fecha Límite: <strong>'. $fechaTope->format('d-m-Y')  .'</strong></p>
                     //     <div class="progress w-100 rounded-0" style="height: 20px;">
                     //         <div class="progress-bar progress-bar-striped progress-bar-animated rounded-0 bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: '.$porcentaje.'%">'.$porcentaje.'%</div>
                     //     </div>';
@@ -225,7 +222,6 @@ trait BonoTrait{
                 return 0;
              }else{
                 $retorno = '
-                <p class="text-white small px-1">Fecha Límite: <strong>'.$fechaTope->format('d-m-Y').'</strong></p>
                 <div class="progress w-100 rounded-0" style="height: 20px;">
                     <div class="progress-bar progress-bar-striped progress-bar-animated rounded-0 bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: '.$porcentaje.'%">'.$porcentaje.'%</div>
                 </div>';
@@ -303,7 +299,6 @@ trait BonoTrait{
                 return 1;
             }else{
                 $retorno = '
-                        <p class="text-white small px-1">Fecha Límite 2 personas: <strong>'. Carbon::parse($user->created_a)->addDays(90)->format('d-m-Y')  .'</strong></p>
                         <div class="progress w-100 rounded-0" style="height: 20px;">
                             <div class="progress-bar progress-bar-striped progress-bar-animated rounded-0 bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: '.$porcentaje.'%">'.$porcentaje.'%</div>
                         </div>';
