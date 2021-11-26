@@ -48,7 +48,7 @@ class BonusController extends Controller
         $dbBonoMoney = $this->showBonoMoney();
         $dbBonoSpeed = $this->showBonoRapido();
         $dbBonoStart = $this->showBonoInicio();
-        $dbBonoDirect = $this->showBonoDirecto();
+        // $dbBonoDirect = $this->showBonoDirecto();
         $dbBonoTravel = $this->showBonoViaje();
         $dbBonoMoto = $this->showBonoMoto();
         $dbBonoCarro = $this->showBonoCarro();
@@ -57,7 +57,7 @@ class BonusController extends Controller
            'dbBonoMoney' => $dbBonoMoney,
            'dbBonoSpeed' => $dbBonoSpeed,
            'dbBonoStart' => $dbBonoStart,
-           'dbBonoDirect' => $dbBonoDirect,
+        //    'dbBonoDirect' => $dbBonoDirect,
            'dbBonoTravel' => $dbBonoTravel,
            'dbBonoMoto' => $dbBonoMoto,
            'dbBonoCarro' => $dbBonoCarro,

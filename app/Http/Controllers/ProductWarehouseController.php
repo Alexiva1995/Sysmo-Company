@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Order;
+use App\Traits\BonoTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\ProductWarehouse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth;
 use Hexters\CoinPayment\CoinPayment;
+use Illuminate\Support\Facades\Auth;
 use Hexters\CoinPayment\Helpers\CoinPaymentHelper;
-use App\Models\User;
-use App\Traits\BonoTrait;
 
 class ProductWarehouseController extends Controller
 {
@@ -248,7 +248,7 @@ class ProductWarehouseController extends Controller
         $order = Order::findOrFail($id);
         $order->status = $status;
         if($order->save()){
-            $this->bonoDirecto($order);//Consulta si cumple con bonoDirecto
+            // $this->bonoDirecto($order);//Consulta si cumple con bonoDirecto
             $this->bonoMoney($order);//Consulta si cumple con bonoMoney
             return redirect()->route('store.list-orders')->with('message', 'El Pedido fue actualizado Exitosamente');
         }else{
@@ -296,7 +296,28 @@ class ProductWarehouseController extends Controller
             $payPaypal->paymentProcess($transacion);
     }
     public function payByCoinbase($id){
-        dd($id);
+        $payCoinbase = new CoinbasePaymentController;
+        $product = ProductWarehouse::find($id);
+
+        $infoOrden = [
+            'user_id' => Auth::user()->id,
+            'product_id' => $product->id,
+            'amount' => $product->price,
+            'method' => 'coinbase',
+            'status' => '0'
+        ];
+
+        $transacion = [
+                'name' => $product->name,
+                'amountTotal' => $product->price,
+                'note' => 'Compra de paquete: '.$product->name.' por un precio de '.$product->price,
+                'order_id' => $this->guardarOrden($infoOrden),
+                'tipo' => 'Compra de un paquete',
+                'buyer_name' => Auth::user()->firstname,
+                'buyer_email' => Auth::user()->email,
+            ];
+
+            $payCoinbase->paymentProcess($transacion);
     }
     public function buyProduct(Request $request)
     {

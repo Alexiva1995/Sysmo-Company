@@ -54,10 +54,10 @@ class CreateNewUser implements CreatesNewUsers
                 'password='.$input['password'],
                 'auth_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMCIsInJvbGUiOiJhcGkiLCJmaXJzdF9uYW1lIjoiYmFja29mZmljZSJ9.X6qtlfZyjhGsWyQiqj_Kr4esk3gFAcY3ilxWeJZn-uE'
             ];
-            $variable = implode('&', $data);
-            $idUserCrypto = $this->insertCryptoAcademy($variable);
-            $user->user_id_crypto = $idUserCrypto;
-            $user->save();
+            // $variable = implode('&', $data);
+            // $idUserCrypto = $this->insertCryptoAcademy($variable);
+            // $user->user_id_crypto = $idUserCrypto;
+            // $user->save();
             
         }
 
@@ -70,7 +70,7 @@ class CreateNewUser implements CreatesNewUsers
      * @param string $data
      * @return void
      */
-    public function insertCryptoAcademy($variables):int 
+    public function insertCryptoAcademy($variables):string 
     {
         $curl = curl_init();
 

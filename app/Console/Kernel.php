@@ -23,7 +23,8 @@ class Kernel extends ConsoleKernel
         Commands\BonoTravel::class,
         Commands\BonoSpeed::class,
         Commands\BonoStart::class,
-        Commands\scanOrderStatus::class
+        Commands\scanOrderStatus::class,
+        Commands\scanOrderStatusPaypal::class
     ];
 
     /**
@@ -39,7 +40,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('bono:travel')->daily();
         $schedule->command('bono:speed')->daily();
         $schedule->command('bono:start')->daily();
-        $schedule->command('scan:orderstatus')->everyFiveMinutes();
+        $schedule->command('scan:orderstatus')->everyTenMinutes();
+        $schedule->command('scanOrder:StatusPaypal')->everyTenMinutes();
     }
 
     /**

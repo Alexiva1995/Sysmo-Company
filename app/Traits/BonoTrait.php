@@ -122,19 +122,19 @@ trait BonoTrait{
                 $porcentaje = 100;
             }
 
-            if(count($referidosRangoFecha) >= 20  ) {
+            if(count($referidosRangoFecha) >= 22  ) {
 
-                    $fechaReferido20 = [];
-                    foreach($user->childrenActive as $fecha){
-                        array_push($fechaReferido20, $fecha->created_at); //Crea un array con las fechas de los referidos
-                    }
-                    sort($fechaReferido20, SORT_STRING); //Ordena la colección por fecha
+                    // $fechaReferido20 = [];
+                    // foreach($user->childrenActive as $fecha){
+                    //     array_push($fechaReferido20, $fecha->created_at); //Crea un array con las fechas de los referidos
+                    // }
+                    // sort($fechaReferido20, SORT_STRING); //Ordena la colección por fecha
 
-                    $fechaReferido20 = $fechaReferido20[19]->format('d-m-Y');//El Índice del array tiene que ser 19
-                    $referidosExtra = ($user->childrenActive->whereBetween('created_at', [Carbon::parse($fechaReferido20), Carbon::parse($fechaReferido20)->addDays(15)]));//Guarda cuantos referidos se registraron despues de que el referido N°20 se registró hasta 15 días después
+                    // $fechaReferido20 = $fechaReferido20[19]->format('d-m-Y');//El Índice del array tiene que ser 19
+                    // $referidosExtra = ($user->childrenActive->whereBetween('created_at', [Carbon::parse($fechaReferido20), Carbon::parse($fechaReferido20)->addDays(15)]));//Guarda cuantos referidos se registraron despues de que el referido N°20 se registró hasta 15 días después
                     
                     
-                    if(count($referidosExtra) > 2){
+                    // if(count($referidosExtra) > 2){
                         // return $porcentaje;
                         $retorno = '
                         <div class="progress w-100 rounded-0" style="height: 20px;">
@@ -142,20 +142,18 @@ trait BonoTrait{
                         </div>';
 
                         return $retorno;
-                    }else{
-                        $retorno = '
-                        <p class="text-white small px-1">Fecha Límite: <strong>'. Carbon::parse($fechaReferido20)->addDays(30)->format('d-m-Y') .'</strong></p>
-                        <div class="progress w-100 rounded-0" style="height: 20px;">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated rounded-0 bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: '.$porcentaje.'%">'.$porcentaje.'%</div>
-                        </div>';
+                    // }else{
+                    //     $retorno = '
+                    //     <div class="progress w-100 rounded-0" style="height: 20px;">
+                    //         <div class="progress-bar progress-bar-striped progress-bar-animated rounded-0 bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: '.$porcentaje.'%">'.$porcentaje.'%</div>
+                    //     </div>';
 
-                        return $retorno;
-                    }
+                    //     return $retorno;
+                    // }
             }else if (($fechaTope < Carbon::now()) && count($referidosRangoFecha) < 3){
                 return 0;
             }else{
                 $retorno = '
-                <p class="text-white small px-1">Fecha Límite: <strong>'.$fechaTope->format('d-m-Y').'</strong></p>
                 <div class="progress w-100 rounded-0" style="height: 20px;">
                     <div class="progress-bar progress-bar-striped progress-bar-animated rounded-0 bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: '.$porcentaje.'%">'.$porcentaje.'%</div>
                 </div>';
@@ -183,29 +181,29 @@ trait BonoTrait{
          try{
             $user = User::find(Auth::user()->id);
             
-            $fechaTope = Carbon::parse($user->created_at)->addDays(15);
-            $referidosRangoFecha = $user->childrenActive->whereBetween('created_at', [Carbon::parse($user->created_at), Carbon::parse($user->created_at)->addDays(15)] );
+            $fechaTope = Carbon::parse($user->created_at)->addDays(30);
+            $referidosRangoFecha = $user->childrenActive->whereBetween('created_at', [Carbon::parse($user->created_at), $fechaTope] );
 
             $porcentaje = round(count($referidosRangoFecha)/4*100, 2);
             if($porcentaje > 100){
                 $porcentaje = 100;
             }
 
-             if(count($referidosRangoFecha) >= 3  ) {
+             if(count($referidosRangoFecha) >= 4  ) {
 
-                 $fechaReferido3 = [];
-                    foreach($user->childrenActive as $fecha){
-                         array_push($fechaReferido3, $fecha->created_at); //Crea un array con las fechas de los referidos
-                    }
-                    sort($fechaReferido3, SORT_STRING); //Ordena la colección por fecha
-                    $fechaReferido3 = $fechaReferido3[2]->format('d-m-Y'); //El Índice del array tiene que ser 2
+                //  $fechaReferido3 = [];
+                //     foreach($user->childrenActive as $fecha){
+                //          array_push($fechaReferido3, $fecha->created_at); //Crea un array con las fechas de los referidos
+                //     }
+                //     sort($fechaReferido3, SORT_STRING); //Ordena la colección por fecha
+                //     $fechaReferido3 = $fechaReferido3[2]->format('d-m-Y'); //El Índice del array tiene que ser 2
 
                     
-                    $referidosExtra = ($user->childrenActive->whereBetween('created_at', [Carbon::parse($fechaReferido3), Carbon::parse($fechaReferido3)->addDays(30)])); //Guarda cuantos referidos se registraron despues de que el referido N°3 se registró hasta 30 días después
+                //     $referidosExtra = ($user->childrenActive->whereBetween('created_at', [Carbon::parse($fechaReferido3), Carbon::parse($fechaReferido3)->addDays(30)])); //Guarda cuantos referidos se registraron despues de que el referido N°3 se registró hasta 30 días después
                     
-                    // return $referidosExtra;
+                //     // return $referidosExtra;
 
-                     if(count($referidosExtra) > 3){
+                //      if(count($referidosExtra) > 3){
 
                         $retorno = '
                         <div class="progress w-100 rounded-0" style="height: 20px;">
@@ -213,19 +211,17 @@ trait BonoTrait{
                         </div>';
 
                         return $retorno;
-                     }else{
-                        $retorno = '
-                        <p class="text-white small px-1">Fecha Límite: <strong>'. Carbon::parse($fechaReferido3)->addDays(30)->format('d-m-Y')  .'</strong></p>
-                        <div class="progress w-100 rounded-0" style="height: 20px;">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated rounded-0 bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: '.$porcentaje.'%">'.$porcentaje.'%</div>
-                        </div>';
-                         return $retorno;
-                     }
+                    //  }else{
+                    //     $retorno = '
+                    //     <div class="progress w-100 rounded-0" style="height: 20px;">
+                    //         <div class="progress-bar progress-bar-striped progress-bar-animated rounded-0 bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: '.$porcentaje.'%">'.$porcentaje.'%</div>
+                    //     </div>';
+                    //      return $retorno;
+                    //  }
              }else if (($fechaTope < Carbon::now()) && count($referidosRangoFecha) < 3){
                 return 0;
              }else{
                 $retorno = '
-                <p class="text-white small px-1">Fecha Límite: <strong>'.$fechaTope->format('d-m-Y').'</strong></p>
                 <div class="progress w-100 rounded-0" style="height: 20px;">
                     <div class="progress-bar progress-bar-striped progress-bar-animated rounded-0 bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: '.$porcentaje.'%">'.$porcentaje.'%</div>
                 </div>';
@@ -237,50 +233,50 @@ trait BonoTrait{
          }
      }
 
-    public function bonoDirecto($producto)
-    {
-        /******************************************************************
-         •El bono directo sera  cada paquere rs pagara 50 usd y cada pro pagara 70. 
-         ******************************************************************/
-        try {
-            $idProducto = $producto['product_id'];
-            $userId = $producto['user_id'];
-            $nombreUser = User::find($userId)->username;
-            $correoUser = User::find($userId)->email;
-            $padre = User::find($userId)->referred_id;
-            // Storage::append("BonoDirecto.txt", 'ID Padre del padre; '. User::find($padre)->referred_id . " ID User: " . $userId);
-            if((User::find($padre)->created_at)->diffInDays(Carbon::now()) <= 365)//Validez por 1 año
-            {
-                if($idProducto == 1){
-                    Wallet::create([
-                        'user_id' => User::find($padre)->id,
-                        'bonus_id' => 4,
-                        'referred_id' => User::find($padre)->referred_id,
-                        'amount' => 50,
-                        'description' => 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')',
-                        'status' => 0
-                    ]);
-                    Storage::append("BonoDirecto.txt", 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')');
-                }elseif($idProducto == 2){
-                    Wallet::create([
-                        'user_id' => User::find($padre)->id,
-                        'bonus_id' => 4,
-                        'referred_id' => User::find($padre)->referred_id,
-                        'amount' => 70,
-                        'description' => 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')',
-                        'status' => 0
-                    ]);
-                    Storage::append("BonoDirecto.txt", 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')');
-                }
-            }
-            else{
-                Storage::append("BonoDirecto.txt", 'Se venció el bono directo al usuario: ' . $padre);
-            }
+    // public function bonoDirecto($producto)
+    // {
+    //     /******************************************************************
+    //      •El bono directo sera  cada paquere rs pagara 50 usd y cada pro pagara 70. 
+    //      ******************************************************************/
+    //     try {
+    //         $idProducto = $producto['product_id'];
+    //         $userId = $producto['user_id'];
+    //         $nombreUser = User::find($userId)->username;
+    //         $correoUser = User::find($userId)->email;
+    //         $padre = User::find($userId)->referred_id;
+    //         // Storage::append("BonoDirecto.txt", 'ID Padre del padre; '. User::find($padre)->referred_id . " ID User: " . $userId);
+    //         if((User::find($padre)->created_at)->diffInDays(Carbon::now()) <= 365)//Validez por 1 año
+    //         {
+    //             if($idProducto == 1){
+    //                 Wallet::create([
+    //                     'user_id' => User::find($padre)->id,
+    //                     'bonus_id' => 4,
+    //                     'referred_id' => User::find($padre)->referred_id,
+    //                     'amount' => 50,
+    //                     'description' => 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')',
+    //                     'status' => 0
+    //                 ]);
+    //                 Storage::append("BonoDirecto.txt", 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')');
+    //             }elseif($idProducto == 2){
+    //                 Wallet::create([
+    //                     'user_id' => User::find($padre)->id,
+    //                     'bonus_id' => 4,
+    //                     'referred_id' => User::find($padre)->referred_id,
+    //                     'amount' => 70,
+    //                     'description' => 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')',
+    //                     'status' => 0
+    //                 ]);
+    //                 Storage::append("BonoDirecto.txt", 'Bono Directo por el usuario ' . $nombreUser . ' (' . $correoUser . ')');
+    //             }
+    //         }
+    //         else{
+    //             Storage::append("BonoDirecto.txt", 'Se venció el bono directo al usuario: ' . $padre);
+    //         }
            
-        } catch (\Throwable $th) {
-            Storage::append("BonoDirecto.txt", 'LOG | Error: '. $th .' Fecha: '. Carbon::now());
-        }
-    }
+    //     } catch (\Throwable $th) {
+    //         Storage::append("BonoDirecto.txt", 'LOG | Error: '. $th .' Fecha: '. Carbon::now());
+    //     }
+    // }
 
     public function bonoTravel()
     {
@@ -303,7 +299,6 @@ trait BonoTrait{
                 return 1;
             }else{
                 $retorno = '
-                        <p class="text-white small px-1">Fecha Límite 2 personas: <strong>'. Carbon::parse($user->created_a)->addDays(90)->format('d-m-Y')  .'</strong></p>
                         <div class="progress w-100 rounded-0" style="height: 20px;">
                             <div class="progress-bar progress-bar-striped progress-bar-animated rounded-0 bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: '.$porcentaje.'%">'.$porcentaje.'%</div>
                         </div>';
@@ -387,7 +382,7 @@ trait BonoTrait{
 
     public function showBonoRapido()
     {
-        $bonoRapido = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 2);
+        $bonoRapido = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 3);
 
         if($bonoRapido){
             return count($bonoRapido);
@@ -398,7 +393,7 @@ trait BonoTrait{
 
     public function showBonoInicio()
     {
-        $bonoInicio = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 3);
+        $bonoInicio = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 2);
 
         if($bonoInicio){
             return count($bonoInicio);
@@ -407,20 +402,20 @@ trait BonoTrait{
         }
     }
     
-    public function showBonoDirecto()
-    {
-        $bonoDirecto = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 4);
+    // public function showBonoDirecto()
+    // {
+    //     $bonoDirecto = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 4);
 
-        if($bonoDirecto){
-            return count($bonoDirecto);
-        }else{
-            return 0;
-        }
-    }
+    //     if($bonoDirecto){
+    //         return count($bonoDirecto);
+    //     }else{
+    //         return 0;
+    //     }
+    // }
 
     public function showBonoViaje()
     {
-        $bonoViaje = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 5);
+        $bonoViaje = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 4);
 
         if($bonoViaje){
             return count($bonoViaje);
@@ -431,7 +426,7 @@ trait BonoTrait{
 
     public function showBonoMoto()
     {
-        $bonoMoto = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 6);
+        $bonoMoto = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 5);
 
         if($bonoMoto){
             return count($bonoMoto);
@@ -442,7 +437,7 @@ trait BonoTrait{
 
     public function showBonoCarro()
     {
-        $bonoCarro = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 7);
+        $bonoCarro = Wallet::all()->where('user_id', '=', Auth::user()->id)->where('bonus_id', '=', 6);
 
         if($bonoCarro){
             return count($bonoCarro);

@@ -48,37 +48,36 @@ class BonoStart extends Command
          Nota: (para aplicar a esta comisión extra el referido #4 debe
          traerlo durante los primeros 30 dias)
          ******************************************************************/
-        $alluser = count(User::all());
+        $alluser = User::get();
         try{
-            for($i = 1; $i <= $alluser; $i++){
-                $user = User::find($i);
-                if($user->status == 1){
-                    $referidosRangoFecha = $user->childrenActive->whereBetween('created_at', [Carbon::parse($user->created_at), Carbon::parse($user->created_at)->addDays(15)] );
+            foreach($alluser as $user){   
+                if($user->status == "1"){
+                    $referidosRangoFecha = $user->childrenActive->whereBetween('created_at', [Carbon::parse($user->created_at), Carbon::parse($user->created_at)->addDays(30)] );
 
-                    if(count($referidosRangoFecha) >= 3  ) {
+                    if(count($referidosRangoFecha) >= 4  ) {
 
-                        $fechaReferido3 = [];
-                            foreach($user->childrenActive as $fecha){
-                                array_push($fechaReferido3, $fecha->created_at); //Crea un array con las fechas de los referidos
-                            }
-                            sort($fechaReferido3, SORT_STRING); //Ordena la colección por fecha
-                            $fechaReferido3 = $fechaReferido3[2]->format('d-m-Y');//El Índice del array tiene que ser 2
+                        // $fechaReferido3 = [];
+                        //     foreach($user->childrenActive as $fecha){
+                        //         array_push($fechaReferido3, $fecha->created_at); //Crea un array con las fechas de los referidos
+                        //     }
+                        //     sort($fechaReferido3, SORT_STRING); //Ordena la colección por fecha
+                        //     $fechaReferido3 = $fechaReferido3[2]->format('d-m-Y');//El Índice del array tiene que ser 2
                             
-                            $referidosExtra = ($user->childrenActive->whereBetween('created_at', [Carbon::parse($fechaReferido3), Carbon::parse($fechaReferido3)->addDays(30)]));//Guarda cuantos referidos se registraron despues de que el referido N°3 se registró hasta 30 días después
+                        //     $referidosExtra = ($user->childrenActive->whereBetween('created_at', [Carbon::parse($fechaReferido3), Carbon::parse($fechaReferido3)->addDays(30)]));//Guarda cuantos referidos se registraron despues de que el referido N°3 se registró hasta 30 días después
                             
-                            if(count($referidosExtra) > 1){
-                                if(Wallet::where([['user_id', User::find($i)->id],['bonus_id', 3]])->count() == 0){
+                        //     if(count($referidosExtra) > 1){
+                                if(Wallet::where([['user_id', $user->id],['bonus_id', 2]])->count() == 0){
                                     Wallet::create([
-                                        'user_id' => User::find($i)->id,
-                                        'bonus_id' => 3,
+                                        'user_id' => $user->id,
+                                        'bonus_id' => 2,
                                         'amount' => 50,
-                                        'description' => 'Bono Start para ' . User::find($i)->username . ' (' .User::find($i)->email . ')',
+                                        'description' => 'Bono Start para ' . $user->username . ' (' .$user->email . ')',
                                         'status' => 0
                                     ]);
-                                    Storage::append("BonoStart.txt", 'Bono Start para ' . User::find($i)->username . ' (' .User::find($i)->email . ')');
+                                    Storage::append("BonoStart.txt", 'Bono Start para ' . $user->username . ' (' .$user->email . ')');
                                 }
                                 // Storage::append("BonoStart.txt", 'El usuario ' .$i. ' Cumple con todos los requisitos, tienes: '. count($user->children) .' referidos, el referido n° 3 se registró el ' . $fechaReferido3 . ', ' .$user->created_at->diffInDays($fechaReferido3) . ' días despues de que usted se registró, y desde esa fecha hasta 30 días después, has hecho ' . (count($referidosExtra)-1) . ' Referidos');
-                            }
+                            // }
                             // else{
                             //     Storage::append("BonoStart.txt", 'El usuario ' .$i. ' Necesitas al menos 1 referido más antes de la fecha '. Carbon::parse($fechaReferido3)->addDays(30)->format('d-m-Y') .' para ganar el bono');
                             // }

@@ -51,7 +51,7 @@
   <div class="drag-target"></div>
 
   {{-- include footer --}}
-  {{-- @include('panels/footer') --}}
+  @include('layouts.panels.footer')
 
   {{-- include default scripts --}}
   @include('layouts.panels.scripts')

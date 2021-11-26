@@ -21,12 +21,6 @@
       "icon": "credit-card",
       "slug": "Financiero",
       "submenu": [
-        {
-          "url": "user/wallet/index",
-          "name": "Wallet",
-          "icon": "circle",
-          "slug": "wallet.index"
-        },
 
         {
           "url": "admin/range/index",
@@ -49,6 +43,13 @@
       "icon": "award",
       "url": "user/bonus/index",
       "slug": "bonus.index"      
+    },
+    
+    {
+      "name": "Cursos",
+      "icon": "book",
+      "url": "https://sysmocompany.com/home/my_courses",
+      "slug": ""      
     }
 
   ]

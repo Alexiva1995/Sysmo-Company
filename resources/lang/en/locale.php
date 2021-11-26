@@ -230,5 +230,6 @@ return [
   "Organización" => "Organización",
   "Whoops! Something went wrong." => "Ooops! Algo salió mal",
   "Resumen" => "Resumen",
+  "Cursos" => "Cursos",
 
 ];

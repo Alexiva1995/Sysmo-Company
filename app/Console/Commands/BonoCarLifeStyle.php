@@ -45,27 +45,25 @@ class BonoCarLifeStyle extends Command
         /******************************************************************
          •Al sumar 500 referidos el usuario recibirá  un carro 0 kilómetros. 
          ******************************************************************/
-        $alluser = count(User::all());
+        $alluser = User::get();
         try {
             
-            for($i = 1; $i <= $alluser; $i++){
-                if(User::find($i)->status == 1){
-                    $referidos = User::find($i)->childrenActive;
+            foreach($alluser as $user){               
+                if($user->status == "1"){
+                    $referidos = $user->childrenActive;
                     if(count($referidos) >= 500){
-                        if(Wallet::where([['user_id', User::find($i)->id],['bonus_id', 7]])->count() == 0){
+                        if(Wallet::where([['user_id', $user->id],['bonus_id', 6]])->count() == 0){
                             Wallet::create([
-                                'user_id' => User::find($i)->id,
-                                'bonus_id' => 7,
-                                'description' => 'Bono CarLifeStyle para ' . User::find($i)->username . ' (' .User::find($i)->email . ')',
+                                'user_id' => $user->id,
+                                'bonus_id' => 6,
+                                'description' => 'Bono CarLifeStyle para ' . $user->username . ' (' .$user->email . ')',
                                 'status' => 0
                             ]);
-                            Storage::append("BonoCarLifeStyle.txt", 'Bono CarLifeStyle para ' . User::find($i)->username . ' (' .User::find($i)->email . ')');
+                            Storage::append("BonoCarLifeStyle.txt", 'Bono CarLifeStyle para ' . $user->username . ' (' .$user->email . ')');
                         }
                         // else{
                         //     Storage::append("BonoCarLifeStyle.txt", $i . " ya había ganado un auto");
                         // }
-                        
-                        
                     }
                     // else{
                     //     Storage::append("BonoCarLifeStyle.txt", $i . " No cumple");
