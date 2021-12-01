@@ -6,10 +6,10 @@
             <button class="card border member membercolor1 mt-5" data-toggle="collapse" data-target="#bonusMoto"
                 aria-expanded="false" aria-controls="bonusMoto">
                 <div>
-                    <h1 class="text-white nombre mt-2">{{$bonuses[5]->name}}</h1>
+                    <h1 class="text-white nombre mt-2">{{$bonuses[4]->name}}</h1>
                     <div class="separador"></div>
                     <p class="text-white p-2" style="font-size: 9pt; line-height: 1.4;">Descripción:
-                        {{$bonuses[5]->description}}</p>
+                        {{$bonuses[4]->description}}</p>
                 </div>
 
                 <div id="bonusMoto" class="collapse py-2">
@@ -38,10 +38,10 @@
             <button class="card border member membercolor1" data-toggle="collapse" data-target="#bonusTravel"
                 aria-expanded="false" aria-controls="bonusTravel">
                 <div>
-                    <h1 class="text-white nombre mt-2">{{$bonuses[4]->name}}</h1>
+                    <h1 class="text-white nombre mt-2">{{$bonuses[3]->name}}</h1>
                     <div class="separador"></div>
                     <p class="text-white p-2" style="font-size: 9pt; line-height: 1.4;">Descripción:
-                        {{$bonuses[4]->description}}</p>
+                        {{$bonuses[3]->description}}</p>
                 </div>
 
                 <div id="bonusTravel" class="collapse py-2">
@@ -75,10 +75,10 @@
             <button class="card border member membercolor1 mt-5" data-toggle="collapse" data-target="#bonusCar"
                 aria-expanded="false" aria-controls="bonusCar">
                 <div>
-                    <h1 class="text-white nombre mt-2">{{$bonuses[6]->name}}</h1>
+                    <h1 class="text-white nombre mt-2">{{$bonuses[5]->name}}</h1>
                     <div class="separador"></div>
                     <p class="text-white p-2" style="font-size: 9pt; line-height: 1.4;">Descripción:
-                        {{$bonuses[6]->description}}</p>
+                        {{$bonuses[4]->description}}</p>
                 </div>
 
                 <div id="bonusCar" class="collapse py-2">

@@ -27,7 +27,7 @@
                     <h2 class="text-white precio">Precio 
                         <span class="text-white cantidad">{{$item->price}}$</span>
                     </h2>
-                    <h2 class="text-white incluye">Incluye el servicio por un mes</h2>
+                    {{-- <h2 class="text-white incluye">Incluye el servicio por un mes</h2> --}}
                 </div>
                 <a class="btn btn-outline-success border-radius-30 btn-block text-dark py-2 texto-card-1" 
                 data-toggle="modal" data-target="#modalCompra{{$item->id}}"
