@@ -28,12 +28,6 @@ class PayPalPaymentController extends Controller
         $this->credentials['live']['client_id'] = Crypt::decryptString('eyJpdiI6IkY0SXFycHRaNGJtZzZVVUNpWnpYNXc9PSIsInZhbHVlIjoiRkZrY1p1bWZEVHJNYWlUdExSSGQ2WlI1VmhjSk90ZlJKQlJBZ2lJZm95K3R0VEJ3NU5DcjFmRE5IS29UTUhqUk1Da29obWJLQ2F1U1VpaUJCOXc3bmFacTdRbVFtVHBTRW1XVXdhM2tqZ1FTN24ycUJycVFYOHN2R2Faa3NVdHkiLCJtYWMiOiI4NDQ3ZWRhYmYxNTAwZWIzYzUzMGZmZWEzMzg2NDgzNDBlYWZiMmZkMjZjZDE1MzMyMmY2NTllOWJlZjRkNWFlIiwidGFnIjoiIn0=');
         $this->credentials['live']['client_secret'] = Crypt::decryptString('eyJpdiI6IkpiR2JOOWJGYWxEZ1IwMytsRFBSelE9PSIsInZhbHVlIjoiTW1qRmlSbjBjRVhpbnQrNGt1dlRMMGxlSnJEeXpQTEFOTVB4OCtob1gwZy8yblo3a0s1L1JHb29lOWVQSFhuMVIyM1B1UjhKMW50aGViV1EwOTIrK1FiYlhJaU50NWJYakRVdGU2TzNwcUdVWlh4QTN6bEp5dHNEYW8xRms4dU0iLCJtYWMiOiI4MmM0ZjliNzg0MThmYWRlYTc3YTk4MGViMWI3NjNjZGUxMGJlODU4M2YyYTg1YTY2NDM2NmE3NDA1NzM1N2ZmIiwidGFnIjoiIn0=');
     }
-    #Sanbox
-    #client_id = ATv5xiHhOBEjPBGtSKsZ8DSCUab2py5aRFpJ1WsdeQ2JbWjF59jIllpCE0QV4ZbSPFLH8386opaIRE2x
-    #secret_id = EFD0S4DNiigRfG29K8Pzq4VyoR1jgtTV85Zh1tzluocZdekqMnzh7SKcJnPCMiRXe1_RR9WgK4AnNqaG
-    #Live
-    #Client_id= ASYRvw42jHA5VgrHsDpdpBkm0EJWO1QLFrb7E_h8EXk5daGA4hOSPEGViwNSx6sibn6ZwXQvzElGc55s
-    #secret_id= EHF7OnMtWb-p8rxnL_ul2RD1KAScBK3TbxcEoA4BFR6nlwfy9idppJnFOxDnLbz8HC1GGs5G-hmYFtDm
 
 
 
