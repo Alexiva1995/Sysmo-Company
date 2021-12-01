@@ -21,7 +21,13 @@ use App\Http\Controllers\PayPalPaymentController;
 use App\Http\Controllers\ProductWarehouseController;
 
 Route::get('/clear-cache', function() {
-  Artisan::call('optimize');
+  Artisan::call('optimize:clear');
+  Artisan::call('config:clear');
+  Artisan::call('cache:clear');
+  Artisan::call('config:cache');
+  Artisan::call('view:clear');
+  Artisan::call('route:clear');
+  
   return 'DONE'; //Return anything
 });
 
